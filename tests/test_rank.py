@@ -45,5 +45,10 @@ def test_cross_provider_agreement_ranks_higher():
     ]
 
     ordered = order_items(items, rankings)
-    assert ordered[0]["_viewsync_id"] == "movie:imdb:tt2"
+
+    # Both titles have identical RRF scores, source counts, and best ranks.
+    # The stable media-ID tie-break therefore preserves deterministic order.
+    assert ordered[0]["_viewsync_id"] == "movie:imdb:tt1"
+    assert ordered[1]["_viewsync_id"] == "movie:imdb:tt2"
+    assert rankings["movie:imdb:tt1"]["source_count"] == 2
     assert rankings["movie:imdb:tt2"]["source_count"] == 2

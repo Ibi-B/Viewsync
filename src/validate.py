@@ -33,7 +33,7 @@ def validate_release(release: dict[str, Any]) -> None:
         raise ValidationError("Release has no rows")
 
     for row in release["rows"]:
-        if not row.get("id") or not row.get("path"):
-            raise ValidationError("Row is missing id or path")
+        if not row.get("id"):
+            raise ValidationError("Row is missing id")
         if not isinstance(row.get("items"), list):
             raise ValidationError(f"Row {row['id']} has no item array")

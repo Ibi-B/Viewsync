@@ -29,7 +29,7 @@
       "media_type": "series",
       "max_items": 100,
       "source_lists": ["tmdb_on_the_air_series"],
-      "date_field": "first_air_date"
+      "date_field": "release_date"
     }
   ]
 }

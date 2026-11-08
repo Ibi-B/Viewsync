@@ -21,6 +21,12 @@ from .state import persist_snapshots, restore_snapshots, retention_status, snaps
 from .validate import has_usable_items, validate_snapshot
 
 
+def parse_date(value: Any) -> str:
+    if not isinstance(value, str) or not value:
+        return ""
+    return value[:10]
+
+
 def generate(config_dir: str, output_dir: str, state_dir: str) -> int:
     config = load_config(config_dir)
     output = Path(output_dir)
@@ -100,8 +106,16 @@ def generate(config_dir: str, output_dir: str, state_dir: str) -> int:
 
         ordered = order_items(list(items_by_id.values()), rankings)
         max_items = int(row_config.get("max_items", 100))
-        published_items = []
+        date_field = row_config.get("date_field")
 
+        if date_field:
+            ordered = [
+                item for item in ordered
+                if item.get(date_field)
+            ]
+            ordered.sort(key=lambda item: item[date_field])
+
+        published_items = []
         for position, item in enumerate(ordered[:max_items], start=1):
             media_id = item["_viewsync_id"]
             entry = rankings.get(media_id, {})
@@ -114,6 +128,7 @@ def generate(config_dir: str, output_dir: str, state_dir: str) -> int:
                 "backdrop": item.get("backdrop"),
                 "overview": item.get("overview"),
                 "rating": item.get("rating"),
+                "release_date": item.get("release_date"),
                 "field_sources": item.get("field_sources", {}),
                 "ranking": {
                     "position": position,

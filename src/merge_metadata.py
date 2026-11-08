@@ -1,4 +1,4 @@
-"""Metadata merging with field provenance."""
+"""Metadata merging with field provenance and release dates."""
 
 from __future__ import annotations
 
@@ -33,7 +33,10 @@ def merge_item(
         ("background", "backdrop"),
         ("description", "overview"),
         ("releaseInfo", "year"),
+        ("release_date", "release_date"),
+        ("first_air_date", "release_date"),
         ("imdbRating", "rating"),
+        ("tmdbRating", "rating"),
     ):
         value = incoming.get(source_field)
         if value in (None, "", []):

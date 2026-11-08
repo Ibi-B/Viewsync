@@ -6,14 +6,30 @@
       "title": "Popular movies",
       "media_type": "movie",
       "max_items": 100,
-      "source_lists": ["cinemeta_popular_movies"]
+      "source_lists": ["cinemeta_popular_movies", "tmdb_trending_movies_day"]
     },
     {
       "id": "popular_series",
       "title": "Popular series",
       "media_type": "series",
       "max_items": 100,
-      "source_lists": ["cinemeta_popular_series"]
+      "source_lists": ["cinemeta_popular_series", "tmdb_trending_series_day"]
+    },
+    {
+      "id": "upcoming_movies",
+      "title": "Upcoming movies",
+      "media_type": "movie",
+      "max_items": 100,
+      "source_lists": ["tmdb_upcoming_movies"],
+      "date_field": "release_date"
+    },
+    {
+      "id": "upcoming_series",
+      "title": "Upcoming series",
+      "media_type": "series",
+      "max_items": 100,
+      "source_lists": ["tmdb_on_the_air_series"],
+      "date_field": "first_air_date"
     }
   ]
 }

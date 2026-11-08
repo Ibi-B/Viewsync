@@ -28,9 +28,58 @@
     {
       "id": "tmdb",
       "name": "The Movie Database",
-      "enabled": false,
+      "enabled": true,
       "weight": 1.0,
-      "requests": []
+      "requests": [
+        {
+          "id": "tmdb_trending_movies_day",
+          "list_id": "popular_movies",
+          "media_type": "movie",
+          "url": "https://api.themoviedb.org/3/trending/movie/day",
+          "timeout_seconds": 20,
+          "max_items": 100,
+          "auth": {
+            "type": "api_key",
+            "env": "TMDB_API_KEY"
+          }
+        },
+        {
+          "id": "tmdb_trending_series_day",
+          "list_id": "popular_series",
+          "media_type": "series",
+          "url": "https://api.themoviedb.org/3/trending/tv/day",
+          "timeout_seconds": 20,
+          "max_items": 100,
+          "auth": {
+            "type": "api_key",
+            "env": "TMDB_API_KEY"
+          }
+        },
+        {
+          "id": "tmdb_upcoming_movies",
+          "list_id": "upcoming_movies",
+          "media_type": "movie",
+          "url": "https://api.themoviedb.org/3/movie/upcoming",
+          "timeout_seconds": 20,
+          "max_items": 100,
+          "auth": {
+            "type": "api_key",
+            "env": "TMDB_API_KEY"
+          }
+        },
+        {
+          "id": "tmdb_on_the_air_series",
+          "list_id": "upcoming_series",
+          "media_type": "series",
+          "url": "https://api.themoviedb.org/3/tv/on_the_air",
+          "timeout_seconds": 20,
+          "max_items": 100,
+          "auth": {
+            "type": "api_key",
+            "env": "TMDB_API_KEY"
+          }
+        }
+      ]
     }
   ]
 }

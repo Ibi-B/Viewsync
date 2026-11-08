@@ -1,78 +1,54 @@
-"""Static release publication."""
-
-from __future__ import annotations
-
+"""Static publication. All catalogue paths resolve against the v1 root."""
 import json
+import re
 from pathlib import Path
-from typing import Any
-
 from .validate import validate_release
 
 
-def write_json(path: str | Path, data: Any) -> Path:
+def write_json(path, data):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", encoding="utf-8") as handle:
-        json.dump(data, handle, ensure_ascii=False, indent=2, sort_keys=True)
-        handle.write("\n")
+    temporary = path.with_suffix(path.suffix + '.tmp')
+    temporary.write_text(json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+    temporary.replace(path)
     return path
 
 
-def publish_release(release: dict[str, Any], output_dir: str | Path) -> Path:
+def safe_component(value):
+    if not isinstance(value, str) or not re.fullmatch(r'[A-Za-z0-9_-]+', value):
+        raise ValueError(f'Unsafe publication identifier: {value!r}')
+    return value
+
+
+def publish_release(release, output_dir):
     validate_release(release)
-    release_id = release["release_id"]
-    release_dir = Path(output_dir) / "v1" / "releases" / release_id
-
-    manifest = {
-        "schema_version": 1,
-        "release_id": release_id,
-        "published_at": release["published_at"],
-        "ranking_version": release["ranking_version"],
-        "rows": [],
-    }
-
-    for row in release["rows"]:
-        row_id = row["id"]
-        row_path = release_dir / "rows" / f"{row_id}.json"
-        relative_path = row_path.relative_to(release_dir.parent.parent)
-
-        published_row = {
-            "id": row_id,
-            "title": row["title"],
-            "path": str(relative_path),
-            "data_updated_at": row["data_updated_at"],
-            "status": row["status"],
-            "configured_provider_count": row["configured_provider_count"],
-            "contributing_provider_count": row["contributing_provider_count"],
-        }
-        manifest["rows"].append(published_row)
-
-        write_json(
-            row_path,
-            {
-                "id": row_id,
-                "title": row["title"],
-                "media_type": row["media_type"],
-                "data_updated_at": row["data_updated_at"],
-                "status": row["status"],
-                "items": row["items"],
-            },
-        )
-
-        for item in row["items"]:
-            item_id = item["id"].replace(":", "_")
-            details = {
-                "id": item["id"],
-                "type": item["type"],
-                "title": item.get("title"),
-                "year": item.get("year"),
-                "poster": item.get("poster"),
-                "backdrop": item.get("backdrop"),
-                "overview": item.get("overview"),
-                "field_sources": item.get("field_sources", {}),
-            }
-            write_json(release_dir / "items" / f"{item_id}.json", details)
-
-    manifest_path = release_dir / "manifest.json"
-    write_json(manifest_path, manifest)
-    return manifest_path
+    root = Path(output_dir) / 'v1'
+    release_id = safe_component(release['release_id'])
+    directory = root / 'releases' / release_id
+    manifest = {key: release[key] for key in ('schema_version', 'release_id', 'published_at', 'ranking_version')}
+    manifest.update(path_base='v1-root', manifest_path=f'releases/{release_id}/manifest.json', rows=[])
+    targets = []
+    for row in release['rows']:
+        row_id = safe_component(row['id'])
+        path = directory / 'rows' / f'{row_id}.json'
+        entry = {key: row[key] for key in ('id', 'title', 'data_updated_at', 'status', 'configured_provider_count', 'contributing_provider_count')}
+        entry['path'] = path.relative_to(root).as_posix()
+        manifest['rows'].append(entry)
+        items = []
+        for source in row['items']:
+            item = dict(source)
+            filename = safe_component(item['id'].replace(':', '_')) + '.json'
+            detail_path = directory / 'items' / filename
+            item['details_path'] = detail_path.relative_to(root).as_posix()
+            details = {key: value for key, value in source.items() if key not in ('ranking', 'details_path')}
+            write_json(detail_path, details)
+            targets.append(detail_path)
+            items.append(item)
+        payload = {key: row[key] for key in ('id', 'title', 'media_type', 'data_updated_at', 'status')}
+        payload.update(schema_version=1, release_id=release_id, path_base='v1-root', items=items)
+        write_json(path, payload)
+        targets.append(path)
+    for target in targets:
+        json.loads(target.read_text(encoding='utf-8'))
+    write_json(directory / 'manifest.json', manifest)
+    return write_json(root / 'manifest.json', manifest)

@@ -21,12 +21,6 @@ from .state import persist_snapshots, restore_snapshots, retention_status, snaps
 from .validate import has_usable_items, validate_snapshot
 
 
-def parse_date(value: Any) -> str:
-    if not isinstance(value, str) or not value:
-        return ""
-    return value[:10]
-
-
 def generate(config_dir: str, output_dir: str, state_dir: str) -> int:
     config = load_config(config_dir)
     output = Path(output_dir)
@@ -47,8 +41,14 @@ def generate(config_dir: str, output_dir: str, state_dir: str) -> int:
                 if not has_usable_items(snapshot):
                     raise FetchError(f"Source {request['id']} returned no usable items")
                 fresh_snapshots.append(snapshot)
+                print(
+                    f"Fetched {request['id']}: {len(snapshot.items)} items",
+                    flush=True,
+                )
             except (FetchError, ValueError) as error:
-                failures.append(f"{request['id']}: {error}")
+                message = f"{request['id']}: {type(error).__name__}: {error}"
+                failures.append(message)
+                print(f"Source failure: {message}", file=sys.stderr, flush=True)
 
     snapshots_by_request = {snapshot.request_id: snapshot for snapshot in fresh_snapshots}
     snapshots_by_request.update(previous)
@@ -64,7 +64,10 @@ def generate(config_dir: str, output_dir: str, state_dir: str) -> int:
             eligible.append(snapshot)
 
     if not eligible:
-        print("No eligible source snapshots; preserving previous release.", file=sys.stderr)
+        print("No eligible source snapshots; cannot generate a new release.", file=sys.stderr)
+        print("Failures:", file=sys.stderr)
+        for failure in failures:
+            print(f"- {failure}", file=sys.stderr)
         return 1
 
     release_id = uuid.uuid4().hex
@@ -157,6 +160,9 @@ def generate(config_dir: str, output_dir: str, state_dir: str) -> int:
 
     if not rows:
         print("No rows could be generated.", file=sys.stderr)
+        print("Failures:", file=sys.stderr)
+        for failure in failures:
+            print(f"- {failure}", file=sys.stderr)
         return 1
 
     release = {

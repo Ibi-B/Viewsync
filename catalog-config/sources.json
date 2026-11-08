@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "providers": [
+    {
+      "id": "cinemeta",
+      "name": "Cinemeta",
+      "enabled": true,
+      "weight": 1.0,
+      "requests": [
+        {
+          "id": "cinemeta_popular_movies",
+          "list_id": "popular_movies",
+          "media_type": "movie",
+          "url": "https://v3-cinemeta.strem.io/catalog/movie/top.json",
+          "timeout_seconds": 20,
+          "max_items": 100
+        },
+        {
+          "id": "cinemeta_popular_series",
+          "list_id": "popular_series",
+          "media_type": "series",
+          "url": "https://v3-cinemeta.strem.io/catalog/series/top.json",
+          "timeout_seconds": 20,
+          "max_items": 100
+        }
+      ]
+    },
+    {
+      "id": "tmdb",
+      "name": "The Movie Database",
+      "enabled": false,
+      "weight": 1.0,
+      "requests": []
+    }
+  ]
+}

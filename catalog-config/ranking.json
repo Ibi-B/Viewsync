@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "algorithm": "rrf",
+  "k": 60,
+  "provider_weights": {
+    "cinemeta": 1.0,
+    "tmdb": 1.0
+  },
+  "freshness": {
+    "fresh_hours": 12,
+    "full_retention_hours": 48,
+    "declining_retention_hours": 96
+  }
+}

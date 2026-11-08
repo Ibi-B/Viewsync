@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "id": "popular_movies",
+      "title": "Popular movies",
+      "media_type": "movie",
+      "max_items": 100,
+      "source_lists": ["cinemeta_popular_movies"]
+    },
+    {
+      "id": "popular_series",
+      "title": "Popular series",
+      "media_type": "series",
+      "max_items": 100,
+      "source_lists": ["cinemeta_popular_series"]
+    }
+  ]
+}

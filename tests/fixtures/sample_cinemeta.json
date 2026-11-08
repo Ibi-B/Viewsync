@@ -1,0 +1,19 @@
+{
+  "metas": [
+    {
+      "id": "tt123",
+      "imdb_id": "tt123",
+      "name": "Example Movie",
+      "releaseInfo": "2026",
+      "poster": "https://example.invalid/poster.jpg",
+      "description": "An example movie."
+    },
+    {
+      "id": "tt456",
+      "imdb_id": "tt456",
+      "name": "Another Movie",
+      "releaseInfo": "2025",
+      "poster": "https://example.invalid/poster2.jpg"
+    }
+  ]
+}

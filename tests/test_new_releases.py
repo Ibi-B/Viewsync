@@ -1,8 +1,9 @@
 import json
 from pathlib import Path
 
-import main
-from fetch import fetch_source
+from datetime import date
+
+from src.fetch import date_window
 
 
 def test_new_movies_row_is_configured():
@@ -61,19 +62,32 @@ def test_upcoming_series_row_is_configured():
     assert row["date_mode"] == "future"
 
 
-def test_fetch_source_supports_date_windows():
-    request = {
-        "id": "new_movies",
-        "type": "movie",
-        "providers": {
-            "tmdb": {
-                "list_id": "new_movies",
-                "media_type": "movie",
-                "max_items": 10,
-                "date_mode": "recent",
-            }
-        },
-    }
+def test_date_windows_use_the_provider_media_date_field():
+    today = date(2026, 11, 9)
+    expected_fields = {"movie": "release_date", "series": "first_air_date"}
 
-    items = fetch_source(request, "tmdb")
-    assert isinstance(items, list)
+    for media_type, date_field in expected_fields.items():
+        recent_field, recent_start, recent_end, recent_order = date_window(
+            "recent", today, media_type
+        )
+        future_field, future_start, future_end, future_order = date_window(
+            "future", today, media_type
+        )
+
+        assert recent_field == date_field
+        assert recent_start == date(2026, 10, 10)
+        assert recent_end == today
+        assert future_field == date_field
+        assert future_start == today
+        assert future_end == date(2027, 5, 8)
+        assert recent_order.endswith(".desc")
+        assert future_order.endswith(".asc")
+
+
+def test_date_window_rejects_unknown_media_type():
+    try:
+        date_window("recent", date(2026, 11, 9), "episode")
+    except ValueError as error:
+        assert "Unsupported media type" in str(error)
+    else:
+        raise AssertionError("unsupported media type must be rejected")

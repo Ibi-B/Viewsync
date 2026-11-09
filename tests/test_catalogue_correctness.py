@@ -1,8 +1,6 @@
 import json
 from pathlib import Path
 
-import main
-
 
 def test_catalog_row_order_matches_spec():
     config = json.loads(

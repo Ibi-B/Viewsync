@@ -11,7 +11,7 @@ from .config import load_config
 from .fetch import SourceSnapshot, fetch_source
 from .manifest import build_release
 from .publish import publish_release
-from .state import persist_snapshots, preserve_last_good_release
+from .state import persist_snapshots, preserve_last_good_release, select_snapshots
 from .validate import validate_release
 
 BASE = Path(__file__).resolve().parent.parent
@@ -37,9 +37,10 @@ def write_json(path: Path, payload: Any) -> None:
 def _fetch_snapshots(
     config_dir: Path,
     now: datetime,
-) -> list[SourceSnapshot]:
+) -> tuple[list[SourceSnapshot], list[dict[str, str]]]:
     requests = load_json(config_dir / "requests.json")
     snapshots: list[SourceSnapshot] = []
+    failures: list[dict[str, str]] = []
 
     for request in requests:
         request_id = str(request.get("id") or "")
@@ -50,7 +51,13 @@ def _fetch_snapshots(
             try:
                 items = fetch_source(request, provider_id, now.date())
             except Exception as exc:
-                print(f"Fetch failed for {request_id}/{provider_id}: {exc}")
+                failures.append(
+                    {
+                        "request_id": request_id,
+                        "provider_id": provider_id,
+                        "error": str(exc),
+                    }
+                )
                 continue
 
             snapshots.append(
@@ -64,7 +71,34 @@ def _fetch_snapshots(
                 )
             )
 
-    return snapshots
+    return snapshots, failures
+
+
+def _write_generation_report(
+    output_dir: Path,
+    now: datetime,
+    usable_count: int,
+    expired: list[SourceSnapshot],
+    failures: list[dict[str, str]],
+) -> None:
+    report = {
+        "generated_at": now.isoformat(),
+        "snapshot_count": usable_count + len(expired),
+        "usable_snapshot_count": usable_count,
+        "expired_snapshot_count": len(expired),
+        "fetch_failure_count": len(failures),
+        "expired_snapshots": [
+            {
+                "request_id": snapshot.request_id,
+                "provider_id": snapshot.provider_id,
+                "list_id": snapshot.list_id,
+                "fetched_at": snapshot.fetched_at,
+            }
+            for snapshot in expired
+        ],
+        "fetch_failures": failures,
+    }
+    write_json(output_dir / "state" / "generation-report.json", report)
 
 
 def generate_catalog(
@@ -80,15 +114,30 @@ def generate_catalog(
     state_dir = output_dir / "state"
 
     config = load_config(config_dir)
-    snapshots = _fetch_snapshots(config_dir, now)
+    snapshots, failures = _fetch_snapshots(config_dir, now)
 
     if not snapshots:
+        _write_generation_report(output_dir, now, 0, [], failures)
         raise ValueError("No provider snapshots were available; refusing to publish a release")
 
-    persist_snapshots(snapshots, state_dir)
+    policy = config["ranking"].get("retention", {})
+    usable_snapshots, expired_snapshots = select_snapshots(snapshots, policy, now)
+
+    _write_generation_report(
+        output_dir,
+        now,
+        len(usable_snapshots),
+        expired_snapshots,
+        failures,
+    )
+
+    if not usable_snapshots:
+        raise ValueError("All provider snapshots have expired; refusing to publish a new release")
+
+    persist_snapshots(usable_snapshots, state_dir)
     preserve_last_good_release(state_dir, output_dir)
 
-    release = build_release(config["rows"]["rows"], snapshots, now)
+    release = build_release(config["rows"]["rows"], usable_snapshots, now)
 
     if not release["rows"]:
         raise ValueError("No catalogue rows could be generated from available snapshots")

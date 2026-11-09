@@ -1,4 +1,4 @@
-"""Persistent source snapshots and last-good release state."""
+"""Persistent source snapshots, retention policy, and last-good release state."""
 
 from __future__ import annotations
 
@@ -30,6 +30,33 @@ def retention_status(age_hours: float, policy: dict[str, Any]) -> str:
     return "expired"
 
 
+def snapshot_status(
+    snapshot: SourceSnapshot,
+    policy: dict[str, Any],
+    now: datetime | None = None,
+) -> str:
+    return retention_status(snapshot_age_hours(snapshot, now), policy)
+
+
+def select_snapshots(
+    snapshots: list[SourceSnapshot],
+    policy: dict[str, Any],
+    now: datetime | None = None,
+) -> tuple[list[SourceSnapshot], list[SourceSnapshot]]:
+    """Split snapshots into usable and expired groups using the retention policy."""
+
+    usable: list[SourceSnapshot] = []
+    expired: list[SourceSnapshot] = []
+
+    for snapshot in snapshots:
+        if snapshot_status(snapshot, policy, now) == "expired":
+            expired.append(snapshot)
+        else:
+            usable.append(snapshot)
+
+    return usable, expired
+
+
 def restore_snapshots(state_dir: str | Path) -> dict[str, SourceSnapshot]:
     snapshot_dir = Path(state_dir) / "source-snapshots"
     snapshots: dict[str, SourceSnapshot] = {}
@@ -41,7 +68,7 @@ def restore_snapshots(state_dir: str | Path) -> dict[str, SourceSnapshot]:
         try:
             snapshot = load_snapshot(path)
             snapshots[snapshot.request_id] = snapshot
-        except (OSError, ValueError, TypeError):
+        except (OSError, ValueError, TypeError, KeyError):
             continue
 
     return snapshots

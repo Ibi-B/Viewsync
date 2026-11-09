@@ -84,17 +84,24 @@ def future_premieres(items, today, end):
     return selected
 
 
+def recent_releases(items, today):
+    """Keep original releases in the inclusive interval [today - 30 days, today]."""
+    return future_premieres(items, today - timedelta(days=30), today)
+
+
 def fetch_source(request, provider):
     tmdb = provider['id'] == 'tmdb'
     upcoming = request.get('list_id', '').startswith('upcoming_')
+    newly_released = request.get('list_id', '').startswith('new_')
     today = datetime.now(timezone.utc).date()
-    end = today + timedelta(days=180)
+    start = today - timedelta(days=30) if newly_released else today
+    end = today if newly_released else today + timedelta(days=180)
     url = request['url']
-    if tmdb and upcoming:
+    if tmdb and (upcoming or newly_released):
         movie = request['media_type'] == 'movie'
         field = 'primary_release_date' if movie else 'first_air_date'
-        query = {field + '.gte': today.isoformat(), field + '.lte': end.isoformat(),
-                 'sort_by': field + '.asc', 'include_adult': 'false', 'page': 1}
+        query = {field + '.gte': start.isoformat(), field + '.lte': end.isoformat(),
+                 'sort_by': field + ('.desc' if newly_released else '.asc'), 'include_adult': 'false', 'page': 1}
         url = 'https://api.themoviedb.org/3/discover/' + ('movie' if movie else 'tv') + '?' + urllib.parse.urlencode(query)
     items = []
     total_pages = 1
@@ -126,6 +133,8 @@ def fetch_source(request, provider):
     items = items[:maximum]
     if upcoming:
         items = future_premieres(items, today, end)
+    if newly_released:
+        items = recent_releases(items, today)
     if tmdb:
         kind = 'movie' if request['media_type'] == 'movie' else 'tv'
         for item in items:

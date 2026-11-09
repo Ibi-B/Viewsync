@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from datetime import datetime, timezone, timedelta
 from src import main
 from src.fetch import SourceSnapshot, utc_now
 
@@ -7,17 +8,19 @@ from src.fetch import SourceSnapshot, utc_now
 def test_generation_selects_requests_and_ranks_items(tmp_path, monkeypatch):
     config = Path(__file__).resolve().parents[1] / 'catalog-config'
     def fake_fetch(request, provider):
+        offset = -1 if request['list_id'].startswith('new_') else 10
+        release_date = (datetime.now(timezone.utc).date() + timedelta(days=offset)).isoformat()
         return SourceSnapshot(request_id=request['id'], provider_id=provider['id'],
                               list_id=request['list_id'], media_type=request['media_type'],
                               url=request['url'], fetched_at=utc_now(),
                               items=[{'imdb_id': 'tt123', 'name': 'Fixture',
-                                      'release_date': '2099-01-01', 'source_rank': 1}])
+                                      'release_date': release_date, 'source_rank': 1}])
     monkeypatch.setattr(main, 'fetch_source', fake_fetch)
     output = tmp_path / 'dist'
     assert main.generate(str(config), str(output), str(tmp_path / 'state')) == 0
     manifest_path = next(output.glob('v1/releases/*/manifest.json'))
     manifest = json.loads(manifest_path.read_text())
-    assert len(manifest['rows']) == 4
+    assert len(manifest['rows']) == 6
     for entry in manifest['rows']:
         row = json.loads((output / 'v1' / entry['path']).read_text())
         assert len(row['items']) == 1

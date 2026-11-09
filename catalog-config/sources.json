@@ -78,6 +78,30 @@
             "type": "api_key",
             "env": "TMDB_API_KEY"
           }
+        },
+        {
+          "id": "tmdb_new_movies",
+          "list_id": "new_movies",
+          "media_type": "movie",
+          "url": "https://api.themoviedb.org/3/discover/movie",
+          "timeout_seconds": 20,
+          "max_items": 100,
+          "auth": {
+            "type": "api_key",
+            "env": "TMDB_API_KEY"
+          }
+        },
+        {
+          "id": "tmdb_new_series",
+          "list_id": "new_series",
+          "media_type": "series",
+          "url": "https://api.themoviedb.org/3/discover/tv",
+          "timeout_seconds": 20,
+          "max_items": 100,
+          "auth": {
+            "type": "api_key",
+            "env": "TMDB_API_KEY"
+          }
         }
       ]
     }

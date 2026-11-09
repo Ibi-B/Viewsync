@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .config import load_config
-from .fetch import fetch_source, utc_now
+from .fetch import fetch_source, utc_now, recent_releases
 from .http_client import FetchError
 from .identity import media_identity
 from .merge_metadata import merge_item
@@ -30,7 +30,7 @@ def generate(config_dir, output_dir, state_dir):
             try:
                 snapshot = fetch_source(request, provider)
                 validate_snapshot(snapshot)
-                if not has_usable_items(snapshot):
+                if not has_usable_items(snapshot) and not request['list_id'].startswith('new_'):
                     raise FetchError('Source returned no usable items')
                 fresh[snapshot.request_id] = snapshot
                 print(f"Fetched {request['id']}: {len(snapshot.items)} items", flush=True)
@@ -63,8 +63,12 @@ def generate(config_dir, output_dir, state_dir):
         ordered = order_items(list(merged.values()), rankings)
         if row.get('date_field'):
             field = row['date_field']
+            if row['id'].startswith('new_'):
+                ordered = recent_releases(ordered, now.date())
             ordered = sorted((item for item in ordered if item.get(field)),
                              key=lambda item: (item[field], item['id']))
+            if row['id'].startswith('new_'):
+                ordered.sort(key=lambda item: item[field], reverse=True)
         items = []
         for position, item in enumerate(ordered[:int(row.get('max_items', 100))], 1):
             result = {key: value for key, value in item.items() if not key.startswith('_')}

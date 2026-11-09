@@ -10,7 +10,15 @@
         {"name": "genre", "value": ""}
       ],
       "date_field": null,
-      "date_mode": "none"
+      "date_mode": "none",
+      "provenance": {
+        "providers": ["tmdb"],
+        "region": null,
+        "window": "provider-default"
+      },
+      "availability": "metadata-only",
+      "actions": ["more-info", "choose-source"],
+      "previewPolicy": "off"
     },
     {
       "id": "popular-series",
@@ -22,7 +30,15 @@
         {"name": "genre", "value": ""}
       ],
       "date_field": null,
-      "date_mode": "none"
+      "date_mode": "none",
+      "provenance": {
+        "providers": ["tmdb"],
+        "region": null,
+        "window": "provider-default"
+      },
+      "availability": "metadata-only",
+      "actions": ["more-info", "choose-source"],
+      "previewPolicy": "off"
     },
     {
       "id": "new-movies",
@@ -34,7 +50,15 @@
         {"name": "genre", "value": ""}
       ],
       "date_field": "release_date",
-      "date_mode": "recent"
+      "date_mode": "recent",
+      "provenance": {
+        "providers": ["tmdb"],
+        "region": null,
+        "window": "recent"
+      },
+      "availability": "metadata-only",
+      "actions": ["more-info", "choose-source"],
+      "previewPolicy": "off"
     },
     {
       "id": "new-series",
@@ -46,7 +70,15 @@
         {"name": "genre", "value": ""}
       ],
       "date_field": "first_air_date",
-      "date_mode": "recent"
+      "date_mode": "recent",
+      "provenance": {
+        "providers": ["tmdb"],
+        "region": null,
+        "window": "recent"
+      },
+      "availability": "metadata-only",
+      "actions": ["more-info", "choose-source"],
+      "previewPolicy": "off"
     },
     {
       "id": "upcoming-movies",
@@ -58,7 +90,15 @@
         {"name": "genre", "value": ""}
       ],
       "date_field": "release_date",
-      "date_mode": "future"
+      "date_mode": "future",
+      "provenance": {
+        "providers": ["tmdb"],
+        "region": null,
+        "window": "future"
+      },
+      "availability": "metadata-only",
+      "actions": ["more-info", "choose-source"],
+      "previewPolicy": "off"
     },
     {
       "id": "upcoming-series",
@@ -70,7 +110,15 @@
         {"name": "genre", "value": ""}
       ],
       "date_field": "first_air_date",
-      "date_mode": "future"
+      "date_mode": "future",
+      "provenance": {
+        "providers": ["tmdb"],
+        "region": null,
+        "window": "future"
+      },
+      "availability": "metadata-only",
+      "actions": ["more-info", "choose-source"],
+      "previewPolicy": "off"
     }
   ]
 }

@@ -17,6 +17,14 @@ def rating_number(value):
     return number if math.isfinite(number) and 0 <= number <= 10 else None
 
 
+def identity_confidence(identity):
+    if identity.get('imdb') or identity.get('tmdb'):
+        return 'exact-id'
+    if ':title:' in identity.get('id', ''):
+        return 'title-year'
+    return 'unresolved'
+
+
 def merge_item(media_type, existing, incoming, provider_id):
     identity = media_identity(media_type, incoming)
     merged = dict(existing or {})
@@ -52,4 +60,26 @@ def merge_item(media_type, existing, incoming, provider_id):
     if preferred:
         provenance['rating'] = preferred
     merged['field_sources'] = provenance
+
+    merged['identityConfidence'] = identity_confidence(identity)
+    merged['availability'] = merged.get('availability') or 'requires-source-selection'
+    merged['actions'] = merged.get('actions') or ['more-info', 'choose-source']
+    merged['previewPolicy'] = merged.get('previewPolicy') or 'off'
+
+    artwork = {}
+    if merged.get('poster'):
+        artwork['poster'] = merged['poster']
+    if merged.get('background'):
+        artwork['landscape'] = merged['background']
+    if artwork:
+        merged['artwork'] = artwork
+
+    summary = dict(merged.get('provenance') or {})
+    providers = list(summary.get('providers') or [])
+    if provider_id and provider_id not in providers:
+        providers.append(provider_id)
+    summary['providers'] = providers
+    summary['fieldSources'] = provenance
+    merged['provenance'] = summary
+
     return merged

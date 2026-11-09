@@ -26,12 +26,19 @@ def publish_release(release, output_dir):
     release_id = safe_component(release['release_id'])
     directory = root / 'releases' / release_id
     manifest = {key: release[key] for key in ('schema_version', 'release_id', 'published_at', 'ranking_version')}
-    manifest.update(path_base='v1-root', manifest_path=f'releases/{release_id}/manifest.json', rows=[])
+    manifest.update(path_base='v1-root', manifest_path=f'releases/{release_id}/manifest.json', rows=[], home_contract_version=1)
     targets = []
     for row in release['rows']:
         row_id = safe_component(row['id'])
         path = directory / 'rows' / f'{row_id}.json'
         entry = {key: row[key] for key in ('id', 'title', 'data_updated_at', 'status', 'configured_provider_count', 'contributing_provider_count')}
+        entry.update(
+            availability=row.get('availability', 'metadata-only'),
+            actions=row.get('actions', []),
+            previewPolicy=row.get('previewPolicy', 'off'),
+            provenance=row.get('provenance', {}),
+            freshness=row.get('freshness', 'unknown'),
+        )
         entry['path'] = path.relative_to(root).as_posix()
         manifest['rows'].append(entry)
         items = []
@@ -45,7 +52,17 @@ def publish_release(release, output_dir):
             targets.append(detail_path)
             items.append(item)
         payload = {key: row[key] for key in ('id', 'title', 'media_type', 'data_updated_at', 'status')}
-        payload.update(schema_version=1, release_id=release_id, path_base='v1-root', items=items)
+        payload.update(
+            schema_version=1,
+            release_id=release_id,
+            path_base='v1-root',
+            items=items,
+            provenance=row.get('provenance', {}),
+            availability=row.get('availability', 'metadata-only'),
+            actions=row.get('actions', []),
+            previewPolicy=row.get('previewPolicy', 'off'),
+            freshness=row.get('freshness', 'unknown'),
+        )
         write_json(path, payload)
         targets.append(path)
     for target in targets:

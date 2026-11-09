@@ -1,11 +1,10 @@
-import json
-from pathlib import Path
-
-import main
-from fetch import fetch_source
+import fetch
 
 
 def test_new_movies_row_is_configured():
+    import json
+    from pathlib import Path
+
     config = json.loads(
         (Path(__file__).resolve().parents[1] / "catalog-config" / "rows.json").read_text(
             encoding="utf-8"
@@ -20,6 +19,9 @@ def test_new_movies_row_is_configured():
 
 
 def test_new_series_row_is_configured():
+    import json
+    from pathlib import Path
+
     config = json.loads(
         (Path(__file__).resolve().parents[1] / "catalog-config" / "rows.json").read_text(
             encoding="utf-8"
@@ -34,6 +36,9 @@ def test_new_series_row_is_configured():
 
 
 def test_upcoming_movies_row_is_configured():
+    import json
+    from pathlib import Path
+
     config = json.loads(
         (Path(__file__).resolve().parents[1] / "catalog-config" / "rows.json").read_text(
             encoding="utf-8"
@@ -48,6 +53,9 @@ def test_upcoming_movies_row_is_configured():
 
 
 def test_upcoming_series_row_is_configured():
+    import json
+    from pathlib import Path
+
     config = json.loads(
         (Path(__file__).resolve().parents[1] / "catalog-config" / "rows.json").read_text(
             encoding="utf-8"
@@ -61,7 +69,7 @@ def test_upcoming_series_row_is_configured():
     assert row["date_mode"] == "future"
 
 
-def test_fetch_source_supports_date_windows():
+def test_fetch_source_supports_date_windows(monkeypatch):
     request = {
         "id": "new_movies",
         "type": "movie",
@@ -75,5 +83,19 @@ def test_fetch_source_supports_date_windows():
         },
     }
 
-    items = fetch_source(request, "tmdb")
-    assert isinstance(items, list)
+    payload = {
+        "results": [
+            {"id": index, "title": f"Example {index}"}
+            for index in range(10)
+        ]
+    }
+
+    monkeypatch.setattr(
+        "src.fetch._get_json",
+        lambda url, params=None, headers=None: payload,
+    )
+
+    items = fetch.fetch_source(request, "tmdb")
+
+    assert len(items) == 10
+    assert items[0]["tmdb_id"] == "0"

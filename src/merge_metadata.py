@@ -1,7 +1,7 @@
 """Normalised metadata with provider-specific ratings and provenance."""
 import re
 import math
-from .identity import media_identity
+from .identity import identity_confidence, media_identity
 
 
 def year_number(value):
@@ -15,14 +15,6 @@ def rating_number(value):
     except (TypeError, ValueError):
         return None
     return number if math.isfinite(number) and 0 <= number <= 10 else None
-
-
-def identity_confidence(identity):
-    if identity.get('imdb') or identity.get('tmdb'):
-        return 'exact-id'
-    if ':title:' in identity.get('id', ''):
-        return 'title-year'
-    return 'unresolved'
 
 
 def merge_item(media_type, existing, incoming, provider_id):
@@ -69,8 +61,8 @@ def merge_item(media_type, existing, incoming, provider_id):
     artwork = {}
     if merged.get('poster'):
         artwork['poster'] = merged['poster']
-    if merged.get('background'):
-        artwork['landscape'] = merged['background']
+    if merged.get('backdrop'):
+        artwork['landscape'] = merged['backdrop']
     if artwork:
         merged['artwork'] = artwork
 

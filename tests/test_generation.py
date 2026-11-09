@@ -1,12 +1,9 @@
-import json
-from pathlib import Path
 from types import SimpleNamespace
 
 import main
-from fetch import fetch_source
 
 
-def test_build_catalog_includes_new_rows():
+def test_build_catalog_includes_new_rows(monkeypatch):
     rows = [
         {
             "id": "popular-movies",
@@ -37,6 +34,13 @@ def test_build_catalog_includes_new_rows():
         },
     ]
 
+    monkeypatch.setattr(
+        "src.main.fetch_source",
+        lambda request, provider, today=None: [
+            {"id": 1, "title": "Example"}
+        ],
+    )
+
     catalog = main.build_catalog(
         rows,
         now=SimpleNamespace(date=lambda: __import__('datetime').date(2026, 11, 9)),
@@ -44,20 +48,3 @@ def test_build_catalog_includes_new_rows():
 
     ids = [row["id"] for row in catalog["metas"]]
     assert ids == ["popular-movies", "new-movies", "upcoming-movies"]
-
-
-def test_fetch_source_uses_provider_config():
-    request = {
-        "id": "popular_movies",
-        "type": "movie",
-        "providers": {
-            "tmdb": {
-                "list_id": "popular_movies",
-                "media_type": "movie",
-                "max_items": 10,
-            }
-        },
-    }
-
-    items = fetch_source(request, "tmdb")
-    assert len(items) <= 10

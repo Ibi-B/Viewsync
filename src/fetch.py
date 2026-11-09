@@ -1,8 +1,8 @@
 import os
 import re
+from dataclasses import dataclass
 from datetime import date, timedelta
 from typing import Any, Dict, List, Optional
-from urllib.parse import urlencode
 
 import requests
 
@@ -12,8 +12,21 @@ TRAKT_BASE = "https://api.trakt.tv"
 STREMIO_BASE = "https://v3-cinemeta.strem.io"
 
 
-def _get_json(url: str, params: Optional[Dict[str, Any]] = None) -> Any:
-    response = requests.get(url, params=params, timeout=15)
+@dataclass
+class SourceSnapshot:
+    request_id: str
+    provider_id: str
+    list_id: str
+    media_type: str
+    items: List[Dict[str, Any]]
+
+
+def _get_json(
+    url: str,
+    params: Optional[Dict[str, Any]] = None,
+    headers: Optional[Dict[str, str]] = None,
+) -> Any:
+    response = requests.get(url, params=params, headers=headers, timeout=15)
     response.raise_for_status()
     return response.json()
 
@@ -106,16 +119,61 @@ def _imdb_suggestions(
     ]
 
 
+def _normalise_tmdb_item(item: Dict[str, Any]) -> Dict[str, Any]:
+    normalised = dict(item)
+
+    if item.get("id") is not None:
+        normalised["tmdb_id"] = str(item["id"])
+
+    if item.get("poster_path"):
+        normalised["poster"] = f"https://image.tmdb.org/t/p/w500{item['poster_path']}"
+
+    if item.get("backdrop_path"):
+        normalised["background"] = f"https://image.tmdb.org/t/p/w1280{item['backdrop_path']}"
+
+    if item.get("overview"):
+        normalised["description"] = item["overview"]
+
+    if item.get("release_date"):
+        normalised["release_date"] = item["release_date"]
+
+    if item.get("first_air_date"):
+        normalised["release_date"] = item["first_air_date"]
+
+    return normalised
+
+
+def _tmdb_auth(request: Dict[str, Any], provider: str) -> Dict[str, Any]:
+    config = _request_config(request, provider)
+    access_token = config.get("access_token") or os.environ.get("TMDB_ACCESS_TOKEN")
+
+    if access_token:
+        return {
+            "headers": {"Authorization": f"Bearer {access_token}"},
+            "params": {},
+        }
+
+    api_key = config.get("api_key") or os.environ.get("TMDB_API_KEY")
+    if api_key:
+        return {
+            "headers": {},
+            "params": {"api_key": api_key},
+        }
+
+    raise ValueError("Missing TMDB credentials")
+
+
 def _tmdb_search(
     title: str,
     media_type: str,
     year: Optional[int],
-    api_key: str,
+    auth: Dict[str, Any],
 ) -> List[Dict[str, Any]]:
     endpoint = "movie" if media_type == "movie" else "tv"
     params: Dict[str, Any] = {
         "query": title,
         "include_adult": "false",
+        **auth["params"],
     }
 
     if year:
@@ -126,15 +184,20 @@ def _tmdb_search(
 
     payload = _get_json(
         f"{TMDB_BASE}/search/{endpoint}",
-        params={"api_key": api_key, **params},
+        params=params,
+        headers=auth["headers"],
     )
-    return _extract_items(payload)
+
+    return [
+        _normalise_tmdb_item(item)
+        for item in _extract_items(payload)
+    ]
 
 
 def _tmdb_list(
     list_id: str,
     media_type: str,
-    api_key: str,
+    auth: Dict[str, Any],
     max_items: int = 100,
 ) -> List[Dict[str, Any]]:
     endpoints = {
@@ -156,14 +219,15 @@ def _tmdb_list(
     while len(items) < max_items and page <= 5:
         payload = _get_json(
             f"{TMDB_BASE}/{endpoint}",
-            params={"api_key": api_key, "page": page},
+            params={"page": page, **auth["params"]},
+            headers=auth["headers"],
         )
         page_items = _extract_items(payload)
 
         if not page_items:
             break
 
-        items.extend(page_items)
+        items.extend(_normalise_tmdb_item(item) for item in page_items)
         page += 1
 
     return items[:max_items]
@@ -182,7 +246,7 @@ def _trakt_trending(
 
     payload = _get_json(
         f"{TRAKT_BASE}/{endpoint}/trending",
-        headers=headers,  # type: ignore[arg-type]
+        headers=headers,
     )
     items = _extract_items(payload)
     return items[:max_items]
@@ -250,6 +314,13 @@ def _provider_request(request: Dict[str, Any], provider: str) -> Dict[str, Any]:
     }
 
 
+def apply_authentication(request: Dict[str, Any], provider: str) -> Dict[str, Any]:
+    if provider != "tmdb":
+        return {}
+
+    return _tmdb_auth(request, provider)
+
+
 def date_window(mode: str, today: date, media_type: str) -> tuple[str, date, date, str]:
     if mode == "recent":
         return (
@@ -285,7 +356,7 @@ def fetch_source(
     max_items = config["max_items"]
 
     if provider == "tmdb":
-        api_key = _tmdb_api_key(request, provider)
+        auth = _tmdb_auth(request, provider)
 
         if config["date_mode"] in {"recent", "future"}:
             if today is None:
@@ -298,7 +369,6 @@ def fetch_source(
             )
 
             params = {
-                "api_key": api_key,
                 "page": 1,
                 "include_adult": "false",
                 "sort_by": order,
@@ -308,11 +378,15 @@ def fetch_source(
                 "primary_release_date.lte"
                 if media_type == "movie"
                 else "first_air_date.lte": end.isoformat(),
+                **auth["params"],
             }
 
             url = f"{TMDB_BASE}/discover/{'movie' if media_type == 'movie' else 'tv'}"
-            payload = _get_json(url, params=params)
-            items = _extract_items(payload)
+            payload = _get_json(url, params=params, headers=auth["headers"])
+            items = [
+                _normalise_tmdb_item(item)
+                for item in _extract_items(payload)
+            ]
         else:
             if list_id in {
                 "popular_movies",
@@ -322,13 +396,13 @@ def fetch_source(
                 "upcoming_movies",
                 "upcoming_series",
             }:
-                items = _tmdb_list(list_id, media_type, api_key, max_items)
+                items = _tmdb_list(list_id, media_type, auth, max_items)
             else:
                 items = _tmdb_search(
                     str(request.get("search", {}).get("title", "")),
                     media_type,
                     request.get("search", {}).get("year"),
-                    api_key,
+                    auth,
                 )
 
     elif provider == "trakt":

@@ -39,6 +39,18 @@ def media_identity(media_type: str, meta: dict[str, Any]) -> dict[str, str]:
     return identity
 
 
+def identity_confidence(identity: dict[str, str]) -> str:
+    if identity.get("imdb") or identity.get("tmdb"):
+        return "exact-id"
+
+    identity_id = identity.get("id", "")
+
+    if ":title:" in identity_id and not identity_id.endswith(":unknown"):
+        return "title-year"
+
+    return "unresolved"
+
+
 def same_media(left: dict[str, Any], right: dict[str, Any]) -> bool:
     if left.get("media_type") != right.get("media_type"):
         return False

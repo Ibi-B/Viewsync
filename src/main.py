@@ -1,14 +1,14 @@
+import argparse
 import json
-import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List
 
 from .fetch import fetch_source
 
-BASE = Path(__file__).resolve().parent.parent
-CONFIG = BASE / "catalog-config"
-PUBLIC = BASE / "public"
+CONFIG = Path("catalog-config")
+PUBLIC = Path("public")
+STATE = Path("state")
 
 
 def load_json(path: Path) -> Any:
@@ -69,6 +69,10 @@ def build_catalog(rows: List[Dict[str, Any]], now: datetime) -> Dict[str, Any]:
             "extra": row.get("extra", []),
             "date_field": row.get("date_field"),
             "date_mode": row.get("date_mode", "none"),
+            "provenance": row.get("provenance", {}),
+            "availability": row.get("availability", "metadata-only"),
+            "actions": row.get("actions", []),
+            "previewPolicy": row.get("previewPolicy", "off"),
         }
 
         metas.append(row_config)
@@ -76,9 +80,24 @@ def build_catalog(rows: List[Dict[str, Any]], now: datetime) -> Dict[str, Any]:
     return {"metas": metas}
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Generate the Viewsync catalogue")
+    parser.add_argument("--config", default="catalog-config")
+    parser.add_argument("--output", default="public")
+    parser.add_argument("--state", default="state")
+    return parser.parse_args()
+
+
 def main() -> None:
+    global CONFIG, PUBLIC, STATE
+
+    args = parse_args()
+    CONFIG = Path(args.config)
+    PUBLIC = Path(args.output)
+    STATE = Path(args.state)
+
     now = datetime.now(timezone.utc)
-    rows = load_json(CONFIG / "rows.json")
+    rows = load_json(CONFIG / "rows.json")["rows"]
     catalog = build_catalog(rows, now)
     write_json(PUBLIC / "catalog.json", catalog)
 

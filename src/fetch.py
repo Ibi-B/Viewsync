@@ -1,5 +1,6 @@
 import os
 import re
+from dataclasses import dataclass
 from datetime import date, timedelta
 from typing import Any, Dict, List, Optional
 from urllib.parse import urlencode
@@ -10,6 +11,18 @@ TMDB_BASE = "https://api.themoviedb.org/3"
 IMDB_BASE = "https://v3.sg.media-imdb.com/suggestion"
 TRAKT_BASE = "https://api.trakt.tv"
 STREMIO_BASE = "https://v3-cinemeta.strem.io"
+
+
+@dataclass
+class SourceSnapshot:
+    """A persisted result of one provider request at one point in time."""
+
+    request_id: str
+    provider_id: str
+    list_id: str
+    media_type: str
+    fetched_at: str
+    items: List[Dict[str, Any]]
 
 
 def _get_json(url: str, params: Optional[Dict[str, Any]] = None) -> Any:
@@ -347,3 +360,47 @@ def fetch_source(
         items = _extract_items(payload)
 
     return items[:max_items]
+
+
+def _snapshot_filename(snapshot: SourceSnapshot) -> str:
+    parts = [snapshot.request_id, snapshot.provider_id, snapshot.list_id]
+    safe_parts = [re.sub(r"[^A-Za-z0-9_-]", "_", part) for part in parts]
+    return "__".join(safe_parts) + ".json"
+
+
+def save_snapshot(snapshot: SourceSnapshot, snapshot_dir: str | __import__("pathlib").Path) -> __import__("pathlib").Path:
+    from pathlib import Path
+
+    directory = Path(snapshot_dir)
+    directory.mkdir(parents=True, exist_ok=True)
+    path = directory / _snapshot_filename(snapshot)
+    payload = {
+        "request_id": snapshot.request_id,
+        "provider_id": snapshot.provider_id,
+        "list_id": snapshot.list_id,
+        "media_type": snapshot.media_type,
+        "fetched_at": snapshot.fetched_at,
+        "items": snapshot.items,
+    }
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(
+        __import__("json").dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    temporary.replace(path)
+    return path
+
+
+def load_snapshot(path: str | __import__("pathlib").Path) -> SourceSnapshot:
+    import json
+    from pathlib import Path
+
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    return SourceSnapshot(
+        request_id=str(payload["request_id"]),
+        provider_id=str(payload["provider_id"]),
+        list_id=str(payload["list_id"]),
+        media_type=str(payload["media_type"]),
+        fetched_at=str(payload["fetched_at"]),
+        items=list(payload.get("items", [])),
+    )

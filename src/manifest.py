@@ -78,6 +78,9 @@ def _metadata(item: Dict[str, Any]) -> Dict[str, Any]:
         "overview": item.get("description") or item.get("overview") or None,
         "genres": genres,
         "runtime_minutes": runtime,
+        "rating": item.get("rating"),
+        "rating_source": item.get("rating_source"),
+        "ratings": item.get("ratings") if isinstance(item.get("ratings"), dict) else {},
     }
 
 

@@ -9,9 +9,9 @@ from .fetch import SourceSnapshot
 from .identity import media_identity, resolve_identity
 from .merge_metadata import merge_item
 from .rank import build_ranking, order_items
-from .state import snapshot_status
+from .state import snapshot_age_hours, snapshot_status
 
-MEDIA_KINDS = {"movie", "series", "live_tv", "radio"}
+SUPPORTED_MEDIA_KINDS = {"movie", "series"}
 
 
 def _row_snapshots(
@@ -22,13 +22,9 @@ def _row_snapshots(
     return [snapshot for snapshot in snapshots if snapshot.request_id in source_lists]
 
 
-def _media_kind(row: Dict[str, Any]) -> str:
-    media_type = str(row.get("type") or "")
-    if media_type == "movie":
-        return "movie"
-    if media_type == "series":
-        return "series"
-    return str(row.get("media_kind") or media_type or "movie")
+def _media_kind(row: Dict[str, Any]) -> str | None:
+    media_kind = str(row.get("media_kind") or row.get("type") or "")
+    return media_kind if media_kind in SUPPORTED_MEDIA_KINDS else None
 
 
 def _catalog_freshness(
@@ -36,11 +32,8 @@ def _catalog_freshness(
     policy: Dict[str, Any],
     now: datetime,
 ) -> Dict[str, Any]:
+    ages = [snapshot_age_hours(snapshot, now) for snapshot in snapshots]
     statuses = [snapshot_status(snapshot, policy, now) for snapshot in snapshots]
-    ages = [
-        snapshot_status(snapshot, policy, now)
-        for snapshot in snapshots
-    ]
 
     if not statuses:
         overall = "expired"
@@ -55,6 +48,8 @@ def _catalog_freshness(
 
     return {
         "status": overall,
+        "oldest_source_age_hours": max(ages) if ages else None,
+        "newest_source_age_hours": min(ages) if ages else None,
         "snapshot_statuses": statuses,
         "age_basis": "provider snapshot fetched_at",
     }
@@ -91,25 +86,31 @@ def build_release(
     snapshots: List[SourceSnapshot],
     now: datetime,
     retention_policy: Dict[str, Any] | None = None,
+    provider_weights: Dict[str, float] | None = None,
 ) -> Dict[str, Any]:
     """Merge, rank, and structure snapshots into a BeastED-facing v2 release."""
 
     retention_policy = retention_policy or {}
+    provider_weights = provider_weights or {}
     release_rows: List[Dict[str, Any]] = []
 
     for row in rows:
+        media_kind = _media_kind(row)
+        if media_kind is None:
+            continue
+
         row_snapshots = _row_snapshots(row, snapshots)
         if not row_snapshots:
             continue
 
-        media_kind = _media_kind(row)
-        media_type = "movie" if media_kind == "movie" else "series"
+        media_type = media_kind
         merged: Dict[str, Dict[str, Any]] = {}
         identities: Dict[str, Dict[str, Any]] = {}
         attributions: Dict[str, List[Dict[str, Any]]] = {}
 
         for snapshot in row_snapshots:
             freshness = snapshot_status(snapshot, retention_policy, now)
+            weight = float(provider_weights.get(snapshot.provider_id, 1.0))
 
             for position, raw_item in enumerate(snapshot.items, start=1):
                 media_id = resolve_identity(media_type, raw_item, identities)
@@ -124,13 +125,16 @@ def build_release(
                         "provider_id": snapshot.provider_id,
                         "list_id": snapshot.list_id,
                         "rank": position,
-                        "weight": 1.0,
+                        "weight": weight,
                         "fetched_at": snapshot.fetched_at,
                         "freshness": freshness,
                     }
                 )
 
-        rankings = build_ranking(row_snapshots)
+        rankings = build_ranking(
+            row_snapshots,
+            provider_weights=provider_weights,
+        )
         ordered_items = order_items(list(merged.values()), rankings)
 
         release_items: List[Dict[str, Any]] = []

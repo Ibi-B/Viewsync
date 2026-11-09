@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -101,6 +102,10 @@ def _write_generation_report(
     write_json(output_dir / "state" / "generation-report.json", report)
 
 
+def _manifest_hash(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def generate_catalog(
     config_dir: str | Path = CONFIG,
     output_dir: str | Path = OUTPUT,
@@ -121,6 +126,7 @@ def generate_catalog(
         raise ValueError("No provider snapshots were available; refusing to publish a release")
 
     policy = config["ranking"].get("retention", {})
+    provider_weights = config["ranking"].get("provider_weights", {})
     usable_snapshots, expired_snapshots = select_snapshots(snapshots, policy, now)
 
     _write_generation_report(
@@ -142,6 +148,7 @@ def generate_catalog(
         usable_snapshots,
         now,
         retention_policy=policy,
+        provider_weights=provider_weights,
     )
 
     if not release["rows"]:
@@ -150,16 +157,26 @@ def generate_catalog(
     validate_release(release)
     publish_release(release, output_dir)
 
+    manifest_path = output_dir / "v1" / "manifest.json"
     current = {
         "schema_version": 2,
         "release_id": release["release_id"],
         "manifest_path": "v1/manifest.json",
+        "manifest_sha256": _manifest_hash(manifest_path),
         "generated_at": release["generated_at"],
         "ranking_version": release["ranking_version"],
         "catalog_freshness": release["catalog_freshness"],
         "status": "current",
     }
-    write_json(output_dir / "v1" / "current.json", current)
+
+    current_path = output_dir / "v1" / "current.json"
+    write_json(current_path, current)
+
+    verified = json.loads(current_path.read_text(encoding="utf-8"))
+    if verified["release_id"] != release["release_id"]:
+        raise ValueError("Current-release pointer does not match the published release")
+    if verified["manifest_sha256"] != _manifest_hash(manifest_path):
+        raise ValueError("Current-release pointer hash does not match the published manifest")
 
     return release
 

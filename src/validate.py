@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from typing import Any
 
 from .fetch import SourceSnapshot
@@ -35,9 +36,25 @@ def _validate_url(value: Any, field: str) -> None:
         raise ValidationError(f"{field} must be an HTTP or HTTPS URL")
 
 
+def _validate_positive_number(value: Any, field: str) -> float:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValidationError(f"{field} must be numeric")
+
+    number = float(value)
+    if not math.isfinite(number) or number <= 0:
+        raise ValidationError(f"{field} must be finite and positive")
+    return number
+
+
+def _validate_positive_integer(value: Any, field: str) -> int:
+    if isinstance(value, bool) or not isinstance(value, int) or value < 1:
+        raise ValidationError(f"{field} must be a positive integer")
+    return value
+
+
 def _validate_source_attribution(attribution: Any, context: str) -> None:
-    if not isinstance(attribution, list):
-        raise ValidationError(f"{context} source_attribution must be an array")
+    if not isinstance(attribution, list) or not attribution:
+        raise ValidationError(f"{context} source_attribution must be a non-empty array")
 
     for entry in attribution:
         if not isinstance(entry, dict):
@@ -47,8 +64,17 @@ def _validate_source_attribution(attribution: Any, context: str) -> None:
             if key not in entry:
                 raise ValidationError(f"{context} source attribution is missing {key}")
 
+        if not entry["provider_id"] or not entry["list_id"]:
+            raise ValidationError(f"{context} source attribution is missing provider identity")
+
+        if not isinstance(entry["fetched_at"], str) or not entry["fetched_at"]:
+            raise ValidationError(f"{context} source attribution has invalid fetched_at")
+
         if entry["freshness"] not in FRESHNESS_STATUSES:
             raise ValidationError(f"{context} has invalid freshness {entry['freshness']!r}")
+
+        _validate_positive_integer(entry["rank"], f"{context} attribution rank")
+        _validate_positive_number(entry["weight"], f"{context} attribution weight")
 
 
 def validate_release(release: dict[str, Any]) -> None:
@@ -69,6 +95,14 @@ def validate_release(release: dict[str, Any]) -> None:
         "expired",
     }:
         raise ValidationError("Release has invalid catalog_freshness")
+
+    for field in ("oldest_source_age_hours", "newest_source_age_hours"):
+        value = freshness.get(field)
+        if value is not None:
+            if isinstance(value, bool) or not isinstance(value, (int, float)):
+                raise ValidationError(f"catalog_freshness.{field} must be numeric")
+            if value < 0:
+                raise ValidationError(f"catalog_freshness.{field} cannot be negative")
 
     rows = release.get("rows")
     if not rows:

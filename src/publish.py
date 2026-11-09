@@ -1,4 +1,5 @@
 """Static publication. All catalogue paths resolve against the v1 root."""
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -18,6 +19,11 @@ def safe_component(value):
     if not isinstance(value, str) or not re.fullmatch(r'[A-Za-z0-9_-]+', value):
         raise ValueError(f'Unsafe publication identifier: {value!r}')
     return value
+
+
+def _detail_filename(media_id: str) -> str:
+    digest = hashlib.sha256(media_id.encode('utf-8')).hexdigest()[:24]
+    return f'{digest}.json'
 
 
 def publish_release(release, output_dir):
@@ -65,7 +71,7 @@ def publish_release(release, output_dir):
         items = []
         for source in row['items']:
             item = dict(source)
-            filename = safe_component(item['id'].replace(':', '_')) + '.json'
+            filename = _detail_filename(item['id'])
             detail_path = directory / 'items' / filename
             item['details_path'] = detail_path.relative_to(root).as_posix()
 

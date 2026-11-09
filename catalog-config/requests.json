@@ -1,0 +1,68 @@
+[
+  {
+    "id": "popular_movies",
+    "providers": {
+      "tmdb": {
+        "list_id": "popular_movies",
+        "media_type": "movie",
+        "max_items": 100,
+        "date_mode": "none"
+      }
+    }
+  },
+  {
+    "id": "popular_series",
+    "providers": {
+      "tmdb": {
+        "list_id": "popular_series",
+        "media_type": "series",
+        "max_items": 100,
+        "date_mode": "none"
+      }
+    }
+  },
+  {
+    "id": "new_movies",
+    "providers": {
+      "tmdb": {
+        "list_id": "new_movies",
+        "media_type": "movie",
+        "max_items": 100,
+        "date_mode": "recent"
+      }
+    }
+  },
+  {
+    "id": "new_series",
+    "providers": {
+      "tmdb": {
+        "list_id": "new_series",
+        "media_type": "series",
+        "max_items": 100,
+        "date_mode": "recent"
+      }
+    }
+  },
+  {
+    "id": "upcoming_movies",
+    "providers": {
+      "tmdb": {
+        "list_id": "upcoming_movies",
+        "media_type": "movie",
+        "max_items": 100,
+        "date_mode": "future"
+      }
+    }
+  },
+  {
+    "id": "upcoming_series",
+    "providers": {
+      "tmdb": {
+        "list_id": "upcoming_series",
+        "media_type": "series",
+        "max_items": 100,
+        "date_mode": "future"
+      }
+    }
+  }
+]

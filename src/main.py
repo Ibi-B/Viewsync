@@ -137,7 +137,12 @@ def generate_catalog(
     persist_snapshots(usable_snapshots, state_dir)
     preserve_last_good_release(state_dir, output_dir)
 
-    release = build_release(config["rows"]["rows"], usable_snapshots, now)
+    release = build_release(
+        config["rows"]["rows"],
+        usable_snapshots,
+        now,
+        retention_policy=policy,
+    )
 
     if not release["rows"]:
         raise ValueError("No catalogue rows could be generated from available snapshots")
@@ -146,11 +151,12 @@ def generate_catalog(
     publish_release(release, output_dir)
 
     current = {
-        "schema_version": 1,
+        "schema_version": 2,
         "release_id": release["release_id"],
         "manifest_path": "v1/manifest.json",
         "generated_at": release["generated_at"],
         "ranking_version": release["ranking_version"],
+        "catalog_freshness": release["catalog_freshness"],
         "status": "current",
     }
     write_json(output_dir / "v1" / "current.json", current)

@@ -46,20 +46,24 @@ def test_build_release_merges_and_ranks_snapshot_items():
 
     release = build_release(rows, snapshots, now)
 
-    assert release["schema_version"] == 1
+    assert release["schema_version"] == 2
     assert release["release_id"] == "20261109T000000Z"
+    assert release["catalog_freshness"]["status"] == "fresh"
     assert len(release["rows"]) == 1
 
     row = release["rows"][0]
     assert row["id"] == "popular-movies"
+    assert row["media_kind"] == "movie"
     assert row["configured_provider_count"] == 2
     assert row["contributing_provider_count"] == 2
     assert len(row["items"]) == 2
 
     first = row["items"][0]
-    assert first["_viewsync_id"] == "movie:imdb:tt0111161"
+    assert first["id"] == "movie:imdb:tt0111161"
+    assert first["media_kind"] == "movie"
     assert first["ranking"]["provider_count"] == 2
     assert first["ranking"]["consensus_score"] > 0
+    assert first["source_attribution"]
 
 
 def test_publish_release_writes_manifest_and_row_files(tmp_path: Path):
@@ -68,7 +72,12 @@ def test_publish_release_writes_manifest_and_row_files(tmp_path: Path):
         _snapshot(
             "provider-a",
             [
-                {"imdb_id": "tt0111161", "name": "The Shawshank Redemption", "year": "1994"},
+                {
+                    "imdb_id": "tt0111161",
+                    "name": "The Shawshank Redemption",
+                    "year": "1994",
+                    "poster": "https://example.com/poster.jpg",
+                },
             ],
         )
     ]
@@ -86,6 +95,7 @@ def test_publish_release_writes_manifest_and_row_files(tmp_path: Path):
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
 
     assert manifest["release_id"] == release["release_id"]
+    assert manifest["schema_version"] == 2
     assert (tmp_path / "v1" / "releases" / release["release_id"] / "manifest.json").exists()
     assert (tmp_path / "v1" / "releases" / release["release_id"] / "rows" / "popular-movies.json").exists()
 

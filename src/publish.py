@@ -25,30 +25,81 @@ def publish_release(release, output_dir):
     root = Path(output_dir) / 'v1'
     release_id = safe_component(release['release_id'])
     directory = root / 'releases' / release_id
-    manifest = {key: release[key] for key in ('schema_version', 'release_id', 'published_at', 'ranking_version')}
-    manifest.update(path_base='v1-root', manifest_path=f'releases/{release_id}/manifest.json', rows=[])
+
+    manifest = {
+        key: release[key]
+        for key in (
+            'schema_version',
+            'release_id',
+            'generated_at',
+            'ranking_version',
+            'catalog_freshness',
+        )
+    }
+    manifest.update(
+        path_base='v1-root',
+        manifest_path=f'releases/{release_id}/manifest.json',
+        rows=[],
+    )
+
     targets = []
+
     for row in release['rows']:
         row_id = safe_component(row['id'])
         path = directory / 'rows' / f'{row_id}.json'
-        entry = {key: row[key] for key in ('id', 'title', 'data_updated_at', 'status', 'configured_provider_count', 'contributing_provider_count')}
+        entry = {
+            key: row[key]
+            for key in (
+                'id',
+                'title',
+                'media_kind',
+                'data_updated_at',
+                'status',
+                'configured_provider_count',
+                'contributing_provider_count',
+            )
+        }
         entry['path'] = path.relative_to(root).as_posix()
         manifest['rows'].append(entry)
+
         items = []
         for source in row['items']:
             item = dict(source)
             filename = safe_component(item['id'].replace(':', '_')) + '.json'
             detail_path = directory / 'items' / filename
             item['details_path'] = detail_path.relative_to(root).as_posix()
-            details = {key: value for key, value in source.items() if key not in ('ranking', 'details_path')}
+
+            details = {
+                key: value
+                for key, value in source.items()
+                if key not in ('ranking', 'details_path')
+            }
             write_json(detail_path, details)
             targets.append(detail_path)
             items.append(item)
-        payload = {key: row[key] for key in ('id', 'title', 'media_type', 'data_updated_at', 'status')}
-        payload.update(schema_version=1, release_id=release_id, path_base='v1-root', items=items)
+
+        payload = {
+            key: row[key]
+            for key in (
+                'id',
+                'title',
+                'media_type',
+                'media_kind',
+                'data_updated_at',
+                'status',
+            )
+        }
+        payload.update(
+            schema_version=2,
+            release_id=release_id,
+            path_base='v1-root',
+            items=items,
+        )
         write_json(path, payload)
         targets.append(path)
+
     for target in targets:
         json.loads(target.read_text(encoding='utf-8'))
+
     write_json(directory / 'manifest.json', manifest)
     return write_json(root / 'manifest.json', manifest)

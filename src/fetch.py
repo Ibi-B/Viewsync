@@ -5,9 +5,12 @@ from dataclasses import dataclass
 from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional
-from urllib.parse import urlencode
+
 
 import requests
+from src.http_client import FetchError
+from urllib.parse import urlparse, urlencode, parse_qsl, urlunparse
+
 
 TMDB_BASE = "https://api.themoviedb.org/3"
 IMDB_BASE = "https://v3.sg.media-imdb.com/suggestion"
@@ -355,6 +358,7 @@ def fetch_source(
 
     else:
         url = config["url"]
+        url = apply_authentication(url, config.get("auth", {}))
         if not url:
             raise ValueError(f"Provider '{provider}' has no request URL")
 
@@ -401,3 +405,22 @@ def load_snapshot(path: str | Path) -> SourceSnapshot:
         fetched_at=str(payload["fetched_at"]),
         items=list(payload.get("items", [])),
     )
+
+def apply_authentication(url: str, auth_config: dict) -> str:
+    if auth_config.get("type") == "api_key":
+        env_var = auth_config.get("env")
+        if not env_var:
+            raise FetchError(f"Missing env key in auth_config: {auth_config}")
+        api_key = os.environ.get(env_var)
+        if not api_key:
+            raise FetchError(f"Missing environment variable: {env_var}")
+
+        parsed = urlparse(url)
+        query = parse_qsl(parsed.query)
+        param_name = auth_config.get("param_name", "api_key")
+        query.append((param_name, api_key))
+
+        new_query = urlencode(query)
+        return urlunparse((parsed.scheme, parsed.netloc, parsed.path, parsed.params, new_query, parsed.fragment))
+
+    return url

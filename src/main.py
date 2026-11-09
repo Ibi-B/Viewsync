@@ -4,8 +4,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List
 
-from fetch import fetch_source
-from manifest import build_manifest
+from .fetch import fetch_source
 
 BASE = Path(__file__).resolve().parent.parent
 CONFIG = BASE / "catalog-config"

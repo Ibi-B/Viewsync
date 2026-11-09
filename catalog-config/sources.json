@@ -1,109 +1,67 @@
 {
-  "schema_version": 1,
-  "providers": [
-    {
-      "id": "cinemeta",
-      "name": "Cinemeta",
-      "enabled": true,
-      "weight": 1.0,
-      "requests": [
-        {
-          "id": "cinemeta_popular_movies",
-          "list_id": "popular_movies",
-          "media_type": "movie",
-          "url": "https://v3-cinemeta.strem.io/catalog/movie/top.json",
-          "timeout_seconds": 20,
-          "max_items": 100
+  "providers": {
+    "tmdb": {
+      "name": "TMDB",
+      "base_url": "https://api.themoviedb.org/3",
+      "auth": "query",
+      "auth_key": "api_key",
+      "requests": {
+        "popular_movies": {
+          "url": "/movie/popular",
+          "media_type": "movie"
         },
-        {
-          "id": "cinemeta_popular_series",
-          "list_id": "popular_series",
-          "media_type": "series",
-          "url": "https://v3-cinemeta.strem.io/catalog/series/top.json",
-          "timeout_seconds": 20,
-          "max_items": 100
+        "popular_series": {
+          "url": "/tv/popular",
+          "media_type": "series"
+        },
+        "new_movies": {
+          "url": "/movie/now_playing",
+          "media_type": "movie"
+        },
+        "new_series": {
+          "url": "/tv/airing_today",
+          "media_type": "series"
+        },
+        "upcoming_movies": {
+          "url": "/movie/upcoming",
+          "media_type": "movie"
+        },
+        "upcoming_series": {
+          "url": "/tv/on_the_air",
+          "media_type": "series"
         }
-      ]
+      }
     },
-    {
-      "id": "tmdb",
-      "name": "The Movie Database",
-      "enabled": true,
-      "weight": 1.0,
-      "requests": [
-        {
-          "id": "tmdb_trending_movies_day",
-          "list_id": "popular_movies",
-          "media_type": "movie",
-          "url": "https://api.themoviedb.org/3/trending/movie/day",
-          "timeout_seconds": 20,
-          "max_items": 100,
-          "auth": {
-            "type": "api_key",
-            "env": "TMDB_API_KEY"
-          }
+    "trakt": {
+      "name": "Trakt",
+      "base_url": "https://api.trakt.tv",
+      "auth": "header",
+      "auth_key": "trakt-api-key",
+      "requests": {
+        "trending_movies": {
+          "url": "/movies/trending",
+          "media_type": "movie"
         },
-        {
-          "id": "tmdb_trending_series_day",
-          "list_id": "popular_series",
-          "media_type": "series",
-          "url": "https://api.themoviedb.org/3/trending/tv/day",
-          "timeout_seconds": 20,
-          "max_items": 100,
-          "auth": {
-            "type": "api_key",
-            "env": "TMDB_API_KEY"
-          }
-        },
-        {
-          "id": "tmdb_upcoming_movies",
-          "list_id": "upcoming_movies",
-          "media_type": "movie",
-          "url": "https://api.themoviedb.org/3/movie/upcoming",
-          "timeout_seconds": 20,
-          "max_items": 100,
-          "auth": {
-            "type": "api_key",
-            "env": "TMDB_API_KEY"
-          }
-        },
-        {
-          "id": "tmdb_on_the_air_series",
-          "list_id": "upcoming_series",
-          "media_type": "series",
-          "url": "https://api.themoviedb.org/3/tv/on_the_air",
-          "timeout_seconds": 20,
-          "max_items": 100,
-          "auth": {
-            "type": "api_key",
-            "env": "TMDB_API_KEY"
-          }
-        },
-        {
-          "id": "tmdb_new_movies",
-          "list_id": "new_movies",
-          "media_type": "movie",
-          "url": "https://api.themoviedb.org/3/discover/movie",
-          "timeout_seconds": 20,
-          "max_items": 100,
-          "auth": {
-            "type": "api_key",
-            "env": "TMDB_API_KEY"
-          }
-        },
-        {
-          "id": "tmdb_new_series",
-          "list_id": "new_series",
-          "media_type": "series",
-          "url": "https://api.themoviedb.org/3/discover/tv",
-          "timeout_seconds": 20,
-          "max_items": 100,
-          "auth": {
-            "type": "api_key",
-            "env": "TMDB_API_KEY"
-          }
+        "trending_series": {
+          "url": "/shows/trending",
+          "media_type": "series"
         }
-      ]
+      }
+    },
+    "cinemeta": {
+      "name": "Cinemeta",
+      "base_url": "https://v3-cinemeta.strem.io",
+      "auth": "none",
+      "requests": {
+        "top_movies": {
+          "url": "/movie/top.json",
+          "media_type": "movie"
+        },
+        "top_series": {
+          "url": "/series/top.json",
+          "media_type": "series"
+        }
+      }
     }
-  ]
+  }
 }

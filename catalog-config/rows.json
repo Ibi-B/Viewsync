@@ -1,65 +1,76 @@
 {
-  "schema_version": 1,
   "rows": [
     {
-      "id": "popular_movies",
-      "title": "Popular movies",
-      "media_type": "movie",
-      "max_items": 100,
-      "source_lists": [
-        "cinemeta_popular_movies",
-        "tmdb_trending_movies_day"
-      ]
-    },
-    {
-      "id": "popular_series",
-      "title": "Popular series",
-      "media_type": "series",
-      "max_items": 100,
-      "source_lists": [
-        "cinemeta_popular_series",
-        "tmdb_trending_series_day"
-      ]
-    },
-    {
-      "id": "upcoming_movies",
-      "title": "Upcoming movies",
-      "media_type": "movie",
-      "max_items": 100,
-      "source_lists": [
-        "tmdb_upcoming_movies"
+      "id": "popular-movies",
+      "name": "Popular Movies",
+      "type": "movie",
+      "source_lists": ["popular_movies"],
+      "extra": [
+        {"name": "skip", "value": "0"},
+        {"name": "genre", "value": ""}
       ],
-      "date_field": "release_date"
+      "date_field": null,
+      "date_mode": "none"
     },
     {
-      "id": "upcoming_series",
-      "title": "Upcoming series",
-      "media_type": "series",
-      "max_items": 100,
-      "source_lists": [
-        "tmdb_on_the_air_series"
+      "id": "popular-series",
+      "name": "Popular Series",
+      "type": "series",
+      "source_lists": ["popular_series"],
+      "extra": [
+        {"name": "skip", "value": "0"},
+        {"name": "genre", "value": ""}
       ],
-      "date_field": "release_date"
+      "date_field": null,
+      "date_mode": "none"
     },
     {
-      "id": "new_movies",
-      "title": "Newly released movies",
-      "media_type": "movie",
-      "max_items": 100,
-      "source_lists": [
-        "tmdb_new_movies"
+      "id": "new-movies",
+      "name": "New Movies",
+      "type": "movie",
+      "source_lists": ["new_movies"],
+      "extra": [
+        {"name": "skip", "value": "0"},
+        {"name": "genre", "value": ""}
       ],
-      "date_field": "release_date"
+      "date_field": "release_date",
+      "date_mode": "recent"
     },
     {
-      "id": "new_series",
-      "title": "Newly released series",
-      "media_type": "series",
-      "max_items": 100,
-      "source_lists": [
-        "tmdb_new_series"
+      "id": "new-series",
+      "name": "New Series",
+      "type": "series",
+      "source_lists": ["new_series"],
+      "extra": [
+        {"name": "skip", "value": "0"},
+        {"name": "genre", "value": ""}
       ],
-      "date_field": "release_date"
+      "date_field": "first_air_date",
+      "date_mode": "recent"
+    },
+    {
+      "id": "upcoming-movies",
+      "name": "Upcoming Movies",
+      "type": "movie",
+      "source_lists": ["upcoming_movies"],
+      "extra": [
+        {"name": "skip", "value": "0"},
+        {"name": "genre", "value": ""}
+      ],
+      "date_field": "release_date",
+      "date_mode": "future"
+    },
+    {
+      "id": "upcoming-series",
+      "name": "Upcoming Series",
+      "type": "series",
+      "source_lists": ["upcoming_series"],
+      "extra": [
+        {"name": "skip", "value": "0"},
+        {"name": "genre", "value": ""}
+      ],
+      "date_field": "first_air_date",
+      "date_mode": "future"
     }
   ]
 }

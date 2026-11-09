@@ -1,159 +1,349 @@
-"""Catalogue adapters, external identity lookup, and source snapshots."""
-import hashlib
-import json
 import os
 import re
-import urllib.parse
-from dataclasses import asdict, dataclass
-from datetime import datetime, timezone, timedelta
-from pathlib import Path
-from .http_client import FetchError, fetch_json
+from datetime import date, timedelta
+from typing import Any, Dict, List, Optional
+from urllib.parse import urlencode
+
+import requests
+
+TMDB_BASE = "https://api.themoviedb.org/3"
+IMDB_BASE = "https://v3.sg.media-imdb.com/suggestion"
+TRAKT_BASE = "https://api.trakt.tv"
+STREMIO_BASE = "https://v3-cinemeta.strem.io"
 
 
-def utc_now():
-    return datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+def _get_json(url: str, params: Optional[Dict[str, Any]] = None) -> Any:
+    response = requests.get(url, params=params, timeout=15)
+    response.raise_for_status()
+    return response.json()
 
 
-@dataclass
-class SourceSnapshot:
-    request_id: str
-    provider_id: str
-    list_id: str
-    media_type: str
-    url: str
-    fetched_at: str
-    items: list
-
-    def to_dict(self):
-        return asdict(self)
+def _extract_items(payload: Any) -> List[Dict[str, Any]]:
+    if isinstance(payload, list):
+        return [item for item in payload if isinstance(item, dict)]
+    if isinstance(payload, dict):
+        for key in ("results", "items", "data"):
+            value = payload.get(key)
+            if isinstance(value, list):
+                return [item for item in value if isinstance(item, dict)]
+    return []
 
 
-def snapshot_fingerprint(snapshot):
-    return hashlib.sha256(json.dumps(snapshot.to_dict(), sort_keys=True).encode()).hexdigest()
+def _normalise_text(value: Any) -> str:
+    if value is None:
+        return ""
+    return str(value).strip().lower()
 
 
-def apply_authentication(url, auth):
-    if not auth:
-        return url
-    if auth.get('type') != 'api_key':
-        raise FetchError('Unsupported authentication type')
-    key = os.environ.get(auth.get('env', ''))
-    if not key:
-        raise FetchError('Missing required environment variable: ' + str(auth.get('env')))
-    parsed = urllib.parse.urlparse(url)
-    query = dict(urllib.parse.parse_qsl(parsed.query))
-    query['api_key'] = key
-    return parsed._replace(query=urllib.parse.urlencode(query)).geturl()
+def _title_candidates(item: Dict[str, Any]) -> List[str]:
+    values = [
+        item.get("title"),
+        item.get("name"),
+        item.get("original_title"),
+        item.get("original_name"),
+    ]
+    return [str(value) for value in values if value]
 
 
-def request_json(url, request):
-    try:
-        return fetch_json(apply_authentication(url, request.get('auth')),
-                          timeout_seconds=float(request.get('timeout_seconds', 20)))
-    except FetchError as error:
-        message = str(error)
-        key = os.environ.get((request.get('auth') or {}).get('env', ''))
-        if key:
-            message = message.replace(key, '[redacted]').replace(urllib.parse.quote_plus(key), '[redacted]')
-        raise FetchError(message) from None
+def _year_candidates(item: Dict[str, Any]) -> List[str]:
+    values = [
+        item.get("year"),
+        item.get("release_date"),
+        item.get("first_air_date"),
+    ]
+    years = []
+    for value in values:
+        if not value:
+            continue
+        text = str(value)
+        match = re.search(r"\d{4}", text)
+        if match:
+            years.append(match.group(0))
+    return years
 
 
-def normalise_tmdb_item(media_type, result):
-    date = result.get('release_date') if media_type == 'movie' else result.get('first_air_date')
+def _matches_request(
+    item: Dict[str, Any],
+    title: str,
+    year: Optional[int],
+    media_type: str,
+) -> bool:
+    item_media_type = _normalise_text(item.get("media_type") or item.get("type"))
+    if media_type and item_media_type and item_media_type != media_type:
+        return False
+
+    item_titles = [_normalise_text(value) for value in _title_candidates(item)]
+    if not item_titles:
+        return False
+    if _normalise_text(title) not in item_titles:
+        return False
+
+    if year:
+        item_years = [
+            int(value)
+            for value in _year_candidates(item)
+            if str(value).isdigit()
+        ]
+        if item_years and year not in item_years:
+            return False
+
+    return True
+
+
+def _imdb_suggestions(
+    title: str,
+    media_type: str,
+    year: Optional[int],
+) -> List[Dict[str, Any]]:
+    media_path = "movie" if media_type == "movie" else "tv"
+    url = f"{IMDB_BASE}/{media_path}/{title}.json"
+    payload = _get_json(url)
+    items = _extract_items(payload)
+    return [
+        item
+        for item in items
+        if _matches_request(item, title, year, media_type)
+    ]
+
+
+def _tmdb_search(
+    title: str,
+    media_type: str,
+    year: Optional[int],
+    api_key: str,
+) -> List[Dict[str, Any]]:
+    endpoint = "movie" if media_type == "movie" else "tv"
+    params: Dict[str, Any] = {
+        "query": title,
+        "include_adult": "false",
+    }
+
+    if year:
+        if media_type == "movie":
+            params["year"] = year
+        else:
+            params["first_air_date_year"] = year
+
+    payload = _get_json(
+        f"{TMDB_BASE}/search/{endpoint}",
+        params={"api_key": api_key, **params},
+    )
+    return _extract_items(payload)
+
+
+def _tmdb_list(
+    list_id: str,
+    media_type: str,
+    api_key: str,
+    max_items: int = 100,
+) -> List[Dict[str, Any]]:
+    endpoints = {
+        "popular_movies": "movie/popular",
+        "popular_series": "tv/popular",
+        "new_movies": "movie/now_playing",
+        "new_series": "tv/airing_today",
+        "upcoming_movies": "movie/upcoming",
+        "upcoming_series": "tv/on_the_air",
+    }
+
+    endpoint = endpoints.get(list_id)
+    if not endpoint:
+        return []
+
+    items: List[Dict[str, Any]] = []
+    page = 1
+
+    while len(items) < max_items and page <= 5:
+        payload = _get_json(
+            f"{TMDB_BASE}/{endpoint}",
+            params={"api_key": api_key, "page": page},
+        )
+        page_items = _extract_items(payload)
+
+        if not page_items:
+            break
+
+        items.extend(page_items)
+        page += 1
+
+    return items[:max_items]
+
+
+def _trakt_trending(
+    media_type: str,
+    client_id: str,
+    max_items: int = 100,
+) -> List[Dict[str, Any]]:
+    endpoint = "movies" if media_type == "movie" else "shows"
+    headers = {
+        "trakt-api-version": "2",
+        "trakt-api-key": client_id,
+    }
+
+    payload = _get_json(
+        f"{TRAKT_BASE}/{endpoint}/trending",
+        headers=headers,  # type: ignore[arg-type]
+    )
+    items = _extract_items(payload)
+    return items[:max_items]
+
+
+def _cinemeta_catalog(
+    catalog_id: str,
+    media_type: str,
+    max_items: int = 100,
+) -> List[Dict[str, Any]]:
+    media_path = "movie" if media_type == "movie" else "series"
+    url = f"{STREMIO_BASE}/{media_path}/top.json"
+    payload = _get_json(url)
+    items = _extract_items(payload)
+
+    if catalog_id == "top_rated":
+        return items[:max_items]
+
+    return items[:max_items]
+
+
+def _request_config(request: Dict[str, Any], provider: str) -> Dict[str, Any]:
+    providers = request.get("providers", {})
+    config = providers.get(provider)
+
+    if not isinstance(config, dict):
+        raise ValueError(f"Provider '{provider}' is not configured for this request")
+
+    return config
+
+
+def _tmdb_api_key(request: Dict[str, Any], provider: str) -> str:
+    config = _request_config(request, provider)
+    api_key = config.get("api_key") or os.environ.get("TMDB_API_KEY")
+
+    if not api_key:
+        raise ValueError("Missing TMDB API key")
+
+    return str(api_key)
+
+
+def _trakt_client_id(request: Dict[str, Any], provider: str) -> str:
+    config = _request_config(request, provider)
+    client_id = config.get("client_id") or os.environ.get("TRAKT_CLIENT_ID")
+
+    if not client_id:
+        raise ValueError("Missing Trakt client ID")
+
+    return str(client_id)
+
+
+def _provider_request(request: Dict[str, Any], provider: str) -> Dict[str, Any]:
+    config = _request_config(request, provider)
+    media_type = str(config.get("media_type") or request.get("type") or "")
+
+    if media_type not in {"movie", "series"}:
+        raise ValueError(f"Unsupported media type: {media_type}")
+
     return {
-        'tmdb_id': result.get('id'), 'imdb_id': result.get('imdb_id'),
-        'name': result.get('title') or result.get('name'),
-        'poster': 'https://image.tmdb.org/t/p/w500' + result['poster_path'] if result.get('poster_path') else None,
-        'background': 'https://image.tmdb.org/t/p/w1280' + result['backdrop_path'] if result.get('backdrop_path') else None,
-        'description': result.get('overview'), 'releaseInfo': date,
-        'release_date': date, 'tmdbRating': result.get('vote_average'),
-        'date_kind': 'original_release' if media_type == 'movie' else 'series_premiere',
-        'date_scope': 'original_not_region_specific',
+        "list_id": str(config.get("list_id") or request.get("list_id") or ""),
+        "media_type": media_type,
+        "url": str(config.get("url") or ""),
+        "max_items": int(config.get("max_items") or 100),
+        "date_mode": str(config.get("date_mode") or "none"),
     }
 
 
-def future_premieres(items, today, end):
-    selected = []
-    for item in items:
-        try:
-            value = datetime.strptime(item.get('release_date', ''), '%Y-%m-%d').date()
-        except (ValueError, TypeError):
-            continue
-        if today <= value <= end:
-            selected.append(item)
-    return selected
+def date_window(mode: str, today: date, media_type: str) -> tuple[str, date, date, str]:
+    if mode == "recent":
+        return (
+            "release_date",
+            today - timedelta(days=30),
+            today,
+            "primary_release_date.desc"
+            if media_type == "movie"
+            else "first_air_date.desc",
+        )
+
+    if mode == "future":
+        return (
+            "release_date",
+            today,
+            today + timedelta(days=180),
+            "primary_release_date.asc"
+            if media_type == "movie"
+            else "first_air_date.asc",
+        )
+
+    raise ValueError(f"Unsupported date mode: {mode}")
 
 
-def recent_releases(items, today):
-    """Keep original releases in the inclusive interval [today - 30 days, today]."""
-    return future_premieres(items, today - timedelta(days=30), today)
+def fetch_source(
+    request: Dict[str, Any],
+    provider: str,
+    today: Optional[date] = None,
+) -> List[Dict[str, Any]]:
+    config = _provider_request(request, provider)
+    media_type = config["media_type"]
+    list_id = config["list_id"]
+    max_items = config["max_items"]
 
+    if provider == "tmdb":
+        api_key = _tmdb_api_key(request, provider)
 
-def fetch_source(request, provider):
-    tmdb = provider['id'] == 'tmdb'
-    upcoming = request.get('list_id', '').startswith('upcoming_')
-    newly_released = request.get('list_id', '').startswith('new_')
-    today = datetime.now(timezone.utc).date()
-    start = today - timedelta(days=30) if newly_released else today
-    end = today if newly_released else today + timedelta(days=180)
-    url = request['url']
-    if tmdb and (upcoming or newly_released):
-        movie = request['media_type'] == 'movie'
-        field = 'primary_release_date' if movie else 'first_air_date'
-        query = {field + '.gte': start.isoformat(), field + '.lte': end.isoformat(),
-                 'sort_by': field + ('.desc' if newly_released else '.asc'), 'include_adult': 'false', 'page': 1}
-        url = 'https://api.themoviedb.org/3/discover/' + ('movie' if movie else 'tv') + '?' + urllib.parse.urlencode(query)
-    items = []
-    total_pages = 1
-    maximum = int(request.get('max_items', 100))
-    for page in range(1, min(5, (maximum + 19) // 20) + 1):
-        if page > total_pages:
-            break
-        page_url = url
-        if tmdb:
-            parsed = urllib.parse.urlparse(url)
-            params = dict(urllib.parse.parse_qsl(parsed.query))
-            params['page'] = page
-            page_url = parsed._replace(query=urllib.parse.urlencode(params)).geturl()
-        payload = request_json(page_url, request)
-        raw = payload.get('results' if tmdb else 'metas')
-        if not isinstance(raw, list):
-            raise FetchError('Source did not return an item array')
-        total_pages = min(int(payload.get('total_pages', 1)), 5) if tmdb else 1
-        for result in raw:
-            if not isinstance(result, dict):
-                continue
-            item = normalise_tmdb_item(request['media_type'], result) if tmdb else dict(result)
-            if not tmdb and re.fullmatch(r'tt[0-9]+', str(item.get('id', ''))):
-                item.setdefault('imdb_id', item['id'])
-            item['source_rank'] = len(items) + 1
-            items.append(item)
-        if len(items) >= maximum:
-            break
-    items = items[:maximum]
-    if upcoming:
-        items = future_premieres(items, today, end)
-    if newly_released:
-        items = recent_releases(items, today)
-    if tmdb:
-        kind = 'movie' if request['media_type'] == 'movie' else 'tv'
-        for item in items:
-            if item.get('imdb_id') or not item.get('tmdb_id'):
-                continue
-            external = request_json(f"https://api.themoviedb.org/3/{kind}/{item['tmdb_id']}/external_ids", request)
-            imdb = external.get('imdb_id')
-            if isinstance(imdb, str) and re.fullmatch(r'tt[0-9]+', imdb):
-                item['imdb_id'] = imdb
-    return SourceSnapshot(request['id'], provider['id'], request['list_id'],
-                          request['media_type'], request['url'], utc_now(), items)
+        if config["date_mode"] in {"recent", "future"}:
+            if today is None:
+                today = date.today()
 
+            field, start, end, order = date_window(
+                config["date_mode"],
+                today,
+                media_type,
+            )
 
-def load_snapshot(path):
-    return SourceSnapshot(**json.loads(Path(path).read_text(encoding='utf-8')))
+            params = {
+                "api_key": api_key,
+                "page": 1,
+                "include_adult": "false",
+                "sort_by": order,
+                "primary_release_date.gte"
+                if media_type == "movie"
+                else "first_air_date.gte": start.isoformat(),
+                "primary_release_date.lte"
+                if media_type == "movie"
+                else "first_air_date.lte": end.isoformat(),
+            }
 
+            url = f"{TMDB_BASE}/discover/{'movie' if media_type == 'movie' else 'tv'}"
+            payload = _get_json(url, params=params)
+            items = _extract_items(payload)
+        else:
+            if list_id in {
+                "popular_movies",
+                "popular_series",
+                "new_movies",
+                "new_series",
+                "upcoming_movies",
+                "upcoming_series",
+            }:
+                items = _tmdb_list(list_id, media_type, api_key, max_items)
+            else:
+                items = _tmdb_search(
+                    str(request.get("search", {}).get("title", "")),
+                    media_type,
+                    request.get("search", {}).get("year"),
+                    api_key,
+                )
 
-def save_snapshot(snapshot, directory):
-    path = Path(directory) / f'{snapshot.request_id}.json'
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(snapshot.to_dict(), ensure_ascii=False, indent=2), encoding='utf-8')
-    return path
+    elif provider == "trakt":
+        client_id = _trakt_client_id(request, provider)
+        items = _trakt_trending(media_type, client_id, max_items)
+
+    elif provider == "cinemeta":
+        items = _cinemeta_catalog(list_id, media_type, max_items)
+
+    else:
+        url = config["url"]
+        if not url:
+            raise ValueError(f"Provider '{provider}' has no request URL")
+
+        payload = _get_json(url)
+        items = _extract_items(payload)
+
+    return items[:max_items]

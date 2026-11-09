@@ -14,6 +14,8 @@ def rating_number(value):
         number = float(value)
     except (TypeError, ValueError):
         return None
+    if isinstance(value, bool):
+        return None
     return number if math.isfinite(number) and 0 <= number <= 10 else None
 
 
@@ -41,8 +43,12 @@ def merge_item(media_type, existing, incoming, provider_id):
         merged['year'] = year
         provenance['year'] = provider_id
     ratings = dict(merged.get('ratings', {}))
-    for field, source in (('imdbRating', 'imdb'), ('tmdbRating', 'tmdb')):
-        value = rating_number(incoming.get(field))
+    incoming_ratings = (
+        ('imdb', incoming.get('imdbRating', incoming.get('imdb_rating'))),
+        ('tmdb', incoming.get('tmdbRating', incoming.get('vote_average'))),
+    )
+    for source, raw_value in incoming_ratings:
+        value = rating_number(raw_value)
         if value is not None:
             ratings[source] = {'value': value, 'scale': 10}
     merged['ratings'] = ratings

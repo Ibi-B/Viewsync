@@ -1,7 +1,9 @@
+import json
 import os
 import re
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass, field
 from datetime import date, timedelta
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import requests
@@ -18,7 +20,9 @@ class SourceSnapshot:
     provider_id: str
     list_id: str
     media_type: str
-    items: List[Dict[str, Any]]
+    url: str = ""
+    fetched_at: str = ""
+    items: List[Dict[str, Any]] = field(default_factory=list)
 
 
 def _get_json(
@@ -29,6 +33,29 @@ def _get_json(
     response = requests.get(url, params=params, headers=headers, timeout=15)
     response.raise_for_status()
     return response.json()
+
+
+def _snapshot_filename(snapshot: SourceSnapshot) -> str:
+    safe_id = re.sub(r"[^A-Za-z0-9_-]+", "_", snapshot.request_id)
+    return f"{safe_id}.json"
+
+
+def save_snapshot(snapshot: SourceSnapshot, directory: str | Path) -> Path:
+    directory = Path(directory)
+    directory.mkdir(parents=True, exist_ok=True)
+    path = directory / _snapshot_filename(snapshot)
+    payload = asdict(snapshot)
+    path.write_text(
+        json.dumps(payload, ensure_ascii=False, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return path
+
+
+def load_snapshot(path: str | Path) -> SourceSnapshot:
+    with Path(path).open("r", encoding="utf-8") as handle:
+        payload = json.load(handle)
+    return SourceSnapshot(**payload)
 
 
 def _extract_items(payload: Any) -> List[Dict[str, Any]]:

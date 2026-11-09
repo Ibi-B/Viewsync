@@ -6,7 +6,7 @@ from datetime import datetime
 from typing import Any, Dict, List
 
 from .fetch import SourceSnapshot
-from .identity import media_identity
+from .identity import media_identity, resolve_identity
 from .merge_metadata import merge_item
 from .rank import build_ranking, order_items
 
@@ -35,11 +35,11 @@ def build_release(
 
         media_type = str(row.get("type") or "")
         merged: Dict[str, Dict[str, Any]] = {}
+        identities: Dict[str, Dict[str, Any]] = {}
 
         for snapshot in row_snapshots:
             for position, raw_item in enumerate(snapshot.items, start=1):
-                identity = media_identity(media_type, raw_item)
-                media_id = identity["id"]
+                media_id = resolve_identity(media_type, raw_item, identities)
                 existing = merged.get(media_id)
                 item = merge_item(media_type, existing, raw_item, snapshot.provider_id)
                 item["_viewsync_id"] = media_id

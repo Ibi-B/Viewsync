@@ -1,7 +1,9 @@
+import json
 import os
 import re
 from dataclasses import dataclass
 from datetime import date, timedelta
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 from urllib.parse import urlencode
 
@@ -368,9 +370,7 @@ def _snapshot_filename(snapshot: SourceSnapshot) -> str:
     return "__".join(safe_parts) + ".json"
 
 
-def save_snapshot(snapshot: SourceSnapshot, snapshot_dir: str | __import__("pathlib").Path) -> __import__("pathlib").Path:
-    from pathlib import Path
-
+def save_snapshot(snapshot: SourceSnapshot, snapshot_dir: str | Path) -> Path:
     directory = Path(snapshot_dir)
     directory.mkdir(parents=True, exist_ok=True)
     path = directory / _snapshot_filename(snapshot)
@@ -384,17 +384,14 @@ def save_snapshot(snapshot: SourceSnapshot, snapshot_dir: str | __import__("path
     }
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(
-        __import__("json").dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
     temporary.replace(path)
     return path
 
 
-def load_snapshot(path: str | __import__("pathlib").Path) -> SourceSnapshot:
-    import json
-    from pathlib import Path
-
+def load_snapshot(path: str | Path) -> SourceSnapshot:
     payload = json.loads(Path(path).read_text(encoding="utf-8"))
     return SourceSnapshot(
         request_id=str(payload["request_id"]),

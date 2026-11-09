@@ -148,6 +148,35 @@ def validate_release(release: dict[str, Any]) -> None:
             if not isinstance(metadata, dict):
                 raise ValidationError(f"Item {item.get('id')!r} has invalid metadata")
 
+            ratings = metadata.get("ratings", {})
+            if not isinstance(ratings, dict):
+                raise ValidationError(f"Item {item.get('id')!r} has invalid ratings")
+            for provider, rating in ratings.items():
+                if provider not in {"imdb", "tmdb"} or not isinstance(rating, dict):
+                    raise ValidationError(f"Item {item.get('id')!r} has invalid rating entry")
+                value = rating.get("value")
+                scale = rating.get("scale")
+                if (
+                    isinstance(value, bool)
+                    or not isinstance(value, (int, float))
+                    or not math.isfinite(float(value))
+                    or not 0 <= value <= 10
+                    or scale != 10
+                ):
+                    raise ValidationError(f"Item {item.get('id')!r} has invalid {provider} rating")
+
+            primary_rating = metadata.get("rating")
+            if primary_rating is not None and (
+                isinstance(primary_rating, bool)
+                or not isinstance(primary_rating, (int, float))
+                or not math.isfinite(float(primary_rating))
+                or not 0 <= primary_rating <= 10
+            ):
+                raise ValidationError(f"Item {item.get('id')!r} has invalid primary rating")
+            rating_source = metadata.get("rating_source")
+            if rating_source is not None and rating_source not in ratings:
+                raise ValidationError(f"Item {item.get('id')!r} has invalid rating source")
+
             _validate_source_attribution(
                 item.get("source_attribution"),
                 f"Item {item.get('id')!r}",

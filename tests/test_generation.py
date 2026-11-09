@@ -1,63 +1,39 @@
-import json
-from pathlib import Path
-from types import SimpleNamespace
+from datetime import datetime, timezone
 
-import main
-from fetch import fetch_source
+from src.fetch import SourceSnapshot
+from src.manifest import build_release
 
 
-def test_build_catalog_includes_new_rows():
-    rows = [
-        {
-            "id": "popular-movies",
-            "name": "Popular Movies",
-            "type": "movie",
-            "source_lists": ["popular_movies"],
-            "extra": [],
-            "date_field": None,
-            "date_mode": "none",
-        },
-        {
-            "id": "new-movies",
-            "name": "New Movies",
-            "type": "movie",
-            "source_lists": ["new_movies"],
-            "extra": [],
-            "date_field": "release_date",
-            "date_mode": "recent",
-        },
-        {
-            "id": "upcoming-movies",
-            "name": "Upcoming Movies",
-            "type": "movie",
-            "source_lists": ["upcoming_movies"],
-            "extra": [],
-            "date_field": "release_date",
-            "date_mode": "future",
-        },
-    ]
-
-    catalog = main.build_catalog(
-        rows,
-        now=SimpleNamespace(date=lambda: __import__('datetime').date(2026, 11, 9)),
+def _snapshot(request_id, media_type, imdb_id, title, now):
+    return SourceSnapshot(
+        request_id=request_id,
+        provider_id="fixture",
+        list_id=request_id,
+        media_type=media_type,
+        fetched_at=now.isoformat(),
+        items=[{"imdb_id": imdb_id, "title": title}],
     )
 
-    ids = [row["id"] for row in catalog["metas"]]
-    assert ids == ["popular-movies", "new-movies", "upcoming-movies"]
 
+def test_build_release_includes_popular_new_and_upcoming_rows():
+    now = datetime(2026, 11, 9, tzinfo=timezone.utc)
+    rows = [
+        {"id": "popular-movies", "name": "Popular Movies", "type": "movie",
+         "source_lists": ["popular_movies"]},
+        {"id": "new-movies", "name": "New Movies", "type": "movie",
+         "source_lists": ["new_movies"]},
+        {"id": "upcoming-movies", "name": "Upcoming Movies", "type": "movie",
+         "source_lists": ["upcoming_movies"]},
+    ]
+    snapshots = [
+        _snapshot("popular_movies", "movie", "tt0000001", "Popular", now),
+        _snapshot("new_movies", "movie", "tt0000002", "New", now),
+        _snapshot("upcoming_movies", "movie", "tt0000003", "Upcoming", now),
+    ]
 
-def test_fetch_source_uses_provider_config():
-    request = {
-        "id": "popular_movies",
-        "type": "movie",
-        "providers": {
-            "tmdb": {
-                "list_id": "popular_movies",
-                "media_type": "movie",
-                "max_items": 10,
-            }
-        },
-    }
+    release = build_release(rows, snapshots, now)
 
-    items = fetch_source(request, "tmdb")
-    assert len(items) <= 10
+    assert [row["id"] for row in release["rows"]] == [
+        "popular-movies", "new-movies", "upcoming-movies"
+    ]
+    assert all(len(row["items"]) == 1 for row in release["rows"])

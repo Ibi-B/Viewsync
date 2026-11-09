@@ -266,9 +266,14 @@ def _provider_request(request: Dict[str, Any], provider: str) -> Dict[str, Any]:
 
 
 def date_window(mode: str, today: date, media_type: str) -> tuple[str, date, date, str]:
+    if media_type not in {"movie", "series"}:
+        raise ValueError(f"Unsupported media type: {media_type}")
+
+    date_field = "release_date" if media_type == "movie" else "first_air_date"
+
     if mode == "recent":
         return (
-            "release_date",
+            date_field,
             today - timedelta(days=30),
             today,
             "primary_release_date.desc"
@@ -278,7 +283,7 @@ def date_window(mode: str, today: date, media_type: str) -> tuple[str, date, dat
 
     if mode == "future":
         return (
-            "release_date",
+            date_field,
             today,
             today + timedelta(days=180),
             "primary_release_date.asc"

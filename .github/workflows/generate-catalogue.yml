@@ -1,9 +1,6 @@
 name: Generate and deploy catalogue
 
 on:
-  push:
-    branches:
-      - codex/fix-pipeline-validation-2026-11-10
   schedule:
     - cron: "17 */6 * * *"
   workflow_dispatch:

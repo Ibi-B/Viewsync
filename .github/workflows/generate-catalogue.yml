@@ -1,6 +1,9 @@
 name: Generate and deploy catalogue
 
 on:
+  push:
+    branches:
+      - codex/fix-pipeline-validation-2026-11-10
   schedule:
     - cron: "17 */6 * * *"
   workflow_dispatch:
@@ -34,6 +37,7 @@ jobs:
         run: python -m pytest
 
       - name: Generate catalogue
+        if: github.ref == 'refs/heads/main'
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
@@ -45,6 +49,7 @@ jobs:
           path: dist
 
   deploy:
+    if: github.ref == 'refs/heads/main'
     needs: generate
     runs-on: ubuntu-latest
     environment:

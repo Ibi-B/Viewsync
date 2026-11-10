@@ -151,8 +151,8 @@ def generate_catalog(
         provider_weights=provider_weights,
     )
 
-    if not release["rows"]:
-        raise ValueError("No catalogue rows could be generated from available snapshots")
+    if not any(row.get("items") for row in release["rows"]):
+        raise ValueError("No catalogue items are available; refusing to publish an empty release")
 
     validate_release(release)
     publish_release(release, output_dir)

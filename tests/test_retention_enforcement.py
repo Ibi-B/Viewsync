@@ -57,7 +57,7 @@ def test_generate_catalog_records_diagnostics_and_current_pointer(tmp_path, monk
     ]
 
     def fake_fetch_source(request, provider, today=None):
-        if provider == "broken":
+        if request.get("id") == "new_movies":
             raise RuntimeError("upstream unavailable")
         return items
 
@@ -85,7 +85,7 @@ def test_generate_catalog_records_diagnostics_and_current_pointer(tmp_path, monk
     assert current["status"] == "current"
 
 
-def test_generate_catalog_refuses_when_all_snapshots_expire(tmp_path, monkeypatch):
+def test_generate_catalog_refuses_when_all_sources_return_no_items(tmp_path, monkeypatch):
     now = datetime(2026, 11, 9, tzinfo=timezone.utc)
 
     def fake_fetch_source(request, provider, today=None):

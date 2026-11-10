@@ -42,6 +42,12 @@ def media_identity(media_type: str, meta: Dict[str, Any]) -> Dict[str, str]:
     if tmdb_id:
         identity["tmdb"] = str(tmdb_id)
 
+    if title:
+        identity["title"] = str(title)
+    normalized_year = normalise_year(year)
+    if normalized_year:
+        identity["year"] = normalized_year
+
     if identity.get("imdb"):
         identity["id"] = f"{media_type}:imdb:{identity['imdb']}"
     elif identity.get("tmdb"):

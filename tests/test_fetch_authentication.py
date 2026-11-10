@@ -1,24 +1,47 @@
-from src.fetch import SourceSnapshot, apply_authentication
-from src.http_client import FetchError
+from datetime import date
+
+import src.fetch as fetch
 
 
-def test_api_key_is_appended_from_environment(monkeypatch):
+def _request():
+    return {
+        "id": "popular_movies",
+        "providers": {
+            "tmdb": {
+                "list_id": "popular_movies",
+                "media_type": "movie",
+                "max_items": 1,
+            }
+        },
+    }
+
+
+def test_tmdb_api_key_is_passed_to_provider_request(monkeypatch):
     monkeypatch.setenv("TMDB_API_KEY", "test-key")
-    url = apply_authentication(
-        "https://api.themoviedb.org/3/trending/movie/day",
-        {"type": "api_key", "env": "TMDB_API_KEY"},
-    )
-    assert "api_key=test-key" in url
+    captured = {}
+
+    def fake_get_json(url, params=None):
+        captured["url"] = url
+        captured["params"] = params or {}
+        return {"results": [{"id": 1, "title": "Fixture", "release_date": "2026-01-01"}]}
+
+    monkeypatch.setattr(fetch, "_get_json", fake_get_json)
+    items = fetch.fetch_source(_request(), "tmdb", date(2026, 11, 10))
+
+    assert len(items) == 1
+    assert captured["params"]["api_key"] == "test-key"
 
 
-def test_missing_api_key_fails(monkeypatch):
+def test_missing_tmdb_api_key_fails_before_network(monkeypatch):
     monkeypatch.delenv("TMDB_API_KEY", raising=False)
+
+    def fail_if_called(*args, **kwargs):
+        raise AssertionError("network must not be called without an API key")
+
+    monkeypatch.setattr(fetch, "_get_json", fail_if_called)
     try:
-        apply_authentication(
-            "https://api.themoviedb.org/3/trending/movie/day",
-            {"type": "api_key", "env": "TMDB_API_KEY"},
-        )
-    except FetchError:
-        pass
+        fetch.fetch_source(_request(), "tmdb", date(2026, 11, 10))
+    except ValueError as error:
+        assert "Missing TMDB API key" in str(error)
     else:
-        raise AssertionError("Expected FetchError")
+        raise AssertionError("Expected ValueError for missing TMDB API key")

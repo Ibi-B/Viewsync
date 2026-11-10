@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
+
 from datetime import datetime
 from typing import Any, Dict, List
 
@@ -111,7 +113,9 @@ def build_release(
         identities: Dict[str, Dict[str, Any]] = {}
         attributions: Dict[str, List[Dict[str, Any]]] = {}
 
+        ranking_snapshots: List[SourceSnapshot] = []
         for snapshot in row_snapshots:
+            ranked_items: List[Dict[str, Any]] = []
             freshness = snapshot_status(snapshot, retention_policy, now)
             weight = float(provider_weights.get(snapshot.provider_id, 1.0))
 
@@ -122,6 +126,9 @@ def build_release(
                 item["_viewsync_id"] = media_id
                 item["source_rank"] = position
                 merged[media_id] = item
+                ranked_items.append(
+                    {"_viewsync_id": media_id, "source_rank": position}
+                )
 
                 attributions.setdefault(media_id, []).append(
                     {
@@ -134,8 +141,10 @@ def build_release(
                     }
                 )
 
+            ranking_snapshots.append(replace(snapshot, items=ranked_items))
+
         rankings = build_ranking(
-            row_snapshots,
+            ranking_snapshots,
             provider_weights=provider_weights,
         )
         ordered_items = order_items(list(merged.values()), rankings)

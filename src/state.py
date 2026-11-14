@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -104,8 +103,14 @@ def preserve_last_good_release(state_dir: str | Path, output_dir: str | Path) ->
     if not source.exists():
         return False
 
-    target = Path(output_dir) / "v1" / "releases" / f"{release_id}-preserved"
-    if target.exists():
-        shutil.rmtree(target)
+    releases_dir = Path(output_dir) / "v1" / "releases"
+    base_name = f"{release_id}-preserved"
+    target = releases_dir / base_name
+    suffix = 1
+    while target.exists():
+        target = releases_dir / f"{base_name}-{suffix}"
+        suffix += 1
+    # Never delete or overwrite an earlier preserved release.
+    import shutil
     shutil.copytree(source, target)
     return True

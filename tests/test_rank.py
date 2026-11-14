@@ -8,7 +8,6 @@ def make_snapshot(request_id, provider_id, list_id, media_type, titles):
         provider_id=provider_id,
         list_id=list_id,
         media_type=media_type,
-        url="https://example.invalid",
         fetched_at="2026-01-01T00:00:00Z",
         items=[
             {

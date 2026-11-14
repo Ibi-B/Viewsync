@@ -63,7 +63,7 @@ def test_fetch_source_supports_date_windows(monkeypatch):
     monkeypatch.setenv("TMDB_API_KEY", "test-only-key")
     monkeypatch.setattr(
         "src.fetch._get_json",
-        lambda url, params=None: {"results": []},
+        lambda url, params=None, headers=None, raw_responses=None: {"results": []},
     )
 
     items = fetch_source(request, "tmdb")

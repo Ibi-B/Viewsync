@@ -80,7 +80,8 @@ def _fetch_snapshots(
                 fetched_at=now.isoformat(),
                 items=items,
             )
-            snapshots[request_id] = snapshot
+            snapshot_key = f"{request_id}:{provider_id}:{snapshot.list_id}"
+            snapshots[snapshot_key] = snapshot
 
     return list(snapshots.values()), failures
 

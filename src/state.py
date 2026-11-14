@@ -70,7 +70,9 @@ def restore_snapshots(
         try:
             snapshot = load_snapshot(path)
             key = f"{snapshot.request_id}:{snapshot.provider_id}:{snapshot.list_id}"
-            snapshots[key] = snapshot
+            previous = snapshots.get(key)
+            if previous is None or parse_timestamp(snapshot.fetched_at) > parse_timestamp(previous.fetched_at):
+                snapshots[key] = snapshot
         except (OSError, ValueError, TypeError, KeyError) as exc:
             if errors is not None:
                 errors.append({"file": path.name, "error": f"{type(exc).__name__}: {exc}"})

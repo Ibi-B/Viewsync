@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 import re
@@ -386,7 +387,12 @@ def fetch_source(
 def _snapshot_filename(snapshot: SourceSnapshot) -> str:
     parts = [snapshot.request_id, snapshot.provider_id, snapshot.list_id]
     safe_parts = [re.sub(r"[^A-Za-z0-9_-]", "_", part) for part in parts]
-    return "__".join(safe_parts) + ".json"
+    # Include the fetch timestamp so later generations never overwrite an
+    # earlier source response. Hashing the full identity also avoids collisions
+    # introduced by sanitising provider-controlled identifiers.
+    identity = "\\0".join([*parts, snapshot.fetched_at]).encode("utf-8")
+    version = hashlib.sha256(identity).hexdigest()[:16]
+    return "__".join(safe_parts) + f"__{version}.json"
 
 
 def save_snapshot(snapshot: SourceSnapshot, snapshot_dir: str | Path) -> Path:

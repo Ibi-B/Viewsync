@@ -73,9 +73,11 @@ def test_generate_catalog_records_diagnostics_and_current_pointer(tmp_path, monk
 
     report_path = tmp_path / "state" / "generation-report.json"
     current_path = tmp_path / "v1" / "current.json"
+    last_good_path = tmp_path / "state" / "last-good-release" / "release.json"
 
     assert report_path.exists()
     assert current_path.exists()
+    assert last_good_path.exists()
     assert release["release_id"] == "20261109T000000Z"
 
     report = __import__("json").loads(report_path.read_text(encoding="utf-8"))

@@ -107,11 +107,13 @@ def build_release(
         merged: Dict[str, Dict[str, Any]] = {}
         identities: Dict[str, Dict[str, Any]] = {}
         attributions: Dict[str, List[Dict[str, Any]]] = {}
+        ranking_snapshots: List[SourceSnapshot] = []
 
         for snapshot in row_snapshots:
             freshness = snapshot_status(snapshot, retention_policy, now)
             weight = float(provider_weights.get(snapshot.provider_id, 1.0))
 
+            ranked_items: List[Dict[str, Any]] = []
             for position, raw_item in enumerate(snapshot.items, start=1):
                 media_id = resolve_identity(media_type, raw_item, identities)
                 existing = merged.get(media_id)
@@ -119,6 +121,10 @@ def build_release(
                 item["_viewsync_id"] = media_id
                 item["source_rank"] = position
                 merged[media_id] = item
+                ranked_item = dict(raw_item)
+                ranked_item["_viewsync_id"] = media_id
+                ranked_item["source_rank"] = position
+                ranked_items.append(ranked_item)
 
                 attributions.setdefault(media_id, []).append(
                     {
@@ -131,8 +137,20 @@ def build_release(
                     }
                 )
 
+            ranking_snapshots.append(
+                SourceSnapshot(
+                    request_id=snapshot.request_id,
+                    provider_id=snapshot.provider_id,
+                    list_id=snapshot.list_id,
+                    media_type=snapshot.media_type,
+                    fetched_at=snapshot.fetched_at,
+                    items=ranked_items,
+                    raw_payloads=snapshot.raw_payloads,
+                )
+            )
+
         rankings = build_ranking(
-            row_snapshots,
+            ranking_snapshots,
             provider_weights=provider_weights,
         )
         ordered_items = order_items(list(merged.values()), rankings)

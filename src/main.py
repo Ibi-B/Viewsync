@@ -213,6 +213,17 @@ def generate_catalog(
     if verified["manifest_sha256"] != _manifest_hash(manifest_path):
         raise ValueError("Current-release pointer hash does not match the published manifest")
 
+    # Advance the last-good marker only after the release and pointer have both
+    # passed validation. A failed generation therefore cannot replace it.
+    write_json(
+        state_dir / "last-good-release" / "release.json",
+        {
+            "release_id": release["release_id"],
+            "manifest_sha256": verified["manifest_sha256"],
+            "generated_at": release["generated_at"],
+        },
+    )
+
     return release
 
 

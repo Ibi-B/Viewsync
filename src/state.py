@@ -67,7 +67,8 @@ def restore_snapshots(state_dir: str | Path) -> dict[str, SourceSnapshot]:
     for path in snapshot_dir.glob("*.json"):
         try:
             snapshot = load_snapshot(path)
-            snapshots[snapshot.request_id] = snapshot
+            key = f"{snapshot.request_id}:{snapshot.provider_id}:{snapshot.list_id}"
+            snapshots[key] = snapshot
         except (OSError, ValueError, TypeError, KeyError):
             continue
 

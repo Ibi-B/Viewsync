@@ -30,7 +30,7 @@ def test_api_key_is_passed_to_tmdb_request(monkeypatch):
 
     assert captured["url"].endswith("/movie/popular")
     assert captured["params"]["api_key"] == "test-key"
-    assert items == [{"id": 1, "title": "Test Movie"}]
+    assert items == [{"id": 1, "title": "Test Movie"}] * 5
 
 
 def test_missing_api_key_fails_before_request(monkeypatch):

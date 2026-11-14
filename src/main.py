@@ -155,7 +155,9 @@ def generate_catalog(
             "No current or retained provider snapshots were available; refusing to publish"
         )
 
-    policy = config["ranking"].get("freshness", {})
+    # ranking.json defines the retention tiers under "retention". Keep this
+    # policy shared by snapshot selection and release freshness reporting.
+    policy = config["ranking"].get("retention", {})
     provider_weights = config["ranking"].get("provider_weights", {})
     usable_snapshots, expired_snapshots = select_snapshots(snapshots, policy, now)
 

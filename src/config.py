@@ -19,11 +19,12 @@ def load_json(path: str | Path) -> Any:
 def _provider_map(raw_providers: Any) -> dict[str, dict[str, Any]]:
     """Normalise supported provider-map and provider-list configuration shapes."""
     if isinstance(raw_providers, dict):
-        return {
-            str(provider_id): {"id": str(provider_id), **provider}
-            for provider_id, provider in raw_providers.items()
-            if isinstance(provider, dict)
-        }
+        providers: dict[str, dict[str, Any]] = {}
+        for provider_id, provider in raw_providers.items():
+            if not isinstance(provider, dict):
+                raise ConfigurationError(f"Provider {provider_id} must be an object")
+            providers[str(provider_id)] = {"id": str(provider_id), **provider}
+        return providers
 
     if isinstance(raw_providers, list):
         providers: dict[str, dict[str, Any]] = {}
@@ -44,11 +45,14 @@ def _request_ids(provider: dict[str, Any]) -> list[str]:
     if isinstance(requests, dict):
         return [str(request_id) for request_id in requests]
     if isinstance(requests, list):
-        return [
-            str(request["id"])
-            for request in requests
-            if isinstance(request, dict) and request.get("id")
-        ]
+        request_ids: list[str] = []
+        for request in requests:
+            if not isinstance(request, dict) or not request.get("id"):
+                raise ConfigurationError(
+                    f"Missing request id for provider {provider.get('id')}"
+                )
+            request_ids.append(str(request["id"]))
+        return request_ids
     raise ConfigurationError(
         f"Provider {provider.get('id')} requests must be an object or an array"
     )
@@ -73,6 +77,10 @@ def load_config(config_dir: str | Path) -> dict[str, Any]:
     request_ids: set[str] = set()
 
     for provider_id, provider in providers.items():
+        # Preserve the original explicit-disable behavior while allowing map
+        # shaped configurations that omit an enabled flag to remain enabled.
+        if provider.get("enabled") is False:
+            continue
         for request_id in _request_ids(provider):
             if request_id in request_ids:
                 raise ConfigurationError(f"Duplicate source request id: {request_id}")

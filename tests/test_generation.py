@@ -88,7 +88,7 @@ def test_fetch_source_uses_provider_config(monkeypatch):
     monkeypatch.setenv("TMDB_API_KEY", "test-only-key")
     monkeypatch.setattr(
         "src.fetch._get_json",
-        lambda url, params=None: {"results": [{"id": 1, "title": "Popular Movie"}]},
+        lambda url, params=None, headers=None, raw_responses=None: {"results": [{"id": 1, "title": "Popular Movie"}]},
     )
 
     items = fetch_source(request, "tmdb")

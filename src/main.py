@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from datetime import datetime, timezone
@@ -12,7 +13,12 @@ from .config import load_config
 from .fetch import SourceSnapshot, fetch_source
 from .manifest import build_release
 from .publish import publish_release
-from .state import persist_snapshots, preserve_last_good_release, select_snapshots
+from .state import (
+    persist_snapshots,
+    preserve_last_good_release,
+    restore_snapshots,
+    select_snapshots,
+)
 from .validate import validate_release
 
 BASE = Path(__file__).resolve().parent.parent
@@ -29,7 +35,7 @@ def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\\n",
         encoding="utf-8",
     )
     temporary.replace(path)
@@ -38,9 +44,12 @@ def write_json(path: Path, payload: Any) -> None:
 def _fetch_snapshots(
     config_dir: Path,
     now: datetime,
+    state_dir: Path,
 ) -> tuple[list[SourceSnapshot], list[dict[str, str]]]:
+    """Fetch current data and retain the last valid snapshot for failed sources."""
     requests = load_json(config_dir / "requests.json")
-    snapshots: list[SourceSnapshot] = []
+    restored = restore_snapshots(state_dir)
+    snapshots: dict[str, SourceSnapshot] = dict(restored)
     failures: list[dict[str, str]] = []
 
     for request in requests:
@@ -51,6 +60,8 @@ def _fetch_snapshots(
         for provider_id, provider_config in request.get("providers", {}).items():
             try:
                 items = fetch_source(request, provider_id, now.date())
+                if not items:
+                    raise ValueError("Provider returned no catalogue items")
             except Exception as exc:
                 failures.append(
                     {
@@ -61,18 +72,17 @@ def _fetch_snapshots(
                 )
                 continue
 
-            snapshots.append(
-                SourceSnapshot(
-                    request_id=request_id,
-                    provider_id=provider_id,
-                    list_id=str(provider_config.get("list_id") or request_id),
-                    media_type=str(provider_config.get("media_type") or ""),
-                    fetched_at=now.isoformat(),
-                    items=items,
-                )
+            snapshot = SourceSnapshot(
+                request_id=request_id,
+                provider_id=provider_id,
+                list_id=str(provider_config.get("list_id") or request_id),
+                media_type=str(provider_config.get("media_type") or ""),
+                fetched_at=now.isoformat(),
+                items=items,
             )
+            snapshots[request_id] = snapshot
 
-    return snapshots, failures
+    return list(snapshots.values()), failures
 
 
 def _write_generation_report(
@@ -110,20 +120,23 @@ def generate_catalog(
     config_dir: str | Path = CONFIG,
     output_dir: str | Path = OUTPUT,
     now: datetime | None = None,
+    state_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     """Generate, validate, publish, and point to the current catalogue release."""
 
     now = now or datetime.now(timezone.utc)
     config_dir = Path(config_dir)
     output_dir = Path(output_dir)
-    state_dir = output_dir / "state"
+    state_dir = Path(state_dir) if state_dir is not None else output_dir / "state"
 
     config = load_config(config_dir)
-    snapshots, failures = _fetch_snapshots(config_dir, now)
+    snapshots, failures = _fetch_snapshots(config_dir, now, state_dir)
 
     if not snapshots:
         _write_generation_report(output_dir, now, 0, [], failures)
-        raise ValueError("No provider snapshots were available; refusing to publish a release")
+        raise ValueError(
+            "No current or retained provider snapshots were available; refusing to publish"
+        )
 
     policy = config["ranking"].get("freshness", {})
     provider_weights = config["ranking"].get("provider_weights", {})
@@ -182,7 +195,12 @@ def generate_catalog(
 
 
 def main() -> None:
-    generate_catalog()
+    parser = argparse.ArgumentParser(description="Generate the Viewsync catalogue")
+    parser.add_argument("--config", type=Path, default=CONFIG)
+    parser.add_argument("--output", type=Path, default=OUTPUT)
+    parser.add_argument("--state", type=Path, default=None)
+    args = parser.parse_args()
+    generate_catalog(args.config, args.output, state_dir=args.state)
 
 
 if __name__ == "__main__":

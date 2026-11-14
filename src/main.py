@@ -45,13 +45,13 @@ def _fetch_snapshots(
     config_dir: Path,
     now: datetime,
     state_dir: Path,
-) -> tuple[list[SourceSnapshot], list[dict[str, str]]]:
+) -> tuple[list[SourceSnapshot], list[dict[str, str]], list[dict[str, str]]]:
     """Fetch current data and retain the last valid snapshot for failed sources."""
     requests = load_json(config_dir / "requests.json")
+    restore_errors: list[dict[str, str]] = []
     restored = restore_snapshots(state_dir, errors=restore_errors)
     snapshots: dict[str, SourceSnapshot] = dict(restored)
     failures: list[dict[str, str]] = []
-    restore_errors: list[dict[str, str]] = []
 
     for request in requests:
         request_id = str(request.get("id") or "")

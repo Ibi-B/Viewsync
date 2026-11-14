@@ -144,7 +144,7 @@ def build_release(
                     list_id=snapshot.list_id,
                     media_type=snapshot.media_type,
                     fetched_at=snapshot.fetched_at,
-                        items=ranked_items,
+                    items=ranked_items,
                     raw_payloads=snapshot.raw_payloads,
                 )
             )

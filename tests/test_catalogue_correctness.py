@@ -1,17 +1,10 @@
-import json
-from pathlib import Path
-
-import main
+from src.config import load_config
 
 
 def test_catalog_row_order_matches_spec():
-    config = json.loads(
-        (Path(__file__).resolve().parents[1] / "catalog-config" / "rows.json").read_text(
-            encoding="utf-8"
-        )
-    )
+    config = load_config("catalog-config")
 
-    ids = [row["id"] for row in config["rows"]]
+    ids = [row["id"] for row in config["rows"]["rows"]]
 
     assert ids == [
         "popular-movies",
@@ -24,13 +17,9 @@ def test_catalog_row_order_matches_spec():
 
 
 def test_catalog_row_types_match_source_lists():
-    config = json.loads(
-        (Path(__file__).resolve().parents[1] / "catalog-config" / "rows.json").read_text(
-            encoding="utf-8"
-        )
-    )
+    config = load_config("catalog-config")
 
-    for row in config["rows"]:
+    for row in config["rows"]["rows"]:
         if row["id"] in {"popular-movies", "new-movies", "upcoming-movies"}:
             assert row["type"] == "movie"
 
@@ -39,33 +28,23 @@ def test_catalog_row_types_match_source_lists():
 
 
 def test_catalog_source_lists_match_provider_requests():
-    sources = json.loads(
-        (Path(__file__).resolve().parents[1] / "catalog-config" / "sources.json").read_text(
-            encoding="utf-8"
-        )
-    )
+    config = load_config("catalog-config")
 
-    requests = sources["providers"]["tmdb"]["requests"]
+    request_ids = {
+        request["id"]
+        for provider in config["sources"]["providers"]
+        for request in provider.get("requests", [])
+    }
 
-    config = json.loads(
-        (Path(__file__).resolve().parents[1] / "catalog-config" / "rows.json").read_text(
-            encoding="utf-8"
-        )
-    )
-
-    for row in config["rows"]:
+    for row in config["rows"]["rows"]:
         for source_id in row["source_lists"]:
-            assert source_id in requests
+            assert source_id in request_ids
 
 
 def test_catalog_date_modes_are_consistent():
-    config = json.loads(
-        (Path(__file__).resolve().parents[1] / "catalog-config" / "rows.json").read_text(
-            encoding="utf-8"
-        )
-    )
+    config = load_config("catalog-config")
 
-    for row in config["rows"]:
+    for row in config["rows"]["rows"]:
         if row["id"] in {"new-movies", "new-series"}:
             assert row["date_mode"] == "recent"
 

@@ -1,18 +1,15 @@
-import json
-from pathlib import Path
+from src.config import load_config
+from src.fetch import fetch_source
 
-import main
-from fetch import fetch_source
+
+def _load_rows():
+    return load_config("catalog-config")["rows"]["rows"]
 
 
 def test_new_movies_row_is_configured():
-    config = json.loads(
-        (Path(__file__).resolve().parents[1] / "catalog-config" / "rows.json").read_text(
-            encoding="utf-8"
-        )
-    )
+    config = _load_rows()
 
-    row = next(row for row in config["rows"] if row["id"] == "new-movies")
+    row = next(row for row in config if row["id"] == "new-movies")
 
     assert row["source_lists"] == ["new_movies"]
     assert row["date_field"] == "release_date"
@@ -20,13 +17,9 @@ def test_new_movies_row_is_configured():
 
 
 def test_new_series_row_is_configured():
-    config = json.loads(
-        (Path(__file__).resolve().parents[1] / "catalog-config" / "rows.json").read_text(
-            encoding="utf-8"
-        )
-    )
+    config = _load_rows()
 
-    row = next(row for row in config["rows"] if row["id"] == "new-series")
+    row = next(row for row in config if row["id"] == "new-series")
 
     assert row["source_lists"] == ["new_series"]
     assert row["date_field"] == "first_air_date"
@@ -34,13 +27,9 @@ def test_new_series_row_is_configured():
 
 
 def test_upcoming_movies_row_is_configured():
-    config = json.loads(
-        (Path(__file__).resolve().parents[1] / "catalog-config" / "rows.json").read_text(
-            encoding="utf-8"
-        )
-    )
+    config = _load_rows()
 
-    row = next(row for row in config["rows"] if row["id"] == "upcoming-movies")
+    row = next(row for row in config if row["id"] == "upcoming-movies")
 
     assert row["source_lists"] == ["upcoming_movies"]
     assert row["date_field"] == "release_date"
@@ -48,13 +37,9 @@ def test_upcoming_movies_row_is_configured():
 
 
 def test_upcoming_series_row_is_configured():
-    config = json.loads(
-        (Path(__file__).resolve().parents[1] / "catalog-config" / "rows.json").read_text(
-            encoding="utf-8"
-        )
-    )
+    config = _load_rows()
 
-    row = next(row for row in config["rows"] if row["id"] == "upcoming-series")
+    row = next(row for row in config if row["id"] == "upcoming-series")
 
     assert row["source_lists"] == ["upcoming_series"]
     assert row["date_field"] == "first_air_date"
@@ -76,7 +61,11 @@ def test_fetch_source_supports_date_windows(monkeypatch):
     }
 
     monkeypatch.setenv("TMDB_API_KEY", "test-only-key")
-    monkeypatch.setattr("fetch._get_json", lambda url, params=None: {"results": []})
+    monkeypatch.setattr(
+        "src.fetch._get_json",
+        lambda url, params=None: {"results": []},
+    )
 
     items = fetch_source(request, "tmdb")
+
     assert isinstance(items, list)

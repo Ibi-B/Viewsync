@@ -1,12 +1,11 @@
-import json
-from pathlib import Path
-from types import SimpleNamespace
+from datetime import datetime, timezone
 
-import main
-from fetch import fetch_source
+from src.fetch import SourceSnapshot, fetch_source
+from src.manifest import build_release
 
 
-def test_build_catalog_includes_new_rows():
+def test_build_release_includes_configured_rows():
+    now = datetime(2026, 11, 9, tzinfo=timezone.utc)
     rows = [
         {
             "id": "popular-movies",
@@ -37,16 +36,43 @@ def test_build_catalog_includes_new_rows():
         },
     ]
 
-    catalog = main.build_catalog(
-        rows,
-        now=SimpleNamespace(date=lambda: __import__('datetime').date(2026, 11, 9)),
-    )
+    snapshots = [
+        SourceSnapshot(
+            request_id="popular_movies",
+            provider_id="tmdb",
+            list_id="popular_movies",
+            media_type="movie",
+            fetched_at=now.isoformat(),
+            items=[{"id": 1, "title": "Popular Movie", "poster_path": "/poster.jpg"}],
+        ),
+        SourceSnapshot(
+            request_id="new_movies",
+            provider_id="tmdb",
+            list_id="new_movies",
+            media_type="movie",
+            fetched_at=now.isoformat(),
+            items=[{"id": 2, "title": "New Movie", "poster_path": "/poster.jpg"}],
+        ),
+        SourceSnapshot(
+            request_id="upcoming_movies",
+            provider_id="tmdb",
+            list_id="upcoming_movies",
+            media_type="movie",
+            fetched_at=now.isoformat(),
+            items=[{"id": 3, "title": "Upcoming Movie", "poster_path": "/poster.jpg"}],
+        ),
+    ]
 
-    ids = [row["id"] for row in catalog["metas"]]
-    assert ids == ["popular-movies", "new-movies", "upcoming-movies"]
+    release = build_release(rows, snapshots, now)
+
+    assert [row["id"] for row in release["rows"]] == [
+        "popular-movies",
+        "new-movies",
+        "upcoming-movies",
+    ]
 
 
-def test_fetch_source_uses_provider_config():
+def test_fetch_source_uses_provider_config(monkeypatch):
     request = {
         "id": "popular_movies",
         "type": "movie",
@@ -59,5 +85,13 @@ def test_fetch_source_uses_provider_config():
         },
     }
 
+    monkeypatch.setenv("TMDB_API_KEY", "test-only-key")
+    monkeypatch.setattr(
+        "src.fetch._get_json",
+        lambda url, params=None: {"results": [{"id": 1, "title": "Popular Movie"}]},
+    )
+
     items = fetch_source(request, "tmdb")
+
     assert len(items) <= 10
+    assert items[0]["title"] == "Popular Movie"

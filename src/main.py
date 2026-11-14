@@ -87,7 +87,7 @@ def _fetch_snapshots(
 
 
 def _write_generation_report(
-    output_dir: Path,
+    state_dir: Path,
     now: datetime,
     usable_count: int,
     expired: list[SourceSnapshot],
@@ -110,7 +110,7 @@ def _write_generation_report(
         ],
         "fetch_failures": failures,
     }
-    write_json(output_dir / "state" / "generation-report.json", report)
+    write_json(state_dir / "generation-report.json", report)
 
 
 def _manifest_hash(path: Path) -> str:
@@ -134,7 +134,7 @@ def generate_catalog(
     snapshots, failures = _fetch_snapshots(config_dir, now, state_dir)
 
     if not snapshots:
-        _write_generation_report(output_dir, now, 0, [], failures)
+        _write_generation_report(state_dir, now, 0, [], failures)
         raise ValueError(
             "No current or retained provider snapshots were available; refusing to publish"
         )
@@ -144,7 +144,7 @@ def generate_catalog(
     usable_snapshots, expired_snapshots = select_snapshots(snapshots, policy, now)
 
     _write_generation_report(
-        output_dir,
+        state_dir,
         now,
         len(usable_snapshots),
         expired_snapshots,

@@ -43,8 +43,7 @@ def select_snapshots(
     policy: dict[str, Any],
     now: datetime | None = None,
 ) -> tuple[list[SourceSnapshot], list[SourceSnapshot]]:
-    """Split snapshots into usable and expired groups using the retention policy."""
-
+    """Split snapshots into usable and expired groups without deleting either."""
     usable: list[SourceSnapshot] = []
     expired: list[SourceSnapshot] = []
 
@@ -57,25 +56,31 @@ def select_snapshots(
     return usable, expired
 
 
-def restore_snapshots(state_dir: str | Path) -> dict[str, SourceSnapshot]:
+def restore_snapshots(
+    state_dir: str | Path,
+    errors: list[dict[str, str]] | None = None,
+) -> dict[str, SourceSnapshot]:
+    """Restore every readable source snapshot and report, but never discard, bad files."""
     snapshot_dir = Path(state_dir) / "source-snapshots"
     snapshots: dict[str, SourceSnapshot] = {}
 
     if not snapshot_dir.exists():
         return snapshots
 
-    for path in snapshot_dir.glob("*.json"):
+    for path in sorted(snapshot_dir.glob("*.json")):
         try:
             snapshot = load_snapshot(path)
             key = f"{snapshot.request_id}:{snapshot.provider_id}:{snapshot.list_id}"
             snapshots[key] = snapshot
-        except (OSError, ValueError, TypeError, KeyError):
-            continue
+        except (OSError, ValueError, TypeError, KeyError) as exc:
+            if errors is not None:
+                errors.append({"file": path.name, "error": f"{type(exc).__name__}: {exc}"})
 
     return snapshots
 
 
 def persist_snapshots(snapshots: list[SourceSnapshot], state_dir: str | Path) -> None:
+    """Persist all snapshots, including empty and expired results; never prune history."""
     snapshot_dir = Path(state_dir) / "source-snapshots"
     snapshot_dir.mkdir(parents=True, exist_ok=True)
 

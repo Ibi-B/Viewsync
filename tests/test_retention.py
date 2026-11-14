@@ -10,7 +10,6 @@ def make_snapshot(fetched_at):
         provider_id="provider",
         list_id="list",
         media_type="movie",
-        url="https://example.invalid",
         fetched_at=fetched_at,
         items=[],
     )

@@ -56,9 +56,11 @@ def test_generate_catalog_records_diagnostics_and_current_pointer(tmp_path, monk
         }
     ]
 
-    def fake_fetch_source(request, provider, today=None):
+    def fake_fetch_source(request, provider, today=None, raw_responses=None):
         if provider == "broken":
             raise RuntimeError("upstream unavailable")
+        if raw_responses is not None:
+            raw_responses.append({"results": items, "source_meta": {"complete": True}})
         return items
 
     monkeypatch.setattr("src.main.fetch_source", fake_fetch_source)
@@ -88,7 +90,9 @@ def test_generate_catalog_records_diagnostics_and_current_pointer(tmp_path, monk
 def test_generate_catalog_refuses_when_all_snapshots_expire(tmp_path, monkeypatch):
     now = datetime(2026, 11, 9, tzinfo=timezone.utc)
 
-    def fake_fetch_source(request, provider, today=None):
+    def fake_fetch_source(request, provider, today=None, raw_responses=None):
+        if raw_responses is not None:
+            raw_responses.append({"results": []})
         return []
 
     monkeypatch.setattr("src.main.fetch_source", fake_fetch_source)

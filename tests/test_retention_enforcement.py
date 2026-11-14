@@ -4,7 +4,7 @@ import pytest
 
 from src.fetch import SourceSnapshot
 from src.main import generate_catalog
-from src.state import select_snapshots, snapshot_status
+from src.state import persist_snapshots, select_snapshots, snapshot_status
 
 
 def _snapshot(provider_id, fetched_at, items=None):
@@ -91,11 +91,28 @@ def test_generate_catalog_records_diagnostics_and_current_pointer(tmp_path, monk
 
 def test_generate_catalog_refuses_when_all_snapshots_expire(tmp_path, monkeypatch):
     now = datetime(2026, 11, 9, tzinfo=timezone.utc)
+    state_dir = tmp_path / "state"
+    requests = __import__("json").loads(
+        (__import__("pathlib").Path("catalog-config") / "requests.json").read_text(encoding="utf-8")
+    )
+
+    expired_snapshots = []
+    for request in requests:
+        provider_id, provider_config = next(iter(request["providers"].items()))
+        expired_snapshots.append(
+            SourceSnapshot(
+                request_id=request["id"],
+                provider_id=provider_id,
+                list_id=provider_config["list_id"],
+                media_type=provider_config["media_type"],
+                fetched_at=(now - timedelta(hours=120)).isoformat(),
+                items=[],
+            )
+        )
+    persist_snapshots(expired_snapshots, state_dir)
 
     def fake_fetch_source(request, provider, today=None, raw_responses=None):
-        if raw_responses is not None:
-            raw_responses.append({"results": [], "total_pages": 1})
-        return []
+        raise RuntimeError("upstream unavailable")
 
     monkeypatch.setattr("src.main.fetch_source", fake_fetch_source)
 
@@ -103,11 +120,11 @@ def test_generate_catalog_refuses_when_all_snapshots_expire(tmp_path, monkeypatc
         generate_catalog(
             config_dir="catalog-config",
             output_dir=tmp_path,
-            now=now - timedelta(hours=120),
+            now=now,
         )
 
     report = __import__("json").loads(
-        (tmp_path / "state" / "generation-report.json").read_text(encoding="utf-8")
+        (state_dir / "generation-report.json").read_text(encoding="utf-8")
     )
     assert report["usable_snapshot_count"] == 0
-    assert report["expired_snapshot_count"] == 6
+    assert report["expired_snapshot_count"] == len(expired_snapshots)

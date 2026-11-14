@@ -94,7 +94,7 @@ def test_generate_catalog_refuses_when_all_snapshots_expire(tmp_path, monkeypatc
 
     def fake_fetch_source(request, provider, today=None, raw_responses=None):
         if raw_responses is not None:
-            raw_responses.append({"results": []})
+            raw_responses.append({"results": [], "total_pages": 1})
         return []
 
     monkeypatch.setattr("src.main.fetch_source", fake_fetch_source)

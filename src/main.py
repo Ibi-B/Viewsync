@@ -59,8 +59,9 @@ def _fetch_snapshots(
             continue
 
         for provider_id, provider_config in request.get("providers", {}).items():
+            raw_payloads: list[Any] = []
             try:
-                items = fetch_source(request, provider_id, now.date())
+                items = fetch_source(request, provider_id, now.date(), raw_responses=raw_payloads)
             except Exception as exc:
                 failures.append(
                     {
@@ -78,6 +79,7 @@ def _fetch_snapshots(
                 media_type=str(provider_config.get("media_type") or ""),
                 fetched_at=now.isoformat(),
                 items=items,
+                raw_payloads=raw_payloads,
             )
             snapshot_key = f"{request_id}:{provider_id}:{snapshot.list_id}"
             snapshots[snapshot_key] = snapshot

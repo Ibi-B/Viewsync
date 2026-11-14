@@ -159,6 +159,43 @@ def _tmdb_search(
     return _extract_items(payload)
 
 
+def _collect_tmdb_pages(
+    url: str,
+    base_params: Dict[str, Any],
+    max_items: int,
+    max_pages: int = 5,
+    raw_responses: Optional[List[Any]] = None,
+) -> List[Dict[str, Any]]:
+    """Collect TMDB result pages within provider, safety, and item limits."""
+    if max_items <= 0 or max_pages <= 0:
+        return []
+
+    items: List[Dict[str, Any]] = []
+    page_limit = max_pages
+
+    for page in range(1, page_limit + 1):
+        payload = _get_json(
+            url,
+            params={**base_params, "page": page},
+            raw_responses=raw_responses,
+        )
+        page_items = _extract_items(payload)
+
+        if not page_items:
+            break
+
+        items.extend(page_items)
+
+        total_pages = payload.get("total_pages") if isinstance(payload, dict) else None
+        if isinstance(total_pages, int) and not isinstance(total_pages, bool):
+            page_limit = min(page_limit, max(0, total_pages))
+
+        if page >= page_limit or len(items) >= max_items:
+            break
+
+    return items[:max_items]
+
+
 def _tmdb_list(
     list_id: str,
     media_type: str,
@@ -179,24 +216,12 @@ def _tmdb_list(
     if not endpoint:
         return []
 
-    items: List[Dict[str, Any]] = []
-    page = 1
-
-    while len(items) < max_items and page <= 5:
-        payload = _get_json(
-            f"{TMDB_BASE}/{endpoint}",
-            params={"api_key": api_key, "page": page},
-            raw_responses=raw_responses,
-        )
-        page_items = _extract_items(payload)
-
-        if not page_items:
-            break
-
-        items.extend(page_items)
-        page += 1
-
-    return items[:max_items]
+    return _collect_tmdb_pages(
+        f"{TMDB_BASE}/{endpoint}",
+        {"api_key": api_key},
+        max_items,
+        raw_responses=raw_responses,
+    )
 
 
 def _trakt_trending(
@@ -345,8 +370,12 @@ def fetch_source(
             }
 
             url = f"{TMDB_BASE}/discover/{'movie' if media_type == 'movie' else 'tv'}"
-            payload = _get_json(url, params=params, raw_responses=raw_responses)
-            items = _extract_items(payload)
+            items = _collect_tmdb_pages(
+                url,
+                params,
+                max_items,
+                raw_responses=raw_responses,
+            )
         else:
             if list_id in {
                 "popular_movies",

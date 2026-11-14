@@ -18,11 +18,21 @@ def _popular_movies_request():
 def test_api_key_is_passed_to_tmdb_request(monkeypatch):
     monkeypatch.setenv("TMDB_API_KEY", "test-key")
     captured = {}
+    pages = {
+        1: {"page": 1, "total_pages": 2, "results": [{"id": 1, "title": "Page One"}]},
+        2: {"page": 2, "total_pages": 2, "results": [{"id": 2, "title": "Page Two"}]},
+    }
+    calls = []
 
     def fake_get_json(url, params=None, headers=None, raw_responses=None):
         captured["url"] = url
         captured["params"] = params
-        return {"results": [{"id": 1, "title": "Test Movie"}]}
+        page = params["page"]
+        calls.append(page)
+        payload = pages[page]
+        if raw_responses is not None:
+            raw_responses.append(payload)
+        return payload
 
     monkeypatch.setattr("src.fetch._get_json", fake_get_json)
 
@@ -30,7 +40,8 @@ def test_api_key_is_passed_to_tmdb_request(monkeypatch):
 
     assert captured["url"].endswith("/movie/popular")
     assert captured["params"]["api_key"] == "test-key"
-    assert items == [{"id": 1, "title": "Test Movie"}] * 5
+    assert [item["title"] for item in items] == ["Page One", "Page Two"]
+    assert calls == [1, 2]
 
 
 def test_missing_api_key_fails_before_request(monkeypatch):

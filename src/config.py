@@ -16,6 +16,44 @@ def load_json(path: str | Path) -> Any:
         return json.load(handle)
 
 
+def _provider_map(raw_providers: Any) -> dict[str, dict[str, Any]]:
+    """Normalise supported provider-map and provider-list configuration shapes."""
+    if isinstance(raw_providers, dict):
+        return {
+            str(provider_id): {"id": str(provider_id), **provider}
+            for provider_id, provider in raw_providers.items()
+            if isinstance(provider, dict)
+        }
+
+    if isinstance(raw_providers, list):
+        providers: dict[str, dict[str, Any]] = {}
+        for provider in raw_providers:
+            if not isinstance(provider, dict) or not provider.get("id"):
+                raise ConfigurationError("Each provider must be an object with an id")
+            provider_id = str(provider["id"])
+            if provider_id in providers:
+                raise ConfigurationError(f"Duplicate provider id: {provider_id}")
+            providers[provider_id] = provider
+        return providers
+
+    raise ConfigurationError("Providers must be an object or an array")
+
+
+def _request_ids(provider: dict[str, Any]) -> list[str]:
+    requests = provider.get("requests", {})
+    if isinstance(requests, dict):
+        return [str(request_id) for request_id in requests]
+    if isinstance(requests, list):
+        return [
+            str(request["id"])
+            for request in requests
+            if isinstance(request, dict) and request.get("id")
+        ]
+    raise ConfigurationError(
+        f"Provider {provider.get('id')} requests must be an object or an array"
+    )
+
+
 def load_config(config_dir: str | Path) -> dict[str, Any]:
     config_dir = Path(config_dir)
     sources = load_json(config_dir / "sources.json")
@@ -31,16 +69,11 @@ def load_config(config_dir: str | Path) -> dict[str, Any]:
     if ranking.get("algorithm") != "rrf":
         raise ConfigurationError("Only the rrf ranking algorithm is supported")
 
-    providers = {provider["id"]: provider for provider in sources.get("providers", [])}
+    providers = _provider_map(sources.get("providers", {}))
     request_ids: set[str] = set()
 
     for provider_id, provider in providers.items():
-        if not provider.get("enabled"):
-            continue
-        for request in provider.get("requests", []):
-            request_id = request.get("id")
-            if not request_id:
-                raise ConfigurationError(f"Missing request id for provider {provider_id}")
+        for request_id in _request_ids(provider):
             if request_id in request_ids:
                 raise ConfigurationError(f"Duplicate source request id: {request_id}")
             request_ids.add(request_id)

@@ -57,7 +57,7 @@ def test_generate_catalog_records_diagnostics_and_current_pointer(tmp_path, monk
     ]
 
     def fake_fetch_source(request, provider, today=None, raw_responses=None):
-        if provider == "broken":
+        if provider == "tmdb" and request["id"] == "popular_movies":
             raise RuntimeError("upstream unavailable")
         if raw_responses is not None:
             raw_responses.append({"results": items, "source_meta": {"complete": True}})

@@ -61,7 +61,7 @@ def test_upcoming_series_row_is_configured():
     assert row["date_mode"] == "future"
 
 
-def test_fetch_source_supports_date_windows():
+def test_fetch_source_supports_date_windows(monkeypatch):
     request = {
         "id": "new_movies",
         "type": "movie",
@@ -74,6 +74,9 @@ def test_fetch_source_supports_date_windows():
             }
         },
     }
+
+    monkeypatch.setenv("TMDB_API_KEY", "test-only-key")
+    monkeypatch.setattr("fetch._get_json", lambda url, params=None: {"results": []})
 
     items = fetch_source(request, "tmdb")
     assert isinstance(items, list)

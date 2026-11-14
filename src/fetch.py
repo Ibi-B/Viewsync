@@ -1,7 +1,7 @@
 import json
 import os
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -25,12 +25,21 @@ class SourceSnapshot:
     media_type: str
     fetched_at: str
     items: List[Dict[str, Any]]
+    raw_payloads: List[Any] = field(default_factory=list)
 
 
-def _get_json(url: str, params: Optional[Dict[str, Any]] = None) -> Any:
-    response = requests.get(url, params=params, timeout=15)
+def _get_json(
+    url: str,
+    params: Optional[Dict[str, Any]] = None,
+    headers: Optional[Dict[str, str]] = None,
+    raw_responses: Optional[List[Any]] = None,
+) -> Any:
+    response = requests.get(url, params=params, headers=headers, timeout=15)
     response.raise_for_status()
-    return response.json()
+    payload = response.json()
+    if raw_responses is not None:
+        raw_responses.append(payload)
+    return payload
 
 
 def _extract_items(payload: Any) -> List[Dict[str, Any]]:
@@ -109,10 +118,11 @@ def _imdb_suggestions(
     title: str,
     media_type: str,
     year: Optional[int],
+    raw_responses: Optional[List[Any]] = None,
 ) -> List[Dict[str, Any]]:
     media_path = "movie" if media_type == "movie" else "tv"
     url = f"{IMDB_BASE}/{media_path}/{title}.json"
-    payload = _get_json(url)
+    payload = _get_json(url, raw_responses=raw_responses)
     items = _extract_items(payload)
     return [
         item
@@ -126,6 +136,7 @@ def _tmdb_search(
     media_type: str,
     year: Optional[int],
     api_key: str,
+    raw_responses: Optional[List[Any]] = None,
 ) -> List[Dict[str, Any]]:
     endpoint = "movie" if media_type == "movie" else "tv"
     params: Dict[str, Any] = {
@@ -142,6 +153,7 @@ def _tmdb_search(
     payload = _get_json(
         f"{TMDB_BASE}/search/{endpoint}",
         params={"api_key": api_key, **params},
+        raw_responses=raw_responses,
     )
     return _extract_items(payload)
 
@@ -151,6 +163,7 @@ def _tmdb_list(
     media_type: str,
     api_key: str,
     max_items: int = 100,
+    raw_responses: Optional[List[Any]] = None,
 ) -> List[Dict[str, Any]]:
     endpoints = {
         "popular_movies": "movie/popular",
@@ -172,6 +185,7 @@ def _tmdb_list(
         payload = _get_json(
             f"{TMDB_BASE}/{endpoint}",
             params={"api_key": api_key, "page": page},
+            raw_responses=raw_responses,
         )
         page_items = _extract_items(payload)
 
@@ -188,6 +202,7 @@ def _trakt_trending(
     media_type: str,
     client_id: str,
     max_items: int = 100,
+    raw_responses: Optional[List[Any]] = None,
 ) -> List[Dict[str, Any]]:
     endpoint = "movies" if media_type == "movie" else "shows"
     headers = {
@@ -197,7 +212,8 @@ def _trakt_trending(
 
     payload = _get_json(
         f"{TRAKT_BASE}/{endpoint}/trending",
-        headers=headers,  # type: ignore[arg-type]
+        headers=headers,
+        raw_responses=raw_responses,
     )
     items = _extract_items(payload)
     return items[:max_items]
@@ -207,10 +223,11 @@ def _cinemeta_catalog(
     catalog_id: str,
     media_type: str,
     max_items: int = 100,
+    raw_responses: Optional[List[Any]] = None,
 ) -> List[Dict[str, Any]]:
     media_path = "movie" if media_type == "movie" else "series"
     url = f"{STREMIO_BASE}/{media_path}/top.json"
-    payload = _get_json(url)
+    payload = _get_json(url, raw_responses=raw_responses)
     items = _extract_items(payload)
 
     if catalog_id == "top_rated":
@@ -293,6 +310,7 @@ def fetch_source(
     request: Dict[str, Any],
     provider: str,
     today: Optional[date] = None,
+    raw_responses: Optional[List[Any]] = None,
 ) -> List[Dict[str, Any]]:
     config = _provider_request(request, provider)
     media_type = config["media_type"]
@@ -326,7 +344,7 @@ def fetch_source(
             }
 
             url = f"{TMDB_BASE}/discover/{'movie' if media_type == 'movie' else 'tv'}"
-            payload = _get_json(url, params=params)
+            payload = _get_json(url, params=params, raw_responses=raw_responses)
             items = _extract_items(payload)
         else:
             if list_id in {
@@ -337,28 +355,29 @@ def fetch_source(
                 "upcoming_movies",
                 "upcoming_series",
             }:
-                items = _tmdb_list(list_id, media_type, api_key, max_items)
+                items = _tmdb_list(list_id, media_type, api_key, max_items, raw_responses)
             else:
                 items = _tmdb_search(
                     str(request.get("search", {}).get("title", "")),
                     media_type,
                     request.get("search", {}).get("year"),
                     api_key,
+                    raw_responses,
                 )
 
     elif provider == "trakt":
         client_id = _trakt_client_id(request, provider)
-        items = _trakt_trending(media_type, client_id, max_items)
+        items = _trakt_trending(media_type, client_id, max_items, raw_responses)
 
     elif provider == "cinemeta":
-        items = _cinemeta_catalog(list_id, media_type, max_items)
+        items = _cinemeta_catalog(list_id, media_type, max_items, raw_responses)
 
     else:
         url = config["url"]
         if not url:
             raise ValueError(f"Provider '{provider}' has no request URL")
 
-        payload = _get_json(url)
+        payload = _get_json(url, raw_responses=raw_responses)
         items = _extract_items(payload)
 
     return items[:max_items]
@@ -381,6 +400,7 @@ def save_snapshot(snapshot: SourceSnapshot, snapshot_dir: str | Path) -> Path:
         "media_type": snapshot.media_type,
         "fetched_at": snapshot.fetched_at,
         "items": snapshot.items,
+        "raw_payloads": snapshot.raw_payloads,
     }
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(
@@ -400,4 +420,5 @@ def load_snapshot(path: str | Path) -> SourceSnapshot:
         media_type=str(payload["media_type"]),
         fetched_at=str(payload["fetched_at"]),
         items=list(payload.get("items", [])),
+        raw_payloads=list(payload.get("raw_payloads", [])),
     )

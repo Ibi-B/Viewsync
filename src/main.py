@@ -125,7 +125,7 @@ def generate_catalog(
         _write_generation_report(output_dir, now, 0, [], failures)
         raise ValueError("No provider snapshots were available; refusing to publish a release")
 
-    policy = config["ranking"].get("retention", {})
+    policy = config["ranking"].get("freshness", {})
     provider_weights = config["ranking"].get("provider_weights", {})
     usable_snapshots, expired_snapshots = select_snapshots(snapshots, policy, now)
 

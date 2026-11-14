@@ -99,9 +99,15 @@ def test_generate_catalog_refuses_when_all_snapshots_expire(tmp_path, monkeypatc
 
     monkeypatch.setattr("src.main.fetch_source", fake_fetch_source)
 
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="All provider snapshots have expired"):
         generate_catalog(
             config_dir="catalog-config",
             output_dir=tmp_path,
-            now=now,
+            now=now - timedelta(hours=120),
         )
+
+    report = __import__("json").loads(
+        (tmp_path / "state" / "generation-report.json").read_text(encoding="utf-8")
+    )
+    assert report["usable_snapshot_count"] == 0
+    assert report["expired_snapshot_count"] == 6

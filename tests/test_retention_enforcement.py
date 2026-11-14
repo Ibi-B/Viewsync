@@ -1,4 +1,6 @@
+import json
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 import pytest
 
@@ -92,8 +94,8 @@ def test_generate_catalog_records_diagnostics_and_current_pointer(tmp_path, monk
 def test_generate_catalog_refuses_when_all_snapshots_expire(tmp_path, monkeypatch):
     now = datetime(2026, 11, 9, tzinfo=timezone.utc)
     state_dir = tmp_path / "state"
-    requests = __import__("json").loads(
-        (__import__("pathlib").Path("catalog-config") / "requests.json").read_text(encoding="utf-8")
+    requests = json.loads(
+        (Path("catalog-config") / "requests.json").read_text(encoding="utf-8")
     )
 
     expired_snapshots = []
@@ -123,7 +125,7 @@ def test_generate_catalog_refuses_when_all_snapshots_expire(tmp_path, monkeypatc
             now=now,
         )
 
-    report = __import__("json").loads(
+    report = json.loads(
         (state_dir / "generation-report.json").read_text(encoding="utf-8")
     )
     assert report["usable_snapshot_count"] == 0

@@ -36,6 +36,12 @@ def media_identity(media_type: str, meta: Dict[str, Any]) -> Dict[str, str]:
     identity: Dict[str, str] = {
         "media_type": media_type,
     }
+    # Keep title/year evidence so cross-provider IDs can be matched safely.
+    if title:
+        identity["title"] = str(title)
+    year_text = normalise_year(year)
+    if year_text:
+        identity["year"] = year_text
 
     if imdb_id:
         identity["imdb"] = str(imdb_id)

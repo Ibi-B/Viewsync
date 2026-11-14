@@ -6,7 +6,7 @@
     "cinemeta": 1.0,
     "tmdb": 1.0
   },
-  "freshness": {
+  "retention": {
     "fresh_hours": 12,
     "full_retention_hours": 48,
     "declining_retention_hours": 96

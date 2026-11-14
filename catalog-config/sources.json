@@ -1,68 +1,44 @@
 {
   "schema_version": 1,
-  "providers": {
-    "tmdb": {
+  "providers": [
+    {
+      "id": "tmdb",
       "name": "TMDB",
       "base_url": "https://api.themoviedb.org/3",
       "auth": "query",
       "auth_key": "api_key",
-      "requests": {
-        "popular_movies": {
-          "url": "/movie/popular",
-          "media_type": "movie"
-        },
-        "popular_series": {
-          "url": "/tv/popular",
-          "media_type": "series"
-        },
-        "new_movies": {
-          "url": "/movie/now_playing",
-          "media_type": "movie"
-        },
-        "new_series": {
-          "url": "/tv/airing_today",
-          "media_type": "series"
-        },
-        "upcoming_movies": {
-          "url": "/movie/upcoming",
-          "media_type": "movie"
-        },
-        "upcoming_series": {
-          "url": "/tv/on_the_air",
-          "media_type": "series"
-        }
-      }
+      "enabled": true,
+      "requests": [
+        {"id": "popular_movies", "url": "/movie/popular", "media_type": "movie"},
+        {"id": "popular_series", "url": "/tv/popular", "media_type": "series"},
+        {"id": "new_movies", "url": "/movie/now_playing", "media_type": "movie"},
+        {"id": "new_series", "url": "/tv/airing_today", "media_type": "series"},
+        {"id": "upcoming_movies", "url": "/movie/upcoming", "media_type": "movie"},
+        {"id": "upcoming_series", "url": "/tv/on_the_air", "media_type": "series"}
+      ]
     },
-    "trakt": {
+    {
+      "id": "trakt",
       "name": "Trakt",
       "base_url": "https://api.trakt.tv",
       "auth": "header",
       "auth_key": "trakt-api-key",
-      "requests": {
-        "trending_movies": {
-          "url": "/movies/trending",
-          "media_type": "movie"
-        },
-        "trending_series": {
-          "url": "/shows/trending",
-          "media_type": "series"
-        }
-      }
+      "enabled": false,
+      "requests": [
+        {"id": "trending_movies", "url": "/movies/trending", "media_type": "movie"},
+        {"id": "trending_series", "url": "/shows/trending", "media_type": "series"}
+      ]
     },
-    "cinemeta": {
+    {
+      "id": "cinemeta",
       "name": "Cinemeta",
       "base_url": "https://v3-cinemeta.strem.io",
       "auth": "none",
-      "requests": {
-        "top_movies": {
-          "url": "/movie/top.json",
-          "media_type": "movie"
-        },
-        "top_series": {
-          "url": "/series/top.json",
-          "media_type": "series"
-        }
-      }
+      "enabled": false,
+      "requests": [
+        {"id": "top_movies", "url": "/movie/top.json", "media_type": "movie"},
+        {"id": "top_series", "url": "/series/top.json", "media_type": "series"}
+      ]
     }
-  }
+  ]
 }

@@ -85,6 +85,9 @@ def merge_item(media_type, existing, incoming, provider_id):
         ('release_date', 'release_date'), ('first_air_date', 'release_date'),
         ('date_kind', 'date_kind'), ('date_scope', 'date_scope'),
         ('runtime', 'runtime'), ('runtime_minutes', 'runtime'),
+        ('original_title', 'original_title'), ('original_name', 'original_title'),
+        ('original_language', 'original_language'),
+        ('popularity', 'popularity'), ('vote_count', 'vote_count'),
     ]
     for source, target in mapping:
         value = incoming.get(source)

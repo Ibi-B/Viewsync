@@ -54,6 +54,12 @@ def test_tmdb_movie_fields_are_normalized_and_publishable():
     assert item["metadata"]["overview"] == "A useful synopsis."
     assert item["metadata"]["genres"] == ["Action", "Science Fiction"]
     assert item["metadata"]["runtime_minutes"] is None
+    assert item["metadata"]["release_date"] == "2024-05-06"
+    assert item["metadata"]["rating"] == 7.8
+    assert item["metadata"]["rating_source"] == "tmdb"
+    assert item["metadata"]["ratings"]["tmdb"] == {"value": 7.8, "scale": 10}
+    assert item["ids"]["tmdb"] == "101"
+    assert item["release_date"] == "2024-05-06"
     assert item["ranking"] is not None
     validate_release(release)
 
@@ -68,6 +74,10 @@ def test_tmdb_series_first_air_date_and_tv_genres_are_normalized():
             "poster_path": "/series-poster.jpg",
             "overview": "A series synopsis.",
             "genre_ids": [10759, 16],
+            "original_name": "Original Example Series",
+            "original_language": "en",
+            "popularity": 17.5,
+            "vote_count": 42,
         },
     )
 
@@ -75,6 +85,10 @@ def test_tmdb_series_first_air_date_and_tv_genres_are_normalized():
     assert item["year"] == 2021
     assert item["metadata"]["overview"] == "A series synopsis."
     assert item["metadata"]["genres"] == ["Action & Adventure", "Animation"]
+    assert item["metadata"]["original_title"] == "Original Example Series"
+    assert item["metadata"]["original_language"] == "en"
+    assert item["metadata"]["popularity"] == 17.5
+    assert item["metadata"]["vote_count"] == 42
     validate_release(release)
 
 

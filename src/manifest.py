@@ -94,6 +94,15 @@ def _metadata(item: Dict[str, Any]) -> Dict[str, Any]:
         "overview": item.get("description") or item.get("overview") or None,
         "genres": genres,
         "runtime_minutes": runtime,
+        "release_date": item.get("release_date"),
+        "rating": item.get("rating"),
+        "rating_source": item.get("rating_source"),
+        "ratings": item.get("ratings", {}),
+        "field_sources": item.get("field_sources", {}),
+        "original_title": item.get("original_title"),
+        "original_language": item.get("original_language"),
+        "popularity": item.get("popularity"),
+        "vote_count": item.get("vote_count"),
     }
 
 
@@ -182,6 +191,8 @@ def build_release(
                     "media_kind": media_kind,
                     "title": item.get("title") or item.get("name") or "",
                     "year": item.get("year"),
+                    "ids": item.get("ids", {}),
+                    "release_date": item.get("release_date"),
                     "images": _images(item),
                     "metadata": _metadata(item),
                     "source_attribution": attributions.get(media_id, []),

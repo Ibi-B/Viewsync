@@ -19,7 +19,7 @@ jobs:
       - name: Check out main
         uses: actions/checkout@v4
         with:
-          ref: \${{ github.sha }}
+          ref: ${{ github.sha }}
 
       - name: Check out durable state
         id: state_checkout
@@ -42,8 +42,8 @@ jobs:
       - name: Validate restored state
         id: validate_state
         env:
-          TMDB_API_KEY: \${{ secrets.TMDB_API_KEY }}
-          TMDB_ACCESS_TOKEN: \${{ secrets.TMDB_ACCESS_TOKEN }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
         run: python -m src.state_sync validate --state-dir state
 
       - name: Run tests
@@ -52,22 +52,22 @@ jobs:
       - name: Capture existing snapshot identities
         id: snapshot_baseline
         env:
-          TMDB_API_KEY: \${{ secrets.TMDB_API_KEY }}
-          TMDB_ACCESS_TOKEN: \${{ secrets.TMDB_ACCESS_TOKEN }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
         run: python -m src.state_sync capture --state-dir state --baseline /tmp/viewsync-state-baseline.json
 
       - name: Generate catalogue
         id: generate_catalogue
         env:
-          TMDB_API_KEY: \${{ secrets.TMDB_API_KEY }}
-          TMDB_ACCESS_TOKEN: \${{ secrets.TMDB_ACCESS_TOKEN }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
         run: python -m src.main --config catalog-config --output dist --state state
 
       - name: Persist append-only state
-        if: \${{ always() && steps.state_checkout.outcome == 'success' && steps.validate_state.outcome == 'success' && steps.snapshot_baseline.outcome == 'success' }}
+        if: ${{ always() && steps.state_checkout.outcome == 'success' && steps.validate_state.outcome == 'success' && steps.snapshot_baseline.outcome == 'success' }}
         env:
-          TMDB_API_KEY: \${{ secrets.TMDB_API_KEY }}
-          TMDB_ACCESS_TOKEN: \${{ secrets.TMDB_ACCESS_TOKEN }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
         run: |
           set -euo pipefail
           python -m src.state_sync verify --state-dir state --baseline /tmp/viewsync-state-baseline.json
@@ -78,7 +78,7 @@ jobs:
           if git -C state diff --cached --quiet; then
             echo "No durable state changes to commit."
           else
-            git -C state commit -m "Persist Viewsync state for run \${GITHUB_RUN_ID}"
+            git -C state commit -m "Persist Viewsync state for run ${GITHUB_RUN_ID}"
             git -C state push origin HEAD:refs/heads/viewsync-state
           fi
 
@@ -95,7 +95,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: \${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

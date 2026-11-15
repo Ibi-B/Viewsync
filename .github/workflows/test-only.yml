@@ -24,7 +24,7 @@ jobs:
       - name: Check out the exact triggering main commit
         uses: actions/checkout@v4
         with:
-          ref: \${{ github.sha }}
+          ref: ${{ github.sha }}
           fetch-depth: 1
 
       - name: Set up Python
@@ -42,7 +42,7 @@ jobs:
           TMDB_ACCESS_TOKEN: ""
         run: |
           set -euo pipefail
-          expected="\${GITHUB_SHA}"
+          expected="${GITHUB_SHA}"
           actual="$(git rev-parse HEAD)"
           test "$actual" = "$expected"
           echo "First full-suite run on $actual"

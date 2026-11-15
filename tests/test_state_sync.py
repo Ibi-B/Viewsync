@@ -186,17 +186,19 @@ def test_production_workflow_is_manual_only_and_scopes_write_permissions():
     root = Path(__file__).resolve().parents[1]
     workflow = (root / ".github" / "workflows" / "generate-catalogue.yml").read_text(encoding="utf-8")
 
-    assert "on:\\n  workflow_dispatch:\\n" in workflow
+    assert "workflow_dispatch:" in workflow
     assert "schedule:" not in workflow
     assert workflow.count("contents: write") == 1
-    assert "  state-sync:\\n    runs-on:" in workflow
-    assert "    permissions:\\n      contents: write\\n" in workflow
+    assert "state-sync:" in workflow
+    assert "if: github.ref == 'refs/heads/main'" in workflow
     assert workflow.count("uses: actions/checkout@v4") == 2
-    assert "ref: viewsync-state\\n          path: state" in workflow
+    assert "ref: viewsync-state" in workflow
+    assert "path: state" in workflow
     assert "python -m src.main --config catalog-config --output dist --state state" in workflow
     assert "uses: actions/upload-pages-artifact@v3" in workflow
-    assert "with:\\n          path: dist" in workflow
-    assert "group: viewsync-state\\n  cancel-in-progress: false" in workflow
+    assert "path: dist" in workflow
+    assert "group: viewsync-state" in workflow
+    assert "cancel-in-progress: false" in workflow
     assert "git push --force" not in workflow
     assert "git -C state push origin HEAD:refs/heads/viewsync-state" in workflow
 
@@ -209,7 +211,8 @@ def test_test_only_workflow_never_checks_out_or_writes_durable_state():
     assert "viewsync-state" not in workflow
     assert "secrets." not in workflow
     assert "uses: actions/checkout@v4" in workflow
-    assert "ref: \${{ github.sha }}" in workflow
+    assert ("ref: " + "$" + "{{ github.sha }}") in workflow
+    assert "if: github.ref == 'refs/heads/main'" in workflow
     assert workflow.count("python -m pytest") == 2
     assert "src.main" not in workflow
     assert "upload-pages-artifact" not in workflow

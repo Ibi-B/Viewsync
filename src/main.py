@@ -52,7 +52,7 @@ def _safe_fetch_error(exc: Exception) -> str:
             message = message.replace(secret, "[REDACTED]")
     message = re.sub(
         r"(?i)([?&](?:api_key|access_token|token|client_secret)=)[^&\\s]+",
-        r"\\1[REDACTED]",
+        lambda match: match.group(1) + "[REDACTED]",
         message,
     )
     return message[:2000]
@@ -62,7 +62,7 @@ def _fetch_snapshots(
     config_dir: Path,
     now: datetime,
     state_dir: Path,
-) -> tuple[list[SourceSnapshot], list[dict[str, str]], list[dict[str, str]]]:
+) -> tuple[list[SourceSnapshot], list[dict[str, Any]], list[dict[str, str]]]:
     """Fetch current data and retain the last valid snapshot for failed sources."""
     requests = load_json(config_dir / "requests.json")
     restore_errors: list[dict[str, str]] = []

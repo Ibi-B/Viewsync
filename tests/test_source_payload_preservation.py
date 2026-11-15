@@ -1,7 +1,11 @@
 import json
 from datetime import datetime, timezone
 
-from src.fetch import SourceSnapshot, load_snapshot, save_snapshot
+import pytest
+import requests
+
+from src.fetch import SourceSnapshot, _get_json, load_snapshot, save_snapshot
+from src.main import _fetch_snapshots
 from src.state import preserve_last_good_release, persist_snapshots, restore_snapshots
 
 
@@ -77,7 +81,6 @@ def test_preserving_last_good_release_never_overwrites_existing_copy(tmp_path):
     ) == "original"
 
 
-
 def test_persisting_new_fetch_keeps_earlier_snapshot_version(tmp_path):
     earlier = SourceSnapshot(
         request_id="popular_movies",
@@ -107,3 +110,65 @@ def test_persisting_new_fetch_keeps_earlier_snapshot_version(tmp_path):
     assert len(stored) == 2
     assert restored["popular_movies:tmdb:popular_movies"].items == [{"id": 2}]
     assert sorted(json.loads(path.read_text(encoding="utf-8"))["items"][0]["id"] for path in stored) == [1, 2]
+
+
+def test_http_error_body_is_captured_without_changing_success_payload_shape(monkeypatch):
+    class FailedResponse:
+        status_code = 503
+        text = "service unavailable"
+
+        def raise_for_status(self):
+            raise requests.HTTPError("503 Server Error")
+
+        def json(self):
+            return {"status": "unavailable", "request_id": "attempt-1"}
+
+    monkeypatch.setattr("src.fetch.requests.get", lambda *args, **kwargs: FailedResponse())
+    raw = []
+
+    with pytest.raises(requests.HTTPError):
+        _get_json("https://example.invalid/provider", raw_responses=raw)
+
+    assert raw == [{
+        "_viewsync_http_error": {
+            "status_code": 503,
+            "body": {"status": "unavailable", "request_id": "attempt-1"},
+        }
+    }]
+
+
+def test_partial_source_response_is_persisted_and_error_credentials_are_redacted(tmp_path, monkeypatch):
+    config_dir = tmp_path / "config"
+    config_dir.mkdir()
+    (config_dir / "requests.json").write_text(json.dumps([
+        {
+            "id": "popular_movies",
+            "type": "movie",
+            "providers": {
+                "tmdb": {"list_id": "popular_movies", "media_type": "movie"}
+            },
+        }
+    ]), encoding="utf-8")
+    partial_page = {"page": 1, "results": [{"id": 7, "title": "Partial"}]}
+
+    def failed_fetch(request, provider, today, raw_responses=None):
+        raw_responses.append(partial_page)
+        raise requests.HTTPError(
+            "503 for https://api.themoviedb.org/3/movie/popular?api_key=known-secret"
+        )
+
+    monkeypatch.setattr("src.main.fetch_source", failed_fetch)
+    monkeypatch.setenv("TMDB_API_KEY", "known-secret")
+
+    snapshots, failures, restore_errors = _fetch_snapshots(
+        config_dir,
+        datetime(2026, 11, 15, tzinfo=timezone.utc),
+        tmp_path / "state",
+    )
+
+    assert snapshots == []
+    assert restore_errors == []
+    assert failures[0]["partial_response_count"] == 1
+    assert failures[0]["partial_raw_payloads"] == [partial_page]
+    assert "known-secret" not in failures[0]["error"]
+    assert "api_key=[REDACTED]" in failures[0]["error"]

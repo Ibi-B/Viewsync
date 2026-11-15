@@ -36,7 +36,26 @@ def _get_json(
     raw_responses: Optional[List[Any]] = None,
 ) -> Any:
     response = requests.get(url, params=params, headers=headers, timeout=15)
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except requests.HTTPError:
+        # Preserve an unsuccessful upstream response for the generation report.
+        # Successful response payloads keep their existing, unwrapped shape.
+        if raw_responses is not None:
+            try:
+                body = response.json()
+            except ValueError:
+                body = {"text": str(getattr(response, "text", ""))}
+            raw_responses.append(
+                {
+                    "_viewsync_http_error": {
+                        "status_code": getattr(response, "status_code", None),
+                        "body": body,
+                    }
+                }
+            )
+        raise
+
     payload = response.json()
     if raw_responses is not None:
         raw_responses.append(payload)

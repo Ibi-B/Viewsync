@@ -55,11 +55,27 @@ def _catalog_freshness(
     }
 
 
+def _tmdb_image_url(value: Any, size: str) -> str | None:
+    """Return an absolute TMDB image URL, preserving existing absolute URLs."""
+    if not isinstance(value, str) or not value.strip():
+        return None
+
+    value = value.strip()
+    if value.startswith(("https://", "http://")):
+        return value
+    if value.startswith("/") and not value.startswith("//"):
+        return f"https://image.tmdb.org/t/p/{size}{value}"
+    return None
+
+
 def _images(item: Dict[str, Any]) -> Dict[str, Any]:
     return {
-        "poster": item.get("poster") or item.get("poster_path") or None,
-        "backdrop": item.get("background") or item.get("backdrop_path") or None,
-        "logo": item.get("logo") or None,
+        "poster": _tmdb_image_url(item.get("poster") or item.get("poster_path"), "w500"),
+        "backdrop": _tmdb_image_url(
+            item.get("backdrop") or item.get("background") or item.get("backdrop_path"),
+            "w1280",
+        ),
+        "logo": _tmdb_image_url(item.get("logo"), "w500"),
     }
 
 

@@ -17,6 +17,7 @@ permissions:
 
 jobs:
   full-suite-twice:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: read

@@ -123,7 +123,11 @@ def capture_baseline(state_dir: str | Path, baseline_path: str | Path, secrets: 
     if target.is_symlink() or target.resolve().is_relative_to(root.resolve()):
         raise StateSafetyError("Snapshot baseline must be outside the durable state tree")
     target.parent.mkdir(parents=True, exist_ok=True)
-    payload = {"snapshot_sha256": _snapshot_hashes(root)}
+    required_paths = sorted(path.relative_to(root).as_posix() for path in _data_files(root))
+    payload = {
+        "snapshot_sha256": _snapshot_hashes(root),
+        "required_paths": required_paths,
+    }
     temporary = target.with_suffix(target.suffix + ".tmp")
     temporary.write_text(json.dumps(payload, sort_keys=True) + "\n", encoding="utf-8")
     temporary.replace(target)
@@ -136,8 +140,18 @@ def verify_append_only(state_dir: str | Path, baseline_path: str | Path, secrets
     _regular_file(baseline_file)
     baseline: Any = json.loads(baseline_file.read_text(encoding="utf-8"))
     previous = baseline.get("snapshot_sha256") if isinstance(baseline, dict) else None
-    if not isinstance(previous, dict):
+    required_paths = baseline.get("required_paths") if isinstance(baseline, dict) else None
+    if not isinstance(previous, dict) or not isinstance(required_paths, list):
         raise StateSafetyError("Snapshot baseline is malformed")
+    for name in required_paths:
+        if not isinstance(name, str):
+            raise StateSafetyError("Snapshot baseline contains an invalid path")
+        relative = PurePosixPath(name)
+        if relative.is_absolute() or ".." in relative.parts or not relative.parts:
+            raise StateSafetyError("Snapshot baseline contains an unsafe path")
+        existing = root.joinpath(*relative.parts)
+        if existing.is_symlink() or not existing.is_file():
+            raise StateSafetyError(f"Existing state file was deleted: {name}")
     current = _snapshot_hashes(root)
     for filename, digest in previous.items():
         if filename not in current:
@@ -168,7 +182,7 @@ def verify_staged_paths(state_dir: str | Path) -> None:
 def _secrets_from_environment() -> tuple[str, ...]:
     return tuple(
         value
-        for name in ("TMDB_API_KEY", "TMDB_ACCESS_TOKEN")
+        for name in ("TMDB_API_KEY", "TMDB_ACCESS_TOKEN", "TRAKT_CLIENT_ID")
         if (value := os.environ.get(name))
     )
 

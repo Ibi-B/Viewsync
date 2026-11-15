@@ -187,7 +187,8 @@ def test_production_workflow_is_manual_only_and_scopes_write_permissions():
     workflow = (root / ".github" / "workflows" / "generate-catalogue.yml").read_text(encoding="utf-8")
 
     assert "workflow_dispatch:" in workflow
-    assert "schedule:" not in workflow
+    assert "schedule:" in workflow
+    assert '- cron: "17 */6 * * *"' in workflow
     assert workflow.count("contents: write") == 1
     assert "state-sync:" in workflow
     assert "if: github.ref == 'refs/heads/main'" in workflow

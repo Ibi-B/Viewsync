@@ -1,0 +1,11 @@
+{
+  "minRelevanceScore": 20,
+  "minVoteCount": 10,
+  "topRatedMinVoteCount": 100,
+  "minOverviewLength": 40,
+  "requirePoster": true,
+  "requireBackdrop": false,
+  "maxFutureDays": 365,
+  "excludeVideo": true,
+  "excludeAdult": false
+}

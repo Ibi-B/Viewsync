@@ -5,6 +5,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -41,6 +43,21 @@ def write_json(path: Path, payload: Any) -> None:
     temporary.replace(path)
 
 
+def _safe_fetch_error(exc: Exception) -> str:
+    """Keep diagnostic context while preventing credentials entering durable reports."""
+    message = str(exc)
+    for name in ("TMDB_API_KEY", "TMDB_ACCESS_TOKEN", "TRAKT_CLIENT_ID"):
+        secret = os.environ.get(name)
+        if secret:
+            message = message.replace(secret, "[REDACTED]")
+    message = re.sub(
+        r"(?i)([?&](?:api_key|access_token|token|client_secret)=)[^&\\s]+",
+        r"\\1[REDACTED]",
+        message,
+    )
+    return message[:2000]
+
+
 def _fetch_snapshots(
     config_dir: Path,
     now: datetime,
@@ -51,7 +68,7 @@ def _fetch_snapshots(
     restore_errors: list[dict[str, str]] = []
     restored = restore_snapshots(state_dir, errors=restore_errors)
     snapshots: dict[str, SourceSnapshot] = dict(restored)
-    failures: list[dict[str, str]] = []
+    failures: list[dict[str, Any]] = []
 
     for request in requests:
         request_id = str(request.get("id") or "")
@@ -67,7 +84,9 @@ def _fetch_snapshots(
                     {
                         "request_id": request_id,
                         "provider_id": provider_id,
-                        "error": str(exc),
+                        "error": _safe_fetch_error(exc),
+                        "partial_response_count": len(raw_payloads),
+                        "partial_raw_payloads": raw_payloads,
                     }
                 )
                 continue
@@ -92,7 +111,7 @@ def _write_generation_report(
     now: datetime,
     usable_count: int,
     expired: list[SourceSnapshot],
-    failures: list[dict[str, str]],
+    failures: list[dict[str, Any]],
     restore_errors: list[dict[str, str]],
     snapshots: list[SourceSnapshot],
 ) -> None:

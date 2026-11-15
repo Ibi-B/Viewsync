@@ -7,12 +7,13 @@ import hashlib
 import json
 import os
 import re
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
 from .config import load_config
 from .fetch import SourceSnapshot, fetch_source
+from .filters import build_filter_report, deduplicate_items, filter_snapshot_items
 from .manifest import build_release
 from .publish import publish_release
 from .state import (
@@ -148,6 +149,51 @@ def _write_generation_report(
     write_json(state_dir / "generation-report.json", report)
 
 
+def _filter_snapshots(
+    snapshots: list[SourceSnapshot],
+    filter_config: dict[str, Any],
+    today: date,
+    state_dir: Path,
+) -> list[SourceSnapshot]:
+    """Apply relevance filters and de-duplication before catalogue generation."""
+    filtered_snapshots: list[SourceSnapshot] = []
+    total_records = 0
+    all_accepted: list[dict[str, Any]] = []
+    all_exclusions: list[dict[str, str]] = []
+
+    for snapshot in snapshots:
+        accepted, exclusions = filter_snapshot_items(
+            snapshot.items,
+            filter_config,
+            request_id=snapshot.request_id,
+            today=today,
+        )
+        accepted, duplicate_exclusions = deduplicate_items(accepted)
+        exclusions.extend(duplicate_exclusions)
+
+        total_records += len(snapshot.items)
+        all_accepted.extend(accepted)
+        all_exclusions.extend(exclusions)
+
+        filtered_snapshots.append(
+            SourceSnapshot(
+                request_id=snapshot.request_id,
+                provider_id=snapshot.provider_id,
+                list_id=snapshot.list_id,
+                media_type=snapshot.media_type,
+                fetched_at=snapshot.fetched_at,
+                items=accepted,
+                raw_payloads=snapshot.raw_payloads,
+            )
+        )
+
+    report = build_filter_report(total_records, all_accepted, all_exclusions)
+    report["generated_at"] = today.isoformat()
+    write_json(state_dir / "filter-report.json", report)
+
+    return filtered_snapshots
+
+
 def _manifest_hash(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -174,8 +220,6 @@ def generate_catalog(
             "No current or retained provider snapshots were available; refusing to publish"
         )
 
-    # ranking.json defines the retention tiers under "retention". Keep this
-    # policy shared by snapshot selection and release freshness reporting.
     policy = config["ranking"].get("retention", {})
     provider_weights = config["ranking"].get("provider_weights", {})
     usable_snapshots, expired_snapshots = select_snapshots(snapshots, policy, now)
@@ -190,8 +234,6 @@ def generate_catalog(
         snapshots,
     )
 
-    # Preserve every gathered/restored source payload, not only snapshots used
-    # in this release. Retention controls publication eligibility, not storage.
     persist_snapshots(snapshots, state_dir)
 
     if not usable_snapshots:
@@ -199,9 +241,17 @@ def generate_catalog(
 
     preserve_last_good_release(state_dir, output_dir)
 
+    filter_config = load_json(config_dir / "filters.json")
+    filtered_snapshots = _filter_snapshots(
+        usable_snapshots,
+        filter_config,
+        now.date(),
+        state_dir,
+    )
+
     release = build_release(
         config["rows"]["rows"],
-        usable_snapshots,
+        filtered_snapshots,
         now,
         retention_policy=policy,
         provider_weights=provider_weights,
@@ -234,8 +284,6 @@ def generate_catalog(
     if verified["manifest_sha256"] != _manifest_hash(manifest_path):
         raise ValueError("Current-release pointer hash does not match the published manifest")
 
-    # Advance the last-good marker only after the release and pointer have both
-    # passed validation. A failed generation therefore cannot replace it.
     write_json(
         state_dir / "last-good-release" / "release.json",
         {

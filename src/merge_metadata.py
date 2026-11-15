@@ -68,7 +68,7 @@ def _normalise_genres(incoming, media_type):
 
 
 def merge_item(media_type, existing, incoming, provider_id):
-    identity = media_identity(media_type, incoming)
+    identity = media_identity(media_type, incoming, provider_id)
     merged = dict(existing or {})
     merged.update(id=identity['id'], type=media_type)
     ids = dict(merged.get('ids', {}))

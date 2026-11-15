@@ -131,7 +131,7 @@ def build_release(
 
             ranked_items: List[Dict[str, Any]] = []
             for position, raw_item in enumerate(snapshot.items, start=1):
-                media_id = resolve_identity(media_type, raw_item, identities)
+                media_id = resolve_identity(media_type, raw_item, identities, snapshot.provider_id)
                 existing = merged.get(media_id)
                 item = merge_item(media_type, existing, raw_item, snapshot.provider_id)
                 item["_viewsync_id"] = media_id

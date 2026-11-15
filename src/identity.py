@@ -27,9 +27,15 @@ def normalise_year(value: Any) -> str | None:
     return match.group(0) if match else None
 
 
-def media_identity(media_type: str, meta: Dict[str, Any]) -> Dict[str, str]:
+def media_identity(
+    media_type: str,
+    meta: Dict[str, Any],
+    provider_id: str | None = None,
+) -> Dict[str, str]:
     imdb_id = meta.get("imdb_id") or meta.get("imdb")
     tmdb_id = meta.get("tmdb_id") or meta.get("tmdb")
+    if provider_id == "tmdb" and not tmdb_id:
+        tmdb_id = meta.get("id")
     title = meta.get("name") or meta.get("title")
     year = meta.get("releaseInfo") or meta.get("year") or meta.get("release_date") or meta.get("first_air_date")
 
@@ -102,10 +108,11 @@ def resolve_identity(
     media_type: str,
     meta: Dict[str, Any],
     known_identities: Dict[str, Dict[str, Any]],
+    provider_id: str | None = None,
 ) -> str:
     """Return an existing canonical ID when this item is a conservative match."""
 
-    identity = media_identity(media_type, meta)
+    identity = media_identity(media_type, meta, provider_id)
 
     for existing_id, existing in known_identities.items():
         if same_media(identity, existing):

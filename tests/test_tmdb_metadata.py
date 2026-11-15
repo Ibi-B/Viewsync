@@ -44,6 +44,7 @@ def test_tmdb_movie_fields_are_normalized_and_publishable():
     )
 
     item = release["rows"][0]["items"][0]
+    assert item["id"] == "movie:tmdb:101"
     assert item["year"] == 2024
     assert item["images"] == {
         "poster": "https://image.tmdb.org/t/p/w500/poster.jpg",

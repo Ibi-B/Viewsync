@@ -31,7 +31,7 @@ def media_identity(media_type: str, meta: Dict[str, Any]) -> Dict[str, str]:
     imdb_id = meta.get("imdb_id") or meta.get("imdb")
     tmdb_id = meta.get("tmdb_id") or meta.get("tmdb")
     title = meta.get("name") or meta.get("title")
-    year = meta.get("releaseInfo") or meta.get("year") or meta.get("release_date")
+    year = meta.get("releaseInfo") or meta.get("year") or meta.get("release_date") or meta.get("first_air_date")
 
     identity: Dict[str, str] = {
         "media_type": media_type,
@@ -68,10 +68,10 @@ def _cross_id_match(left: Dict[str, Any], right: Dict[str, Any]) -> bool:
         return False
 
     left_year = normalise_year(
-        left.get("releaseInfo") or left.get("year") or left.get("release_date")
+        left.get("releaseInfo") or left.get("year") or left.get("release_date") or left.get("first_air_date")
     )
     right_year = normalise_year(
-        right.get("releaseInfo") or right.get("year") or right.get("release_date")
+        right.get("releaseInfo") or right.get("year") or right.get("release_date") or right.get("first_air_date")
     )
 
     return bool(left_year and right_year and left_year == right_year)

@@ -1,0 +1,3936 @@
+{
+  "fetched_at": "2026-11-19T07:31:42.874317+00:00",
+  "items": [
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        27
+      ],
+      "id": 1830386,
+      "original_language": "en",
+      "original_title": "The Other World",
+      "overview": "When someone ignores their friend, they get sent to a different world where no one exists.",
+      "popularity": 0.0,
+      "poster_path": "/6I6c0Y1ilPVCBDyFQel8tvYXbVk.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Other World",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/n1T4HH0tgGpf96W9v9GBJmd7R9Z.jpg",
+      "genre_ids": [
+        27,
+        53,
+        9648
+      ],
+      "id": 1829225,
+      "original_language": "es",
+      "original_title": "Occiso",
+      "overview": "",
+      "popularity": 0.0582,
+      "poster_path": "/7ntyIiuzPDb9fGxpeR6xxLFvchG.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Occiso",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1829162,
+      "original_language": "en",
+      "original_title": "SYNCYTIUM",
+      "overview": "A mortal encounters a celestial being in the forest, whose magical flute controls the flow of time.",
+      "popularity": 0.0194,
+      "poster_path": "/cuiGDfhDakT3jajG2aqGOLnqlMf.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "SYNCYTIUM",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        28,
+        35,
+        80,
+        18,
+        9648,
+        10749,
+        53
+      ],
+      "id": 1829156,
+      "original_language": "es",
+      "original_title": "El Coronavirus Acecha",
+      "overview": "",
+      "popularity": 0.1164,
+      "poster_path": "/2Wn3i19SXynbhepSwFk3rBo77h2.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "El Coronavirus Acecha",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/qJ3Xf4MB8agLyvf6VFwzlaI1tGP.jpg",
+      "genre_ids": [
+        35,
+        18
+      ],
+      "id": 1829019,
+      "original_language": "en",
+      "original_title": "Hate Marriage",
+      "overview": "Radhika lives in West Australia and is married to Kumar. Things are a bit rocky in their relationship when he forgets her birthday",
+      "popularity": 0.0776,
+      "poster_path": "/qbVS3LeSqglLcdIiATTTiL08Bs3.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Hate Marriage",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1828862,
+      "original_language": "es",
+      "original_title": "Renacimiento",
+      "overview": "In Baja Verapaz, the Maya Poqomchi community of Renacimiento continues to resist the land dispossession that forced them from their territory in the 1990s. Today, a new generation is leading a collective struggle for justice, historical memory, and the restoration of their ancestral lands. The story of Renacimiento stands as a living testament to the resilience of Indigenous peoples and their tireless defense of land and life.",
+      "popularity": 0.0388,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Renacimiento",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/kWyHd0GTWvNJFTDw6lBRO13bG82.jpg",
+      "genre_ids": [
+        35
+      ],
+      "id": 1828814,
+      "original_language": "es",
+      "original_title": "La llegada al río de un apuesto piraguista",
+      "overview": "",
+      "popularity": 0.0132,
+      "poster_path": "/2IuGI8HJCEoW4Z6bX1AMANqY5eG.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "La llegada al río de un apuesto piraguista",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1828789,
+      "original_language": "es",
+      "original_title": "Iztépetl, destellos del pasado",
+      "overview": "In the Sierra de las Navajas, in the state of Hidalgo, a craft connects Mexico’s past and present: working with obsidian.",
+      "popularity": 0.0198,
+      "poster_path": "/wdyADRFjFRk5pl3KX85lZ4EHlGo.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Iztépetl: Glimmers of the Past",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99,
+        10402
+      ],
+      "id": 1828098,
+      "original_language": "es",
+      "original_title": "Tocata Piolin 2:  Edición Invierno",
+      "overview": "A documentary recording of the second edition of Tocata Piolin—a day when, despite the rain forecast, music and friendship made it happen.",
+      "popularity": 0.0974,
+      "poster_path": "/ly4pO7OgPBkwFN8c7zWqvCYIpot.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Tocata Piolin 2: Winter Edition",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/aQbXDzE8KF2xZp9b1fdqETpLuVC.jpg",
+      "genre_ids": [
+        14,
+        27,
+        18
+      ],
+      "id": 1827513,
+      "original_language": "es",
+      "original_title": "El amparo",
+      "overview": "",
+      "popularity": 0.1421,
+      "poster_path": "/33AA67T85ZfTK19Cfttcf8P5gMp.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "El amparo",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1827320,
+      "original_language": "pt",
+      "original_title": "A Cidade e os Mapas",
+      "overview": "A bangladeshi delivery rider and an urbanist tour guide drift through Porto witnessing how the city reorders itself in the era of digital globalization.",
+      "popularity": 0.0905,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "A Cidade e os Mapas",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        12,
+        10751
+      ],
+      "id": 1827191,
+      "original_language": "ru",
+      "original_title": "Вперёд в прошлое",
+      "overview": "",
+      "popularity": 0.0771,
+      "poster_path": "/2WvuPmztcHsYPN5WPWsM7yWXNlm.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Вперёд в прошлое",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18
+      ],
+      "id": 1827047,
+      "original_language": "es",
+      "original_title": "Detrás de Ángeles",
+      "overview": "",
+      "popularity": 0.0849,
+      "poster_path": "/qZuyAa3W3niIswbudfZTpdfibSG.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Detrás de Ángeles",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18
+      ],
+      "id": 1827041,
+      "original_language": "es",
+      "original_title": "Maltrip",
+      "overview": "",
+      "popularity": 0.0846,
+      "poster_path": "/7GarYrIYNbMc52E5lPXtf0dEnAs.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Maltrip",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1827038,
+      "original_language": "es",
+      "original_title": "El Jarabe Bajacaliforniano",
+      "overview": "",
+      "popularity": 0.072,
+      "poster_path": "/1zGayN0zl0L3eHeWKF4ZHpoIaW8.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "El Jarabe Bajacaliforniano",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1826994,
+      "original_language": "it",
+      "original_title": "Andata Ritorno - Capitolo I: Senza fine",
+      "overview": "Andata Ritorno is the first chapter of a movement in an almost diary-like form, which takes the director from illness back to the world. From the very first days of his hospital stay, Tonino films, as though capturing this suspended time might help him endure it. It is a long passage, populated by the people closest to him. There are his daughters, Giulia and Veronica, their children, his lifelong partner Mariella, and Alberto, who has stood by his side throughout his filmmaking journey. And then there are his geographies, stretching from Casalborgone to the wider world, bringing together the many people he has filmed there, in the microcosm of a room that opens up countless doors onto life and his films alike.",
+      "popularity": 0.1081,
+      "poster_path": "/lR0WZOMySKTOoI1BPdfCsPpHUNH.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Andata Ritorno - Capitolo I: Senza fine",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1826763,
+      "original_language": "en",
+      "original_title": "Analog",
+      "overview": "In a world of digital immediacy and AI art, one filmmaker explores how a passionate community is turning back to the tangible beauty of film.",
+      "popularity": 0.1859,
+      "poster_path": "/kQNKUMPI1sK9PJG4tbijUNzskda.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Analog",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1826162,
+      "original_language": "fr",
+      "original_title": "Yellow Fiction",
+      "overview": "A new student has just moved abroad. He starts meeting people on a dating app... until a funny surprise spices things up.",
+      "popularity": 0.0317,
+      "poster_path": "/asihD8bjktAmyhKVKPIDCUJd4gu.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Yellow Fiction",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        10749
+      ],
+      "id": 1826085,
+      "original_language": "es",
+      "original_title": "El límite",
+      "overview": "A teenager and a older man are dining in an elegant restaurant, the young one is clearly uncomfortable with the physical contact of the adult towards him, after a moment of introspection, decides to put a limit to escape the situation.",
+      "popularity": 0.115,
+      "poster_path": "/oCk9AmRNZvx1AXkwPKJgO1UjIXJ.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Limit",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18
+      ],
+      "id": 1826074,
+      "original_language": "es",
+      "original_title": "Una noche",
+      "overview": "At Ana's quinceañera party, her chambelán, Mauricio, aims to confess his love after facing a series of obstacles that will make him second-guess his decision.",
+      "popularity": 0.1835,
+      "poster_path": "/ux0I7GDwa8xqzq5XIfVEY2aCXj8.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "One Night",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        28,
+        35
+      ],
+      "id": 1826056,
+      "original_language": "en",
+      "original_title": "SUPER BULLET",
+      "overview": "Chadley and Nerdy-man are sent by the Boss to diffuse a bomb and have to play Worlde to save the world.",
+      "popularity": 0.3976,
+      "poster_path": "/1xFbXvDEBHrsIvkIvHvtVaK1DNO.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "SUPER BULLET",
+      "video": false,
+      "vote_average": 10.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        53,
+        14
+      ],
+      "id": 1825976,
+      "original_language": "es",
+      "original_title": "Mientras espero",
+      "overview": "A young man races against time to find and finish writing a book so he can hand it over to a higher entity and be judged.",
+      "popularity": 0.1855,
+      "poster_path": "/3TkMlWxUqi1jlOzAqll62lgt0Aj.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "While I Wait",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/tErA3LihWTXqL5YVEfQWgcsEuIT.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1824318,
+      "original_language": "es",
+      "original_title": "Andrea Esperando",
+      "overview": "",
+      "popularity": 0.4071,
+      "poster_path": "/jc7OZoLA13p5pKYBfvuE7CfcrOR.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Andrea Esperando",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        27
+      ],
+      "id": 1824198,
+      "original_language": "es",
+      "original_title": "Hasta las entrañas",
+      "overview": "Luna wakes up disoriented in a workshop where a stranger harasses her while chopping meat. After attacking her, the kidnapper offers her a  way out: find the key to earn her freedom, forcing her to go to unimaginable lengths to survive.",
+      "popularity": 0.23,
+      "poster_path": "/a5AdrmTzw7Pd96liHxp0k3HyfHQ.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Tender Flesh",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1823175,
+      "original_language": "cs",
+      "original_title": "Duchové džungle",
+      "overview": "",
+      "popularity": 0.1113,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Duchové džungle",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/dGvrdiUA8bG96XYyrzDkQCr5s9h.jpg",
+      "genre_ids": [
+        14,
+        18
+      ],
+      "id": 1823156,
+      "original_language": "ru",
+      "original_title": "This is Why",
+      "overview": "During a depressive period one night, a guy discovers a ghost in his room.",
+      "popularity": 0.2043,
+      "poster_path": "/xuwwswz9IVe5NofMe5MYl7AqM30.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "This is Why",
+      "video": false,
+      "vote_average": 8.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        9648,
+        53
+      ],
+      "id": 1822380,
+      "original_language": "en",
+      "original_title": "Somewhere Else",
+      "overview": "Somewhere else, two people, two separate lives. Moving through the same world, beneath the same sky, caught in the same quiet patterns. Their paths seem to mirror one another, as if written in parallel, always close, yet never close enough. Two stories unfolding side by side, in a universe where almost meeting is its own kind of loneliness. They exist in the same somewhere, but never in the same moment.",
+      "popularity": 0.5423,
+      "poster_path": "/tUz2XrcRZ2vTlvusyaui4ucuB3U.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Somewhere Else",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ecK8xV7RKeJETMoGznfENxaLYRl.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1822084,
+      "original_language": "fr",
+      "original_title": "Marseille, la révolution Tapie",
+      "overview": "",
+      "popularity": 0.4397,
+      "poster_path": "/fzonjTtQ4M17fhJg6423EkMhW9Y.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Marseille, la révolution Tapie",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1821773,
+      "original_language": "it",
+      "original_title": "Sponde",
+      "overview": "To escape the scorching afternoon heat, five teenagers head to the river. We hear their voices as they talk in the shade of the mountain and the surrounding forest. They swim, sit on rocks and invent new games. Embraced by nature, the teenagers become part of it; they are almost one with the water, the earth, the little rocks lining the riverbed.",
+      "popularity": 0.2377,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Sponde",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        53,
+        27
+      ],
+      "id": 1821218,
+      "original_language": "cv",
+      "original_title": "Sinister",
+      "overview": "",
+      "popularity": 0.273,
+      "poster_path": "/9Z45yspJYOU8Ycz1utvpZErE7qD.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Sinister",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/zT11RpC78HsTBPUg1h8sMAqj5jc.jpg",
+      "genre_ids": [
+        27,
+        53
+      ],
+      "id": 1820552,
+      "original_language": "es",
+      "original_title": "Pishtaco",
+      "overview": "",
+      "popularity": 0.3122,
+      "poster_path": "/cm4F7zzG09Wv2cjrwGnIEdfKlLM.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Pishtaco",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99,
+        9648
+      ],
+      "id": 1820305,
+      "original_language": "en",
+      "original_title": "The Mad Pooper",
+      "overview": "Follows the investigation of the mysterious \"Mad Pooper\" case, in which a female jogger repeatedly defecated on lawns in Colorado Springs, exploring archival coverage, resident accounts and law enforcement interviews to uncover the truth.",
+      "popularity": 0.4819,
+      "poster_path": "/ukYe0XV6wqj4du7la1WEP2aO6Vj.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Mad Pooper",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1816277,
+      "original_language": "en",
+      "original_title": "You Should See Me Now",
+      "overview": "Every year, a group of Scottish teenagers who feel unseen - bullied, isolated, struggling to cope - are selected for something extraordinary: a year of brutal physical training culminating in a polar expedition. The expedition, whether Finland or Greenland's storms, is the culmination, not the point. What the film really tracks is one transformation happening in different registers at once: invisible kids learning how to be seen.",
+      "popularity": 0.0862,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "You Should See Me Now",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/hxd2tyEYpxB4FMv1rR08rH8BzX8.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1815821,
+      "original_language": "en",
+      "original_title": "Oru Nimidam",
+      "overview": "During a brief stop in the heart of a forest, Selvan, a Tamil migrant bound for England, finds himself stranded in France with no landmarks or resources. Left to wander an unfamiliar city whose language he does not speak, he drifts between hope and panic, facing silence, suspicion, and rare glimmers of humanity. Oru Nimidam (One Minute) captures, over a compressed timeline, the intimate downward spiral of an ordinary man whose life suddenly hangs in the balance revealing the invisible violence of borders and the vulnerability of those who cross them.",
+      "popularity": 0.1415,
+      "poster_path": "/3ZRSN5ydw0p5YBxi2PxD0LdakMk.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "One Minute",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/bDtkOI5LosmfpgBAKAvTLofiKYs.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1815426,
+      "original_language": "en",
+      "original_title": "Too Old Not To",
+      "overview": "“Feel the fear and do it anyway” is the motto that 55-year-old Heli Murray teaches, and practices, as a birth doula and endurance athlete. Parallel to navigating motherhood, divorce, menopause and grandmotherhood, the ocean has been Heli’s sanctuary and outlet for expanding her own edges.",
+      "popularity": 0.2815,
+      "poster_path": "/nx3OxwEpkzqhYu7YYmKcZRcgtx6.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Too Old Not To",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/jvZSs01rkilzdVUz3yYGaqCWiR.jpg",
+      "genre_ids": [
+        27
+      ],
+      "id": 1815076,
+      "original_language": "es",
+      "original_title": "La Fábrica",
+      "overview": "Un equipo de documentalistas llega a una fábrica abandonada para investigar la polémica muerte de varias empleadas. Mientras la investigación avanza comienzan a registrar algo aterrador que no los dejará salir.  - A documentary crew arrives at an abandoned factory to investigate the controversial deaths of several female employees. As the investigation unfolds, they begin to capture something terrifying—something that will not let them leave. -",
+      "popularity": 0.4191,
+      "poster_path": "/aOTCYXXYqQWjGNORAj0RTonCjgQ.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "La Fábrica",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1814498,
+      "original_language": "en",
+      "original_title": "The Search for Milliseconds",
+      "overview": "Inside mountain bike downhill phenom Jackson Goldstone's high-stakes bid to become one of the youngest riders in history to claim the UCI DH Elite overall title. From pre-season testing to the tense, pressure-filled moments leading into the last race of the year, the film follows Jackson and the team that supports him as they hunt for every possible edge in a sport where the smallest fractions of time can define a champion. With the title on the line and only one decisive run remaining, Jackson prepares to risk everything for the win.",
+      "popularity": 0.26,
+      "poster_path": "/sM3CzsbRz5DSzsKm0XdmI5rv4jB.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Search for Milliseconds",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/s4dmTJWB1Uf7KFiVx2UnPlREDQz.jpg",
+      "genre_ids": [
+        99,
+        35
+      ],
+      "id": 1813770,
+      "original_language": "en",
+      "original_title": "Michael Michael Michael",
+      "overview": "Jazz drummer Michael Brewer takes Chicago by storm.",
+      "popularity": 0.2001,
+      "poster_path": "/tmFtB4yJc8Db9nErLdlQY62rBFE.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Michael Michael Michael",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        16,
+        35
+      ],
+      "id": 1813133,
+      "original_language": "en",
+      "original_title": "The Boingy Boingy Film",
+      "overview": "one late night Harley Quinn, Poison Ivy and Catwoman bump into each other having similar motives to steal the \"Belgian minature\" they play a game of rock, paper, scissors to determine who gets to try and steal it first, Harley Quinn gets the honor.",
+      "popularity": 0.0644,
+      "poster_path": "/30IL63VjJabEXeXJXlIIgkTwOoR.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Boingy Boingy Film",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1812882,
+      "original_language": "en",
+      "original_title": "Refuge",
+      "overview": "In the remote Accursed Mountains of Kosovo, former junior ski champions Seb and Hamda have built an off-grid freeride lodge in search of something they lost long ago. Through breathtaking mountain landscapes, snowboarding and deeply personal memories, the film traces their journey from childhood dreams, through the upheaval of war in the former Yugoslavia, to the creation of a place built on friendship, freedom and belonging.",
+      "popularity": 0.1583,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Refuge",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35,
+        18,
+        9648
+      ],
+      "id": 1812714,
+      "original_language": "es",
+      "original_title": "Todo lo que me pasa sucede en otro lugar",
+      "overview": "",
+      "popularity": 0.3584,
+      "poster_path": "/jxx0UPOle4sYG0wDek1OkcneiIX.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Todo lo que me pasa sucede en otro lugar",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1812462,
+      "original_language": "en",
+      "original_title": "My Ride or Die",
+      "overview": "Morgan McGlashon (professional mountain guide) and Caite Zeliff (professional skier) picked obscure paths. Those paths collided and became intertwined. When their careers took off they found themselves spending less time in the mountains together but they always dreamed of one day coming back together on a proper adventure. On a 10-day expedition in Alaska, the two reconnect.",
+      "popularity": 0.25,
+      "poster_path": "/bpzKjTLQptQJiAqObtKwioZGjgX.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "My Ride or Die",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/yRcXbFrOO2ttYZnCrYg9en4itDW.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1812110,
+      "original_language": "es",
+      "original_title": "Migrantes: el viaje que nadie quiso emprender",
+      "overview": "",
+      "popularity": 0.5407,
+      "poster_path": "/6tbvWF73KgXJdqbkwPk47EBBpqq.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Migrantes: el viaje que nadie quiso emprender",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99,
+        36
+      ],
+      "id": 1812068,
+      "original_language": "en",
+      "original_title": "More than Everest: The Life of T.H. Somervell",
+      "overview": "T. Howard Somervell (1890-1975) is best known for his role in the 1922 and 1924 expeditions to climb Everest. This film explores the lesser known aspects of Somervell's remarkable life as a missionary surgeon, artist and composer of music.",
+      "popularity": 0.0523,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "More than Everest: The Life of T.H. Somervell",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1811945,
+      "original_language": "en",
+      "original_title": "MiLakóta Yeló",
+      "overview": "Milakóta Yeló follows a traditional Lakota grandmother on the Cheyenne River Sioux Reservation. It's a quiet reflection on identity, memory, and the enduring presence of Lakota life and matriarchal power.",
+      "popularity": 0.0894,
+      "poster_path": "/e6qVHsc1JwFjM4F5kM8Er4NXzbw.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "MiLakóta Yeló",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/4It8nwJXg1cxKo42yJ91GlHZPBc.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1811846,
+      "original_language": "en",
+      "original_title": "Kidical Mass",
+      "overview": "After years of exploring their world by bicycle, the Moss family knew that they wanted to raise their kids on two wheels. But after a frightening accident on the way to school, they had to take a step back from their pedal-powered ambitions. Then they found Kidical Mass. This is the story of how one family is helping to reclaim their streets, one giant kid bike party at a time.",
+      "popularity": 0.0549,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Kidical Mass",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1810954,
+      "original_language": "en",
+      "original_title": "It Takes Two To Tandem",
+      "overview": "Longtime riding partners Sam and Jazz take a tandem bike across some of their favourite trails in the Rockies, marking ten years since their first tandem adventure together. Part celebration, part reflection, the film explores friendship, trust, and the rare joy of moving through the world in sync.",
+      "popularity": 0.1817,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "It Takes Two To Tandem",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ghjm5oe75lAWwk9VG61tbf9TuNB.jpg",
+      "genre_ids": [
+        99,
+        36
+      ],
+      "id": 1810492,
+      "original_language": "fr",
+      "original_title": "L'Himalaya au cœur",
+      "overview": "In 1802, the Survey of India Institute launched the Great Trigonometrical Survey, a colossal undertaking aimed at precisely mapping British India from which the world became aware of the vast scale of the Himalayan range. From August to November 2024, using these historical maps, Jérémy Bigé makes his way on foot over 2,300km from Indian Kashmir to central Nepal. His goal: to connect the various Himalayan cultures in a single journey by following routes from the past.",
+      "popularity": 0.1254,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Himalayas in My Heart",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35,
+        18
+      ],
+      "id": 1810033,
+      "original_language": "en",
+      "original_title": "The Great Lake Bums",
+      "overview": "Over the holidays, Michael returns to the Midwest to stay with his best friends, all still living in their same old house from college in Milwaukee. During his several weeks stay, nights out are had, attempts are made to rekindle old flames, and it becomes more and more clear that his friends haven't grown up at all, while maybe Michael's grown up a little too much.",
+      "popularity": 0.5936,
+      "poster_path": "/rUQDXUQhjh9lcw6UXz5Hp2uY4kS.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Great Lake Bums",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1809742,
+      "original_language": "en",
+      "original_title": "KISS: End of the Road",
+      "overview": "The final chapter of KISSTORY. Go all-access backstage on the farewell tour, from the triumphs to the disasters, health scares and cancellations.",
+      "popularity": 0.0495,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "KISS: End of the Road",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/zjCKxJQLVYVGTvqOuUbyBIByvW2.jpg",
+      "genre_ids": [
+        80,
+        18
+      ],
+      "id": 1809505,
+      "original_language": "en",
+      "original_title": "Dark Noon",
+      "overview": "Caught in a cycle of petty crime and imprisonment, a man is released from prison for a failed bank robbery attempt while an impending solar eclipse offers a way out of the cycle.",
+      "popularity": 1.212,
+      "poster_path": "/c47IqLeltfbQKAAces0eRMmLEi7.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Dark Noon",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/y1nXtotgURraReiJJ3raYlPs6z5.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1808463,
+      "original_language": "en",
+      "original_title": "Formline",
+      "overview": "Formline is the defining visual language of traditional Northwest Coast First Nations art; continuous, curvilinear shapes that swell, diminish, and never meet at a hard edge. This film traces the unexpected kinship between this ancient art form and the physics of big mountain snowboarding, where reading terrain and carving a line demand the same fluidity, restraint, and trust in the material at hand.",
+      "popularity": 0.0263,
+      "poster_path": "/4DL1WSpgkgNcb4bg9Y5XfwgZnqt.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Formline",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/iYpNMpnZgyr9n9CuwID7wAajCzz.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1807161,
+      "original_language": "en",
+      "original_title": "Back By Tea Time",
+      "overview": "In a world where it feels like we have everything we could ever want at our fingertips – Amazon, Spotify, next-day delivery, door-to-door, Uber, Netflix, Deliveroo, quicker than ever before, pure convenience and luxury without a second thought – in that world, perhaps there is something to be said for choosing the long way round. When Alice Lemkes realises she's out of milk, it is an excuse for an adventure in ‘Scotland's Last Great Wilderness.’",
+      "popularity": 0.147,
+      "poster_path": "/p6VRtHGGnBElyVWMGiGw91tY0X8.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Back By Tea Time",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        27
+      ],
+      "id": 1806640,
+      "original_language": "en",
+      "original_title": "The Ride Home",
+      "overview": "After a fatal car crash, four friends awaken trapped inside their wrecked car in a liminal space between life and death.",
+      "popularity": 0.1909,
+      "poster_path": "/hrsctrF93jqclVB2CF3n6aB4qG1.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Ride Home",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35
+      ],
+      "id": 1806606,
+      "original_language": "en",
+      "original_title": "No Strings Attached",
+      "overview": "Two puppets meet on a blind date, and it's hate at first sight. But for their dutiful human puppeteers, the sparks fly instantly. What happens when a puppet and puppeteer disagree? A rowdy comedy about love, work, and obligation, in the age of social media.",
+      "popularity": 0.1264,
+      "poster_path": "/enQuQX09tRPQ0zLJ0cGatU0Lbc1.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "No Strings Attached",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35,
+        27
+      ],
+      "id": 1806595,
+      "original_language": "en",
+      "original_title": "The Squirrel Diaries",
+      "overview": "“Night of the Living Dead” but with squirrels! Four Gen Z neighbors are thrust into a squirrel apocalypse, so they hunker down in a bunker-like basement doing their best to survive, hoping there is refuge from the rodent rampage. One among them is an amateur survivalist “prepper”; emphasis on amateur.",
+      "popularity": 0.1279,
+      "poster_path": "/xJw7bsQTIJFJAxH5sCfgik7xsrR.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Squirrel Diaries",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35,
+        27,
+        10749
+      ],
+      "id": 1806583,
+      "original_language": "en",
+      "original_title": "Love in a Hopeless Place",
+      "overview": "Modern dating sucks. Deidre is looking for love but she also has the luxury of feeding off them when they don't work out.",
+      "popularity": 0.8474,
+      "poster_path": "/wFCmXVrRT86TVb6FqVTD3OJpHMJ.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Love in a Hopeless Place",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35
+      ],
+      "id": 1806580,
+      "original_language": "en",
+      "original_title": "Angler",
+      "overview": "A reserved man discovers an alleyway garage concealing the ultimate mancave, and a charismatic host who won't take no for an answer.",
+      "popularity": 0.0725,
+      "poster_path": "/35dwym1VVYmnj4YRql0I5rlzePG.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Angler",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        27
+      ],
+      "id": 1806543,
+      "original_language": "en",
+      "original_title": "Date Night",
+      "overview": "As Moira prepares for her anniversary dinner, her fond memories of true love put the romance back in necromancy.",
+      "popularity": 0.2132,
+      "poster_path": "/gW3hUgNukzokVbi6cDQGmQDyXyD.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Date Night",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/e2qIPGKAaZP5v3jTqZ98Rm1MI0Y.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1806288,
+      "original_language": "fr",
+      "original_title": "À bord du vide",
+      "overview": "A poetic exploration of the art of steep skiing with Aurélien Lardy. This film celebrates the art of the movement, the commitment, and the intimate relationship between the man and the mountain, and what draws us to vertical places.",
+      "popularity": 0.0948,
+      "poster_path": "/riVtlwz2eyKpgmnc0R1onxFTop4.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "À bord du vide",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/5soxDt60jWJoH8JZ6FI8l3v4ov7.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1803128,
+      "original_language": "en",
+      "original_title": "Still Rider",
+      "overview": "After a mountain bike crash resulted in a life altering injury, Chantelle Grafton and her husband Warren have gone to great lengths to get Chantelle back out on the trails. Still Rider explores this journey, highlighting the unanticipated complexities that come with a major spinal cord injury and more importantly the benefits of prioritising adaptive design for those with and without accessibility issues.",
+      "popularity": 0.0951,
+      "poster_path": "/7JA2kxLJlGUNAxeKJJatGuB5EcX.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Still Rider",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/865N9UczsohzNCi2ED2jr2lzhWA.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1803067,
+      "original_language": "de",
+      "original_title": "Mein Mann, mein Mörder",
+      "overview": "This Sky Original documentary reconstructs an extraordinary true-crime case, focusing not on the perpetrator, but on the women—and their desperate attempts to break free from his violence. For the first time, Winfried’s first wife, Marja-Leena, and his daughter, Tuija, speak publicly about their experiences.",
+      "popularity": 0.295,
+      "poster_path": "/o2AcWvevDHf6v2pxufkPSPd0xj7.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Mein Mann, mein Mörder",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ehFapWy4qrT0z9TEZ5SWCZwYJG8.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1802076,
+      "original_language": "en",
+      "original_title": "A Little Closer",
+      "overview": "While keeping a friend company on a night out, a young woman, grapples with the past, when faced with questions about her own identity.",
+      "popularity": 0.277,
+      "poster_path": "/jOx73oNme9CE9QztDiRaKrKiCiX.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "A Little Closer",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99,
+        16
+      ],
+      "id": 1798966,
+      "original_language": "en",
+      "original_title": "Rat Story",
+      "overview": "I woke up at 5am with a giant rat lying on my chest.",
+      "popularity": 0.3579,
+      "poster_path": "/9zsS16QCnGrqoCrpl1S57ZO73YG.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Rat Story",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18
+      ],
+      "id": 1798857,
+      "original_language": "sn",
+      "original_title": "Peretera Maneta",
+      "overview": "This film chronicles the journey of a sophisticated young schoolteacher whose city upbringing contrasts greatly with her new-found environment. Her reluctance to form relationships with other villagers takes a turn as she discovers a friendship in the place she never expected: with her students. With little time remaining during her placement at a village school, it is up to her to reveal the shocking discovery she has made. But will local folks believe this arrogant city woman?",
+      "popularity": 0.1643,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Peretera Maneta",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        27
+      ],
+      "id": 1797513,
+      "original_language": "ms",
+      "original_title": "Bisikan",
+      "overview": "A young man haunted by past trauma and hated by his father begins to experience disturbing whispers and horrifying visions in an old mansion. As he struggles to save his family, he becomes trapped between reality and his own imagination.",
+      "popularity": 0.7875,
+      "poster_path": "/nfSKZ5MEci74X6qRoeWMzc72H3Z.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Bisikan",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/q4Uoo1KYXa2sIcfF4p2ngtlOcUL.jpg",
+      "genre_ids": [
+        18,
+        99
+      ],
+      "id": 1796928,
+      "original_language": "es",
+      "original_title": "Cordera",
+      "overview": "Sol, a dancer and choreographer, is a pivotal figure in contemporary dance who, at 59, finds herself at a critical moment in her extraordinary career. With her crew, she's preparing \"The Lamb and Her Army\", an ambitious work that seems to mark the end of her career as a performer. With joints worn down after decades of physical demands, her doctor has surprising news…",
+      "popularity": 0.2979,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Lamb",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/7XluGOWqdw53LVeF2ccRjTfIV4Q.jpg",
+      "genre_ids": [
+        18,
+        35,
+        878
+      ],
+      "id": 1796920,
+      "original_language": "ja",
+      "original_title": "ジモトループ",
+      "overview": "What if leaving home simply wasn't an option? For 29-year-old Satomi, the answer seems absurdly literal. On the very morning she is finally ready to abandon her hometown for Tokyo, she discovers that every attempt to leave brings her straight back to where she started. Caught in an inexplicable time loop, Satomi has no choice but to confront the place and the people she was so determined to leave behind.",
+      "popularity": 0.347,
+      "poster_path": "/1INfXvtBuPGDtLd9s7TdSlRulfp.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Jimoto Loop",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/kaoQZT8q6KZ8bZbZapNBS6rpZaV.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1796553,
+      "original_language": "zh",
+      "original_title": "鬼魂之年",
+      "overview": "Following his father's death, Louis Hothothot turns the camera on his mother and sister in China. With fearless affection, he explores how misogyny has affected the lives of the women in his family across generations.",
+      "popularity": 0.4134,
+      "poster_path": "/hJJW6ldWooLIT7mFBYqjV6n7EnZ.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Year of the Ghost",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/6mjlPv5dPHGpmsYLiODiCQW0o27.jpg",
+      "genre_ids": [
+        99,
+        18
+      ],
+      "id": 1794054,
+      "original_language": "es",
+      "original_title": "Norte claro, sur oscuro",
+      "overview": "Francisca reopens her family home in southern Chile, empty and frozen in time since the death of her parents. As she restores the place with her brother, the figure of her alcoholic father takes shape through their memories, Fran's diaries, and family photos, opening up an exploration of what silently persists between generations.",
+      "popularity": 0.4068,
+      "poster_path": "/yGZhUsuvZjfgqsB5oeYYdXN62XV.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "When the clouds move south",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99,
+        36
+      ],
+      "id": 1793945,
+      "original_language": "pt",
+      "original_title": "Camisas Negras",
+      "overview": "",
+      "popularity": 0.5592,
+      "poster_path": "/dTCJZpYurHxPbipqDw9NVL43QG5.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Camisas Negras",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1793188,
+      "original_language": "en",
+      "original_title": "The TransAtlantic Way",
+      "overview": "At dawn, riders set off from Cork City on a self-supported journey of up to 2,400km, bound for the finish line across Derry’s Peace Bridge, battling fierce winds, rugged terrain, and shifting light. Narrated by veteran long-distance cyclist and event organiser Adrian O’Sullivan, the film immerses viewers in Ireland’s dark and mystical landscape, capturing the endurance, solitude, and raw beauty of the western coast.",
+      "popularity": 0.0818,
+      "poster_path": "/gzgiI4ltvov5QEdhgg08UKh5HvE.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The TransAtlantic Way",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/vdyj9d0VmYpxg4RXbV2jNEXX4uw.jpg",
+      "genre_ids": [
+        18,
+        35
+      ],
+      "id": 1790574,
+      "original_language": "es",
+      "original_title": "Comem*erda",
+      "overview": "When their nine-year-old daughter falls mysteriously ill, a wealthy Dominican couple turns to an experimental treatment created from their housemaid Liddy's feces, without her knowledge. Once Liddy and her colleague Dominga discover the truth, they seize the opportunity to turn the household’s power dynamics upside down.",
+      "popularity": 0.8127,
+      "poster_path": "/qhsWctkeBoLCV0dfVNByrEQ9kHo.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Sh*t Happens",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/rlUTc71sKzbUXcgiFgupYnzfvhq.jpg",
+      "genre_ids": [],
+      "id": 1790030,
+      "original_language": "en",
+      "original_title": "The Painter & the Prince",
+      "overview": "When financial struggles threaten to close her family’s art-tour business before Christmas, self-taught artist Shelby Stevens enters a televised holiday painting competition, hoping the prize money can save it. During the competition, Shelby clashes with fellow contestant “Mark,” whose polished talent and charm slowly win her over through festive adventures and late-night creative breakthroughs. But when Shelby discovers Mark is actually Prince Henry of Serendovia, secretly escaping royal expectations to pursue art, their growing romance is put at risk. As Christmas approaches, Shelby and Henry must decide whether they are confident enough to paint a future of their own.",
+      "popularity": 0.9543,
+      "poster_path": "/b48Bz0KLRyMnLhWOIXXLJ7VMAPw.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Painter & the Prince",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1784339,
+      "original_language": "en",
+      "original_title": "Voyage",
+      "overview": "Nature documentary",
+      "popularity": 0.0689,
+      "poster_path": "/50RzwBnll6iVuzfCriJ8ZCsGUjX.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Voyage",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1776451,
+      "original_language": "en",
+      "original_title": "Show Pony",
+      "overview": "Mid drag performance at a queer bar in Cork, Claire is shocked to spot her traditional Catholic Nana in the crowd. A  conversation unfolds with them backstage, where they realise they both have a lot more in common than they ever could have imagined.",
+      "popularity": 0.5722,
+      "poster_path": "/tmYVlpc2cQLFaIPtkCyjEIMd7Ek.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Show Pony",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/p5i2EQ9kMzzTY8u41oF3rxuWG.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1763500,
+      "original_language": "id",
+      "original_title": "Menang Untuk Kalah",
+      "overview": "The story centers on Bima, a middle-class family head who initially had sincere intentions to improve his household’s financial situation to make his wife, Dewi, happy.  However, his curiosity led him to try a shortcut through online gambling. Starting with small, seemingly tempting wins, Bima instead finds himself trapped in a vicious cycle of high-interest online loans and harassment from debt collectors. This emotional strain triggers intense conflict and shatters the family’s previously stable harmony. Bima must face the bitter reality that his fleeting “wins” in online gambling ultimately lead to total defeat and financial ruin.",
+      "popularity": 0.5787,
+      "poster_path": "/kKvNwXzO9K1MwTcQSVgqghqocGA.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Menang Untuk Kalah",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/voMSgU6bpfEeflieUfJKFhWCFB2.jpg",
+      "genre_ids": [
+        35,
+        18
+      ],
+      "id": 1760134,
+      "original_language": "jv",
+      "original_title": "Piye To Kih?",
+      "overview": "A broken heart drives Mukidi to prove that he is worthy of marrying the woman of his dreams. He works hard until he is able to buy an inexpensive house, which turns out to hold a mystery. In that house, he meets Sukma, a mysterious woman from the spirit world who has a different religion and background, yet manages to help Mukidi get over his heartbreak. Strange events begin to unfold, dragging his two best friends, Gendut and Penyok, into the chaos.",
+      "popularity": 0.8376,
+      "poster_path": "/jCUgxw5XvyBP9sENPBbHD26nns.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Piye To Kih?",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35,
+        18
+      ],
+      "id": 1755954,
+      "original_language": "en",
+      "original_title": "Fight Back",
+      "overview": "It’s not the hit… it’s how you rise.",
+      "popularity": 0.5742,
+      "poster_path": "/r8fhskVde4FqpLSynbJsctKHXiy.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Fight Back",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/yYVbKQR4HowVyQGy4aPwVvwI38r.jpg",
+      "genre_ids": [],
+      "id": 1745422,
+      "original_language": "nl",
+      "original_title": "Leven in het donker",
+      "overview": "",
+      "popularity": 0.1411,
+      "poster_path": "/8OJfkYoVuJ55DTBYelyMPuf4mf2.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Leven in het donker",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/qpQZo0cbrcA9tgKIsgoiLzGyS3o.jpg",
+      "genre_ids": [
+        16,
+        10402,
+        10751
+      ],
+      "id": 1744973,
+      "original_language": "en",
+      "original_title": "Carnival of the Animals",
+      "overview": "A colourful town inhabited by animals prepares for a carnival parade.",
+      "popularity": 0.5565,
+      "poster_path": "/rS6MX2aQp5BHidDbBmvZeypdRoR.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Carnival of the Animals",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/rvrC6ddBF5gLKjgIJFxU7SPrdLs.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1736125,
+      "original_language": "es",
+      "original_title": "Ellas",
+      "overview": "Julia inherited her mother Asunta’s job as a domestic worker in the wealthy De la Puente household, where she was raised alongside the family’s daughters. Asunta, an Andean woman who migrated to Lima after Peru’s 1970 earthquake, carried a life shaped by displacement, silence, and sacrifice. Over the years, affection and inequality became inseparably intertwined within the household. Now, as illness and old age expose long-buried secrets, Julia is forced to confront the invisible social order that has defined her existence. Torn between loyalty and freedom, she must decide whether to remain in the role imposed on her or finally reclaim her own identity.",
+      "popularity": 0.6152,
+      "poster_path": "/tMNt7wQM27mHncuJIEonoairDWz.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Girls Garden",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/3xXFs8oz56pMmIFb7CsXLFukUrM.jpg",
+      "genre_ids": [
+        27,
+        53,
+        28,
+        18
+      ],
+      "id": 1734716,
+      "original_language": "tr",
+      "original_title": "Obitus",
+      "overview": "After a devastating flood, a mysterious parasitic outbreak engulfs a remote village. As Luna and her father, Damien, struggle to survive, they're forced to confront the brutality of nature and the darkest side of humanity. Filled with separation, loss, and horrifying truths, their journey changes their fate forever.",
+      "popularity": 0.4684,
+      "poster_path": "/4DLV9jHnu0BN3ok385KaJcuEWCd.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Obitus",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/8rtVLzCfsGTtNsGYtV8TKv93iGo.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1731354,
+      "original_language": "de",
+      "original_title": "Übergang",
+      "overview": "Renowned documentarian Thomas Heise begins a film on Berlin's Schönhauser Allee, the road he lived on for decades. A few months later, Heise dies unexpectedly.",
+      "popularity": 0.3177,
+      "poster_path": "/ydOVdYpZRwvuIjbRodogfQFUS4p.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Transition",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/b2yrStJBfgVDxwfMoYsHhVOATUT.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1725336,
+      "original_language": "it",
+      "original_title": "Il destino dell'ape",
+      "overview": "Emma is a young woman who discovers that the man who raised her is not her biological father. Her search for the truth becomes a transformative journey across Morocco; a quest for identity, freedom, family and self-discovery.",
+      "popularity": 0.7665,
+      "poster_path": "/a4nEfFDY3oPgP28IsRLIaOsHF8k.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Il destino dell'ape",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18
+      ],
+      "id": 1723807,
+      "original_language": "de",
+      "original_title": "Break",
+      "overview": "With his shimmering scales, the Rainbow Fish is the most beautiful fish in the entire ocean. But he is also vain and proud, which alienates the other fish. As a result, he becomes increasingly lonely. When he eventually loses one of his beloved glittering scales, it is none other than the Little Blue fish who accompanies him on the search into the deepest parts of the ocean. An adventurous journey begins – and the Rainbow Fish learns that together we are much braver than alone, and that true friendship is more precious than the most magnificent coat of scales.",
+      "popularity": 0.7296,
+      "poster_path": null,
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Break",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ky7de047prqIwDIyaYo5q99cfP1.jpg",
+      "genre_ids": [
+        99,
+        18
+      ],
+      "id": 1723637,
+      "original_language": "da",
+      "original_title": "Faderhuset",
+      "overview": "In an intriguing cinematic exercise that straddles fiction and documentary, 'Faderhuset' seeks to bare intricate workings of domination and manipulation, as ex-members of the notorious Christian sect Faderhuset direct scenes with well-known Danish actors, including Trine Dyrholm and David Dencik.",
+      "popularity": 1.0356,
+      "poster_path": "/msxphwUsNnJnTWaNlpxHJFjRcW1.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Father's House",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/toYuxPyKVfoCOWZPruwrb0TRQI9.jpg",
+      "genre_ids": [
+        35,
+        18
+      ],
+      "id": 1717652,
+      "original_language": "pt",
+      "original_title": "Sem Pai Nem Mãe",
+      "overview": "Artur is a stand-up comedian who plans to turn his life around and write a book about the story of a female guerrilla fighter from the 1970s. He gets mugged and his computer containing his drafts is stolen, but an app takes photos of the people using the stolen computer and emails them to him.",
+      "popularity": 0.5832,
+      "poster_path": "/jyIFWy5rIagFB9zGXwugCRKnrJP.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Lost Plot",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wqml8vV0dMtlorZtmyPBD7SRXyH.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1715868,
+      "original_language": "en",
+      "original_title": "Good Luck, Kid",
+      "overview": "Grit, gear, growth – this film is a portrait of Taylor Shaffer’s coming-of-age as a photographer and filmmaker, following his creative trajectory as he shepherds Alex Honnold and Tommy Caldwell through a 2,500-mile expedition to attempt a single-day traverse of the Devil’s Thumb massif and finds his artistic voice amid risk, friendship, and a changing Alaskan landscape.",
+      "popularity": 0.2841,
+      "poster_path": "/ap3Y7Pny1m5Dd6SfgUloRprvyiP.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Good Luck, Kid",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wIIVyyLDdNhQMVi3eVwBMS4mHlu.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1714128,
+      "original_language": "nl",
+      "original_title": "Spinoza",
+      "overview": "In 1656 Amsterdam, young Jewish philosopher Bento de Spinoza watches his world collapse when his closest friend is executed for printing forbidden ideas. The city is gripped by plague, fear, and religious zeal, and Bento's growing habit of questioning sacred truths makes him a danger to both Church and synagogue. Amid this turmoil, he meets Rembrandt van Rijn, the once-celebrated painter now sliding into debt and disgrace.",
+      "popularity": 0.7217,
+      "poster_path": "/2EthCXOJuvvZ6HYtDXk55sawvNK.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Spinoza",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        27,
+        53
+      ],
+      "id": 1702665,
+      "original_language": "ar",
+      "original_title": "جحيم العابرين",
+      "overview": "On an isolated road late at night, a young woman, driving alone, comes across a stranded male driver whose car has broken down on a mountain road notorious for disappearances and murders. Choosing empathy over a creeping sense of foreboding, she offers him a ride to the nearest station. That single choice unleashes a harrowing chain of strange and terrifying events in the dead of night, turning a simple gesture of kindness into a real-life nightmare.",
+      "popularity": 1.2273,
+      "poster_path": "/gMnKuYfHQNG34MItBJKuvTT85Zn.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Traveler's Hell",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        10749
+      ],
+      "id": 1698629,
+      "original_language": "en",
+      "original_title": "Christmas En Pointe",
+      "overview": "Years after breaking off their engagement, a small-town dance teacher and an ambitious senator returning home for Christmas are thrown back together to save her struggling studio, rekindling the love they once lost.",
+      "popularity": 1.0762,
+      "poster_path": "/sgLWEkXBp9oLvdTUlNklrSySfOE.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Christmas En Pointe",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ynWhXB41PsvJZPJB9uq7Af1DqRx.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1684838,
+      "original_language": "uk",
+      "original_title": "Машина часу Майдан",
+      "overview": "In this haunting and visually inventive documentary, a spectral voice drifts through time and memory to trace the Maidan revolution and the roots of resistance in Ukraine.",
+      "popularity": 0.7024,
+      "poster_path": "/hrOpAW4on2jyc003BtZijx4IEEx.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Time Machine Maidan",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/saHUIv7DClJ0fLDc4lfxHdSxBm1.jpg",
+      "genre_ids": [
+        35,
+        18,
+        10749
+      ],
+      "id": 1679486,
+      "original_language": "id",
+      "original_title": "People Pleaser: Si Paling Gak Enakan",
+      "overview": "Karina is a young woman who always puts others first and finds it difficult to say \"no.\" This habit leaves her exhausted and causes her to sacrifice her own dreams.",
+      "popularity": 1.2784,
+      "poster_path": "/m3fQU8sEid4lvUaA6dXhks7v9nf.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "People Pleaser: Si Paling Gak Enakan",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35,
+        10751
+      ],
+      "id": 1667739,
+      "original_language": "ru",
+      "original_title": "Разыскивается Дед Мороз",
+      "overview": "On New Year's Eve, a not-so-lucky thief, Misha, breaks into a house in the very center of Moscow, where a lonely old man lives. Misha hopes to improve his unenviable financial situation and bring back his family - his wife and seven-year-old daughter. However, in the old man's big house, he finds nothing of any value, except for the deposits of children's toys in the basement. The old man himself assures him that he is none other than the real Father Frost.",
+      "popularity": 0.5156,
+      "poster_path": "/uOfh5srvEWIaIEpOA6INmq4bdMI.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Разыскивается Дед Мороз",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/yftPoQlAbT989dpB4yDEVZfadXC.jpg",
+      "genre_ids": [
+        10751,
+        35,
+        18,
+        12,
+        10749,
+        14
+      ],
+      "id": 1658835,
+      "original_language": "uk",
+      "original_title": "S Миколай та загублений лист",
+      "overview": "Whilst preparing for yet another round of spreading holiday cheer, saint Nicholas discovers an unopened letter that had been sent to him by a young boy named Borys 30 years ago. Now the latter is a sucssesful businessman who had lost the abbility to see the joys and whimsy of life after being severly beaten down by the world around him. The legendary giftgiver enters a race against time to help the broken man regain his childlike wonder, or else one will forever loose the abbility to feel joy and the other, his magical powers.",
+      "popularity": 0.5436,
+      "poster_path": "/a38CR1ZdxVLvXyPyIkKzB6zuJYR.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "A December Tale 2: The Lost Letter",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ArRgIhvBRwHjVNYUh7acGpAaf1z.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1632188,
+      "original_language": "it",
+      "original_title": "Il fuoco che ti porti dentro",
+      "overview": "Antonio, who fled Naples many years ago, has built a family and a successful career in Milan, far from his mother Angela — a woman excessive in both her virtues and her flaws, irresistible, old-fashioned and hostile like few others — who has come to visit for Christmas and seems determined to stay.  Christmas Eve dinner becomes an emotional battlefield, at once comic and fierce, bringing to the surface a past of impositions and misunderstandings. With a stubborn capon that refuses to end up in the pot, a daughter whose arrival remains uncertain, and an unexpected distinguished guest, the evening turns into a reckoning between mother and son destined to change the meaning of their bond forever: a love that burns like a fire within, one that never dies out — not even by leaving.",
+      "popularity": 1.7279,
+      "poster_path": "/kCfIZpqRsBe39Y1lUCxOAjgQ5VR.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Fire Within You",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/1LYC3PvCmGoL5Ir6MM2GglquHOa.jpg",
+      "genre_ids": [
+        10751,
+        16,
+        12
+      ],
+      "id": 1625344,
+      "original_language": "de",
+      "original_title": "Der Regenbogenfisch",
+      "overview": "The rainbow fish, an outsider obsessed with his glittering scales, learns the power of friendship on an adventurous sea voyage with the little blue fish. He finds his place in a colorful fish community—and realizes that sharing brings people together.",
+      "popularity": 1.2503,
+      "poster_path": "/gjrX5FooRmMT3BXd3woiO67qp6p.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "The Rainbow Fish",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18,
+        9648
+      ],
+      "id": 1624343,
+      "original_language": "ru",
+      "original_title": "Омоон суоллар. Искупление",
+      "overview": "The investigation of a seemingly ordinary murder in the wilderness confronts operative Nyurgun Vasiliev with a difficult moral choice: to follow the letter of the law or to show human compassion. This dilemma becomes the main test for the hero, revealing new facets of his character.",
+      "popularity": 0.1484,
+      "poster_path": "/yZb4W71v2ShvF5S6MQknPmXyFk5.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "Invisible Paths. Redemption",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/oQddmpvmhE5MF7EGef1bRwBeszZ.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1622868,
+      "original_language": "en",
+      "original_title": "My Grandmother’s Sketchbook: Under Mont Blanc",
+      "overview": "A 30-year-old sketchbook leads Max Romey to the Mont Blanc region. The Alaska-based watercolor artist and environmental advocate sets out to follow in the footsteps of his grandmother, who visited this landscape in the late 1990s and captured it in dozens of drawings. With mountain guide Hillary Gerardi, Max attempts to locate each sketch’s exact origin point. Many match perfectly—until the Mer de Glace throws him off course. The glacier has changed too much in 30 years to recognize.",
+      "popularity": 0.279,
+      "poster_path": "/6lLWBlOClCNW4QsO2ZqQufTNZCS.jpg",
+      "release_date": "2026-11-19",
+      "softcore": false,
+      "title": "My Grandmother’s Sketchbook: Under Mont Blanc",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    }
+  ],
+  "list_id": "new_movies",
+  "media_type": "movie",
+  "provider_id": "tmdb",
+  "raw_payloads": [
+    {
+      "page": 1,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            27
+          ],
+          "id": 1830386,
+          "original_language": "en",
+          "original_title": "The Other World",
+          "overview": "When someone ignores their friend, they get sent to a different world where no one exists.",
+          "popularity": 0.0,
+          "poster_path": "/6I6c0Y1ilPVCBDyFQel8tvYXbVk.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Other World",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/n1T4HH0tgGpf96W9v9GBJmd7R9Z.jpg",
+          "genre_ids": [
+            27,
+            53,
+            9648
+          ],
+          "id": 1829225,
+          "original_language": "es",
+          "original_title": "Occiso",
+          "overview": "",
+          "popularity": 0.0582,
+          "poster_path": "/7ntyIiuzPDb9fGxpeR6xxLFvchG.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Occiso",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1829162,
+          "original_language": "en",
+          "original_title": "SYNCYTIUM",
+          "overview": "A mortal encounters a celestial being in the forest, whose magical flute controls the flow of time.",
+          "popularity": 0.0194,
+          "poster_path": "/cuiGDfhDakT3jajG2aqGOLnqlMf.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "SYNCYTIUM",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            28,
+            35,
+            80,
+            18,
+            9648,
+            10749,
+            53
+          ],
+          "id": 1829156,
+          "original_language": "es",
+          "original_title": "El Coronavirus Acecha",
+          "overview": "",
+          "popularity": 0.1164,
+          "poster_path": "/2Wn3i19SXynbhepSwFk3rBo77h2.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "El Coronavirus Acecha",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/qJ3Xf4MB8agLyvf6VFwzlaI1tGP.jpg",
+          "genre_ids": [
+            35,
+            18
+          ],
+          "id": 1829019,
+          "original_language": "en",
+          "original_title": "Hate Marriage",
+          "overview": "Radhika lives in West Australia and is married to Kumar. Things are a bit rocky in their relationship when he forgets her birthday",
+          "popularity": 0.0776,
+          "poster_path": "/qbVS3LeSqglLcdIiATTTiL08Bs3.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Hate Marriage",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1828862,
+          "original_language": "es",
+          "original_title": "Renacimiento",
+          "overview": "In Baja Verapaz, the Maya Poqomchi community of Renacimiento continues to resist the land dispossession that forced them from their territory in the 1990s. Today, a new generation is leading a collective struggle for justice, historical memory, and the restoration of their ancestral lands. The story of Renacimiento stands as a living testament to the resilience of Indigenous peoples and their tireless defense of land and life.",
+          "popularity": 0.0388,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Renacimiento",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/kWyHd0GTWvNJFTDw6lBRO13bG82.jpg",
+          "genre_ids": [
+            35
+          ],
+          "id": 1828814,
+          "original_language": "es",
+          "original_title": "La llegada al río de un apuesto piraguista",
+          "overview": "",
+          "popularity": 0.0132,
+          "poster_path": "/2IuGI8HJCEoW4Z6bX1AMANqY5eG.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "La llegada al río de un apuesto piraguista",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1828789,
+          "original_language": "es",
+          "original_title": "Iztépetl, destellos del pasado",
+          "overview": "In the Sierra de las Navajas, in the state of Hidalgo, a craft connects Mexico’s past and present: working with obsidian.",
+          "popularity": 0.0198,
+          "poster_path": "/wdyADRFjFRk5pl3KX85lZ4EHlGo.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Iztépetl: Glimmers of the Past",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99,
+            10402
+          ],
+          "id": 1828098,
+          "original_language": "es",
+          "original_title": "Tocata Piolin 2:  Edición Invierno",
+          "overview": "A documentary recording of the second edition of Tocata Piolin—a day when, despite the rain forecast, music and friendship made it happen.",
+          "popularity": 0.0974,
+          "poster_path": "/ly4pO7OgPBkwFN8c7zWqvCYIpot.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Tocata Piolin 2: Winter Edition",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/aQbXDzE8KF2xZp9b1fdqETpLuVC.jpg",
+          "genre_ids": [
+            14,
+            27,
+            18
+          ],
+          "id": 1827513,
+          "original_language": "es",
+          "original_title": "El amparo",
+          "overview": "",
+          "popularity": 0.1421,
+          "poster_path": "/33AA67T85ZfTK19Cfttcf8P5gMp.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "El amparo",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1827320,
+          "original_language": "pt",
+          "original_title": "A Cidade e os Mapas",
+          "overview": "A bangladeshi delivery rider and an urbanist tour guide drift through Porto witnessing how the city reorders itself in the era of digital globalization.",
+          "popularity": 0.0905,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "A Cidade e os Mapas",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            12,
+            10751
+          ],
+          "id": 1827191,
+          "original_language": "ru",
+          "original_title": "Вперёд в прошлое",
+          "overview": "",
+          "popularity": 0.0771,
+          "poster_path": "/2WvuPmztcHsYPN5WPWsM7yWXNlm.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Вперёд в прошлое",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            18
+          ],
+          "id": 1827047,
+          "original_language": "es",
+          "original_title": "Detrás de Ángeles",
+          "overview": "",
+          "popularity": 0.0849,
+          "poster_path": "/qZuyAa3W3niIswbudfZTpdfibSG.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Detrás de Ángeles",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            18
+          ],
+          "id": 1827041,
+          "original_language": "es",
+          "original_title": "Maltrip",
+          "overview": "",
+          "popularity": 0.0846,
+          "poster_path": "/7GarYrIYNbMc52E5lPXtf0dEnAs.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Maltrip",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1827038,
+          "original_language": "es",
+          "original_title": "El Jarabe Bajacaliforniano",
+          "overview": "",
+          "popularity": 0.072,
+          "poster_path": "/1zGayN0zl0L3eHeWKF4ZHpoIaW8.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "El Jarabe Bajacaliforniano",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1826994,
+          "original_language": "it",
+          "original_title": "Andata Ritorno - Capitolo I: Senza fine",
+          "overview": "Andata Ritorno is the first chapter of a movement in an almost diary-like form, which takes the director from illness back to the world. From the very first days of his hospital stay, Tonino films, as though capturing this suspended time might help him endure it. It is a long passage, populated by the people closest to him. There are his daughters, Giulia and Veronica, their children, his lifelong partner Mariella, and Alberto, who has stood by his side throughout his filmmaking journey. And then there are his geographies, stretching from Casalborgone to the wider world, bringing together the many people he has filmed there, in the microcosm of a room that opens up countless doors onto life and his films alike.",
+          "popularity": 0.1081,
+          "poster_path": "/lR0WZOMySKTOoI1BPdfCsPpHUNH.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Andata Ritorno - Capitolo I: Senza fine",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1826763,
+          "original_language": "en",
+          "original_title": "Analog",
+          "overview": "In a world of digital immediacy and AI art, one filmmaker explores how a passionate community is turning back to the tangible beauty of film.",
+          "popularity": 0.1859,
+          "poster_path": "/kQNKUMPI1sK9PJG4tbijUNzskda.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Analog",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1826162,
+          "original_language": "fr",
+          "original_title": "Yellow Fiction",
+          "overview": "A new student has just moved abroad. He starts meeting people on a dating app... until a funny surprise spices things up.",
+          "popularity": 0.0317,
+          "poster_path": "/asihD8bjktAmyhKVKPIDCUJd4gu.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Yellow Fiction",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            10749
+          ],
+          "id": 1826085,
+          "original_language": "es",
+          "original_title": "El límite",
+          "overview": "A teenager and a older man are dining in an elegant restaurant, the young one is clearly uncomfortable with the physical contact of the adult towards him, after a moment of introspection, decides to put a limit to escape the situation.",
+          "popularity": 0.115,
+          "poster_path": "/oCk9AmRNZvx1AXkwPKJgO1UjIXJ.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Limit",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            18
+          ],
+          "id": 1826074,
+          "original_language": "es",
+          "original_title": "Una noche",
+          "overview": "At Ana's quinceañera party, her chambelán, Mauricio, aims to confess his love after facing a series of obstacles that will make him second-guess his decision.",
+          "popularity": 0.1835,
+          "poster_path": "/ux0I7GDwa8xqzq5XIfVEY2aCXj8.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "One Night",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        }
+      ],
+      "total_pages": 246,
+      "total_results": 4912
+    },
+    {
+      "page": 2,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            28,
+            35
+          ],
+          "id": 1826056,
+          "original_language": "en",
+          "original_title": "SUPER BULLET",
+          "overview": "Chadley and Nerdy-man are sent by the Boss to diffuse a bomb and have to play Worlde to save the world.",
+          "popularity": 0.3976,
+          "poster_path": "/1xFbXvDEBHrsIvkIvHvtVaK1DNO.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "SUPER BULLET",
+          "video": false,
+          "vote_average": 10.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            53,
+            14
+          ],
+          "id": 1825976,
+          "original_language": "es",
+          "original_title": "Mientras espero",
+          "overview": "A young man races against time to find and finish writing a book so he can hand it over to a higher entity and be judged.",
+          "popularity": 0.1855,
+          "poster_path": "/3TkMlWxUqi1jlOzAqll62lgt0Aj.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "While I Wait",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/tErA3LihWTXqL5YVEfQWgcsEuIT.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1824318,
+          "original_language": "es",
+          "original_title": "Andrea Esperando",
+          "overview": "",
+          "popularity": 0.4071,
+          "poster_path": "/jc7OZoLA13p5pKYBfvuE7CfcrOR.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Andrea Esperando",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            27
+          ],
+          "id": 1824198,
+          "original_language": "es",
+          "original_title": "Hasta las entrañas",
+          "overview": "Luna wakes up disoriented in a workshop where a stranger harasses her while chopping meat. After attacking her, the kidnapper offers her a  way out: find the key to earn her freedom, forcing her to go to unimaginable lengths to survive.",
+          "popularity": 0.23,
+          "poster_path": "/a5AdrmTzw7Pd96liHxp0k3HyfHQ.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Tender Flesh",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1823175,
+          "original_language": "cs",
+          "original_title": "Duchové džungle",
+          "overview": "",
+          "popularity": 0.1113,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Duchové džungle",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/dGvrdiUA8bG96XYyrzDkQCr5s9h.jpg",
+          "genre_ids": [
+            14,
+            18
+          ],
+          "id": 1823156,
+          "original_language": "ru",
+          "original_title": "This is Why",
+          "overview": "During a depressive period one night, a guy discovers a ghost in his room.",
+          "popularity": 0.2043,
+          "poster_path": "/xuwwswz9IVe5NofMe5MYl7AqM30.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "This is Why",
+          "video": false,
+          "vote_average": 8.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            9648,
+            53
+          ],
+          "id": 1822380,
+          "original_language": "en",
+          "original_title": "Somewhere Else",
+          "overview": "Somewhere else, two people, two separate lives. Moving through the same world, beneath the same sky, caught in the same quiet patterns. Their paths seem to mirror one another, as if written in parallel, always close, yet never close enough. Two stories unfolding side by side, in a universe where almost meeting is its own kind of loneliness. They exist in the same somewhere, but never in the same moment.",
+          "popularity": 0.5423,
+          "poster_path": "/tUz2XrcRZ2vTlvusyaui4ucuB3U.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Somewhere Else",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/ecK8xV7RKeJETMoGznfENxaLYRl.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1822084,
+          "original_language": "fr",
+          "original_title": "Marseille, la révolution Tapie",
+          "overview": "",
+          "popularity": 0.4397,
+          "poster_path": "/fzonjTtQ4M17fhJg6423EkMhW9Y.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Marseille, la révolution Tapie",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1821773,
+          "original_language": "it",
+          "original_title": "Sponde",
+          "overview": "To escape the scorching afternoon heat, five teenagers head to the river. We hear their voices as they talk in the shade of the mountain and the surrounding forest. They swim, sit on rocks and invent new games. Embraced by nature, the teenagers become part of it; they are almost one with the water, the earth, the little rocks lining the riverbed.",
+          "popularity": 0.2377,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Sponde",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            53,
+            27
+          ],
+          "id": 1821218,
+          "original_language": "cv",
+          "original_title": "Sinister",
+          "overview": "",
+          "popularity": 0.273,
+          "poster_path": "/9Z45yspJYOU8Ycz1utvpZErE7qD.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Sinister",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/zT11RpC78HsTBPUg1h8sMAqj5jc.jpg",
+          "genre_ids": [
+            27,
+            53
+          ],
+          "id": 1820552,
+          "original_language": "es",
+          "original_title": "Pishtaco",
+          "overview": "",
+          "popularity": 0.3122,
+          "poster_path": "/cm4F7zzG09Wv2cjrwGnIEdfKlLM.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Pishtaco",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99,
+            9648
+          ],
+          "id": 1820305,
+          "original_language": "en",
+          "original_title": "The Mad Pooper",
+          "overview": "Follows the investigation of the mysterious \"Mad Pooper\" case, in which a female jogger repeatedly defecated on lawns in Colorado Springs, exploring archival coverage, resident accounts and law enforcement interviews to uncover the truth.",
+          "popularity": 0.4819,
+          "poster_path": "/ukYe0XV6wqj4du7la1WEP2aO6Vj.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Mad Pooper",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1816277,
+          "original_language": "en",
+          "original_title": "You Should See Me Now",
+          "overview": "Every year, a group of Scottish teenagers who feel unseen - bullied, isolated, struggling to cope - are selected for something extraordinary: a year of brutal physical training culminating in a polar expedition. The expedition, whether Finland or Greenland's storms, is the culmination, not the point. What the film really tracks is one transformation happening in different registers at once: invisible kids learning how to be seen.",
+          "popularity": 0.0862,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "You Should See Me Now",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/hxd2tyEYpxB4FMv1rR08rH8BzX8.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1815821,
+          "original_language": "en",
+          "original_title": "Oru Nimidam",
+          "overview": "During a brief stop in the heart of a forest, Selvan, a Tamil migrant bound for England, finds himself stranded in France with no landmarks or resources. Left to wander an unfamiliar city whose language he does not speak, he drifts between hope and panic, facing silence, suspicion, and rare glimmers of humanity. Oru Nimidam (One Minute) captures, over a compressed timeline, the intimate downward spiral of an ordinary man whose life suddenly hangs in the balance revealing the invisible violence of borders and the vulnerability of those who cross them.",
+          "popularity": 0.1415,
+          "poster_path": "/3ZRSN5ydw0p5YBxi2PxD0LdakMk.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "One Minute",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/bDtkOI5LosmfpgBAKAvTLofiKYs.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1815426,
+          "original_language": "en",
+          "original_title": "Too Old Not To",
+          "overview": "“Feel the fear and do it anyway” is the motto that 55-year-old Heli Murray teaches, and practices, as a birth doula and endurance athlete. Parallel to navigating motherhood, divorce, menopause and grandmotherhood, the ocean has been Heli’s sanctuary and outlet for expanding her own edges.",
+          "popularity": 0.2815,
+          "poster_path": "/nx3OxwEpkzqhYu7YYmKcZRcgtx6.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Too Old Not To",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/jvZSs01rkilzdVUz3yYGaqCWiR.jpg",
+          "genre_ids": [
+            27
+          ],
+          "id": 1815076,
+          "original_language": "es",
+          "original_title": "La Fábrica",
+          "overview": "Un equipo de documentalistas llega a una fábrica abandonada para investigar la polémica muerte de varias empleadas. Mientras la investigación avanza comienzan a registrar algo aterrador que no los dejará salir.  - A documentary crew arrives at an abandoned factory to investigate the controversial deaths of several female employees. As the investigation unfolds, they begin to capture something terrifying—something that will not let them leave. -",
+          "popularity": 0.4191,
+          "poster_path": "/aOTCYXXYqQWjGNORAj0RTonCjgQ.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "La Fábrica",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1814498,
+          "original_language": "en",
+          "original_title": "The Search for Milliseconds",
+          "overview": "Inside mountain bike downhill phenom Jackson Goldstone's high-stakes bid to become one of the youngest riders in history to claim the UCI DH Elite overall title. From pre-season testing to the tense, pressure-filled moments leading into the last race of the year, the film follows Jackson and the team that supports him as they hunt for every possible edge in a sport where the smallest fractions of time can define a champion. With the title on the line and only one decisive run remaining, Jackson prepares to risk everything for the win.",
+          "popularity": 0.26,
+          "poster_path": "/sM3CzsbRz5DSzsKm0XdmI5rv4jB.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Search for Milliseconds",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/s4dmTJWB1Uf7KFiVx2UnPlREDQz.jpg",
+          "genre_ids": [
+            99,
+            35
+          ],
+          "id": 1813770,
+          "original_language": "en",
+          "original_title": "Michael Michael Michael",
+          "overview": "Jazz drummer Michael Brewer takes Chicago by storm.",
+          "popularity": 0.2001,
+          "poster_path": "/tmFtB4yJc8Db9nErLdlQY62rBFE.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Michael Michael Michael",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            16,
+            35
+          ],
+          "id": 1813133,
+          "original_language": "en",
+          "original_title": "The Boingy Boingy Film",
+          "overview": "one late night Harley Quinn, Poison Ivy and Catwoman bump into each other having similar motives to steal the \"Belgian minature\" they play a game of rock, paper, scissors to determine who gets to try and steal it first, Harley Quinn gets the honor.",
+          "popularity": 0.0644,
+          "poster_path": "/30IL63VjJabEXeXJXlIIgkTwOoR.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Boingy Boingy Film",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1812882,
+          "original_language": "en",
+          "original_title": "Refuge",
+          "overview": "In the remote Accursed Mountains of Kosovo, former junior ski champions Seb and Hamda have built an off-grid freeride lodge in search of something they lost long ago. Through breathtaking mountain landscapes, snowboarding and deeply personal memories, the film traces their journey from childhood dreams, through the upheaval of war in the former Yugoslavia, to the creation of a place built on friendship, freedom and belonging.",
+          "popularity": 0.1583,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Refuge",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        }
+      ],
+      "total_pages": 246,
+      "total_results": 4912
+    },
+    {
+      "page": 3,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            35,
+            18,
+            9648
+          ],
+          "id": 1812714,
+          "original_language": "es",
+          "original_title": "Todo lo que me pasa sucede en otro lugar",
+          "overview": "",
+          "popularity": 0.3584,
+          "poster_path": "/jxx0UPOle4sYG0wDek1OkcneiIX.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Todo lo que me pasa sucede en otro lugar",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1812462,
+          "original_language": "en",
+          "original_title": "My Ride or Die",
+          "overview": "Morgan McGlashon (professional mountain guide) and Caite Zeliff (professional skier) picked obscure paths. Those paths collided and became intertwined. When their careers took off they found themselves spending less time in the mountains together but they always dreamed of one day coming back together on a proper adventure. On a 10-day expedition in Alaska, the two reconnect.",
+          "popularity": 0.25,
+          "poster_path": "/bpzKjTLQptQJiAqObtKwioZGjgX.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "My Ride or Die",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/yRcXbFrOO2ttYZnCrYg9en4itDW.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1812110,
+          "original_language": "es",
+          "original_title": "Migrantes: el viaje que nadie quiso emprender",
+          "overview": "",
+          "popularity": 0.5407,
+          "poster_path": "/6tbvWF73KgXJdqbkwPk47EBBpqq.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Migrantes: el viaje que nadie quiso emprender",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99,
+            36
+          ],
+          "id": 1812068,
+          "original_language": "en",
+          "original_title": "More than Everest: The Life of T.H. Somervell",
+          "overview": "T. Howard Somervell (1890-1975) is best known for his role in the 1922 and 1924 expeditions to climb Everest. This film explores the lesser known aspects of Somervell's remarkable life as a missionary surgeon, artist and composer of music.",
+          "popularity": 0.0523,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "More than Everest: The Life of T.H. Somervell",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1811945,
+          "original_language": "en",
+          "original_title": "MiLakóta Yeló",
+          "overview": "Milakóta Yeló follows a traditional Lakota grandmother on the Cheyenne River Sioux Reservation. It's a quiet reflection on identity, memory, and the enduring presence of Lakota life and matriarchal power.",
+          "popularity": 0.0894,
+          "poster_path": "/e6qVHsc1JwFjM4F5kM8Er4NXzbw.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "MiLakóta Yeló",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/4It8nwJXg1cxKo42yJ91GlHZPBc.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1811846,
+          "original_language": "en",
+          "original_title": "Kidical Mass",
+          "overview": "After years of exploring their world by bicycle, the Moss family knew that they wanted to raise their kids on two wheels. But after a frightening accident on the way to school, they had to take a step back from their pedal-powered ambitions. Then they found Kidical Mass. This is the story of how one family is helping to reclaim their streets, one giant kid bike party at a time.",
+          "popularity": 0.0549,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Kidical Mass",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1810954,
+          "original_language": "en",
+          "original_title": "It Takes Two To Tandem",
+          "overview": "Longtime riding partners Sam and Jazz take a tandem bike across some of their favourite trails in the Rockies, marking ten years since their first tandem adventure together. Part celebration, part reflection, the film explores friendship, trust, and the rare joy of moving through the world in sync.",
+          "popularity": 0.1817,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "It Takes Two To Tandem",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/ghjm5oe75lAWwk9VG61tbf9TuNB.jpg",
+          "genre_ids": [
+            99,
+            36
+          ],
+          "id": 1810492,
+          "original_language": "fr",
+          "original_title": "L'Himalaya au cœur",
+          "overview": "In 1802, the Survey of India Institute launched the Great Trigonometrical Survey, a colossal undertaking aimed at precisely mapping British India from which the world became aware of the vast scale of the Himalayan range. From August to November 2024, using these historical maps, Jérémy Bigé makes his way on foot over 2,300km from Indian Kashmir to central Nepal. His goal: to connect the various Himalayan cultures in a single journey by following routes from the past.",
+          "popularity": 0.1254,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Himalayas in My Heart",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            35,
+            18
+          ],
+          "id": 1810033,
+          "original_language": "en",
+          "original_title": "The Great Lake Bums",
+          "overview": "Over the holidays, Michael returns to the Midwest to stay with his best friends, all still living in their same old house from college in Milwaukee. During his several weeks stay, nights out are had, attempts are made to rekindle old flames, and it becomes more and more clear that his friends haven't grown up at all, while maybe Michael's grown up a little too much.",
+          "popularity": 0.5936,
+          "poster_path": "/rUQDXUQhjh9lcw6UXz5Hp2uY4kS.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Great Lake Bums",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1809742,
+          "original_language": "en",
+          "original_title": "KISS: End of the Road",
+          "overview": "The final chapter of KISSTORY. Go all-access backstage on the farewell tour, from the triumphs to the disasters, health scares and cancellations.",
+          "popularity": 0.0495,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "KISS: End of the Road",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/zjCKxJQLVYVGTvqOuUbyBIByvW2.jpg",
+          "genre_ids": [
+            80,
+            18
+          ],
+          "id": 1809505,
+          "original_language": "en",
+          "original_title": "Dark Noon",
+          "overview": "Caught in a cycle of petty crime and imprisonment, a man is released from prison for a failed bank robbery attempt while an impending solar eclipse offers a way out of the cycle.",
+          "popularity": 1.212,
+          "poster_path": "/c47IqLeltfbQKAAces0eRMmLEi7.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Dark Noon",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/y1nXtotgURraReiJJ3raYlPs6z5.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1808463,
+          "original_language": "en",
+          "original_title": "Formline",
+          "overview": "Formline is the defining visual language of traditional Northwest Coast First Nations art; continuous, curvilinear shapes that swell, diminish, and never meet at a hard edge. This film traces the unexpected kinship between this ancient art form and the physics of big mountain snowboarding, where reading terrain and carving a line demand the same fluidity, restraint, and trust in the material at hand.",
+          "popularity": 0.0263,
+          "poster_path": "/4DL1WSpgkgNcb4bg9Y5XfwgZnqt.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Formline",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/iYpNMpnZgyr9n9CuwID7wAajCzz.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1807161,
+          "original_language": "en",
+          "original_title": "Back By Tea Time",
+          "overview": "In a world where it feels like we have everything we could ever want at our fingertips – Amazon, Spotify, next-day delivery, door-to-door, Uber, Netflix, Deliveroo, quicker than ever before, pure convenience and luxury without a second thought – in that world, perhaps there is something to be said for choosing the long way round. When Alice Lemkes realises she's out of milk, it is an excuse for an adventure in ‘Scotland's Last Great Wilderness.’",
+          "popularity": 0.147,
+          "poster_path": "/p6VRtHGGnBElyVWMGiGw91tY0X8.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Back By Tea Time",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            27
+          ],
+          "id": 1806640,
+          "original_language": "en",
+          "original_title": "The Ride Home",
+          "overview": "After a fatal car crash, four friends awaken trapped inside their wrecked car in a liminal space between life and death.",
+          "popularity": 0.1909,
+          "poster_path": "/hrsctrF93jqclVB2CF3n6aB4qG1.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Ride Home",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            35
+          ],
+          "id": 1806606,
+          "original_language": "en",
+          "original_title": "No Strings Attached",
+          "overview": "Two puppets meet on a blind date, and it's hate at first sight. But for their dutiful human puppeteers, the sparks fly instantly. What happens when a puppet and puppeteer disagree? A rowdy comedy about love, work, and obligation, in the age of social media.",
+          "popularity": 0.1264,
+          "poster_path": "/enQuQX09tRPQ0zLJ0cGatU0Lbc1.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "No Strings Attached",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            35,
+            27
+          ],
+          "id": 1806595,
+          "original_language": "en",
+          "original_title": "The Squirrel Diaries",
+          "overview": "“Night of the Living Dead” but with squirrels! Four Gen Z neighbors are thrust into a squirrel apocalypse, so they hunker down in a bunker-like basement doing their best to survive, hoping there is refuge from the rodent rampage. One among them is an amateur survivalist “prepper”; emphasis on amateur.",
+          "popularity": 0.1279,
+          "poster_path": "/xJw7bsQTIJFJAxH5sCfgik7xsrR.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Squirrel Diaries",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            35,
+            27,
+            10749
+          ],
+          "id": 1806583,
+          "original_language": "en",
+          "original_title": "Love in a Hopeless Place",
+          "overview": "Modern dating sucks. Deidre is looking for love but she also has the luxury of feeding off them when they don't work out.",
+          "popularity": 0.8474,
+          "poster_path": "/wFCmXVrRT86TVb6FqVTD3OJpHMJ.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Love in a Hopeless Place",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            35
+          ],
+          "id": 1806580,
+          "original_language": "en",
+          "original_title": "Angler",
+          "overview": "A reserved man discovers an alleyway garage concealing the ultimate mancave, and a charismatic host who won't take no for an answer.",
+          "popularity": 0.0725,
+          "poster_path": "/35dwym1VVYmnj4YRql0I5rlzePG.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Angler",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            27
+          ],
+          "id": 1806543,
+          "original_language": "en",
+          "original_title": "Date Night",
+          "overview": "As Moira prepares for her anniversary dinner, her fond memories of true love put the romance back in necromancy.",
+          "popularity": 0.2132,
+          "poster_path": "/gW3hUgNukzokVbi6cDQGmQDyXyD.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Date Night",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/e2qIPGKAaZP5v3jTqZ98Rm1MI0Y.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1806288,
+          "original_language": "fr",
+          "original_title": "À bord du vide",
+          "overview": "A poetic exploration of the art of steep skiing with Aurélien Lardy. This film celebrates the art of the movement, the commitment, and the intimate relationship between the man and the mountain, and what draws us to vertical places.",
+          "popularity": 0.0948,
+          "poster_path": "/riVtlwz2eyKpgmnc0R1onxFTop4.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "À bord du vide",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        }
+      ],
+      "total_pages": 246,
+      "total_results": 4912
+    },
+    {
+      "page": 4,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": "/5soxDt60jWJoH8JZ6FI8l3v4ov7.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1803128,
+          "original_language": "en",
+          "original_title": "Still Rider",
+          "overview": "After a mountain bike crash resulted in a life altering injury, Chantelle Grafton and her husband Warren have gone to great lengths to get Chantelle back out on the trails. Still Rider explores this journey, highlighting the unanticipated complexities that come with a major spinal cord injury and more importantly the benefits of prioritising adaptive design for those with and without accessibility issues.",
+          "popularity": 0.0951,
+          "poster_path": "/7JA2kxLJlGUNAxeKJJatGuB5EcX.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Still Rider",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/865N9UczsohzNCi2ED2jr2lzhWA.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1803067,
+          "original_language": "de",
+          "original_title": "Mein Mann, mein Mörder",
+          "overview": "This Sky Original documentary reconstructs an extraordinary true-crime case, focusing not on the perpetrator, but on the women—and their desperate attempts to break free from his violence. For the first time, Winfried’s first wife, Marja-Leena, and his daughter, Tuija, speak publicly about their experiences.",
+          "popularity": 0.295,
+          "poster_path": "/o2AcWvevDHf6v2pxufkPSPd0xj7.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Mein Mann, mein Mörder",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/ehFapWy4qrT0z9TEZ5SWCZwYJG8.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1802076,
+          "original_language": "en",
+          "original_title": "A Little Closer",
+          "overview": "While keeping a friend company on a night out, a young woman, grapples with the past, when faced with questions about her own identity.",
+          "popularity": 0.277,
+          "poster_path": "/jOx73oNme9CE9QztDiRaKrKiCiX.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "A Little Closer",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99,
+            16
+          ],
+          "id": 1798966,
+          "original_language": "en",
+          "original_title": "Rat Story",
+          "overview": "I woke up at 5am with a giant rat lying on my chest.",
+          "popularity": 0.3579,
+          "poster_path": "/9zsS16QCnGrqoCrpl1S57ZO73YG.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Rat Story",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            18
+          ],
+          "id": 1798857,
+          "original_language": "sn",
+          "original_title": "Peretera Maneta",
+          "overview": "This film chronicles the journey of a sophisticated young schoolteacher whose city upbringing contrasts greatly with her new-found environment. Her reluctance to form relationships with other villagers takes a turn as she discovers a friendship in the place she never expected: with her students. With little time remaining during her placement at a village school, it is up to her to reveal the shocking discovery she has made. But will local folks believe this arrogant city woman?",
+          "popularity": 0.1643,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Peretera Maneta",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            27
+          ],
+          "id": 1797513,
+          "original_language": "ms",
+          "original_title": "Bisikan",
+          "overview": "A young man haunted by past trauma and hated by his father begins to experience disturbing whispers and horrifying visions in an old mansion. As he struggles to save his family, he becomes trapped between reality and his own imagination.",
+          "popularity": 0.7875,
+          "poster_path": "/nfSKZ5MEci74X6qRoeWMzc72H3Z.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Bisikan",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/q4Uoo1KYXa2sIcfF4p2ngtlOcUL.jpg",
+          "genre_ids": [
+            18,
+            99
+          ],
+          "id": 1796928,
+          "original_language": "es",
+          "original_title": "Cordera",
+          "overview": "Sol, a dancer and choreographer, is a pivotal figure in contemporary dance who, at 59, finds herself at a critical moment in her extraordinary career. With her crew, she's preparing \"The Lamb and Her Army\", an ambitious work that seems to mark the end of her career as a performer. With joints worn down after decades of physical demands, her doctor has surprising news…",
+          "popularity": 0.2979,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Lamb",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/7XluGOWqdw53LVeF2ccRjTfIV4Q.jpg",
+          "genre_ids": [
+            18,
+            35,
+            878
+          ],
+          "id": 1796920,
+          "original_language": "ja",
+          "original_title": "ジモトループ",
+          "overview": "What if leaving home simply wasn't an option? For 29-year-old Satomi, the answer seems absurdly literal. On the very morning she is finally ready to abandon her hometown for Tokyo, she discovers that every attempt to leave brings her straight back to where she started. Caught in an inexplicable time loop, Satomi has no choice but to confront the place and the people she was so determined to leave behind.",
+          "popularity": 0.347,
+          "poster_path": "/1INfXvtBuPGDtLd9s7TdSlRulfp.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Jimoto Loop",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/kaoQZT8q6KZ8bZbZapNBS6rpZaV.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1796553,
+          "original_language": "zh",
+          "original_title": "鬼魂之年",
+          "overview": "Following his father's death, Louis Hothothot turns the camera on his mother and sister in China. With fearless affection, he explores how misogyny has affected the lives of the women in his family across generations.",
+          "popularity": 0.4134,
+          "poster_path": "/hJJW6ldWooLIT7mFBYqjV6n7EnZ.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Year of the Ghost",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/6mjlPv5dPHGpmsYLiODiCQW0o27.jpg",
+          "genre_ids": [
+            99,
+            18
+          ],
+          "id": 1794054,
+          "original_language": "es",
+          "original_title": "Norte claro, sur oscuro",
+          "overview": "Francisca reopens her family home in southern Chile, empty and frozen in time since the death of her parents. As she restores the place with her brother, the figure of her alcoholic father takes shape through their memories, Fran's diaries, and family photos, opening up an exploration of what silently persists between generations.",
+          "popularity": 0.4068,
+          "poster_path": "/yGZhUsuvZjfgqsB5oeYYdXN62XV.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "When the clouds move south",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99,
+            36
+          ],
+          "id": 1793945,
+          "original_language": "pt",
+          "original_title": "Camisas Negras",
+          "overview": "",
+          "popularity": 0.5592,
+          "poster_path": "/dTCJZpYurHxPbipqDw9NVL43QG5.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Camisas Negras",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1793188,
+          "original_language": "en",
+          "original_title": "The TransAtlantic Way",
+          "overview": "At dawn, riders set off from Cork City on a self-supported journey of up to 2,400km, bound for the finish line across Derry’s Peace Bridge, battling fierce winds, rugged terrain, and shifting light. Narrated by veteran long-distance cyclist and event organiser Adrian O’Sullivan, the film immerses viewers in Ireland’s dark and mystical landscape, capturing the endurance, solitude, and raw beauty of the western coast.",
+          "popularity": 0.0818,
+          "poster_path": "/gzgiI4ltvov5QEdhgg08UKh5HvE.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The TransAtlantic Way",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/vdyj9d0VmYpxg4RXbV2jNEXX4uw.jpg",
+          "genre_ids": [
+            18,
+            35
+          ],
+          "id": 1790574,
+          "original_language": "es",
+          "original_title": "Comem*erda",
+          "overview": "When their nine-year-old daughter falls mysteriously ill, a wealthy Dominican couple turns to an experimental treatment created from their housemaid Liddy's feces, without her knowledge. Once Liddy and her colleague Dominga discover the truth, they seize the opportunity to turn the household’s power dynamics upside down.",
+          "popularity": 0.8127,
+          "poster_path": "/qhsWctkeBoLCV0dfVNByrEQ9kHo.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Sh*t Happens",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/rlUTc71sKzbUXcgiFgupYnzfvhq.jpg",
+          "genre_ids": [],
+          "id": 1790030,
+          "original_language": "en",
+          "original_title": "The Painter & the Prince",
+          "overview": "When financial struggles threaten to close her family’s art-tour business before Christmas, self-taught artist Shelby Stevens enters a televised holiday painting competition, hoping the prize money can save it. During the competition, Shelby clashes with fellow contestant “Mark,” whose polished talent and charm slowly win her over through festive adventures and late-night creative breakthroughs. But when Shelby discovers Mark is actually Prince Henry of Serendovia, secretly escaping royal expectations to pursue art, their growing romance is put at risk. As Christmas approaches, Shelby and Henry must decide whether they are confident enough to paint a future of their own.",
+          "popularity": 0.9543,
+          "poster_path": "/b48Bz0KLRyMnLhWOIXXLJ7VMAPw.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Painter & the Prince",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1784339,
+          "original_language": "en",
+          "original_title": "Voyage",
+          "overview": "Nature documentary",
+          "popularity": 0.0689,
+          "poster_path": "/50RzwBnll6iVuzfCriJ8ZCsGUjX.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Voyage",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1776451,
+          "original_language": "en",
+          "original_title": "Show Pony",
+          "overview": "Mid drag performance at a queer bar in Cork, Claire is shocked to spot her traditional Catholic Nana in the crowd. A  conversation unfolds with them backstage, where they realise they both have a lot more in common than they ever could have imagined.",
+          "popularity": 0.5722,
+          "poster_path": "/tmYVlpc2cQLFaIPtkCyjEIMd7Ek.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Show Pony",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/p5i2EQ9kMzzTY8u41oF3rxuWG.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1763500,
+          "original_language": "id",
+          "original_title": "Menang Untuk Kalah",
+          "overview": "The story centers on Bima, a middle-class family head who initially had sincere intentions to improve his household’s financial situation to make his wife, Dewi, happy.  However, his curiosity led him to try a shortcut through online gambling. Starting with small, seemingly tempting wins, Bima instead finds himself trapped in a vicious cycle of high-interest online loans and harassment from debt collectors. This emotional strain triggers intense conflict and shatters the family’s previously stable harmony. Bima must face the bitter reality that his fleeting “wins” in online gambling ultimately lead to total defeat and financial ruin.",
+          "popularity": 0.5787,
+          "poster_path": "/kKvNwXzO9K1MwTcQSVgqghqocGA.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Menang Untuk Kalah",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/voMSgU6bpfEeflieUfJKFhWCFB2.jpg",
+          "genre_ids": [
+            35,
+            18
+          ],
+          "id": 1760134,
+          "original_language": "jv",
+          "original_title": "Piye To Kih?",
+          "overview": "A broken heart drives Mukidi to prove that he is worthy of marrying the woman of his dreams. He works hard until he is able to buy an inexpensive house, which turns out to hold a mystery. In that house, he meets Sukma, a mysterious woman from the spirit world who has a different religion and background, yet manages to help Mukidi get over his heartbreak. Strange events begin to unfold, dragging his two best friends, Gendut and Penyok, into the chaos.",
+          "popularity": 0.8376,
+          "poster_path": "/jCUgxw5XvyBP9sENPBbHD26nns.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Piye To Kih?",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            35,
+            18
+          ],
+          "id": 1755954,
+          "original_language": "en",
+          "original_title": "Fight Back",
+          "overview": "It’s not the hit… it’s how you rise.",
+          "popularity": 0.5742,
+          "poster_path": "/r8fhskVde4FqpLSynbJsctKHXiy.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Fight Back",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/yYVbKQR4HowVyQGy4aPwVvwI38r.jpg",
+          "genre_ids": [],
+          "id": 1745422,
+          "original_language": "nl",
+          "original_title": "Leven in het donker",
+          "overview": "",
+          "popularity": 0.1411,
+          "poster_path": "/8OJfkYoVuJ55DTBYelyMPuf4mf2.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Leven in het donker",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        }
+      ],
+      "total_pages": 245,
+      "total_results": 4900
+    },
+    {
+      "page": 5,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": "/qpQZo0cbrcA9tgKIsgoiLzGyS3o.jpg",
+          "genre_ids": [
+            16,
+            10402,
+            10751
+          ],
+          "id": 1744973,
+          "original_language": "en",
+          "original_title": "Carnival of the Animals",
+          "overview": "A colourful town inhabited by animals prepares for a carnival parade.",
+          "popularity": 0.5565,
+          "poster_path": "/rS6MX2aQp5BHidDbBmvZeypdRoR.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Carnival of the Animals",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/rvrC6ddBF5gLKjgIJFxU7SPrdLs.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1736125,
+          "original_language": "es",
+          "original_title": "Ellas",
+          "overview": "Julia inherited her mother Asunta’s job as a domestic worker in the wealthy De la Puente household, where she was raised alongside the family’s daughters. Asunta, an Andean woman who migrated to Lima after Peru’s 1970 earthquake, carried a life shaped by displacement, silence, and sacrifice. Over the years, affection and inequality became inseparably intertwined within the household. Now, as illness and old age expose long-buried secrets, Julia is forced to confront the invisible social order that has defined her existence. Torn between loyalty and freedom, she must decide whether to remain in the role imposed on her or finally reclaim her own identity.",
+          "popularity": 0.6152,
+          "poster_path": "/tMNt7wQM27mHncuJIEonoairDWz.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Girls Garden",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/3xXFs8oz56pMmIFb7CsXLFukUrM.jpg",
+          "genre_ids": [
+            27,
+            53,
+            28,
+            18
+          ],
+          "id": 1734716,
+          "original_language": "tr",
+          "original_title": "Obitus",
+          "overview": "After a devastating flood, a mysterious parasitic outbreak engulfs a remote village. As Luna and her father, Damien, struggle to survive, they're forced to confront the brutality of nature and the darkest side of humanity. Filled with separation, loss, and horrifying truths, their journey changes their fate forever.",
+          "popularity": 0.4684,
+          "poster_path": "/4DLV9jHnu0BN3ok385KaJcuEWCd.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Obitus",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/8rtVLzCfsGTtNsGYtV8TKv93iGo.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1731354,
+          "original_language": "de",
+          "original_title": "Übergang",
+          "overview": "Renowned documentarian Thomas Heise begins a film on Berlin's Schönhauser Allee, the road he lived on for decades. A few months later, Heise dies unexpectedly.",
+          "popularity": 0.3177,
+          "poster_path": "/ydOVdYpZRwvuIjbRodogfQFUS4p.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Transition",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/b2yrStJBfgVDxwfMoYsHhVOATUT.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1725336,
+          "original_language": "it",
+          "original_title": "Il destino dell'ape",
+          "overview": "Emma is a young woman who discovers that the man who raised her is not her biological father. Her search for the truth becomes a transformative journey across Morocco; a quest for identity, freedom, family and self-discovery.",
+          "popularity": 0.7665,
+          "poster_path": "/a4nEfFDY3oPgP28IsRLIaOsHF8k.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Il destino dell'ape",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            18
+          ],
+          "id": 1723807,
+          "original_language": "de",
+          "original_title": "Break",
+          "overview": "With his shimmering scales, the Rainbow Fish is the most beautiful fish in the entire ocean. But he is also vain and proud, which alienates the other fish. As a result, he becomes increasingly lonely. When he eventually loses one of his beloved glittering scales, it is none other than the Little Blue fish who accompanies him on the search into the deepest parts of the ocean. An adventurous journey begins – and the Rainbow Fish learns that together we are much braver than alone, and that true friendship is more precious than the most magnificent coat of scales.",
+          "popularity": 0.7296,
+          "poster_path": null,
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Break",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/ky7de047prqIwDIyaYo5q99cfP1.jpg",
+          "genre_ids": [
+            99,
+            18
+          ],
+          "id": 1723637,
+          "original_language": "da",
+          "original_title": "Faderhuset",
+          "overview": "In an intriguing cinematic exercise that straddles fiction and documentary, 'Faderhuset' seeks to bare intricate workings of domination and manipulation, as ex-members of the notorious Christian sect Faderhuset direct scenes with well-known Danish actors, including Trine Dyrholm and David Dencik.",
+          "popularity": 1.0356,
+          "poster_path": "/msxphwUsNnJnTWaNlpxHJFjRcW1.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Father's House",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/toYuxPyKVfoCOWZPruwrb0TRQI9.jpg",
+          "genre_ids": [
+            35,
+            18
+          ],
+          "id": 1717652,
+          "original_language": "pt",
+          "original_title": "Sem Pai Nem Mãe",
+          "overview": "Artur is a stand-up comedian who plans to turn his life around and write a book about the story of a female guerrilla fighter from the 1970s. He gets mugged and his computer containing his drafts is stolen, but an app takes photos of the people using the stolen computer and emails them to him.",
+          "popularity": 0.5832,
+          "poster_path": "/jyIFWy5rIagFB9zGXwugCRKnrJP.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Lost Plot",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/wqml8vV0dMtlorZtmyPBD7SRXyH.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1715868,
+          "original_language": "en",
+          "original_title": "Good Luck, Kid",
+          "overview": "Grit, gear, growth – this film is a portrait of Taylor Shaffer’s coming-of-age as a photographer and filmmaker, following his creative trajectory as he shepherds Alex Honnold and Tommy Caldwell through a 2,500-mile expedition to attempt a single-day traverse of the Devil’s Thumb massif and finds his artistic voice amid risk, friendship, and a changing Alaskan landscape.",
+          "popularity": 0.2841,
+          "poster_path": "/ap3Y7Pny1m5Dd6SfgUloRprvyiP.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Good Luck, Kid",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/wIIVyyLDdNhQMVi3eVwBMS4mHlu.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1714128,
+          "original_language": "nl",
+          "original_title": "Spinoza",
+          "overview": "In 1656 Amsterdam, young Jewish philosopher Bento de Spinoza watches his world collapse when his closest friend is executed for printing forbidden ideas. The city is gripped by plague, fear, and religious zeal, and Bento's growing habit of questioning sacred truths makes him a danger to both Church and synagogue. Amid this turmoil, he meets Rembrandt van Rijn, the once-celebrated painter now sliding into debt and disgrace.",
+          "popularity": 0.7217,
+          "poster_path": "/2EthCXOJuvvZ6HYtDXk55sawvNK.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Spinoza",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            27,
+            53
+          ],
+          "id": 1702665,
+          "original_language": "ar",
+          "original_title": "جحيم العابرين",
+          "overview": "On an isolated road late at night, a young woman, driving alone, comes across a stranded male driver whose car has broken down on a mountain road notorious for disappearances and murders. Choosing empathy over a creeping sense of foreboding, she offers him a ride to the nearest station. That single choice unleashes a harrowing chain of strange and terrifying events in the dead of night, turning a simple gesture of kindness into a real-life nightmare.",
+          "popularity": 1.2273,
+          "poster_path": "/gMnKuYfHQNG34MItBJKuvTT85Zn.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Traveler's Hell",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            10749
+          ],
+          "id": 1698629,
+          "original_language": "en",
+          "original_title": "Christmas En Pointe",
+          "overview": "Years after breaking off their engagement, a small-town dance teacher and an ambitious senator returning home for Christmas are thrown back together to save her struggling studio, rekindling the love they once lost.",
+          "popularity": 1.0762,
+          "poster_path": "/sgLWEkXBp9oLvdTUlNklrSySfOE.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Christmas En Pointe",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/ynWhXB41PsvJZPJB9uq7Af1DqRx.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1684838,
+          "original_language": "uk",
+          "original_title": "Машина часу Майдан",
+          "overview": "In this haunting and visually inventive documentary, a spectral voice drifts through time and memory to trace the Maidan revolution and the roots of resistance in Ukraine.",
+          "popularity": 0.7024,
+          "poster_path": "/hrOpAW4on2jyc003BtZijx4IEEx.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Time Machine Maidan",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/saHUIv7DClJ0fLDc4lfxHdSxBm1.jpg",
+          "genre_ids": [
+            35,
+            18,
+            10749
+          ],
+          "id": 1679486,
+          "original_language": "id",
+          "original_title": "People Pleaser: Si Paling Gak Enakan",
+          "overview": "Karina is a young woman who always puts others first and finds it difficult to say \"no.\" This habit leaves her exhausted and causes her to sacrifice her own dreams.",
+          "popularity": 1.2784,
+          "poster_path": "/m3fQU8sEid4lvUaA6dXhks7v9nf.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "People Pleaser: Si Paling Gak Enakan",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            35,
+            10751
+          ],
+          "id": 1667739,
+          "original_language": "ru",
+          "original_title": "Разыскивается Дед Мороз",
+          "overview": "On New Year's Eve, a not-so-lucky thief, Misha, breaks into a house in the very center of Moscow, where a lonely old man lives. Misha hopes to improve his unenviable financial situation and bring back his family - his wife and seven-year-old daughter. However, in the old man's big house, he finds nothing of any value, except for the deposits of children's toys in the basement. The old man himself assures him that he is none other than the real Father Frost.",
+          "popularity": 0.5156,
+          "poster_path": "/uOfh5srvEWIaIEpOA6INmq4bdMI.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Разыскивается Дед Мороз",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/yftPoQlAbT989dpB4yDEVZfadXC.jpg",
+          "genre_ids": [
+            10751,
+            35,
+            18,
+            12,
+            10749,
+            14
+          ],
+          "id": 1658835,
+          "original_language": "uk",
+          "original_title": "S Миколай та загублений лист",
+          "overview": "Whilst preparing for yet another round of spreading holiday cheer, saint Nicholas discovers an unopened letter that had been sent to him by a young boy named Borys 30 years ago. Now the latter is a sucssesful businessman who had lost the abbility to see the joys and whimsy of life after being severly beaten down by the world around him. The legendary giftgiver enters a race against time to help the broken man regain his childlike wonder, or else one will forever loose the abbility to feel joy and the other, his magical powers.",
+          "popularity": 0.5436,
+          "poster_path": "/a38CR1ZdxVLvXyPyIkKzB6zuJYR.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "A December Tale 2: The Lost Letter",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/ArRgIhvBRwHjVNYUh7acGpAaf1z.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1632188,
+          "original_language": "it",
+          "original_title": "Il fuoco che ti porti dentro",
+          "overview": "Antonio, who fled Naples many years ago, has built a family and a successful career in Milan, far from his mother Angela — a woman excessive in both her virtues and her flaws, irresistible, old-fashioned and hostile like few others — who has come to visit for Christmas and seems determined to stay.  Christmas Eve dinner becomes an emotional battlefield, at once comic and fierce, bringing to the surface a past of impositions and misunderstandings. With a stubborn capon that refuses to end up in the pot, a daughter whose arrival remains uncertain, and an unexpected distinguished guest, the evening turns into a reckoning between mother and son destined to change the meaning of their bond forever: a love that burns like a fire within, one that never dies out — not even by leaving.",
+          "popularity": 1.7279,
+          "poster_path": "/kCfIZpqRsBe39Y1lUCxOAjgQ5VR.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Fire Within You",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/1LYC3PvCmGoL5Ir6MM2GglquHOa.jpg",
+          "genre_ids": [
+            10751,
+            16,
+            12
+          ],
+          "id": 1625344,
+          "original_language": "de",
+          "original_title": "Der Regenbogenfisch",
+          "overview": "The rainbow fish, an outsider obsessed with his glittering scales, learns the power of friendship on an adventurous sea voyage with the little blue fish. He finds his place in a colorful fish community—and realizes that sharing brings people together.",
+          "popularity": 1.2503,
+          "poster_path": "/gjrX5FooRmMT3BXd3woiO67qp6p.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "The Rainbow Fish",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            18,
+            9648
+          ],
+          "id": 1624343,
+          "original_language": "ru",
+          "original_title": "Омоон суоллар. Искупление",
+          "overview": "The investigation of a seemingly ordinary murder in the wilderness confronts operative Nyurgun Vasiliev with a difficult moral choice: to follow the letter of the law or to show human compassion. This dilemma becomes the main test for the hero, revealing new facets of his character.",
+          "popularity": 0.1484,
+          "poster_path": "/yZb4W71v2ShvF5S6MQknPmXyFk5.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "Invisible Paths. Redemption",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/oQddmpvmhE5MF7EGef1bRwBeszZ.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1622868,
+          "original_language": "en",
+          "original_title": "My Grandmother’s Sketchbook: Under Mont Blanc",
+          "overview": "A 30-year-old sketchbook leads Max Romey to the Mont Blanc region. The Alaska-based watercolor artist and environmental advocate sets out to follow in the footsteps of his grandmother, who visited this landscape in the late 1990s and captured it in dozens of drawings. With mountain guide Hillary Gerardi, Max attempts to locate each sketch’s exact origin point. Many match perfectly—until the Mer de Glace throws him off course. The glacier has changed too much in 30 years to recognize.",
+          "popularity": 0.279,
+          "poster_path": "/6lLWBlOClCNW4QsO2ZqQufTNZCS.jpg",
+          "release_date": "2026-11-19",
+          "softcore": false,
+          "title": "My Grandmother’s Sketchbook: Under Mont Blanc",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        }
+      ],
+      "total_pages": 245,
+      "total_results": 4900
+    }
+  ],
+  "request_id": "new_movies"
+}

@@ -4,48 +4,48 @@
   "expired_snapshots": [],
   "fetch_failure_count": 0,
   "fetch_failures": [],
-  "generated_at": "2026-11-20T07:23:08.723232+00:00",
+  "generated_at": "2026-11-20T20:27:09.197052+00:00",
   "restore_error_count": 0,
   "restore_errors": [],
   "snapshot_count": 6,
   "snapshot_inventory": [
     {
-      "fetched_at": "2026-11-20T07:23:08.723232+00:00",
+      "fetched_at": "2026-11-20T20:27:09.197052+00:00",
       "item_count": 100,
       "list_id": "new_movies",
       "provider_id": "tmdb",
       "request_id": "new_movies"
     },
     {
-      "fetched_at": "2026-11-20T07:23:08.723232+00:00",
+      "fetched_at": "2026-11-20T20:27:09.197052+00:00",
       "item_count": 100,
       "list_id": "new_series",
       "provider_id": "tmdb",
       "request_id": "new_series"
     },
     {
-      "fetched_at": "2026-11-20T07:23:08.723232+00:00",
+      "fetched_at": "2026-11-20T20:27:09.197052+00:00",
       "item_count": 100,
       "list_id": "popular_movies",
       "provider_id": "tmdb",
       "request_id": "popular_movies"
     },
     {
-      "fetched_at": "2026-11-20T07:23:08.723232+00:00",
+      "fetched_at": "2026-11-20T20:27:09.197052+00:00",
       "item_count": 100,
       "list_id": "popular_series",
       "provider_id": "tmdb",
       "request_id": "popular_series"
     },
     {
-      "fetched_at": "2026-11-20T07:23:08.723232+00:00",
+      "fetched_at": "2026-11-20T20:27:09.197052+00:00",
       "item_count": 100,
       "list_id": "upcoming_movies",
       "provider_id": "tmdb",
       "request_id": "upcoming_movies"
     },
     {
-      "fetched_at": "2026-11-20T07:23:08.723232+00:00",
+      "fetched_at": "2026-11-20T20:27:09.197052+00:00",
       "item_count": 100,
       "list_id": "upcoming_series",
       "provider_id": "tmdb",

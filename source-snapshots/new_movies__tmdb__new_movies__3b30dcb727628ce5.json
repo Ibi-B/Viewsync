@@ -1,0 +1,3858 @@
+{
+  "fetched_at": "2026-11-20T20:27:09.197052+00:00",
+  "items": [
+    {
+      "adult": false,
+      "backdrop_path": "/6PhwdxruMLiPLbwV79Elmf7NkUT.jpg",
+      "genre_ids": [
+        35,
+        27
+      ],
+      "id": 1832030,
+      "original_language": "it",
+      "original_title": "Quella casa a Vetralla",
+      "overview": "",
+      "popularity": 0.0,
+      "poster_path": "/bpkdinZAlMKUJ0lPow2SUy9ptFP.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Quella casa a Vetralla",
+      "video": false,
+      "vote_average": 10.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/i0PvCIuAXEbdZ0rWWI96N5EDPM5.jpg",
+      "genre_ids": [
+        9648
+      ],
+      "id": 1832005,
+      "original_language": "en",
+      "original_title": "Purple Mass",
+      "overview": "A boy wanders through the remnants of a abandoned school, discovering a mysterious purple glow",
+      "popularity": 0.0,
+      "poster_path": "/zaJ1CxWhh63zTaenNdBNV0bnAki.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Purple Mass",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/6bVUr8ILDlF7UNRgYAUdTUe1EqP.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1832003,
+      "original_language": "fr",
+      "original_title": "Comment devenir connu",
+      "overview": "Why does fame hold such an allure for us? To find out, Phil Lacroix gives himself six months to become famous. Through his gonzo-style approach, he paints a portrait of a Quebec culture in the midst of a major upheaval.",
+      "popularity": 0.0,
+      "poster_path": "/aprHL6tg5v5Fn7efcslIAqmTNiy.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Comment devenir connu",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/soPq3ROz0usUKZ6cLq7XGZWTfFA.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1831786,
+      "original_language": "en",
+      "original_title": "Sufferfest",
+      "overview": "Follows four athletes as they train for the world’s most revered 100 mile race: The Ultra Trail Mont Blanc. Spanning 171km, over 33,000 feet of elevation gain and three countries, the race is nothing short of mythic. And with everything on the line, these elite runners come face to face with the pressure, the risk and the grit it takes to earn a spot on the podium.",
+      "popularity": 0.0,
+      "poster_path": "/l0j8qseIjHwDHz3SLR0YQ8LnFjZ.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Sufferfest",
+      "video": false,
+      "vote_average": 7.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/lHlZ7drog4hpHAXBOABlG6EuyJl.jpg",
+      "genre_ids": [
+        16
+      ],
+      "id": 1831444,
+      "original_language": "xx",
+      "original_title": "SPACES",
+      "overview": "In a world where people are physically shaped by the ones closest to them, a malleable young figure named Gunther struggles to fill the empty spaces left by his closest friends, ultimately learning that healing isn’t about filling in what’s lost, but embracing the spaces they leave behind.",
+      "popularity": 0.0194,
+      "poster_path": "/lkdqd92kz1E2Q6qZd1ZzvPyIplI.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "SPACES",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/iyth6Af9dAqylU2VTjrkvB57qhX.jpg",
+      "genre_ids": [
+        99,
+        35
+      ],
+      "id": 1831410,
+      "original_language": "fr",
+      "original_title": "Coluche, Le Luron, Desproges : quand on pouvait rire de tout",
+      "overview": "",
+      "popularity": 0.0582,
+      "poster_path": "/jjtqNCa8Thf4pibmBjBF99hElm3.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Coluche, Le Luron, Desproges : quand on pouvait rire de tout",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/m7ZDEvF2qSsGD1mVTEPkZREkrbx.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1831408,
+      "original_language": "sv",
+      "original_title": "Studie i mänskligt beteende",
+      "overview": "A study of human behaviour, puts different archetypes of people in common and uncommon situations to see how they act. We'll meet the know-it-all, the rule stickler, the neurotic, the lone wolf, and many more.",
+      "popularity": 0.0388,
+      "poster_path": "/gwqV4aw9wq5dtOwqxOnuaIGHEOi.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Studie i mänskligt beteende",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/hCqkgeLYEsdnxlhF5uc1yeugeI8.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1831188,
+      "original_language": "en",
+      "original_title": "Extinction",
+      "overview": "For over five years, Save Windermere has campaigned to end sewage pollution in Windermere, exposing the scale of the problem, challenging those responsible and bringing the plight of the lake to national attention. This work culminated in the publication of the landmark Only Rainwater into Windermere feasibility study, demonstrating how sewage pollution could be eliminated from Windermere and its surrounding catchment. Released at a pivotal moment for Windermere’s future, this film features extraordinary cinematography and the voices of those whose lives are deeply connected to the lake.",
+      "popularity": 0.0388,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Extinction",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/qPJrYpW6yzvAc1zPz9XcBHdgDZA.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1831051,
+      "original_language": "cs",
+      "original_title": "Experiment 26",
+      "overview": "Ten boys were abruptly torn away from their normal routine at the TOM Radotín children’s camp without warning to take part in the grueling game “Experiment 26”—a harsh psychological and physical survival reality show set deep in the woods. In this game, where no one knows who is “infected” or who to trust, they must also face isolation, hunger, and the constant pressure of the field laboratory. This gripping documentary captures 72 hours of paranoia and exhaustion, during which friendship turns into an uncompromising struggle for survival, and victory is achieved only by the ability to sacrifice others for one’s own survival.",
+      "popularity": 0.3105,
+      "poster_path": "/dpzcaQmvk0d7oY7Qrt3yp8GDtKu.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Experiment 26",
+      "video": false,
+      "vote_average": 10.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/aaJOUVOwJvrD65W4vGoAtM8e8fg.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1830811,
+      "original_language": "en",
+      "original_title": "Half Moon, Half Crazy",
+      "overview": "A documentary on Canadian musician Michael Louis Johnson's house concert in Stratford, Ontario.",
+      "popularity": 0.0194,
+      "poster_path": "/edV1VHFWfEE3dkDnHaWYPYgVSIA.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Half Moon, Half Crazy",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/t2OWPQLAVqLt3hpzG85X4JgysYR.jpg",
+      "genre_ids": [
+        35
+      ],
+      "id": 1830258,
+      "original_language": "en",
+      "original_title": "A Very Mythical Holiday Special",
+      "overview": "Kick off the season with Rhett & Link’s first-ever live holiday special Nov 20! This festive variety show brings you a magical wintery night full of songs, sketches, special guests & more.",
+      "popularity": 0.1164,
+      "poster_path": "/2GAp8uwDyJGvMJSyI5xkLd8C2Ja.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "A Very Mythical Holiday Special",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        28,
+        53,
+        18
+      ],
+      "id": 1830175,
+      "original_language": "kn",
+      "original_title": "ಮಾರಿಗೆ ದಾರಿ",
+      "overview": "Maarige Daari is not just revenge, it's the cost of walking the wrong path for the right reason. Every action carries emotional weight, Maarige Daari is a cinematic masterpiece, a cult classic built on raw emotion, intense action, and a relentless journey.",
+      "popularity": 0.0776,
+      "poster_path": "/eUpEdxplNd1BYlncB2IZAd62dyh.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Maarige Daari",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ci7kfSkQwBK7Qs0MyRjL5tGyt2U.jpg",
+      "genre_ids": [
+        35,
+        18
+      ],
+      "id": 1829458,
+      "original_language": "en",
+      "original_title": "Stage Fright",
+      "overview": "An amateur magician learns the difference between an optimistic attitude and what is within reach.",
+      "popularity": 0.0326,
+      "poster_path": "/6c5XHJBovMNJMtoMOCgmygKrGuB.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Stage Fright",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/jWbJ2Ufu8dILXt3ntUnzqT1EROw.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1829115,
+      "original_language": "en",
+      "original_title": "Tape Jerky",
+      "overview": "A short film about Chicago's Media Burn Archive and the challenge of preserving video stored on magnetic tape.",
+      "popularity": 0.0908,
+      "poster_path": "/2sWi9aUrYne1N5aiKUyw0EIZ5nR.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Tape Jerky",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/lVz0M9kymDSNHsb3ceXKj7EhC9O.jpg",
+      "genre_ids": [
+        35,
+        878
+      ],
+      "id": 1828872,
+      "original_language": "es",
+      "original_title": "Piscodelia",
+      "overview": "At a party, Alex decides to end his relationship with Sara, who goes to the bar looking for a drink. But after drinking a magical shot of Pisco, she goes back to the past, and after an unexpected event, she decides to go back several times to let her feellings out.",
+      "popularity": 0.2205,
+      "poster_path": "/1WRDdnUTXa4tNsyqpV05AUJMjzR.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Piscodelia",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/Aj0QXsk1iVrD4tFv1g2KZep1Vcm.jpg",
+      "genre_ids": [
+        53
+      ],
+      "id": 1828798,
+      "original_language": "en",
+      "original_title": "Canada Corpse",
+      "overview": "A young woman escaping into her drug fuelled fantasies.",
+      "popularity": 0.3253,
+      "poster_path": "/3fZL4VXPNuf5eFSGaFYpNjcXWz.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Canada Corpse",
+      "video": false,
+      "vote_average": 9.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1828383,
+      "original_language": "en",
+      "original_title": "America's Parade: 100 Years of Macy's Thanksgiving Day Parade",
+      "overview": "The 2026 Macy's Thanksgiving Day Parademarks a milestone for the iconic holiday event: It's the Parade's 100th iteration.   The Parade first kicked off all the way back in 1924, but because of World War II, no Parades were held from 1942 to 1944. That means 2026 marks a full century of Parade magic, which is fitting, seeing as how NBC celebrates its 100th anniversary this November, too.   Such an occasion needs to be honored properly, which is why NBC is airing a special documentary about the Macy's Thanksgiving Day Parade as it approaches this exciting birthday",
+      "popularity": 0.117,
+      "poster_path": "/72E5PtK0CBnz79Fsxbtry6gpvSr.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "America's Parade: 100 Years of Macy's Thanksgiving Day Parade",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        80,
+        9648
+      ],
+      "id": 1827853,
+      "original_language": "tr",
+      "original_title": "Direktör Oedipus",
+      "overview": "",
+      "popularity": 0.2109,
+      "poster_path": "/1zA5bM4bCW1HqDKuBXRYPSUaSNI.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Direktör Oedipus",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35,
+        14
+      ],
+      "id": 1827683,
+      "original_language": "en",
+      "original_title": "Saudade Cat",
+      "overview": "A disgruntled slacker searches for his lost cat.",
+      "popularity": 0.4513,
+      "poster_path": "/9lT2v9eGJlwdtgfnXOgnY6lQgdB.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Saudade Cat",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18,
+        35,
+        10402
+      ],
+      "id": 1827200,
+      "original_language": "en",
+      "original_title": "The Audition",
+      "overview": "An aspiring actor and drummer confronts his own perfectionism, and growing frustration with a faulty bass drum pedal, as he attempts a self-tape audition for a local production of the play “Stereophonic.”",
+      "popularity": 0.345,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "The Audition",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        80,
+        9648
+      ],
+      "id": 1827853,
+      "original_language": "tr",
+      "original_title": "Direktör Oedipus",
+      "overview": "",
+      "popularity": 0.2109,
+      "poster_path": "/1zA5bM4bCW1HqDKuBXRYPSUaSNI.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Direktör Oedipus",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35,
+        14
+      ],
+      "id": 1827683,
+      "original_language": "en",
+      "original_title": "Saudade Cat",
+      "overview": "A disgruntled slacker searches for his lost cat.",
+      "popularity": 0.4513,
+      "poster_path": "/9lT2v9eGJlwdtgfnXOgnY6lQgdB.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Saudade Cat",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18,
+        35,
+        10402
+      ],
+      "id": 1827200,
+      "original_language": "en",
+      "original_title": "The Audition",
+      "overview": "An aspiring actor and drummer confronts his own perfectionism, and growing frustration with a faulty bass drum pedal, as he attempts a self-tape audition for a local production of the play “Stereophonic.”",
+      "popularity": 0.345,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "The Audition",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1827188,
+      "original_language": "es",
+      "original_title": "Lindo Recuerdo",
+      "overview": "",
+      "popularity": 0.1015,
+      "poster_path": "/oZcIpBrmbRsED5fanysi0JF54Ft.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Lindo Recuerdo",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1827107,
+      "original_language": "es",
+      "original_title": "Deep Memories",
+      "overview": "",
+      "popularity": 0.2129,
+      "poster_path": "/7qe6rcqjxo9LDzm507i5sPzwxph.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Deep Memories",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1827095,
+      "original_language": "es",
+      "original_title": "El Club de los Ansiosos",
+      "overview": "",
+      "popularity": 0.0761,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "El Club de los Ansiosos",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18
+      ],
+      "id": 1827081,
+      "original_language": "es",
+      "original_title": "Hierba Mala",
+      "overview": "",
+      "popularity": 0.2038,
+      "poster_path": "/zwcm4fHAWG8WhWDNu1jZVy0pvu7.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Hierba Mala",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1826898,
+      "original_language": "en",
+      "original_title": "Déjà Vu: The Eye of LuLu",
+      "overview": "Mysterious assassinations and blackouts throughout Manhattan are linked to a major aerospace company, its corporate hit men, and two bumbling Russian agents hellbent on capturing the world-changing power of its AI technology. True-Crime Blogger Cassie Cole enlists the help of a masked whistle-blower, a high-end hacker, a CIA psychic, and the sassy sentient AI, to uncover their international conspiracy and its lethal consequences.",
+      "popularity": 0.6137,
+      "poster_path": "/dJUYzJIReqi0P5JvjKLr56Xo1XX.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Déjà Vu: The Eye of LuLu",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18
+      ],
+      "id": 1826780,
+      "original_language": "es",
+      "original_title": "El silencio que dejaste",
+      "overview": "After his wife's death, Jacinto returns to the home he shared with her; consumed by her absence, a presence manifests, forcing him to confront her memory and bid her farewell.",
+      "popularity": 0.323,
+      "poster_path": "/uyk70smADVOCqANtttqiABWOGrU.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "What's Left Behind",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/qW8Po7dAHrMihy52HzZYYu0I9ns.jpg",
+      "genre_ids": [
+        27
+      ],
+      "id": 1826406,
+      "original_language": "tl",
+      "original_title": "How to Avoid Elves?",
+      "overview": "A group of students search for traces of Philippine elves in their university.",
+      "popularity": 0.2645,
+      "poster_path": "/6uoNY0JAu385hH97y4qziITd5xI.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "How to Avoid Elves?",
+      "video": false,
+      "vote_average": 10.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1826159,
+      "original_language": "fr",
+      "original_title": "David et Jonathan",
+      "overview": "Jonathan returns to his childhood village for his grandmother’s funeral. While he reunites with his childhood lover there, a meteor manipulated by a pop star unleashes strange creatures.",
+      "popularity": 0.0891,
+      "poster_path": "/bXzQXGgzcYhz93Ghvl6OEXjBpOC.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "David et Jonathan",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18
+      ],
+      "id": 1825987,
+      "original_language": "es",
+      "original_title": "Muy azul, pero...",
+      "overview": "A couple plays with a camera, observing each other through it. During a storm, she disappears. His solitude is interrupted as memories of her begin to haunt him. The storm starts to resurface.",
+      "popularity": 0.3083,
+      "poster_path": "/j8HaJF8PnPC1oouEMSmp4t8WnX9.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Muy azul, pero...",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        27,
+        35
+      ],
+      "id": 1825284,
+      "original_language": "en",
+      "original_title": "My Girlfriend is a Serial Killer",
+      "overview": "David comes home ready to propose to his longtime girlfriend. But when he walks on her in the middle of a gruesome murder, he's left questioning the relationship. Can he see past her murderous habits or will love prevail?",
+      "popularity": 0.6032,
+      "poster_path": "/xY4R1rHrlfJJGA2rjL65I5eqAvD.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "My Girlfriend is a Serial Killer",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1825168,
+      "original_language": "es",
+      "original_title": "Border Chocolate - The Second Life Economy of Cars",
+      "overview": "",
+      "popularity": 0.1529,
+      "poster_path": "/iy60agBXkIQvkAI2KHYp4pX5M34.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Border Chocolate - The Second Life Economy of Cars",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1825130,
+      "original_language": "en",
+      "original_title": "For No One",
+      "overview": "After his father’s death, a son finds himself still caught in the hold of their complicated relationship. Through offerings, rituals, and encounters that blur the boundary between the living and the dead, he confronts what remains between them–and the possibility of reconciliation after death.",
+      "popularity": 0.1166,
+      "poster_path": "/yHgdsvZa5Ei5u5PFCZvOuuAUF64.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "For No One",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/fxh8A0cq6SLzgmsSv48PgS5myFw.jpg",
+      "genre_ids": [
+        99,
+        10751
+      ],
+      "id": 1824359,
+      "original_language": "fr",
+      "original_title": "Nausicaá, l'aquarium de tous les défis",
+      "overview": "",
+      "popularity": 0.1274,
+      "poster_path": "/t4gwP4HB5tfvq1HHNycW11GuYas.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Nausicaá, l'aquarium de tous les défis",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/l7uERJIpPZPOBknBlr0w7PpHqUH.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1824287,
+      "original_language": "fr",
+      "original_title": "Sous la peau, les couleurs",
+      "overview": "",
+      "popularity": 0.2571,
+      "poster_path": "/okIRDUVxzvI2JtzDcTiHatFwpos.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Sous la peau, les couleurs",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1823971,
+      "original_language": "en",
+      "original_title": "Gipsy Kings Featuring Tonino Baliardo",
+      "overview": "Discovered by Brigitte Bardot while busking on the beaches of Saint-Tropez, a Romani gypsy guitarist of Catalan musical lineage forms the Gipsy Kings and turns a marginalized culture into a global music phenomenon.",
+      "popularity": 0.4476,
+      "poster_path": "/iJcrOQ5d2aAQwqhqDVIB7KGKJqP.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Gipsy Kings Featuring Tonino Baliardo",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/tZqU4ob2DuT5MhOzHIRdvzQYBnL.jpg",
+      "genre_ids": [
+        35
+      ],
+      "id": 1823918,
+      "original_language": "lt",
+      "original_title": "Dvi Rankos Žemyn Ir Krenta",
+      "overview": "An overworked person returns home only to spent his free time watching questionable content on cable TV.",
+      "popularity": 0.0967,
+      "poster_path": "/57WanAsmufkrZc6Czuq49lMfTqb.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Two Feet Down And Falling",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ytzJUMw4wzw9XQWRMIxjOO0OJWt.jpg",
+      "genre_ids": [
+        35,
+        18
+      ],
+      "id": 1823756,
+      "original_language": "en",
+      "original_title": "One Night at the Aztec",
+      "overview": "A comedic collection of six stories during one night at a local movie theater. Love and loss, friendship and hate, all experienced within the dark auditorium. A love letter to cinema of the past and to the artists working today.",
+      "popularity": 0.4363,
+      "poster_path": "/sDoWPSUe74uCj0y7wc3CtccnUQN.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "One Night at the Aztec",
+      "video": false,
+      "vote_average": 9.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/oFgU2IZEu0T2kq0YJzdaswgijbO.jpg",
+      "genre_ids": [
+        27
+      ],
+      "id": 1822730,
+      "original_language": "en",
+      "original_title": "Thank You for Your Patience",
+      "overview": "A dating website matches Jack with his supposed \"soul mate\" but he is automatically enrolled in a paid subscription. His failed attempts to cancel only lead him deeper into the bureaucratic nightmare as he's forced to visit the company headquarters, a  bizarre labyrinth of hallways .",
+      "popularity": 0.1508,
+      "poster_path": "/nVGNxsfQiHwgUpTbxYlCY3SASd4.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Thank You for Your Patience",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/6LpNPIQhR6UlcJPGz8nVzo3bGd2.jpg",
+      "genre_ids": [
+        35,
+        10749,
+        18,
+        10751
+      ],
+      "id": 1822476,
+      "original_language": "fr",
+      "original_title": "A LOVE STORY CHAPTER 1",
+      "overview": "",
+      "popularity": 0.3837,
+      "poster_path": "/usOwTiRAbN7Cg0rKF6KMZt7CRkq.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "A LOVE STORY CHAPTER 1",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/gAsZJaQ16P8NnBBUIUPAow63Btg.jpg",
+      "genre_ids": [
+        18,
+        35,
+        10751
+      ],
+      "id": 1822400,
+      "original_language": "zh",
+      "original_title": "金哲",
+      "overview": "",
+      "popularity": 0.3202,
+      "poster_path": "/FBcloDR9qkTyxHOjmwAinYhPMr.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "金哲",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1821765,
+      "original_language": "it",
+      "original_title": "Per rimanere insieme",
+      "overview": "Claudia and Leo are the film’s protagonists, two friends with sparkling eyes full of wonder. They film themselves as they shop for groceries and play as if it were the end of the world: they hide in an abandoned house, cook canned beans on a camping stove, and burn small wooden objects. But even the purest friendship has an expiration date: the next day, Leo has to move away with his family. It was their last afternoon together.",
+      "popularity": 0.1493,
+      "poster_path": "/uWvNvynJnYQc7CumDudA1DfPwGj.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Per rimanere insieme",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        27,
+        14
+      ],
+      "id": 1821750,
+      "original_language": "it",
+      "original_title": "Lucia",
+      "overview": "Sweet Cionsi and Captain Walker travel across the Po valley in search of the Ciocobuoni alla Panna biscuits, Saint Lucy's favorites.",
+      "popularity": 0.1695,
+      "poster_path": "/jN0BHiGvBZwTewHpeNumQDiohtb.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Lucia",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/97VnNPP8nHxBCz04jFtRMKdJRt6.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1821708,
+      "original_language": "en",
+      "original_title": "Sophomores",
+      "overview": "When a group of friends come back from college to have their annual Friendsgiving dinner, they realize that they have all changed since high school.",
+      "popularity": 0.5484,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Sophomores",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1821338,
+      "original_language": "it",
+      "original_title": "Buone vacanze Heidelberg",
+      "overview": "Introduced in 1957, Contergan, a drug containing thalidomide, promised relief from illness. Prescribed to ease nausea in pregnant women, it caused severe congenital malformations, including phocomelia. At Heidelberg’s Orthopedic Hospital, where Ernst Marquardt works, surgeries, rehabilitation sessions and prosthesis fittings mark the childhood of its young patients. In Buone vacanze Heidelberg, Rebecca Picci reflects on this period.",
+      "popularity": 0.0897,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Buone vacanze Heidelberg",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/8Gdxo2smoSFSSelajk1ihcBxMWf.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1820698,
+      "original_language": "es",
+      "original_title": "Bailar la muerte",
+      "overview": "",
+      "popularity": 0.6448,
+      "poster_path": "/mI79B0avLONcjoLydGo1QMXSWPa.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Bailar la muerte",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/pB5HrqNObI8PFy5R9lWypNSF0a2.jpg",
+      "genre_ids": [
+        53,
+        27,
+        878
+      ],
+      "id": 1820522,
+      "original_language": "en",
+      "original_title": "Prism",
+      "overview": "A prisoner is trapped in an experimental hallucinatory chamber with nightmarish scenes.",
+      "popularity": 0.3259,
+      "poster_path": "/fI2JfHSiwAdOH4nAc4ODS5F6GGd.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Prism",
+      "video": false,
+      "vote_average": 7.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        27,
+        10749
+      ],
+      "id": 1819685,
+      "original_language": "km",
+      "original_title": "ត្បូងបរប៉ៃលិន",
+      "overview": "Khmer movie",
+      "popularity": 0.1142,
+      "poster_path": "/spqFiBJQCKudzkQZPtqLs2xowtk.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Pailin Gems",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1816677,
+      "original_language": "en",
+      "original_title": "The Rare Folk 2",
+      "overview": "Follow up to The Rare Folk",
+      "popularity": 0.1422,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "The Rare Folk 2",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/jJeVR9hpi9cFOeZTgcoZ4mkqJTC.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1816327,
+      "original_language": "bn",
+      "original_title": "যাপিত জীবন",
+      "overview": "",
+      "popularity": 0.4845,
+      "poster_path": "/a1fbCOZ8NYTU58XlnetKJrbtv7a.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Leaving Behind the Roots",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1816291,
+      "original_language": "en",
+      "original_title": "Zuma Rock",
+      "overview": "Rotimi, an amateur climber and writer from London with deep family roots in Nigeria sets out to achieve the unthinkable: a first ascent of Zuma Rock, a 300m monolith considered sacred by the communities who live in its shadow. To do it, he enlists Olympic climbing champion Shauna Coxsey but neither of them has ever tackled a wall of this scale.",
+      "popularity": 0.2439,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Zuma Rock",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1816232,
+      "original_language": "en",
+      "original_title": "Wild Ice",
+      "overview": "As winter slowly reveals itself across the Canadian Rockies, artist and skater Elladj Baldé and photographer Paul Zizka chase the season’s first wild ice - a journey that becomes a reflection on freedom, connection, and the human desire to move through life with intention.",
+      "popularity": 0.1052,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Wild Ice",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1816198,
+      "original_language": "en",
+      "original_title": "Wild Camps",
+      "overview": "​​This short film was co-created with young people, all of whom live in Hull, a city in Northern England which is the least wooded in the whole of the UK. Through poetry and participatory action research, the youth delve into the impact of nature immersion on a five-day Wild Camp with Rewilding Youth has on them.",
+      "popularity": 0.0841,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Wild Camps",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1816128,
+      "original_language": "en",
+      "original_title": "We Are Here",
+      "overview": "A powerful documentary following seven Black British women as they step onto the world’s most prestigious trail running stage: The 2025 UTMB World Series Finals in Chamonix.",
+      "popularity": 0.1225,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "We Are Here",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1816103,
+      "original_language": "en",
+      "original_title": "We Are Cyclists",
+      "overview": "The film traces the origin and growth of All Bodies on Bikes, challenging narrow, performance-driven definitions of cycling and expanding who gets to call themselves a cyclist. Rooted in joy, inclusion, and collective care, All Bodies on Bikes proves that these values aren’t radical: they’re essential.",
+      "popularity": 0.1194,
+      "poster_path": "/66ORANDAwr7I3HFfqZTxMJ3OOhZ.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "We Are Cyclists",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1815776,
+      "original_language": "en",
+      "original_title": "The Tree Keepers",
+      "overview": "The Isle of Arran is home to three tree species found nowhere else in the world, including the Catacol Whitebeam, of which only a single recognised wild specimen exists. For decades, amateur gardeners Henry Murdo and Margo McLellan have dedicated their spare time to cultivating and protecting these rare trees, ensuring their survival against the odds.",
+      "popularity": 0.0729,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "The Tree Keepers",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1815492,
+      "original_language": "fr",
+      "original_title": "Les Mots de Sahil",
+      "overview": "Sahil’s Words is a poetic documentary that explores migration, the learning of French, and solidarity through the story of an 18-year-old Afghan refugee living in a camp in Switzerland. As he learns French, he tries to rebuild his life. Alongside him, a retired man accompanies him. What begins as simple learning encounters gradually becomes a quiet relationship, woven between two generations and two worlds.",
+      "popularity": 0.1004,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Sahil's Words",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/bumO0YH2YhMad0V6E58KdcRyy2t.jpg",
+      "genre_ids": [
+        27,
+        878
+      ],
+      "id": 1815463,
+      "original_language": "sv",
+      "original_title": "[2 - sonen]",
+      "overview": "Can we find freedom in our abandonment",
+      "popularity": 0.1732,
+      "poster_path": "/6yAScFt4xp4VntBw222uTLubkEI.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "[2 - the son]",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1815492,
+      "original_language": "fr",
+      "original_title": "Les Mots de Sahil",
+      "overview": "Sahil’s Words is a poetic documentary that explores migration, the learning of French, and solidarity through the story of an 18-year-old Afghan refugee living in a camp in Switzerland. As he learns French, he tries to rebuild his life. Alongside him, a retired man accompanies him. What begins as simple learning encounters gradually becomes a quiet relationship, woven between two generations and two worlds.",
+      "popularity": 0.1004,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Sahil's Words",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/bumO0YH2YhMad0V6E58KdcRyy2t.jpg",
+      "genre_ids": [
+        27,
+        878
+      ],
+      "id": 1815463,
+      "original_language": "sv",
+      "original_title": "[2 - sonen]",
+      "overview": "Can we find freedom in our abandonment",
+      "popularity": 0.1732,
+      "poster_path": "/6yAScFt4xp4VntBw222uTLubkEI.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "[2 - the son]",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/txD36U6xWzzITVdEvUgo3dMoKOD.jpg",
+      "genre_ids": [],
+      "id": 1815443,
+      "original_language": "pt",
+      "original_title": "Natasha",
+      "overview": "After Natasha’s murder, three friends cross Mato Grosso do Sul toward the Pantanal to fulfill her last wish: to compete in a drag queen contest. With few resources and facing prejudice along the way, the journey reveals bonds, conflicts, and dreams. Amid loss and discovery, the trip becomes an experience of friendship, belonging, and the affirmation of their own existence.",
+      "popularity": 0.3168,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Natasha",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1815404,
+      "original_language": "es",
+      "original_title": "Tiba",
+      "overview": "This isn't quite a climbing story. It's a pause on the mountain, seen through the eyes of Tiba, a young Colombian climber whose voice already seems to know a path his feet have only begun to walk. The film follows the quiet bond between the boy and the walls he climbs, a place where he finds calm, discipline, and a freedom rare for someone his age. Up there, the height turns out to be the least of it.",
+      "popularity": 0.0721,
+      "poster_path": "/jhXJKt5kSU4FVb9ffuXjJhvIAvM.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Tiba",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/jHHpNjFv4VRKBpXulXyflX88AqK.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1815336,
+      "original_language": "en",
+      "original_title": "SURFRUN",
+      "overview": "Jonny lives in Cornwall, beside 300 miles of coast path he has barely seen. He runs, and he surfs. Neither is about being good at it. Then he loses someone close. What stays with him is not just the grief, it is how suddenly it can all stop. So he sets out to run and surf the entire path, at his own pace, for no reason other than wanting to. The miles are not the hard part. The noise is. The pull to go faster, suffer more, make it look bigger than it is. He spends 300 miles ignoring it, with his partner Katie and their dog Oreo meeting him along the way.",
+      "popularity": 0.1079,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "SURFRUN",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1814885,
+      "original_language": "fr",
+      "original_title": "Rivières secrètes des Nakanaï",
+      "overview": "In the village of Ruraï, in Papua New Guinea, people tell of a water hidden deep within the Nakanai Mountains so pure that anyone who drinks it is said to gain extraordinary powers. Immersed in the heart of a tropical rainforest, a team of cavers including the inimitable Cédric Lachat, set out to uncover this mysterious underground river system.",
+      "popularity": 0.312,
+      "poster_path": "/y7tNQ8zokogrk79CPXiUyKEK4tM.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Secret Rivers of the Nakanai",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/j8scvBcLU4Tnd21SRURDiDhwmKr.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1814667,
+      "original_language": "en",
+      "original_title": "Searching for SuperCrust: The Lost Tapes",
+      "overview": "Five cyclists set out to cross Europe's largest glacier by bike. An expedition 30 years in the making, the film explores the past, present, and future of Vatnajökull through the stories of those who have braved the glacier’s icy expanse on two wheels.",
+      "popularity": 0.2083,
+      "poster_path": "/gUVaxIVVHePzdyNa3f2LPUmCb0s.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Searching for SuperCrust: The Lost Tapes",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/A4T01UqFxfWL4kpmnAeoJt8Kj50.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1814530,
+      "original_language": "en",
+      "original_title": "American Trilogy",
+      "overview": "American Trilogy narrates the deep life of Elvis Presley, the King of Rock, through real filming. This is a cinematic, exciting and dynamic experience.",
+      "popularity": 0.1711,
+      "poster_path": "/snlEbmy62vNZUyyGr3kbTeDoZ94.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "American Trilogy",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/sT15xqoG8f1nuUDXbH2SX44ENBS.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1814412,
+      "original_language": "en",
+      "original_title": "Sam Hodgson - The Story of a Freerider",
+      "overview": "There was never a plan B. Not out of stubbornness, but because Sam Hodgson never needed one. Growing up on a farm, somewhere between dirt, shovels and bikes, it was clear early on: if there’s nothing to ride, you build it yourself.",
+      "popularity": 0.1042,
+      "poster_path": "/3Ao0c9qTA7Vk6w8o2wPBcuV0CVR.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Sam Hodgson - The Story of a Freerider",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1813729,
+      "original_language": "en",
+      "original_title": "Roots",
+      "overview": "More than 200 days of the year, you can find local Vermonter and ski patroller Ethan Parrish skiing some of the most extreme terrain in the Vermont backcountry. Ethan is aware of the impact of outsiders on local life, from the strain on community to reckless practices in the backcountry. While clearing the land surrounding his great-uncle’s farmhouse, he dreams of his own future, living off the land and skiing Vermont’s Green Mountains. Roots explores his deep connection to the mountains, the people in his life, and his home.",
+      "popularity": 0.0989,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Roots",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/yhhrsNx6VAXVEIZ3Ghm1lFj6Z7x.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1813716,
+      "original_language": "en",
+      "original_title": "Rongo",
+      "overview": "With plenty of powder to go around, un-ridden waves rolling into secret golden beaches, and local characters to greet you with a smile, six professional athletes make the most of every moment during an action-packed adventure through Aotearoa, NZ!",
+      "popularity": 0.2251,
+      "poster_path": "/7KGAf2gbBAoDwNvOp7L44KYrGS1.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Rongo",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/cbvOzHGAU9PH2o8zXk3L3zMjdbX.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1813701,
+      "original_language": "en",
+      "original_title": "Rodeo On Ice",
+      "overview": "With skijoring poised to become a potential addition to the 2030 Winter Olympics, lifelong equestrian Britta Nancarrow assembles a team to push her skijoring to the next level. The film follows Nancarrow as she trains with skier Mike King and snowboarder Sandra Hillen, taking their on-snow skills to their very first competition.",
+      "popularity": 0.0744,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Rodeo On Ice",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/4i3pV82PivdnQeUOv9wSA3bBglq.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1813610,
+      "original_language": "en",
+      "original_title": "Ripple",
+      "overview": "Two women sit by the lake that raised them and have a conversation about what it means to be a freeride skier. After dedicating their lives to the sport, they question the meaning of it all. More than anything, this is a story about surrendering to the present moment. A story about being water.",
+      "popularity": 0.0814,
+      "poster_path": "/sf87DtHOVl7vshiZTvPyzpORSJo.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Ripple",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/tT47C583oT9xDsFv5ql3IZmjkrx.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1813390,
+      "original_language": "en",
+      "original_title": "Ridgeline",
+      "overview": "Professional musician and composer Liz Derstine heads into the wilderness to chase a very different goal: attempting a self-supported Fastest Known Time on the Pacific Crest Trail.",
+      "popularity": 0.0929,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Ridgeline",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1812975,
+      "original_language": "en",
+      "original_title": "Rev",
+      "overview": "They come from Iraq or Afghanistan. Some have rebuilt their lives in Europe. Others have never left their country, making the journey to Mallorca all the more extraordinary. The film follows eight women lining up at the start of Mallorca by UTMB for the very first trail race of their lives.",
+      "popularity": 0.0804,
+      "poster_path": "/aifecUHSdL9vKwq5SKAQLpLW13f.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Rev",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1812962,
+      "original_language": "en",
+      "original_title": "Resurfacing",
+      "overview": "Deena Lynch, aka Jaguar Jonze, is a touring artist and songwriter. In 2024 she experienced a sudden and unexplained paralysis while swimming and began to drown. She was diagnosed with functional neurological disorder and lupus. The ocean became her sanctuary and place of rehabilitation as she learned about her new body. A year later, despite her debilitating health condition, she qualified for the Australian national team at the 35th AIDA Freediving World Championships in Cyprus and shocked the world.",
+      "popularity": 0.0821,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Resurfacing",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/16yGZRA3NJLPPwsnHqk1guqEx7K.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1812892,
+      "original_language": "en",
+      "original_title": "Regrowth",
+      "overview": "There is a kaleidoscopic beauty to the rich micro landscape of lichens. The beauty of lichens is what drew April Windle to them. She is one of just a handful of professional lichenologists in the UK, spending her time studying a lifeform that goes unnoticed by most people. In this short film, April reflects on how, when she experienced a period of mental health crisis, her love for lichens gave her a window back to the beauty in the world, and a way back to balance.",
+      "popularity": 0.1936,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Regrowth",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1812873,
+      "original_language": "pl",
+      "original_title": "XI: Thou Shalt Not Be Indifferent",
+      "overview": "Marian Turski, the world-renowned historian, journalist, and until his recent passing, president of the International Auschwitz Committee, takes us back to the roots of evil. A survivor of the Lodz Ghetto, Auschwitz, Buchenwald, and Theresienstadt death camps in his youth, Turski explains with firsthand knowledge and surgical precision how otherwise well-educated and cultured people can, under certain circumstances, turn into criminals and mass murderers. He reminds us about the painful past, explains the present, and warns about the future. His dramatic plea, \"do not be indifferent!\" remains more relevant now than ever. Andrzej Wolf, the director and cinematographer of this film, pays a loving tribute to one of the last moral compasses of the Greatest Generation.",
+      "popularity": 1.0698,
+      "poster_path": "/71X5cj6FcmwDKFYrrq0EEzAMMVQ.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "XI: Thou Shalt Not Be Indifferent",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1812816,
+      "original_language": "en",
+      "original_title": "Pain Game",
+      "overview": "Set in the Lake District, Jack Jarvis - ex-Royal Marine, two-time Atlantic record breaker and survivor of a near-fatal parachute accident - takes on his first backyard ultra. Through failed recovery, mounting pain and shared suffering, the race becomes an exploration of the role pain and camaraderie plays in achievement.",
+      "popularity": 0.0412,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Pain Game",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1812805,
+      "original_language": "en",
+      "original_title": "On Flying",
+      "overview": "Moving between family life, alpine pursuits, and memories of a lifetime spent chasing human flight, the film follows a father, designer, and master flyer confronting what it means to age inside a discipline built on precision, instinct, and consequence. More than a film about risk, this is a quiet portrait of craft, family, and the strange humility of coming home after touching flight.",
+      "popularity": 0.0615,
+      "poster_path": "/AibF5IgtGe7ktrcunkX2RIskQFX.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "On Flying",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1812175,
+      "original_language": "en",
+      "original_title": "S.O.L.",
+      "overview": "S.O.L. (Statute of Limitations / Shit Outta Luck) is a short film that looks at the limits of justice and the uncertain journey of healing. Through poetic visuals, it explores how survivors deal with trauma. S.O.L. is both personal and political. It breaks the silence, shows where systems fall short, and reclaims power through storytelling.",
+      "popularity": 0.0547,
+      "poster_path": "/5EtDN4ZvlDugREukEZ3gl0iQBR7.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "S.O.L.",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1812166,
+      "original_language": "en",
+      "original_title": "Remember the Removal",
+      "overview": "Generations after their ancestors were marched through Missouri on the Trail of Tears, Cherokee, Mvskoke, and Pawnee storytellers discover a small rural town in the Missouri Ozarks.",
+      "popularity": 0.1413,
+      "poster_path": "/rBXpi9yG0X49LxBOfm80EKSMBh5.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Remember the Removal",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1812146,
+      "original_language": "en",
+      "original_title": "Redemption",
+      "overview": "Redemption is told through the perspectives of fentanyl addiction survivors in recovery, tribal leaders, and healthcare professionals who combat the devastating impact of fentanyl on the Mandan, Hidatsa, and Arikara Nation.",
+      "popularity": 0.0952,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Redemption",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/rB9t4q2Qn5TRgFzNy2uIzpzZ9Rz.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1812055,
+      "original_language": "en",
+      "original_title": "Miss Adventure",
+      "overview": "​​Mikah Meyer grew up a middle-America pastor's son, trapped in a religion-sealed closet until his twenties. After his 70,000 social media followers crown Mississippi \"The Most Homophobic State in America\", Mikah endeavours to run across the entire state in flamboyant colours. Alongside his college mentor, Larry, they confront traumas from their collective time in America’s Bible Belt and beyond.",
+      "popularity": 0.1389,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Miss Adventure",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1812053,
+      "original_language": "en",
+      "original_title": "Marcus & Me",
+      "overview": "As a participant in the Outdoor Inclusion Coalition, 'little' Marcus explores the less-known corners of his Pittsburgh back yard to seek out opportunities for climbing and connection with nature.",
+      "popularity": 0.0786,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Marcus & Me",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1812004,
+      "original_language": "en",
+      "original_title": "The Long Way Home",
+      "overview": "Kelly Halpin has long dreamed of completing a full traverse of the beautiful and seldom travelled Gros Ventre mountain range right in her backyard in Wyoming. The route is 50 miles off-trail over technical terrain and hits every major summit in the range. After years of scouting and two failed attempts the film shows the power of perseverance and dreaming big while staying close to home.",
+      "popularity": 0.0586,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "The Long Way Home",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1811985,
+      "original_language": "en",
+      "original_title": "Learning to Fly",
+      "overview": "As surfing grows in popularity, an unlikely new craft challenges a community of lifelong surfers to become beginners again. Forced to question what they think they know about surfing, they rediscover the joy, freedom and shared spirit that first drew them to the ocean.",
+      "popularity": 0.0576,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Learning to Fly",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1811957,
+      "original_language": "en",
+      "original_title": "Nasty",
+      "overview": "Beauty and lifestyle influencer, Sienna, receives an unexpected visitor while filming her weekly vlog.",
+      "popularity": 0.0674,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Nasty",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1811951,
+      "original_language": "en",
+      "original_title": "More Than Art: RRR.RAID",
+      "overview": "More Than Art: RRR.RAID is a conversation of the creative and expressive O'odham people.",
+      "popularity": 0.0588,
+      "poster_path": "/xq3jbQwAjRIrkNDtPDucDOcUuoa.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "More Than Art: RRR.RAID",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1811861,
+      "original_language": "en",
+      "original_title": "Kindred",
+      "overview": "A film exploring the bond between a mother and daughter, a story of home, devotion and a shared love of trad climbing in North Wales.",
+      "popularity": 0.0853,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Kindred",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1810964,
+      "original_language": "en",
+      "original_title": "It's What You Make It",
+      "overview": "Lars has figured out what he loves - snowboarding. This film explores his approach to surfstyle carving and what keeps him coming back after 35 years. For him, carving becomes a form of expression, feeling and freedom.",
+      "popularity": 0.0749,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "It's What You Make It",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1810759,
+      "original_language": "en",
+      "original_title": "Teleplasm",
+      "overview": "In 1920s Winnipeg, filmmaker Kate Solar's great-great-grandfather took thousands of spirit photographs during seances he held. In order to make sense of this family legacy shrouded in mystery and grief, Solar tries to uncover what the photos meant to the women who helped create and archive them.",
+      "popularity": 0.1182,
+      "poster_path": "/kpo7JhxU5rsjzRpZqef71AgNpHj.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Teleplasm",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/w1Jc08bpEMhRvSZbYf0Qaftn1Jg.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1810746,
+      "original_language": "en",
+      "original_title": "Into the Light",
+      "overview": "Follow two young South African surfers whose lives could not be more precarious and whose dreams, against all odds, carry them across an ocean they were never meant to touch. Born from struggle, but fuelled by possibility, the story illuminates the belief that sport and education can bridge divides and shows how two young athletes challenge the weight of history.",
+      "popularity": 0.1146,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Into the Light",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1810724,
+      "original_language": "es",
+      "original_title": "Une zone d'échos",
+      "overview": "In Mexico, the keen pain of the loved ones of missing persons deepened by a lack of understanding, injustice and a lack of recourse. To bring this internal suffering to light, a group of women takes part in a project of creation and research that takes the form of a cathartic performance. In a warehouse transformed into a symbolic space dedicated to externalizing pain and frustration, they engage in reenactments, exchanges, and role-playing situations relating to their daily lives as the mothers, sisters or spouses of people whose lives were suddenly taken. Their stories resonate until the echo of their distress meets that of the others, bringing forth a poignant ode to sisterhood and solidarity.",
+      "popularity": 0.5708,
+      "poster_path": "/wgZMMKmPpeoM2l2QxzbjtvffUti.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Une zone d'échos",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/7YePUQN9GI8JOkADHxyN1g4fMPB.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1810500,
+      "original_language": "en",
+      "original_title": "Hotpipe Hillbillies",
+      "overview": "A documentary about community, resilience, and finding joy in the most unlikely of places. Against the backdrop of Shoreham’s industrial shoreline, a diverse crew of surfers gather at an industrial outflow pipe to ride waves that are often messy, fickle, and short-lived. This ain’t Cornwall. It sure ain’t California. But for this crew, it’s home",
+      "popularity": 0.0748,
+      "poster_path": null,
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Hotpipe Hillbillies",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/a4sWKGHcwv8WFXrC97zjMacT90u.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1809835,
+      "original_language": "en",
+      "original_title": "The Hillbilly Scientist",
+      "overview": "While modern running has evolved toward sleek curation, optimisation, and commercialisation, Lazarus Lake has spent 50 years designing formats with an unapologetic, honest difficulty. The Hillbilly Scientist reveals that Laz’s cruellest courses are rooted in a deeply scientific understanding of human psychology and physical limits. This is the only official documentary dedicated to the creator of the Barkley Marathons and Big’s Backyard Ultra. Filmed over more than a year, it reveals the man behind the myth through never-before-seen footage, exclusive testimonials, and exceptional access to Laz’s world.",
+      "popularity": 0.4406,
+      "poster_path": "/vqKm2739WhuEABnC3iDjl5ZWPWe.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "The Hillbilly Scientist",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1809705,
+      "original_language": "en",
+      "original_title": "Grigoriy's Chimgan",
+      "overview": "In the mountains around Chimgan, Uzbekistan, lies a ski culture largely unknown to the outside world. Paul and Loïc travel there to meet Grigoriy, a local ski legend who pioneered freeride skiing in the region. Through his stories, they discover an unexpected side of Uzbekistan, its mountains and a unique ski culture now finding new momentum, while hoping to repeat a first descent Grigoriy made on Greater Chimgan many years ago.",
+      "popularity": 0.0426,
+      "poster_path": "/vvR3oHgvLa6CNzARihicMn9cOHj.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Grigoriy's Chimgan",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/trPZFTBUr0Uf0ReCyZjTNWTdYI3.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1809664,
+      "original_language": "en",
+      "original_title": "Grade A Bullsh*t",
+      "overview": "A witty and thought-provoking documentary that asks a deceptively simple question: Who decides climbing grades? After adaptive climber Maureen Beck finally achieves her long-sought first 5.12 route, the celebration is short lived when the climb is downgraded. The experience leaves her wondering whether grades are objective measures of difficulty, or reflections of ego, bias, and the culture surrounding climbing. Determined to find answers, Maureen sets her sights on Far From God, a notoriously difficult Kentucky testpiece.",
+      "popularity": 0.1213,
+      "poster_path": "/71BDH5sltr171uptf6PNqf8DdWg.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Grade A Bullsh*t",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/id56zSQX7jpWeqgqmMkS0yOVyG9.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1809499,
+      "original_language": "en",
+      "original_title": "the 4th turning",
+      "overview": "Several trans women navigate Amsterdam's rapid decline into technofascism.",
+      "popularity": 0.284,
+      "poster_path": "/kmAkdw5Q291QMCqQ8y1sIngpFg6.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "the 4th turning",
+      "video": false,
+      "vote_average": 10.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1809154,
+      "original_language": "en",
+      "original_title": "Framed",
+      "overview": "Siebe Vanhee sets out to onsight Voie Petit, a brutal 12-pitch 8a+ line at 3,500m on the Grand Capucin, completely alone - no partner, no static ropes, just lead rope-solo technique and a drone circling above. But even a solo mission as a professional climber has a crew: a manager on the phone, a sponsor waiting for footage, a director on the glacier, and Vanhee himself playing climber, cameraman and storyteller all at once, selfie-interviewing his own exhaustion pitch by pitch.",
+      "popularity": 0.0941,
+      "poster_path": "/2nHyuVLjUNVnz5OAoZtwqUlz2sE.jpg",
+      "release_date": "2026-11-20",
+      "softcore": false,
+      "title": "Framed",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    }
+  ],
+  "list_id": "new_movies",
+  "media_type": "movie",
+  "provider_id": "tmdb",
+  "raw_payloads": [
+    {
+      "page": 1,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": "/6PhwdxruMLiPLbwV79Elmf7NkUT.jpg",
+          "genre_ids": [
+            35,
+            27
+          ],
+          "id": 1832030,
+          "original_language": "it",
+          "original_title": "Quella casa a Vetralla",
+          "overview": "",
+          "popularity": 0.0,
+          "poster_path": "/bpkdinZAlMKUJ0lPow2SUy9ptFP.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Quella casa a Vetralla",
+          "video": false,
+          "vote_average": 10.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/i0PvCIuAXEbdZ0rWWI96N5EDPM5.jpg",
+          "genre_ids": [
+            9648
+          ],
+          "id": 1832005,
+          "original_language": "en",
+          "original_title": "Purple Mass",
+          "overview": "A boy wanders through the remnants of a abandoned school, discovering a mysterious purple glow",
+          "popularity": 0.0,
+          "poster_path": "/zaJ1CxWhh63zTaenNdBNV0bnAki.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Purple Mass",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/6bVUr8ILDlF7UNRgYAUdTUe1EqP.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1832003,
+          "original_language": "fr",
+          "original_title": "Comment devenir connu",
+          "overview": "Why does fame hold such an allure for us? To find out, Phil Lacroix gives himself six months to become famous. Through his gonzo-style approach, he paints a portrait of a Quebec culture in the midst of a major upheaval.",
+          "popularity": 0.0,
+          "poster_path": "/aprHL6tg5v5Fn7efcslIAqmTNiy.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Comment devenir connu",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/soPq3ROz0usUKZ6cLq7XGZWTfFA.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1831786,
+          "original_language": "en",
+          "original_title": "Sufferfest",
+          "overview": "Follows four athletes as they train for the world’s most revered 100 mile race: The Ultra Trail Mont Blanc. Spanning 171km, over 33,000 feet of elevation gain and three countries, the race is nothing short of mythic. And with everything on the line, these elite runners come face to face with the pressure, the risk and the grit it takes to earn a spot on the podium.",
+          "popularity": 0.0,
+          "poster_path": "/l0j8qseIjHwDHz3SLR0YQ8LnFjZ.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Sufferfest",
+          "video": false,
+          "vote_average": 7.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/lHlZ7drog4hpHAXBOABlG6EuyJl.jpg",
+          "genre_ids": [
+            16
+          ],
+          "id": 1831444,
+          "original_language": "xx",
+          "original_title": "SPACES",
+          "overview": "In a world where people are physically shaped by the ones closest to them, a malleable young figure named Gunther struggles to fill the empty spaces left by his closest friends, ultimately learning that healing isn’t about filling in what’s lost, but embracing the spaces they leave behind.",
+          "popularity": 0.0194,
+          "poster_path": "/lkdqd92kz1E2Q6qZd1ZzvPyIplI.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "SPACES",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/iyth6Af9dAqylU2VTjrkvB57qhX.jpg",
+          "genre_ids": [
+            99,
+            35
+          ],
+          "id": 1831410,
+          "original_language": "fr",
+          "original_title": "Coluche, Le Luron, Desproges : quand on pouvait rire de tout",
+          "overview": "",
+          "popularity": 0.0582,
+          "poster_path": "/jjtqNCa8Thf4pibmBjBF99hElm3.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Coluche, Le Luron, Desproges : quand on pouvait rire de tout",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/m7ZDEvF2qSsGD1mVTEPkZREkrbx.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1831408,
+          "original_language": "sv",
+          "original_title": "Studie i mänskligt beteende",
+          "overview": "A study of human behaviour, puts different archetypes of people in common and uncommon situations to see how they act. We'll meet the know-it-all, the rule stickler, the neurotic, the lone wolf, and many more.",
+          "popularity": 0.0388,
+          "poster_path": "/gwqV4aw9wq5dtOwqxOnuaIGHEOi.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Studie i mänskligt beteende",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/hCqkgeLYEsdnxlhF5uc1yeugeI8.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1831188,
+          "original_language": "en",
+          "original_title": "Extinction",
+          "overview": "For over five years, Save Windermere has campaigned to end sewage pollution in Windermere, exposing the scale of the problem, challenging those responsible and bringing the plight of the lake to national attention. This work culminated in the publication of the landmark Only Rainwater into Windermere feasibility study, demonstrating how sewage pollution could be eliminated from Windermere and its surrounding catchment. Released at a pivotal moment for Windermere’s future, this film features extraordinary cinematography and the voices of those whose lives are deeply connected to the lake.",
+          "popularity": 0.0388,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Extinction",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/qPJrYpW6yzvAc1zPz9XcBHdgDZA.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1831051,
+          "original_language": "cs",
+          "original_title": "Experiment 26",
+          "overview": "Ten boys were abruptly torn away from their normal routine at the TOM Radotín children’s camp without warning to take part in the grueling game “Experiment 26”—a harsh psychological and physical survival reality show set deep in the woods. In this game, where no one knows who is “infected” or who to trust, they must also face isolation, hunger, and the constant pressure of the field laboratory. This gripping documentary captures 72 hours of paranoia and exhaustion, during which friendship turns into an uncompromising struggle for survival, and victory is achieved only by the ability to sacrifice others for one’s own survival.",
+          "popularity": 0.3105,
+          "poster_path": "/dpzcaQmvk0d7oY7Qrt3yp8GDtKu.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Experiment 26",
+          "video": false,
+          "vote_average": 10.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/aaJOUVOwJvrD65W4vGoAtM8e8fg.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1830811,
+          "original_language": "en",
+          "original_title": "Half Moon, Half Crazy",
+          "overview": "A documentary on Canadian musician Michael Louis Johnson's house concert in Stratford, Ontario.",
+          "popularity": 0.0194,
+          "poster_path": "/edV1VHFWfEE3dkDnHaWYPYgVSIA.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Half Moon, Half Crazy",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/t2OWPQLAVqLt3hpzG85X4JgysYR.jpg",
+          "genre_ids": [
+            35
+          ],
+          "id": 1830258,
+          "original_language": "en",
+          "original_title": "A Very Mythical Holiday Special",
+          "overview": "Kick off the season with Rhett & Link’s first-ever live holiday special Nov 20! This festive variety show brings you a magical wintery night full of songs, sketches, special guests & more.",
+          "popularity": 0.1164,
+          "poster_path": "/2GAp8uwDyJGvMJSyI5xkLd8C2Ja.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "A Very Mythical Holiday Special",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            28,
+            53,
+            18
+          ],
+          "id": 1830175,
+          "original_language": "kn",
+          "original_title": "ಮಾರಿಗೆ ದಾರಿ",
+          "overview": "Maarige Daari is not just revenge, it's the cost of walking the wrong path for the right reason. Every action carries emotional weight, Maarige Daari is a cinematic masterpiece, a cult classic built on raw emotion, intense action, and a relentless journey.",
+          "popularity": 0.0776,
+          "poster_path": "/eUpEdxplNd1BYlncB2IZAd62dyh.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Maarige Daari",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/ci7kfSkQwBK7Qs0MyRjL5tGyt2U.jpg",
+          "genre_ids": [
+            35,
+            18
+          ],
+          "id": 1829458,
+          "original_language": "en",
+          "original_title": "Stage Fright",
+          "overview": "An amateur magician learns the difference between an optimistic attitude and what is within reach.",
+          "popularity": 0.0326,
+          "poster_path": "/6c5XHJBovMNJMtoMOCgmygKrGuB.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Stage Fright",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/jWbJ2Ufu8dILXt3ntUnzqT1EROw.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1829115,
+          "original_language": "en",
+          "original_title": "Tape Jerky",
+          "overview": "A short film about Chicago's Media Burn Archive and the challenge of preserving video stored on magnetic tape.",
+          "popularity": 0.0908,
+          "poster_path": "/2sWi9aUrYne1N5aiKUyw0EIZ5nR.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Tape Jerky",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/lVz0M9kymDSNHsb3ceXKj7EhC9O.jpg",
+          "genre_ids": [
+            35,
+            878
+          ],
+          "id": 1828872,
+          "original_language": "es",
+          "original_title": "Piscodelia",
+          "overview": "At a party, Alex decides to end his relationship with Sara, who goes to the bar looking for a drink. But after drinking a magical shot of Pisco, she goes back to the past, and after an unexpected event, she decides to go back several times to let her feellings out.",
+          "popularity": 0.2205,
+          "poster_path": "/1WRDdnUTXa4tNsyqpV05AUJMjzR.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Piscodelia",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/Aj0QXsk1iVrD4tFv1g2KZep1Vcm.jpg",
+          "genre_ids": [
+            53
+          ],
+          "id": 1828798,
+          "original_language": "en",
+          "original_title": "Canada Corpse",
+          "overview": "A young woman escaping into her drug fuelled fantasies.",
+          "popularity": 0.3253,
+          "poster_path": "/3fZL4VXPNuf5eFSGaFYpNjcXWz.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Canada Corpse",
+          "video": false,
+          "vote_average": 9.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1828383,
+          "original_language": "en",
+          "original_title": "America's Parade: 100 Years of Macy's Thanksgiving Day Parade",
+          "overview": "The 2026 Macy's Thanksgiving Day Parademarks a milestone for the iconic holiday event: It's the Parade's 100th iteration.   The Parade first kicked off all the way back in 1924, but because of World War II, no Parades were held from 1942 to 1944. That means 2026 marks a full century of Parade magic, which is fitting, seeing as how NBC celebrates its 100th anniversary this November, too.   Such an occasion needs to be honored properly, which is why NBC is airing a special documentary about the Macy's Thanksgiving Day Parade as it approaches this exciting birthday",
+          "popularity": 0.117,
+          "poster_path": "/72E5PtK0CBnz79Fsxbtry6gpvSr.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "America's Parade: 100 Years of Macy's Thanksgiving Day Parade",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            80,
+            9648
+          ],
+          "id": 1827853,
+          "original_language": "tr",
+          "original_title": "Direktör Oedipus",
+          "overview": "",
+          "popularity": 0.2109,
+          "poster_path": "/1zA5bM4bCW1HqDKuBXRYPSUaSNI.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Direktör Oedipus",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            35,
+            14
+          ],
+          "id": 1827683,
+          "original_language": "en",
+          "original_title": "Saudade Cat",
+          "overview": "A disgruntled slacker searches for his lost cat.",
+          "popularity": 0.4513,
+          "poster_path": "/9lT2v9eGJlwdtgfnXOgnY6lQgdB.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Saudade Cat",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            18,
+            35,
+            10402
+          ],
+          "id": 1827200,
+          "original_language": "en",
+          "original_title": "The Audition",
+          "overview": "An aspiring actor and drummer confronts his own perfectionism, and growing frustration with a faulty bass drum pedal, as he attempts a self-tape audition for a local production of the play “Stereophonic.”",
+          "popularity": 0.345,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "The Audition",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        }
+      ],
+      "total_pages": 254,
+      "total_results": 5078
+    },
+    {
+      "page": 2,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            80,
+            9648
+          ],
+          "id": 1827853,
+          "original_language": "tr",
+          "original_title": "Direktör Oedipus",
+          "overview": "",
+          "popularity": 0.2109,
+          "poster_path": "/1zA5bM4bCW1HqDKuBXRYPSUaSNI.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Direktör Oedipus",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            35,
+            14
+          ],
+          "id": 1827683,
+          "original_language": "en",
+          "original_title": "Saudade Cat",
+          "overview": "A disgruntled slacker searches for his lost cat.",
+          "popularity": 0.4513,
+          "poster_path": "/9lT2v9eGJlwdtgfnXOgnY6lQgdB.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Saudade Cat",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            18,
+            35,
+            10402
+          ],
+          "id": 1827200,
+          "original_language": "en",
+          "original_title": "The Audition",
+          "overview": "An aspiring actor and drummer confronts his own perfectionism, and growing frustration with a faulty bass drum pedal, as he attempts a self-tape audition for a local production of the play “Stereophonic.”",
+          "popularity": 0.345,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "The Audition",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1827188,
+          "original_language": "es",
+          "original_title": "Lindo Recuerdo",
+          "overview": "",
+          "popularity": 0.1015,
+          "poster_path": "/oZcIpBrmbRsED5fanysi0JF54Ft.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Lindo Recuerdo",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1827107,
+          "original_language": "es",
+          "original_title": "Deep Memories",
+          "overview": "",
+          "popularity": 0.2129,
+          "poster_path": "/7qe6rcqjxo9LDzm507i5sPzwxph.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Deep Memories",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1827095,
+          "original_language": "es",
+          "original_title": "El Club de los Ansiosos",
+          "overview": "",
+          "popularity": 0.0761,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "El Club de los Ansiosos",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            18
+          ],
+          "id": 1827081,
+          "original_language": "es",
+          "original_title": "Hierba Mala",
+          "overview": "",
+          "popularity": 0.2038,
+          "poster_path": "/zwcm4fHAWG8WhWDNu1jZVy0pvu7.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Hierba Mala",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1826898,
+          "original_language": "en",
+          "original_title": "Déjà Vu: The Eye of LuLu",
+          "overview": "Mysterious assassinations and blackouts throughout Manhattan are linked to a major aerospace company, its corporate hit men, and two bumbling Russian agents hellbent on capturing the world-changing power of its AI technology. True-Crime Blogger Cassie Cole enlists the help of a masked whistle-blower, a high-end hacker, a CIA psychic, and the sassy sentient AI, to uncover their international conspiracy and its lethal consequences.",
+          "popularity": 0.6137,
+          "poster_path": "/dJUYzJIReqi0P5JvjKLr56Xo1XX.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Déjà Vu: The Eye of LuLu",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            18
+          ],
+          "id": 1826780,
+          "original_language": "es",
+          "original_title": "El silencio que dejaste",
+          "overview": "After his wife's death, Jacinto returns to the home he shared with her; consumed by her absence, a presence manifests, forcing him to confront her memory and bid her farewell.",
+          "popularity": 0.323,
+          "poster_path": "/uyk70smADVOCqANtttqiABWOGrU.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "What's Left Behind",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/qW8Po7dAHrMihy52HzZYYu0I9ns.jpg",
+          "genre_ids": [
+            27
+          ],
+          "id": 1826406,
+          "original_language": "tl",
+          "original_title": "How to Avoid Elves?",
+          "overview": "A group of students search for traces of Philippine elves in their university.",
+          "popularity": 0.2645,
+          "poster_path": "/6uoNY0JAu385hH97y4qziITd5xI.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "How to Avoid Elves?",
+          "video": false,
+          "vote_average": 10.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1826159,
+          "original_language": "fr",
+          "original_title": "David et Jonathan",
+          "overview": "Jonathan returns to his childhood village for his grandmother’s funeral. While he reunites with his childhood lover there, a meteor manipulated by a pop star unleashes strange creatures.",
+          "popularity": 0.0891,
+          "poster_path": "/bXzQXGgzcYhz93Ghvl6OEXjBpOC.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "David et Jonathan",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            18
+          ],
+          "id": 1825987,
+          "original_language": "es",
+          "original_title": "Muy azul, pero...",
+          "overview": "A couple plays with a camera, observing each other through it. During a storm, she disappears. His solitude is interrupted as memories of her begin to haunt him. The storm starts to resurface.",
+          "popularity": 0.3083,
+          "poster_path": "/j8HaJF8PnPC1oouEMSmp4t8WnX9.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Muy azul, pero...",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            27,
+            35
+          ],
+          "id": 1825284,
+          "original_language": "en",
+          "original_title": "My Girlfriend is a Serial Killer",
+          "overview": "David comes home ready to propose to his longtime girlfriend. But when he walks on her in the middle of a gruesome murder, he's left questioning the relationship. Can he see past her murderous habits or will love prevail?",
+          "popularity": 0.6032,
+          "poster_path": "/xY4R1rHrlfJJGA2rjL65I5eqAvD.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "My Girlfriend is a Serial Killer",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1825168,
+          "original_language": "es",
+          "original_title": "Border Chocolate - The Second Life Economy of Cars",
+          "overview": "",
+          "popularity": 0.1529,
+          "poster_path": "/iy60agBXkIQvkAI2KHYp4pX5M34.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Border Chocolate - The Second Life Economy of Cars",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1825130,
+          "original_language": "en",
+          "original_title": "For No One",
+          "overview": "After his father’s death, a son finds himself still caught in the hold of their complicated relationship. Through offerings, rituals, and encounters that blur the boundary between the living and the dead, he confronts what remains between them–and the possibility of reconciliation after death.",
+          "popularity": 0.1166,
+          "poster_path": "/yHgdsvZa5Ei5u5PFCZvOuuAUF64.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "For No One",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/fxh8A0cq6SLzgmsSv48PgS5myFw.jpg",
+          "genre_ids": [
+            99,
+            10751
+          ],
+          "id": 1824359,
+          "original_language": "fr",
+          "original_title": "Nausicaá, l'aquarium de tous les défis",
+          "overview": "",
+          "popularity": 0.1274,
+          "poster_path": "/t4gwP4HB5tfvq1HHNycW11GuYas.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Nausicaá, l'aquarium de tous les défis",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/l7uERJIpPZPOBknBlr0w7PpHqUH.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1824287,
+          "original_language": "fr",
+          "original_title": "Sous la peau, les couleurs",
+          "overview": "",
+          "popularity": 0.2571,
+          "poster_path": "/okIRDUVxzvI2JtzDcTiHatFwpos.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Sous la peau, les couleurs",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1823971,
+          "original_language": "en",
+          "original_title": "Gipsy Kings Featuring Tonino Baliardo",
+          "overview": "Discovered by Brigitte Bardot while busking on the beaches of Saint-Tropez, a Romani gypsy guitarist of Catalan musical lineage forms the Gipsy Kings and turns a marginalized culture into a global music phenomenon.",
+          "popularity": 0.4476,
+          "poster_path": "/iJcrOQ5d2aAQwqhqDVIB7KGKJqP.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Gipsy Kings Featuring Tonino Baliardo",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/tZqU4ob2DuT5MhOzHIRdvzQYBnL.jpg",
+          "genre_ids": [
+            35
+          ],
+          "id": 1823918,
+          "original_language": "lt",
+          "original_title": "Dvi Rankos Žemyn Ir Krenta",
+          "overview": "An overworked person returns home only to spent his free time watching questionable content on cable TV.",
+          "popularity": 0.0967,
+          "poster_path": "/57WanAsmufkrZc6Czuq49lMfTqb.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Two Feet Down And Falling",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/ytzJUMw4wzw9XQWRMIxjOO0OJWt.jpg",
+          "genre_ids": [
+            35,
+            18
+          ],
+          "id": 1823756,
+          "original_language": "en",
+          "original_title": "One Night at the Aztec",
+          "overview": "A comedic collection of six stories during one night at a local movie theater. Love and loss, friendship and hate, all experienced within the dark auditorium. A love letter to cinema of the past and to the artists working today.",
+          "popularity": 0.4363,
+          "poster_path": "/sDoWPSUe74uCj0y7wc3CtccnUQN.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "One Night at the Aztec",
+          "video": false,
+          "vote_average": 9.0,
+          "vote_count": 1
+        }
+      ],
+      "total_pages": 255,
+      "total_results": 5093
+    },
+    {
+      "page": 3,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": "/oFgU2IZEu0T2kq0YJzdaswgijbO.jpg",
+          "genre_ids": [
+            27
+          ],
+          "id": 1822730,
+          "original_language": "en",
+          "original_title": "Thank You for Your Patience",
+          "overview": "A dating website matches Jack with his supposed \"soul mate\" but he is automatically enrolled in a paid subscription. His failed attempts to cancel only lead him deeper into the bureaucratic nightmare as he's forced to visit the company headquarters, a  bizarre labyrinth of hallways .",
+          "popularity": 0.1508,
+          "poster_path": "/nVGNxsfQiHwgUpTbxYlCY3SASd4.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Thank You for Your Patience",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/6LpNPIQhR6UlcJPGz8nVzo3bGd2.jpg",
+          "genre_ids": [
+            35,
+            10749,
+            18,
+            10751
+          ],
+          "id": 1822476,
+          "original_language": "fr",
+          "original_title": "A LOVE STORY CHAPTER 1",
+          "overview": "",
+          "popularity": 0.3837,
+          "poster_path": "/usOwTiRAbN7Cg0rKF6KMZt7CRkq.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "A LOVE STORY CHAPTER 1",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/gAsZJaQ16P8NnBBUIUPAow63Btg.jpg",
+          "genre_ids": [
+            18,
+            35,
+            10751
+          ],
+          "id": 1822400,
+          "original_language": "zh",
+          "original_title": "金哲",
+          "overview": "",
+          "popularity": 0.3202,
+          "poster_path": "/FBcloDR9qkTyxHOjmwAinYhPMr.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "金哲",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1821765,
+          "original_language": "it",
+          "original_title": "Per rimanere insieme",
+          "overview": "Claudia and Leo are the film’s protagonists, two friends with sparkling eyes full of wonder. They film themselves as they shop for groceries and play as if it were the end of the world: they hide in an abandoned house, cook canned beans on a camping stove, and burn small wooden objects. But even the purest friendship has an expiration date: the next day, Leo has to move away with his family. It was their last afternoon together.",
+          "popularity": 0.1493,
+          "poster_path": "/uWvNvynJnYQc7CumDudA1DfPwGj.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Per rimanere insieme",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            27,
+            14
+          ],
+          "id": 1821750,
+          "original_language": "it",
+          "original_title": "Lucia",
+          "overview": "Sweet Cionsi and Captain Walker travel across the Po valley in search of the Ciocobuoni alla Panna biscuits, Saint Lucy's favorites.",
+          "popularity": 0.1695,
+          "poster_path": "/jN0BHiGvBZwTewHpeNumQDiohtb.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Lucia",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/97VnNPP8nHxBCz04jFtRMKdJRt6.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1821708,
+          "original_language": "en",
+          "original_title": "Sophomores",
+          "overview": "When a group of friends come back from college to have their annual Friendsgiving dinner, they realize that they have all changed since high school.",
+          "popularity": 0.5484,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Sophomores",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1821338,
+          "original_language": "it",
+          "original_title": "Buone vacanze Heidelberg",
+          "overview": "Introduced in 1957, Contergan, a drug containing thalidomide, promised relief from illness. Prescribed to ease nausea in pregnant women, it caused severe congenital malformations, including phocomelia. At Heidelberg’s Orthopedic Hospital, where Ernst Marquardt works, surgeries, rehabilitation sessions and prosthesis fittings mark the childhood of its young patients. In Buone vacanze Heidelberg, Rebecca Picci reflects on this period.",
+          "popularity": 0.0897,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Buone vacanze Heidelberg",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/8Gdxo2smoSFSSelajk1ihcBxMWf.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1820698,
+          "original_language": "es",
+          "original_title": "Bailar la muerte",
+          "overview": "",
+          "popularity": 0.6448,
+          "poster_path": "/mI79B0avLONcjoLydGo1QMXSWPa.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Bailar la muerte",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/pB5HrqNObI8PFy5R9lWypNSF0a2.jpg",
+          "genre_ids": [
+            53,
+            27,
+            878
+          ],
+          "id": 1820522,
+          "original_language": "en",
+          "original_title": "Prism",
+          "overview": "A prisoner is trapped in an experimental hallucinatory chamber with nightmarish scenes.",
+          "popularity": 0.3259,
+          "poster_path": "/fI2JfHSiwAdOH4nAc4ODS5F6GGd.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Prism",
+          "video": false,
+          "vote_average": 7.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            27,
+            10749
+          ],
+          "id": 1819685,
+          "original_language": "km",
+          "original_title": "ត្បូងបរប៉ៃលិន",
+          "overview": "Khmer movie",
+          "popularity": 0.1142,
+          "poster_path": "/spqFiBJQCKudzkQZPtqLs2xowtk.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Pailin Gems",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1816677,
+          "original_language": "en",
+          "original_title": "The Rare Folk 2",
+          "overview": "Follow up to The Rare Folk",
+          "popularity": 0.1422,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "The Rare Folk 2",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/jJeVR9hpi9cFOeZTgcoZ4mkqJTC.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1816327,
+          "original_language": "bn",
+          "original_title": "যাপিত জীবন",
+          "overview": "",
+          "popularity": 0.4845,
+          "poster_path": "/a1fbCOZ8NYTU58XlnetKJrbtv7a.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Leaving Behind the Roots",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1816291,
+          "original_language": "en",
+          "original_title": "Zuma Rock",
+          "overview": "Rotimi, an amateur climber and writer from London with deep family roots in Nigeria sets out to achieve the unthinkable: a first ascent of Zuma Rock, a 300m monolith considered sacred by the communities who live in its shadow. To do it, he enlists Olympic climbing champion Shauna Coxsey but neither of them has ever tackled a wall of this scale.",
+          "popularity": 0.2439,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Zuma Rock",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1816232,
+          "original_language": "en",
+          "original_title": "Wild Ice",
+          "overview": "As winter slowly reveals itself across the Canadian Rockies, artist and skater Elladj Baldé and photographer Paul Zizka chase the season’s first wild ice - a journey that becomes a reflection on freedom, connection, and the human desire to move through life with intention.",
+          "popularity": 0.1052,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Wild Ice",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1816198,
+          "original_language": "en",
+          "original_title": "Wild Camps",
+          "overview": "​​This short film was co-created with young people, all of whom live in Hull, a city in Northern England which is the least wooded in the whole of the UK. Through poetry and participatory action research, the youth delve into the impact of nature immersion on a five-day Wild Camp with Rewilding Youth has on them.",
+          "popularity": 0.0841,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Wild Camps",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1816128,
+          "original_language": "en",
+          "original_title": "We Are Here",
+          "overview": "A powerful documentary following seven Black British women as they step onto the world’s most prestigious trail running stage: The 2025 UTMB World Series Finals in Chamonix.",
+          "popularity": 0.1225,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "We Are Here",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1816103,
+          "original_language": "en",
+          "original_title": "We Are Cyclists",
+          "overview": "The film traces the origin and growth of All Bodies on Bikes, challenging narrow, performance-driven definitions of cycling and expanding who gets to call themselves a cyclist. Rooted in joy, inclusion, and collective care, All Bodies on Bikes proves that these values aren’t radical: they’re essential.",
+          "popularity": 0.1194,
+          "poster_path": "/66ORANDAwr7I3HFfqZTxMJ3OOhZ.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "We Are Cyclists",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1815776,
+          "original_language": "en",
+          "original_title": "The Tree Keepers",
+          "overview": "The Isle of Arran is home to three tree species found nowhere else in the world, including the Catacol Whitebeam, of which only a single recognised wild specimen exists. For decades, amateur gardeners Henry Murdo and Margo McLellan have dedicated their spare time to cultivating and protecting these rare trees, ensuring their survival against the odds.",
+          "popularity": 0.0729,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "The Tree Keepers",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1815492,
+          "original_language": "fr",
+          "original_title": "Les Mots de Sahil",
+          "overview": "Sahil’s Words is a poetic documentary that explores migration, the learning of French, and solidarity through the story of an 18-year-old Afghan refugee living in a camp in Switzerland. As he learns French, he tries to rebuild his life. Alongside him, a retired man accompanies him. What begins as simple learning encounters gradually becomes a quiet relationship, woven between two generations and two worlds.",
+          "popularity": 0.1004,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Sahil's Words",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/bumO0YH2YhMad0V6E58KdcRyy2t.jpg",
+          "genre_ids": [
+            27,
+            878
+          ],
+          "id": 1815463,
+          "original_language": "sv",
+          "original_title": "[2 - sonen]",
+          "overview": "Can we find freedom in our abandonment",
+          "popularity": 0.1732,
+          "poster_path": "/6yAScFt4xp4VntBw222uTLubkEI.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "[2 - the son]",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        }
+      ],
+      "total_pages": 254,
+      "total_results": 5078
+    },
+    {
+      "page": 4,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1815492,
+          "original_language": "fr",
+          "original_title": "Les Mots de Sahil",
+          "overview": "Sahil’s Words is a poetic documentary that explores migration, the learning of French, and solidarity through the story of an 18-year-old Afghan refugee living in a camp in Switzerland. As he learns French, he tries to rebuild his life. Alongside him, a retired man accompanies him. What begins as simple learning encounters gradually becomes a quiet relationship, woven between two generations and two worlds.",
+          "popularity": 0.1004,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Sahil's Words",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/bumO0YH2YhMad0V6E58KdcRyy2t.jpg",
+          "genre_ids": [
+            27,
+            878
+          ],
+          "id": 1815463,
+          "original_language": "sv",
+          "original_title": "[2 - sonen]",
+          "overview": "Can we find freedom in our abandonment",
+          "popularity": 0.1732,
+          "poster_path": "/6yAScFt4xp4VntBw222uTLubkEI.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "[2 - the son]",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/txD36U6xWzzITVdEvUgo3dMoKOD.jpg",
+          "genre_ids": [],
+          "id": 1815443,
+          "original_language": "pt",
+          "original_title": "Natasha",
+          "overview": "After Natasha’s murder, three friends cross Mato Grosso do Sul toward the Pantanal to fulfill her last wish: to compete in a drag queen contest. With few resources and facing prejudice along the way, the journey reveals bonds, conflicts, and dreams. Amid loss and discovery, the trip becomes an experience of friendship, belonging, and the affirmation of their own existence.",
+          "popularity": 0.3168,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Natasha",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1815404,
+          "original_language": "es",
+          "original_title": "Tiba",
+          "overview": "This isn't quite a climbing story. It's a pause on the mountain, seen through the eyes of Tiba, a young Colombian climber whose voice already seems to know a path his feet have only begun to walk. The film follows the quiet bond between the boy and the walls he climbs, a place where he finds calm, discipline, and a freedom rare for someone his age. Up there, the height turns out to be the least of it.",
+          "popularity": 0.0721,
+          "poster_path": "/jhXJKt5kSU4FVb9ffuXjJhvIAvM.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Tiba",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/jHHpNjFv4VRKBpXulXyflX88AqK.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1815336,
+          "original_language": "en",
+          "original_title": "SURFRUN",
+          "overview": "Jonny lives in Cornwall, beside 300 miles of coast path he has barely seen. He runs, and he surfs. Neither is about being good at it. Then he loses someone close. What stays with him is not just the grief, it is how suddenly it can all stop. So he sets out to run and surf the entire path, at his own pace, for no reason other than wanting to. The miles are not the hard part. The noise is. The pull to go faster, suffer more, make it look bigger than it is. He spends 300 miles ignoring it, with his partner Katie and their dog Oreo meeting him along the way.",
+          "popularity": 0.1079,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "SURFRUN",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1814885,
+          "original_language": "fr",
+          "original_title": "Rivières secrètes des Nakanaï",
+          "overview": "In the village of Ruraï, in Papua New Guinea, people tell of a water hidden deep within the Nakanai Mountains so pure that anyone who drinks it is said to gain extraordinary powers. Immersed in the heart of a tropical rainforest, a team of cavers including the inimitable Cédric Lachat, set out to uncover this mysterious underground river system.",
+          "popularity": 0.312,
+          "poster_path": "/y7tNQ8zokogrk79CPXiUyKEK4tM.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Secret Rivers of the Nakanai",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/j8scvBcLU4Tnd21SRURDiDhwmKr.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1814667,
+          "original_language": "en",
+          "original_title": "Searching for SuperCrust: The Lost Tapes",
+          "overview": "Five cyclists set out to cross Europe's largest glacier by bike. An expedition 30 years in the making, the film explores the past, present, and future of Vatnajökull through the stories of those who have braved the glacier’s icy expanse on two wheels.",
+          "popularity": 0.2083,
+          "poster_path": "/gUVaxIVVHePzdyNa3f2LPUmCb0s.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Searching for SuperCrust: The Lost Tapes",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/A4T01UqFxfWL4kpmnAeoJt8Kj50.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1814530,
+          "original_language": "en",
+          "original_title": "American Trilogy",
+          "overview": "American Trilogy narrates the deep life of Elvis Presley, the King of Rock, through real filming. This is a cinematic, exciting and dynamic experience.",
+          "popularity": 0.1711,
+          "poster_path": "/snlEbmy62vNZUyyGr3kbTeDoZ94.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "American Trilogy",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/sT15xqoG8f1nuUDXbH2SX44ENBS.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1814412,
+          "original_language": "en",
+          "original_title": "Sam Hodgson - The Story of a Freerider",
+          "overview": "There was never a plan B. Not out of stubbornness, but because Sam Hodgson never needed one. Growing up on a farm, somewhere between dirt, shovels and bikes, it was clear early on: if there’s nothing to ride, you build it yourself.",
+          "popularity": 0.1042,
+          "poster_path": "/3Ao0c9qTA7Vk6w8o2wPBcuV0CVR.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Sam Hodgson - The Story of a Freerider",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1813729,
+          "original_language": "en",
+          "original_title": "Roots",
+          "overview": "More than 200 days of the year, you can find local Vermonter and ski patroller Ethan Parrish skiing some of the most extreme terrain in the Vermont backcountry. Ethan is aware of the impact of outsiders on local life, from the strain on community to reckless practices in the backcountry. While clearing the land surrounding his great-uncle’s farmhouse, he dreams of his own future, living off the land and skiing Vermont’s Green Mountains. Roots explores his deep connection to the mountains, the people in his life, and his home.",
+          "popularity": 0.0989,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Roots",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/yhhrsNx6VAXVEIZ3Ghm1lFj6Z7x.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1813716,
+          "original_language": "en",
+          "original_title": "Rongo",
+          "overview": "With plenty of powder to go around, un-ridden waves rolling into secret golden beaches, and local characters to greet you with a smile, six professional athletes make the most of every moment during an action-packed adventure through Aotearoa, NZ!",
+          "popularity": 0.2251,
+          "poster_path": "/7KGAf2gbBAoDwNvOp7L44KYrGS1.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Rongo",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/cbvOzHGAU9PH2o8zXk3L3zMjdbX.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1813701,
+          "original_language": "en",
+          "original_title": "Rodeo On Ice",
+          "overview": "With skijoring poised to become a potential addition to the 2030 Winter Olympics, lifelong equestrian Britta Nancarrow assembles a team to push her skijoring to the next level. The film follows Nancarrow as she trains with skier Mike King and snowboarder Sandra Hillen, taking their on-snow skills to their very first competition.",
+          "popularity": 0.0744,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Rodeo On Ice",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/4i3pV82PivdnQeUOv9wSA3bBglq.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1813610,
+          "original_language": "en",
+          "original_title": "Ripple",
+          "overview": "Two women sit by the lake that raised them and have a conversation about what it means to be a freeride skier. After dedicating their lives to the sport, they question the meaning of it all. More than anything, this is a story about surrendering to the present moment. A story about being water.",
+          "popularity": 0.0814,
+          "poster_path": "/sf87DtHOVl7vshiZTvPyzpORSJo.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Ripple",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/tT47C583oT9xDsFv5ql3IZmjkrx.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1813390,
+          "original_language": "en",
+          "original_title": "Ridgeline",
+          "overview": "Professional musician and composer Liz Derstine heads into the wilderness to chase a very different goal: attempting a self-supported Fastest Known Time on the Pacific Crest Trail.",
+          "popularity": 0.0929,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Ridgeline",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1812975,
+          "original_language": "en",
+          "original_title": "Rev",
+          "overview": "They come from Iraq or Afghanistan. Some have rebuilt their lives in Europe. Others have never left their country, making the journey to Mallorca all the more extraordinary. The film follows eight women lining up at the start of Mallorca by UTMB for the very first trail race of their lives.",
+          "popularity": 0.0804,
+          "poster_path": "/aifecUHSdL9vKwq5SKAQLpLW13f.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Rev",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1812962,
+          "original_language": "en",
+          "original_title": "Resurfacing",
+          "overview": "Deena Lynch, aka Jaguar Jonze, is a touring artist and songwriter. In 2024 she experienced a sudden and unexplained paralysis while swimming and began to drown. She was diagnosed with functional neurological disorder and lupus. The ocean became her sanctuary and place of rehabilitation as she learned about her new body. A year later, despite her debilitating health condition, she qualified for the Australian national team at the 35th AIDA Freediving World Championships in Cyprus and shocked the world.",
+          "popularity": 0.0821,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Resurfacing",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/16yGZRA3NJLPPwsnHqk1guqEx7K.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1812892,
+          "original_language": "en",
+          "original_title": "Regrowth",
+          "overview": "There is a kaleidoscopic beauty to the rich micro landscape of lichens. The beauty of lichens is what drew April Windle to them. She is one of just a handful of professional lichenologists in the UK, spending her time studying a lifeform that goes unnoticed by most people. In this short film, April reflects on how, when she experienced a period of mental health crisis, her love for lichens gave her a window back to the beauty in the world, and a way back to balance.",
+          "popularity": 0.1936,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Regrowth",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1812873,
+          "original_language": "pl",
+          "original_title": "XI: Thou Shalt Not Be Indifferent",
+          "overview": "Marian Turski, the world-renowned historian, journalist, and until his recent passing, president of the International Auschwitz Committee, takes us back to the roots of evil. A survivor of the Lodz Ghetto, Auschwitz, Buchenwald, and Theresienstadt death camps in his youth, Turski explains with firsthand knowledge and surgical precision how otherwise well-educated and cultured people can, under certain circumstances, turn into criminals and mass murderers. He reminds us about the painful past, explains the present, and warns about the future. His dramatic plea, \"do not be indifferent!\" remains more relevant now than ever. Andrzej Wolf, the director and cinematographer of this film, pays a loving tribute to one of the last moral compasses of the Greatest Generation.",
+          "popularity": 1.0698,
+          "poster_path": "/71X5cj6FcmwDKFYrrq0EEzAMMVQ.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "XI: Thou Shalt Not Be Indifferent",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1812816,
+          "original_language": "en",
+          "original_title": "Pain Game",
+          "overview": "Set in the Lake District, Jack Jarvis - ex-Royal Marine, two-time Atlantic record breaker and survivor of a near-fatal parachute accident - takes on his first backyard ultra. Through failed recovery, mounting pain and shared suffering, the race becomes an exploration of the role pain and camaraderie plays in achievement.",
+          "popularity": 0.0412,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Pain Game",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1812805,
+          "original_language": "en",
+          "original_title": "On Flying",
+          "overview": "Moving between family life, alpine pursuits, and memories of a lifetime spent chasing human flight, the film follows a father, designer, and master flyer confronting what it means to age inside a discipline built on precision, instinct, and consequence. More than a film about risk, this is a quiet portrait of craft, family, and the strange humility of coming home after touching flight.",
+          "popularity": 0.0615,
+          "poster_path": "/AibF5IgtGe7ktrcunkX2RIskQFX.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "On Flying",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        }
+      ],
+      "total_pages": 255,
+      "total_results": 5090
+    },
+    {
+      "page": 5,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1812175,
+          "original_language": "en",
+          "original_title": "S.O.L.",
+          "overview": "S.O.L. (Statute of Limitations / Shit Outta Luck) is a short film that looks at the limits of justice and the uncertain journey of healing. Through poetic visuals, it explores how survivors deal with trauma. S.O.L. is both personal and political. It breaks the silence, shows where systems fall short, and reclaims power through storytelling.",
+          "popularity": 0.0547,
+          "poster_path": "/5EtDN4ZvlDugREukEZ3gl0iQBR7.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "S.O.L.",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1812166,
+          "original_language": "en",
+          "original_title": "Remember the Removal",
+          "overview": "Generations after their ancestors were marched through Missouri on the Trail of Tears, Cherokee, Mvskoke, and Pawnee storytellers discover a small rural town in the Missouri Ozarks.",
+          "popularity": 0.1413,
+          "poster_path": "/rBXpi9yG0X49LxBOfm80EKSMBh5.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Remember the Removal",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1812146,
+          "original_language": "en",
+          "original_title": "Redemption",
+          "overview": "Redemption is told through the perspectives of fentanyl addiction survivors in recovery, tribal leaders, and healthcare professionals who combat the devastating impact of fentanyl on the Mandan, Hidatsa, and Arikara Nation.",
+          "popularity": 0.0952,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Redemption",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/rB9t4q2Qn5TRgFzNy2uIzpzZ9Rz.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1812055,
+          "original_language": "en",
+          "original_title": "Miss Adventure",
+          "overview": "​​Mikah Meyer grew up a middle-America pastor's son, trapped in a religion-sealed closet until his twenties. After his 70,000 social media followers crown Mississippi \"The Most Homophobic State in America\", Mikah endeavours to run across the entire state in flamboyant colours. Alongside his college mentor, Larry, they confront traumas from their collective time in America’s Bible Belt and beyond.",
+          "popularity": 0.1389,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Miss Adventure",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1812053,
+          "original_language": "en",
+          "original_title": "Marcus & Me",
+          "overview": "As a participant in the Outdoor Inclusion Coalition, 'little' Marcus explores the less-known corners of his Pittsburgh back yard to seek out opportunities for climbing and connection with nature.",
+          "popularity": 0.0786,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Marcus & Me",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1812004,
+          "original_language": "en",
+          "original_title": "The Long Way Home",
+          "overview": "Kelly Halpin has long dreamed of completing a full traverse of the beautiful and seldom travelled Gros Ventre mountain range right in her backyard in Wyoming. The route is 50 miles off-trail over technical terrain and hits every major summit in the range. After years of scouting and two failed attempts the film shows the power of perseverance and dreaming big while staying close to home.",
+          "popularity": 0.0586,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "The Long Way Home",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1811985,
+          "original_language": "en",
+          "original_title": "Learning to Fly",
+          "overview": "As surfing grows in popularity, an unlikely new craft challenges a community of lifelong surfers to become beginners again. Forced to question what they think they know about surfing, they rediscover the joy, freedom and shared spirit that first drew them to the ocean.",
+          "popularity": 0.0576,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Learning to Fly",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1811957,
+          "original_language": "en",
+          "original_title": "Nasty",
+          "overview": "Beauty and lifestyle influencer, Sienna, receives an unexpected visitor while filming her weekly vlog.",
+          "popularity": 0.0674,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Nasty",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1811951,
+          "original_language": "en",
+          "original_title": "More Than Art: RRR.RAID",
+          "overview": "More Than Art: RRR.RAID is a conversation of the creative and expressive O'odham people.",
+          "popularity": 0.0588,
+          "poster_path": "/xq3jbQwAjRIrkNDtPDucDOcUuoa.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "More Than Art: RRR.RAID",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1811861,
+          "original_language": "en",
+          "original_title": "Kindred",
+          "overview": "A film exploring the bond between a mother and daughter, a story of home, devotion and a shared love of trad climbing in North Wales.",
+          "popularity": 0.0853,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Kindred",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1810964,
+          "original_language": "en",
+          "original_title": "It's What You Make It",
+          "overview": "Lars has figured out what he loves - snowboarding. This film explores his approach to surfstyle carving and what keeps him coming back after 35 years. For him, carving becomes a form of expression, feeling and freedom.",
+          "popularity": 0.0749,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "It's What You Make It",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1810759,
+          "original_language": "en",
+          "original_title": "Teleplasm",
+          "overview": "In 1920s Winnipeg, filmmaker Kate Solar's great-great-grandfather took thousands of spirit photographs during seances he held. In order to make sense of this family legacy shrouded in mystery and grief, Solar tries to uncover what the photos meant to the women who helped create and archive them.",
+          "popularity": 0.1182,
+          "poster_path": "/kpo7JhxU5rsjzRpZqef71AgNpHj.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Teleplasm",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/w1Jc08bpEMhRvSZbYf0Qaftn1Jg.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1810746,
+          "original_language": "en",
+          "original_title": "Into the Light",
+          "overview": "Follow two young South African surfers whose lives could not be more precarious and whose dreams, against all odds, carry them across an ocean they were never meant to touch. Born from struggle, but fuelled by possibility, the story illuminates the belief that sport and education can bridge divides and shows how two young athletes challenge the weight of history.",
+          "popularity": 0.1146,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Into the Light",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [],
+          "id": 1810724,
+          "original_language": "es",
+          "original_title": "Une zone d'échos",
+          "overview": "In Mexico, the keen pain of the loved ones of missing persons deepened by a lack of understanding, injustice and a lack of recourse. To bring this internal suffering to light, a group of women takes part in a project of creation and research that takes the form of a cathartic performance. In a warehouse transformed into a symbolic space dedicated to externalizing pain and frustration, they engage in reenactments, exchanges, and role-playing situations relating to their daily lives as the mothers, sisters or spouses of people whose lives were suddenly taken. Their stories resonate until the echo of their distress meets that of the others, bringing forth a poignant ode to sisterhood and solidarity.",
+          "popularity": 0.5708,
+          "poster_path": "/wgZMMKmPpeoM2l2QxzbjtvffUti.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Une zone d'échos",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/7YePUQN9GI8JOkADHxyN1g4fMPB.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1810500,
+          "original_language": "en",
+          "original_title": "Hotpipe Hillbillies",
+          "overview": "A documentary about community, resilience, and finding joy in the most unlikely of places. Against the backdrop of Shoreham’s industrial shoreline, a diverse crew of surfers gather at an industrial outflow pipe to ride waves that are often messy, fickle, and short-lived. This ain’t Cornwall. It sure ain’t California. But for this crew, it’s home",
+          "popularity": 0.0748,
+          "poster_path": null,
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Hotpipe Hillbillies",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/a4sWKGHcwv8WFXrC97zjMacT90u.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1809835,
+          "original_language": "en",
+          "original_title": "The Hillbilly Scientist",
+          "overview": "While modern running has evolved toward sleek curation, optimisation, and commercialisation, Lazarus Lake has spent 50 years designing formats with an unapologetic, honest difficulty. The Hillbilly Scientist reveals that Laz’s cruellest courses are rooted in a deeply scientific understanding of human psychology and physical limits. This is the only official documentary dedicated to the creator of the Barkley Marathons and Big’s Backyard Ultra. Filmed over more than a year, it reveals the man behind the myth through never-before-seen footage, exclusive testimonials, and exceptional access to Laz’s world.",
+          "popularity": 0.4406,
+          "poster_path": "/vqKm2739WhuEABnC3iDjl5ZWPWe.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "The Hillbilly Scientist",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1809705,
+          "original_language": "en",
+          "original_title": "Grigoriy's Chimgan",
+          "overview": "In the mountains around Chimgan, Uzbekistan, lies a ski culture largely unknown to the outside world. Paul and Loïc travel there to meet Grigoriy, a local ski legend who pioneered freeride skiing in the region. Through his stories, they discover an unexpected side of Uzbekistan, its mountains and a unique ski culture now finding new momentum, while hoping to repeat a first descent Grigoriy made on Greater Chimgan many years ago.",
+          "popularity": 0.0426,
+          "poster_path": "/vvR3oHgvLa6CNzARihicMn9cOHj.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Grigoriy's Chimgan",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/trPZFTBUr0Uf0ReCyZjTNWTdYI3.jpg",
+          "genre_ids": [
+            99
+          ],
+          "id": 1809664,
+          "original_language": "en",
+          "original_title": "Grade A Bullsh*t",
+          "overview": "A witty and thought-provoking documentary that asks a deceptively simple question: Who decides climbing grades? After adaptive climber Maureen Beck finally achieves her long-sought first 5.12 route, the celebration is short lived when the climb is downgraded. The experience leaves her wondering whether grades are objective measures of difficulty, or reflections of ego, bias, and the culture surrounding climbing. Determined to find answers, Maureen sets her sights on Far From God, a notoriously difficult Kentucky testpiece.",
+          "popularity": 0.1213,
+          "poster_path": "/71BDH5sltr171uptf6PNqf8DdWg.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Grade A Bullsh*t",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/id56zSQX7jpWeqgqmMkS0yOVyG9.jpg",
+          "genre_ids": [
+            18
+          ],
+          "id": 1809499,
+          "original_language": "en",
+          "original_title": "the 4th turning",
+          "overview": "Several trans women navigate Amsterdam's rapid decline into technofascism.",
+          "popularity": 0.284,
+          "poster_path": "/kmAkdw5Q291QMCqQ8y1sIngpFg6.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "the 4th turning",
+          "video": false,
+          "vote_average": 10.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "genre_ids": [
+            99
+          ],
+          "id": 1809154,
+          "original_language": "en",
+          "original_title": "Framed",
+          "overview": "Siebe Vanhee sets out to onsight Voie Petit, a brutal 12-pitch 8a+ line at 3,500m on the Grand Capucin, completely alone - no partner, no static ropes, just lead rope-solo technique and a drone circling above. But even a solo mission as a professional climber has a crew: a manager on the phone, a sponsor waiting for footage, a director on the glacier, and Vanhee himself playing climber, cameraman and storyteller all at once, selfie-interviewing his own exhaustion pitch by pitch.",
+          "popularity": 0.0941,
+          "poster_path": "/2nHyuVLjUNVnz5OAoZtwqUlz2sE.jpg",
+          "release_date": "2026-11-20",
+          "softcore": false,
+          "title": "Framed",
+          "video": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        }
+      ],
+      "total_pages": 254,
+      "total_results": 5074
+    }
+  ],
+  "request_id": "new_movies"
+}

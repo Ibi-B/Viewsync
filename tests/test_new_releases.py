@@ -1,5 +1,7 @@
 from src.config import load_config
-from src.fetch import fetch_source
+from datetime import date, timedelta
+
+from src.fetch import date_window, fetch_source
 
 
 def _load_rows():
@@ -69,3 +71,17 @@ def test_fetch_source_supports_date_windows(monkeypatch):
     items = fetch_source(request, "tmdb")
 
     assert isinstance(items, list)
+
+
+
+def test_new_and_upcoming_date_windows_include_today_only_in_new():
+    today = date(2026, 11, 21)
+
+    _, new_start, new_end, _ = date_window("recent", today, "movie")
+    _, upcoming_start, upcoming_end, _ = date_window("future", today, "movie")
+
+    assert new_start == today - timedelta(days=30)
+    assert new_end == today
+    assert upcoming_start == today + timedelta(days=1)
+    assert upcoming_end == today + timedelta(days=180)
+    assert new_end + timedelta(days=1) == upcoming_start

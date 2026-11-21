@@ -7,12 +7,13 @@ import hashlib
 import json
 import os
 import re
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
 from .config import load_config
 from .fetch import SourceSnapshot, fetch_source
+from .filters import filter_snapshot_items
 from .manifest import build_release
 from .publish import publish_release
 from .state import (
@@ -148,6 +149,50 @@ def _write_generation_report(
     write_json(state_dir / "generation-report.json", report)
 
 
+def _apply_quality_filters(
+    snapshots: list[SourceSnapshot],
+    config_dir: Path,
+    today: date,
+) -> list[SourceSnapshot]:
+    """Screen candidates before ranking while leaving raw snapshots untouched."""
+    quality_config = load_json(config_dir / "filters.json")
+    defaults = quality_config.get("defaults", {})
+    request_policies = quality_config.get("requests", {})
+    filtered: list[SourceSnapshot] = []
+
+    for snapshot in snapshots:
+        policy = {
+            **defaults,
+            **request_policies.get(snapshot.request_id, {}),
+            "rating_prior": quality_config.get("rating_prior", 6.0),
+            "rating_prior_votes": quality_config.get("rating_prior_votes", 100),
+        }
+        accepted, excluded = filter_snapshot_items(
+            snapshot.items,
+            policy,
+            request_id=snapshot.request_id,
+            media_type=snapshot.media_type,
+            today=today,
+        )
+        print(
+            f"Viewsync quality gate {snapshot.request_id}/{snapshot.provider_id}: "
+            f"{len(snapshot.items)} candidates, {len(accepted)} retained, "
+            f"{sum(excluded.values())} excluded ({excluded})."
+        )
+        filtered.append(
+            SourceSnapshot(
+                request_id=snapshot.request_id,
+                provider_id=snapshot.provider_id,
+                list_id=snapshot.list_id,
+                media_type=snapshot.media_type,
+                fetched_at=snapshot.fetched_at,
+                items=accepted,
+                raw_payloads=snapshot.raw_payloads,
+            )
+        )
+    return filtered
+
+
 def _manifest_hash(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -199,9 +244,15 @@ def generate_catalog(
 
     preserve_last_good_release(state_dir, output_dir)
 
+    filtered_snapshots = _apply_quality_filters(
+        usable_snapshots,
+        config_dir,
+        now.date(),
+    )
+
     release = build_release(
         config["rows"]["rows"],
-        usable_snapshots,
+        filtered_snapshots,
         now,
         retention_policy=policy,
         provider_weights=provider_weights,

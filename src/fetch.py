@@ -328,26 +328,17 @@ def _provider_request(request: Dict[str, Any], provider: str) -> Dict[str, Any]:
 
 
 def date_window(mode: str, today: date, media_type: str) -> tuple[str, date, date, str]:
+    """Return mutually exclusive recent/upcoming windows for TMDB discover.
+
+    TMDB date operators are inclusive. New includes today and the preceding
+    30 days; Upcoming begins tomorrow. Popularity ordering avoids filling a
+    date-tied page with obscure records before quality screening.
+    """
+    date_field = "release_date" if media_type == "movie" else "first_air_date"
     if mode == "recent":
-        return (
-            "release_date",
-            today - timedelta(days=30),
-            today,
-            "primary_release_date.desc"
-            if media_type == "movie"
-            else "first_air_date.desc",
-        )
-
+        return (date_field, today - timedelta(days=30), today, "popularity.desc")
     if mode == "future":
-        return (
-            "release_date",
-            today,
-            today + timedelta(days=180),
-            "primary_release_date.asc"
-            if media_type == "movie"
-            else "first_air_date.asc",
-        )
-
+        return (date_field, today + timedelta(days=1), today + timedelta(days=180), "popularity.desc")
     raise ValueError(f"Unsupported date mode: {mode}")
 
 
@@ -389,10 +380,15 @@ def fetch_source(
             }
 
             url = f"{TMDB_BASE}/discover/{'movie' if media_type == 'movie' else 'tv'}"
+            # TMDB returns up to 20 records per page. Recent/upcoming rows
+            # need a wider candidate pool than the final published row so the
+            # quality gate can reject weak entries without underfilling the feed.
+            candidate_pages = min(25, max(5, (max_items + 19) // 20))
             items = _collect_tmdb_pages(
                 url,
                 params,
                 max_items,
+                max_pages=candidate_pages,
                 raw_responses=raw_responses,
             )
         else:

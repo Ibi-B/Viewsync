@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import date, datetime, timedelta
 from typing import Any, Dict, List
 
 from .fetch import SourceSnapshot
@@ -25,6 +25,32 @@ def _row_snapshots(
 def _media_kind(row: Dict[str, Any]) -> str | None:
     media_kind = str(row.get("media_kind") or row.get("type") or "")
     return media_kind if media_kind in SUPPORTED_MEDIA_KINDS else None
+
+def _parse_date(value: Any) -> date | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        return date.fromisoformat(value.strip()[:10])
+    except ValueError:
+        return None
+
+
+def _matches_row_date(row: Dict[str, Any], item: Dict[str, Any], today: date) -> bool:
+    """Enforce New/Upcoming membership again at publication time."""
+    mode = str(row.get("date_mode") or "none")
+    if mode == "none":
+        return True
+    field = str(row.get("date_field") or (
+        "release_date" if _media_kind(row) == "movie" else "first_air_date"
+    ))
+    release = _parse_date(item.get(field))
+    if release is None:
+        return False
+    if mode == "recent":
+        return today - timedelta(days=30) <= release <= today
+    if mode == "future":
+        return today + timedelta(days=1) <= release <= today + timedelta(days=180)
+    raise ValueError(f"Unsupported date mode for row {row.get('id')!r}: {mode}")
 
 
 def _catalog_freshness(
@@ -103,6 +129,7 @@ def _metadata(item: Dict[str, Any]) -> Dict[str, Any]:
         "original_language": item.get("original_language"),
         "popularity": item.get("popularity"),
         "vote_count": item.get("vote_count"),
+        "quality": item.get("quality", {}),
     }
 
 
@@ -127,6 +154,23 @@ def build_release(
         row_snapshots = _row_snapshots(row, snapshots)
         if not row_snapshots:
             continue
+
+        # Retained snapshots can outlive the request that produced them.
+        # Re-apply the row date contract so a stale snapshot cannot publish
+        # the same title into both New and Upcoming.
+        today = now.date()
+        row_snapshots = [
+            SourceSnapshot(
+                request_id=snapshot.request_id,
+                provider_id=snapshot.provider_id,
+                list_id=snapshot.list_id,
+                media_type=snapshot.media_type,
+                fetched_at=snapshot.fetched_at,
+                items=[item for item in snapshot.items if _matches_row_date(row, item, today)],
+                raw_payloads=snapshot.raw_payloads,
+            )
+            for snapshot in row_snapshots
+        ]
 
         media_type = media_kind
         merged: Dict[str, Dict[str, Any]] = {}
@@ -205,7 +249,7 @@ def build_release(
                 }
             )
 
-        providers = {snapshot.provider_id for snapshot in row_snapshots}
+        providers = {snapshot.provider_id for snapshot in row_snapshots if snapshot.items}
         release_rows.append(
             {
                 "id": str(row["id"]),

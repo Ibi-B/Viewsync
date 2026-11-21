@@ -120,6 +120,10 @@ def merge_item(media_type, existing, incoming, provider_id):
         ratings['tmdb'] = {'value': tmdb_vote, 'scale': 10}
 
     merged['ratings'] = ratings
+    quality = incoming.get("_viewsync_quality")
+    if isinstance(quality, dict):
+        merged["quality"] = dict(quality)
+        provenance["quality"] = "viewsync"
     preferred = 'imdb' if 'imdb' in ratings else ('tmdb' if 'tmdb' in ratings else None)
     merged['rating'] = ratings[preferred]['value'] if preferred else None
     merged['rating_source'] = preferred

@@ -1,6 +1,6 @@
 from datetime import date
 
-from src.filters import bayesian_rating, filter_snapshot_items
+from src.filters import bayesian_rating, filter_snapshot_items, quality_score
 
 
 def _item(item_id, **overrides):
@@ -84,15 +84,22 @@ def test_established_low_rating_and_unrated_low_interest_are_rejected():
     assert excluded["insufficient_interest_for_unrated_title"] == 1
 
 
-def test_missing_poster_and_overview_are_rejected():
-    policy = {"date_mode": "none", "require_poster": True, "min_overview_length": 30}
+def test_missing_poster_and_overview_reduce_presentation_score_without_invalidating_title():
+    policy = {"date_mode": "none", "require_poster": False, "min_overview_length": 0}
+    complete = _item("complete")
+    no_poster = _item("no-poster", poster_path=None)
+    no_overview = _item("no-overview", overview="")
     accepted, excluded = filter_snapshot_items(
-        [_item("poster", poster_path=None), _item("overview", overview="Too short")],
+        [complete, no_poster, no_overview],
         policy, request_id="popular_movies", media_type="movie", today=date(2026, 11, 21),
     )
-    assert accepted == []
-    assert excluded["missing_poster"] == 1
-    assert excluded["insufficient_overview"] == 1
+    assert {item["id"] for item in accepted} == {"complete", "no-poster", "no-overview"}
+    assert not excluded
+    complete_score, _ = quality_score(complete, policy)
+    poster_score, _ = quality_score(no_poster, policy)
+    overview_score, _ = quality_score(no_overview, policy)
+    assert complete_score > poster_score
+    assert complete_score > overview_score
 
 
 def test_same_title_year_with_distinct_tmdb_ids_are_preserved():

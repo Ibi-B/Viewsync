@@ -4,8 +4,8 @@
   "rating_prior_votes": 100,
   "defaults": {
     "date_mode": "none",
-    "require_poster": true,
-    "min_overview_length": 25,
+    "require_poster": false,
+    "min_overview_length": 0,
     "min_votes_for_rating": 100,
     "min_bayesian_rating": 5,
     "min_popularity": 0,
@@ -20,50 +20,50 @@
       "max_items": 100,
       "min_votes_for_rating": 100,
       "min_bayesian_rating": 5,
-      "min_overview_length": 25
+      "min_overview_length": 0
     },
     "popular_series": {
       "date_mode": "none",
       "max_items": 100,
       "min_votes_for_rating": 100,
       "min_bayesian_rating": 5,
-      "min_overview_length": 25
+      "min_overview_length": 0
     },
     "new_movies": {
       "date_mode": "recent",
       "max_items": 80,
       "min_popularity": 0.15,
-      "min_overview_length": 30,
+      "min_overview_length": 0,
       "min_votes_for_rating": 100,
       "min_bayesian_rating": 5,
-      "require_poster": true
+      "require_poster": false
     },
     "new_series": {
       "date_mode": "recent",
       "max_items": 80,
       "min_popularity": 0.35,
-      "min_overview_length": 30,
+      "min_overview_length": 0,
       "min_votes_for_rating": 100,
       "min_bayesian_rating": 5,
-      "require_poster": true
+      "require_poster": false
     },
     "upcoming_movies": {
       "date_mode": "future",
       "max_items": 80,
       "min_popularity": 0.15,
-      "min_overview_length": 30,
+      "min_overview_length": 0,
       "min_votes_for_rating": 100,
       "min_bayesian_rating": 5,
-      "require_poster": true
+      "require_poster": false
     },
     "upcoming_series": {
       "date_mode": "future",
       "max_items": 80,
       "min_popularity": 0.25,
-      "min_overview_length": 30,
+      "min_overview_length": 0,
       "min_votes_for_rating": 100,
       "min_bayesian_rating": 5,
-      "require_poster": true
+      "require_poster": false
     }
   }
 }

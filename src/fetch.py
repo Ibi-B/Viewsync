@@ -380,10 +380,15 @@ def fetch_source(
             }
 
             url = f"{TMDB_BASE}/discover/{'movie' if media_type == 'movie' else 'tv'}"
+            # TMDB returns up to 20 records per page. Recent/upcoming rows
+            # need a wider candidate pool than the final published row so the
+            # quality gate can reject weak entries without underfilling the feed.
+            candidate_pages = min(25, max(5, (max_items + 19) // 20))
             items = _collect_tmdb_pages(
                 url,
                 params,
                 max_items,
+                max_pages=candidate_pages,
                 raw_responses=raw_responses,
             )
         else:

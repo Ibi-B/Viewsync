@@ -39,6 +39,31 @@ def test_series_uses_first_air_date_window():
     assert end == date(2026, 11, 20)
 
 
+def test_recent_upcoming_fetch_uses_wider_candidate_pool(monkeypatch):
+    calls = []
+    monkeypatch.setenv("TMDB_API_KEY", "test-only-key")
+
+    def fake_get_json(url, params=None, headers=None, raw_responses=None):
+        calls.append(dict(params or {}))
+        return {
+            "page": params["page"],
+            "total_pages": 40,
+            "results": [{"id": params["page"], "title": f"Item {params['page']}"}],
+        }
+
+    monkeypatch.setattr("src.fetch._get_json", fake_get_json)
+    items = fetch_source(
+        _request("upcoming_movies", "movie", "future", 500),
+        "tmdb",
+        today=date(2026, 11, 21),
+    )
+
+    # Candidate retrieval is bounded at 25 pages; the final quality policy
+    # narrows that pool to the configured published row size.
+    assert len(calls) == 25
+    assert len(items) == 25
+
+
 def test_discovery_fetch_uses_popularity_order_and_bounded_pages(monkeypatch):
     calls = []
     monkeypatch.setenv("TMDB_API_KEY", "test-only-key")

@@ -330,15 +330,15 @@ def _provider_request(request: Dict[str, Any], provider: str) -> Dict[str, Any]:
 def date_window(mode: str, today: date, media_type: str) -> tuple[str, date, date, str]:
     """Return mutually exclusive recent/upcoming windows for TMDB discover.
 
-    TMDB date operators are inclusive. New ends yesterday; Upcoming begins
-    today. Popularity ordering avoids filling a date-tied page with obscure
-    records before the quality gate can evaluate a wider candidate set.
+    TMDB date operators are inclusive. New includes today and the preceding
+    30 days; Upcoming begins tomorrow. Popularity ordering avoids filling a
+    date-tied page with obscure records before quality screening.
     """
     date_field = "release_date" if media_type == "movie" else "first_air_date"
     if mode == "recent":
-        return (date_field, today - timedelta(days=30), today - timedelta(days=1), "popularity.desc")
+        return (date_field, today - timedelta(days=30), today, "popularity.desc")
     if mode == "future":
-        return (date_field, today, today + timedelta(days=180), "popularity.desc")
+        return (date_field, today + timedelta(days=1), today + timedelta(days=180), "popularity.desc")
     raise ValueError(f"Unsupported date mode: {mode}")
 
 

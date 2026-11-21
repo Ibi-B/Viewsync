@@ -47,9 +47,9 @@ def _matches_row_date(row: Dict[str, Any], item: Dict[str, Any], today: date) ->
     if release is None:
         return False
     if mode == "recent":
-        return today - timedelta(days=30) <= release < today
+        return today - timedelta(days=30) <= release <= today
     if mode == "future":
-        return today <= release <= today + timedelta(days=180)
+        return today + timedelta(days=1) <= release <= today + timedelta(days=180)
     raise ValueError(f"Unsupported date mode for row {row.get('id')!r}: {mode}")
 
 

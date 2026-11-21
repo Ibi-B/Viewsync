@@ -95,3 +95,43 @@ def test_fetch_source_uses_provider_config(monkeypatch):
 
     assert len(items) <= 10
     assert items[0]["title"] == "Popular Movie"
+
+
+
+def test_new_and_upcoming_rows_are_disjoint_at_the_date_boundary():
+    now = datetime(2026, 11, 21, tzinfo=timezone.utc)
+    rows = [
+        {
+            "id": "new-movies", "name": "New Movies", "type": "movie",
+            "source_lists": ["new_movies"], "date_field": "release_date", "date_mode": "recent",
+        },
+        {
+            "id": "upcoming-movies", "name": "Upcoming Movies", "type": "movie",
+            "source_lists": ["upcoming_movies"], "date_field": "release_date", "date_mode": "future",
+        },
+    ]
+    snapshots = [
+        SourceSnapshot(
+            request_id="new_movies", provider_id="tmdb", list_id="new_movies",
+            media_type="movie", fetched_at=now.isoformat(),
+            items=[
+                {"id": 1, "title": "Yesterday", "release_date": "2026-11-20"},
+                {"id": 2, "title": "Today", "release_date": "2026-11-21"},
+            ],
+        ),
+        SourceSnapshot(
+            request_id="upcoming_movies", provider_id="tmdb", list_id="upcoming_movies",
+            media_type="movie", fetched_at=now.isoformat(),
+            items=[
+                {"id": 2, "title": "Today", "release_date": "2026-11-21"},
+                {"id": 3, "title": "Tomorrow", "release_date": "2026-11-22"},
+            ],
+        ),
+    ]
+
+    release = build_release(rows, snapshots, now)
+    by_row = {row["id"]: {item["id"] for item in row["items"]} for row in release["rows"]}
+
+    assert by_row["new-movies"] == {"movie:tmdb:1"}
+    assert by_row["upcoming-movies"] == {"movie:tmdb:2", "movie:tmdb:3"}
+    assert by_row["new-movies"].isdisjoint(by_row["upcoming-movies"])

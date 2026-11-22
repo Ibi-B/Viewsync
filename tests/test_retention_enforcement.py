@@ -106,12 +106,12 @@ def test_tmdb_source_snapshot_history_is_purged_after_150_days_only(tmp_path):
     now = datetime(2026, 11, 22, tzinfo=timezone.utc)
     state_dir = tmp_path / "state"
     old_tmdb = _snapshot(
-        "popular_movies",
+        "tmdb",
         (now - timedelta(days=151)).isoformat(),
         items=[{"id": 1, "title": "Old TMDB title", "overview": "Old metadata"}],
     )
     recent_tmdb = _snapshot(
-        "popular_movies",
+        "tmdb",
         (now - timedelta(days=149)).isoformat(),
         items=[{"id": 2, "title": "Retained TMDB title", "overview": "Metadata"}],
     )

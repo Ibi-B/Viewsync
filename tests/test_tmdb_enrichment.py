@@ -307,6 +307,65 @@ def test_recent_published_provider_shelves_are_reused(monkeypatch):
     assert report["provider_catalogue_requests"] == 0
 
 
+def test_failed_region_provider_refresh_retains_visible_stale_shelf(monkeypatch):
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._credentials",
+        lambda: ("configured-key", None),
+    )
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._watch_regions",
+        lambda: [{"iso_code": "SE", "english_name": "Sweden", "native_name": "Sverige"}],
+    )
+    old_time = (NOW - timedelta(hours=13)).isoformat()
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._load_previous_region_directory",
+        lambda: {"SE": {
+            "availability_updated_at": old_time,
+            "provider_shelves_path": "releases/old/provider-shelves/SE.json",
+        }},
+    )
+    old_shelf = {
+        "id": "netflix:movie",
+        "service_key": "netflix",
+        "provider_id": 8,
+        "provider_name": "Netflix",
+        "provider_logo": "https://image.tmdb.org/t/p/w92/netflix.png",
+        "media_kind": "movie",
+        "title": "Top 10 on Netflix",
+        "display_mode": "top_10",
+        "availability_status": "fresh",
+        "availability_updated_at": old_time,
+        "items": [{
+            "id": "movie:tmdb:101",
+            "tmdb_id": "101",
+            "media_kind": "movie",
+            "title": "Cached film",
+            "rank": 1,
+        }],
+    }
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._load_cached_provider_shelves",
+        lambda *_: [old_shelf],
+    )
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._provider_catalogue",
+        lambda region, media: (
+            (_ for _ in ()).throw(RuntimeError("temporary provider list outage"))
+            if media == "movie" else []
+        ),
+    )
+
+    regions, shelves_by_region, additional, report = discover_provider_shelves(NOW)
+
+    retained = shelves_by_region["SE"][0]
+    assert retained["title"] == "Top 10 on Netflix"
+    assert retained["availability_status"] == "stale"
+    assert retained["availability_updated_at"] == old_time
+    assert ("movie", "101") in additional
+    assert regions[0]["availability_updated_at"] == old_time
+    assert report["provider_discovery_errors"][0]["stage"] == "provider_catalogue"
+
+
 def test_enrichment_applies_to_global_and_provider_discovery_items(monkeypatch):
     monkeypatch.setattr(
         "src.tmdb_enrichment._load_previous_item",

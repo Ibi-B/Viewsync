@@ -94,11 +94,9 @@ def _fetch_snapshots(
                         "provider_id": provider_id,
                         "error": _safe_fetch_error(exc),
                         "partial_response_count": len(raw_payloads),
-                        # TMDB response bodies can contain descriptive metadata
-                        # and are not copied into the durable generation report.
-                        "partial_raw_payloads": (
-                            [] if provider_id == "tmdb" else raw_payloads
-                        ),
+                        # Keep partial bodies in memory for diagnostics. The
+                        # durable report redacts TMDB bodies before persistence.
+                        "partial_raw_payloads": raw_payloads,
                     }
                 )
                 continue
@@ -116,6 +114,23 @@ def _fetch_snapshots(
             snapshots[snapshot_key] = snapshot
 
     return list(snapshots.values()), failures, restore_errors
+
+
+def _durable_fetch_failures(
+    failures: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Keep non-TMDB diagnostics intact but redact TMDB response bodies."""
+    result: list[dict[str, Any]] = []
+    for failure in failures:
+        if failure.get("provider_id") != "tmdb":
+            result.append(failure)
+            continue
+        result.append({
+            key: value
+            for key, value in failure.items()
+            if key != "partial_raw_payloads"
+        })
+    return result
 
 
 def _write_generation_report(
@@ -157,7 +172,7 @@ def _write_generation_report(
             }
             for snapshot in expired
         ],
-        "fetch_failures": failures,
+        "fetch_failures": _durable_fetch_failures(failures),
         "tmdb_enrichment": tmdb_enrichment or {},
         "tmdb_source_snapshot_retention": {
             "hard_cache_limit_days": int(

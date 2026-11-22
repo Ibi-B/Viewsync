@@ -54,10 +54,13 @@ def media_identity(
     if tmdb_id:
         identity["tmdb"] = str(tmdb_id)
 
-    if identity.get("imdb"):
-        identity["id"] = f"{media_type}:imdb:{identity['imdb']}"
-    elif identity.get("tmdb"):
+    # TMDB is the stable catalogue key. IMDb is retained as an alias and
+    # participates in matching, but enrichment availability must never change
+    # the canonical ID between releases.
+    if identity.get("tmdb"):
         identity["id"] = f"{media_type}:tmdb:{identity['tmdb']}"
+    elif identity.get("imdb"):
+        identity["id"] = f"{media_type}:imdb:{identity['imdb']}"
     else:
         slug = normalise_title(title).replace(" ", "-") or "untitled"
         year_text = normalise_year(year) or "unknown"

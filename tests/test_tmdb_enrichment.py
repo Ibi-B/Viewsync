@@ -203,6 +203,10 @@ def test_metadata_older_than_hard_cache_limit_is_never_retained(monkeypatch):
 
 def test_provider_discovery_uses_allowlist_and_publishes_ranked_top_ten(monkeypatch):
     monkeypatch.setattr(
+        "src.tmdb_enrichment._credentials",
+        lambda: ("configured-key", None),
+    )
+    monkeypatch.setattr(
         "src.tmdb_enrichment._watch_regions",
         lambda: [{"iso_code": "SE", "english_name": "Sweden", "native_name": "Sverige"}],
     )
@@ -255,6 +259,10 @@ def test_provider_discovery_uses_allowlist_and_publishes_ranked_top_ten(monkeypa
 
 
 def test_recent_published_provider_shelves_are_reused(monkeypatch):
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._credentials",
+        lambda: ("configured-key", None),
+    )
     monkeypatch.setattr(
         "src.tmdb_enrichment._watch_regions",
         lambda: [{"iso_code": "SE", "english_name": "Sweden", "native_name": "Sverige"}],

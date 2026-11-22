@@ -1069,7 +1069,7 @@ def _refresh_record(
 def enrich_tmdb_snapshots(
     snapshots: list[Any],
     additional_items: dict[tuple[str, str], dict[str, Any]] | None = None,
-    previous_detail_index: dict[tuple[str, str], str] | None = None,
+    previous_detail_index: dict[tuple[str, str], Any] | None = None,
     now: datetime | None = None,
     public_base_url: str = PUBLIC_CATALOGUE_BASE,
 ) -> tuple[dict[tuple[str, str], dict[str, Any]], dict[str, Any]]:

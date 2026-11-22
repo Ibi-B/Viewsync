@@ -94,7 +94,11 @@ def _fetch_snapshots(
                         "provider_id": provider_id,
                         "error": _safe_fetch_error(exc),
                         "partial_response_count": len(raw_payloads),
-                        "partial_raw_payloads": raw_payloads,
+                        # TMDB response bodies can contain descriptive metadata
+                        # and are not copied into the durable generation report.
+                        "partial_raw_payloads": (
+                            [] if provider_id == "tmdb" else raw_payloads
+                        ),
                     }
                 )
                 continue

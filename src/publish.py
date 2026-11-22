@@ -69,21 +69,12 @@ def _shard_detail_value(value, root: Path, written: set[str]):
         # Build UTF-8-safe chunks in linear time. Re-encoding an ever-growing
         # candidate string for every character is quadratic and punishes long
         # credits/review/translation strings.
-        chunks: list[str] = []
-        current: list[str] = []
-        current_bytes = 2  # JSON string quotes
-        for character in value:
-            character_bytes = len(
-                json.dumps(character, ensure_ascii=False).encode("utf-8")
-            )
-            if current and current_bytes + character_bytes > SHARD_INLINE_TARGET_BYTES:
-                chunks.append("".join(current))
-                current = []
-                current_bytes = 2
-            current.append(character)
-            current_bytes += character_bytes
-        if current or not chunks:
-            chunks.append("".join(current))
+        # At most 400,000 Unicode code points per chunk. Even worst-case
+        # JSON escaping of control characters stays below the 3 MiB target.
+        chunks = [
+            value[index:index + 400_000]
+            for index in range(0, len(value), 400_000)
+        ] or [""]
         paths = [_write_shard_part(root, chunk, written) for chunk in chunks]
         return {SHARD_MARKER: {"kind": "string", "parts": paths}}
 
@@ -97,7 +88,7 @@ def _shard_detail_value(value, root: Path, written: set[str]):
             child_encoded = _encode_json(sharded_child)
             # Account for the extra indentation introduced when this value is
             # nested beneath its enclosing object in the pretty-printed file.
-            child_bytes = len(child_encoded) + 2 * child_encoded.count(b"\\n")
+            child_bytes = len(child_encoded) + 2 * child_encoded.count(b"\n")
             entry_bytes = key_bytes + 2 + child_bytes + 8
             comma_bytes = 1 if current else 0
             if current and current_bytes + comma_bytes + entry_bytes > SHARD_INLINE_TARGET_BYTES:
@@ -122,7 +113,7 @@ def _shard_detail_value(value, root: Path, written: set[str]):
         for child in value:
             sharded_child = _shard_detail_value(child, root, written)
             child_encoded = _encode_json(sharded_child)
-            child_bytes = len(child_encoded) + 2 * child_encoded.count(b"\\n") + 8
+            child_bytes = len(child_encoded) + 2 * child_encoded.count(b"\n") + 8
             comma_bytes = 1 if current else 0
             if current and current_bytes + comma_bytes + child_bytes > SHARD_INLINE_TARGET_BYTES:
                 parts.append(_write_shard_part(root, current, written))

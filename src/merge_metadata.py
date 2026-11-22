@@ -81,6 +81,12 @@ def merge_item(media_type, existing, incoming, provider_id):
         external_ids = details.get("external_ids")
         if isinstance(external_ids, dict) and external_ids.get("imdb_id"):
             enriched_identity.setdefault("imdb_id", external_ids["imdb_id"])
+        retained_ids = enrichment.get("ids")
+        if isinstance(retained_ids, dict):
+            if retained_ids.get("tmdb"):
+                enriched_identity["tmdb_id"] = retained_ids["tmdb"]
+            if retained_ids.get("imdb"):
+                enriched_identity["imdb_id"] = retained_ids["imdb"]
         incoming = enriched_identity
 
     identity = media_identity(media_type, incoming, provider_id)
@@ -90,6 +96,11 @@ def merge_item(media_type, existing, incoming, provider_id):
     for key in ('imdb', 'tmdb'):
         if identity.get(key):
             ids[key] = identity[key]
+    retained_ids = enrichment.get("ids") if isinstance(enrichment, dict) else None
+    if isinstance(retained_ids, dict):
+        for key, value in retained_ids.items():
+            if value not in (None, ""):
+                ids[str(key)] = str(value)
     merged['ids'] = ids
     if isinstance(enrichment, dict):
         if isinstance(details, dict):

@@ -1,14 +1,15 @@
-"""Bounded TMDB title-detail and regional watch-provider enrichment.
+"""TMDB enrichment and provider-specific regional discovery for Viewsync.
 
-The list snapshots remain the catalogue's discovery input. This module enriches
-those same TMDB records in place, so no separate catalogue or client-side
-ingestion path is created. Full detail and availability payloads are retained
-with their catalogue item; a 30-day freshness window controls refresh attempts,
-not deletion of information already used by the published catalogue.
+The durable Git state branch contains source-list snapshots only. Full TMDB
+metadata lives in the currently published per-item detail documents; the next
+generation may reuse those documents while they are fresh, but they are never
+copied into append-only Git history. Details and watch availability have
+separate refresh windows and a hard cache age below TMDB's six-month limit.
 """
 from __future__ import annotations
 
 import os
+import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
@@ -19,11 +20,58 @@ from urllib.parse import urljoin
 import requests
 
 TMDB_BASE = "https://api.themoviedb.org/3/"
-DETAIL_CACHE_MAX_AGE = timedelta(days=30)
+PUBLIC_CATALOGUE_BASE = os.environ.get(
+    "VIEWSYNC_PUBLIC_BASE", "https://ibi-b.github.io/Viewsync"
+).rstrip("/")
+DETAIL_REFRESH_AGE = timedelta(days=30)
+AVAILABILITY_REFRESH_AGE = timedelta(hours=12)
+DETAIL_HARD_MAX_AGE = timedelta(days=150)
+AVAILABILITY_STALE_GRACE = timedelta(hours=36)
 REQUEST_TIMEOUT_SECONDS = 15
-MAX_WORKERS = 3
+PUBLIC_CACHE_TIMEOUT_SECONDS = 10
+MAX_WORKERS = 4
+MAX_CACHE_WORKERS = 10
 MAX_RETRIES = 2
 MAX_RETRY_DELAY_SECONDS = 30
+MAX_PUBLIC_JSON_BYTES = 4 * 1024 * 1024
+MAX_DISCOVER_PAGES = 2
+MIN_PROVIDER_ITEM_VOTES = 5
+MIN_SHELF_ITEMS = 5
+SHELF_ITEM_LIMIT = 10
+
+# Regions intentionally provisioned for regional shelves. Add supported ISO
+# 3166-1 codes through the TMDB_WATCH_REGIONS Actions variable. We intersect
+# this configured set with TMDB's watch-provider region endpoint.
+DEFAULT_WATCH_REGIONS = (
+    "SE", "GB", "US", "CA", "AU", "DE", "FR", "NL"
+)
+
+PROVIDER_ALLOWLIST: dict[str, dict[str, Any]] = {
+    "netflix": {
+        "display_name": "Netflix",
+        "aliases": {"netflix"},
+    },
+    "prime-video": {
+        "display_name": "Prime Video",
+        "aliases": {"amazon prime video", "prime video", "amazon video"},
+    },
+    "disney-plus": {
+        "display_name": "Disney+",
+        "aliases": {"disney+", "disney plus"},
+    },
+    "apple-tv": {
+        "display_name": "Apple TV",
+        "aliases": {"apple tv", "apple tv+", "apple tv plus"},
+    },
+    "max": {
+        "display_name": "Max",
+        "aliases": {"max", "hbo max"},
+    },
+    "skyshowtime": {
+        "display_name": "SkyShowtime",
+        "aliases": {"skyshowtime"},
+    },
+}
 
 
 def _parse_time(value: Any) -> datetime | None:
@@ -36,6 +84,14 @@ def _parse_time(value: Any) -> datetime | None:
         return parsed.astimezone(timezone.utc)
     except ValueError:
         return None
+
+
+def _age(value: Any, now: datetime) -> timedelta | None:
+    timestamp = _parse_time(value)
+    if timestamp is None:
+        return None
+    age = now - timestamp
+    return age if age >= timedelta(0) else None
 
 
 def _credentials() -> tuple[str | None, str | None]:
@@ -54,7 +110,9 @@ def _retry_delay(response: requests.Response | None, attempt: int) -> float:
             try:
                 delay = max(
                     0.0,
-                    (parsedate_to_datetime(raw) - datetime.now(timezone.utc)).total_seconds(),
+                    (
+                        parsedate_to_datetime(raw) - datetime.now(timezone.utc)
+                    ).total_seconds(),
                 )
             except (TypeError, ValueError, OverflowError):
                 delay = None
@@ -91,145 +149,533 @@ def _request_json(path: str, params: dict[str, Any] | None = None) -> Any:
     raise RuntimeError("TMDB request retry limit reached")
 
 
-def _fetch_item(media_type: str, tmdb_id: int, fetched_at: str) -> dict[str, Any]:
-    namespace = "movie" if media_type == "movie" else "tv"
-    appended = (
-        "alternative_titles,credits,external_ids,images,keywords,recommendations,release_dates,reviews,similar,translations,videos"
-        if media_type == "movie"
-        else "aggregate_credits,alternative_titles,content_ratings,credits,episode_groups,external_ids,images,keywords,recommendations,reviews,screened_theatrically,similar,translations,videos"
-    )
-    details = _request_json(
-        f"{namespace}/{tmdb_id}",
-        {"language": "en-US", "append_to_response": appended},
-    )
-    provider_payload = _request_json(f"{namespace}/{tmdb_id}/watch/providers")
-    provider_regions = provider_payload.get("results", {}) if isinstance(provider_payload, dict) else {}
-    if not isinstance(provider_regions, dict):
-        provider_regions = {}
-    return {
-        "fetched_at": fetched_at,
-        "status": "fresh",
-        "details": details if isinstance(details, dict) else {},
-        "watch_providers": provider_regions,
-        "watch_providers_response": (
-            provider_payload if isinstance(provider_payload, dict) else {}
-        ),
-    }
+def _safe_failure(error: Exception) -> str:
+    response = getattr(error, "response", None)
+    if response is not None:
+        return f"HTTP {response.status_code}"
+    return type(error).__name__
 
 
-def _is_fresh(record: Any, now: datetime) -> bool:
-    if not isinstance(record, dict):
-        return False
-    fetched_at = _parse_time(record.get("fetched_at"))
-    return fetched_at is not None and timedelta(0) <= now - fetched_at < DETAIL_CACHE_MAX_AGE
+def _normalise_provider(value: Any) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", str(value or "").casefold()).strip()
 
 
-def _current_cache(snapshots: list[Any]) -> dict[tuple[str, str], dict[str, Any]]:
-    cache: dict[tuple[str, str], dict[str, Any]] = {}
-    for snapshot in snapshots:
-        if snapshot.provider_id != "tmdb" or snapshot.media_type not in {"movie", "series"}:
-            continue
-        for item in snapshot.items:
-            if not isinstance(item, dict):
-                continue
-            tmdb_id = item.get("id")
-            record = item.get("tmdb_enrichment")
-            if tmdb_id is None or not isinstance(record, dict):
-                continue
-            key = (snapshot.media_type, str(tmdb_id))
-            current = cache.get(key)
-            current_time = _parse_time(record.get("fetched_at"))
-            prior_time = _parse_time(current.get("fetched_at")) if current else None
-            if current is None or (current_time and (prior_time is None or current_time > prior_time)):
-                cache[key] = record
-    return cache
+def _provider_service(provider_name: str) -> str | None:
+    normalized = _normalise_provider(provider_name)
+    for key, config in PROVIDER_ALLOWLIST.items():
+        aliases = {_normalise_provider(alias) for alias in config["aliases"]}
+        if normalized in aliases:
+            return key
+    return None
+
+
+def _configured_regions() -> list[str]:
+    raw = os.environ.get("TMDB_WATCH_REGIONS", "")
+    values = raw.split(",") if raw.strip() else list(DEFAULT_WATCH_REGIONS)
+    result: list[str] = []
+    for value in values:
+        code = str(value).strip().upper()
+        if re.fullmatch(r"[A-Z]{2}", code) and code not in result:
+            result.append(code)
+    return result
 
 
 def _watch_regions() -> list[dict[str, str]]:
-    payload = _request_json("configuration/countries", {"language": "en-US"})
-    if not isinstance(payload, list):
-        return []
-    result = []
-    seen = set()
-    for item in payload:
+    payload = _request_json("watch/providers/regions", {"language": "en-US"})
+    results = payload.get("results", []) if isinstance(payload, dict) else []
+    configured = set(_configured_regions())
+    regions: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for item in results if isinstance(results, list) else []:
         if not isinstance(item, dict):
             continue
         code = str(item.get("iso_3166_1") or "").strip().upper()
         name = str(item.get("english_name") or item.get("native_name") or "").strip()
-        if len(code) != 2 or not name or code in seen:
+        if code not in configured or code in seen or not name:
             continue
         seen.add(code)
-        result.append({
+        regions.append({
             "iso_code": code,
             "english_name": name,
             "native_name": str(item.get("native_name") or name),
         })
-    return sorted(result, key=lambda row: row["english_name"].casefold())
+    # The region list is an explicit configured coverage boundary. Do not
+    # silently fall back to configuration/countries, which includes markets
+    # without watch-provider data.
+    return regions
+
+
+def _provider_catalogue(region: str, media_type: str) -> list[dict[str, Any]]:
+    endpoint = "watch/providers/movie" if media_type == "movie" else "watch/providers/tv"
+    payload = _request_json(endpoint, {"language": "en-US", "watch_region": region})
+    results = payload.get("results", []) if isinstance(payload, dict) else []
+    return [row for row in results if isinstance(row, dict)] if isinstance(results, list) else []
+
+
+def _discover_provider(
+    media_type: str,
+    region: str,
+    provider_id: int,
+) -> list[dict[str, Any]]:
+    endpoint = "discover/movie" if media_type == "movie" else "discover/tv"
+    results: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for page in range(1, MAX_DISCOVER_PAGES + 1):
+        payload = _request_json(
+            endpoint,
+            {
+                "language": "en-US",
+                "include_adult": "false",
+                "watch_region": region,
+                "with_watch_providers": str(provider_id),
+                "with_watch_monetization_types": "flatrate",
+                "sort_by": "popularity.desc",
+                "page": page,
+            },
+        )
+        page_results = payload.get("results", []) if isinstance(payload, dict) else []
+        if not isinstance(page_results, list):
+            break
+        for item in page_results:
+            if not isinstance(item, dict):
+                continue
+            tmdb_id = item.get("id")
+            vote_count = item.get("vote_count")
+            try:
+                votes = int(vote_count or 0)
+            except (TypeError, ValueError):
+                votes = 0
+            if tmdb_id is None or votes < MIN_PROVIDER_ITEM_VOTES:
+                continue
+            key = str(tmdb_id)
+            if key in seen:
+                continue
+            seen.add(key)
+            results.append(item)
+            if len(results) >= SHELF_ITEM_LIMIT:
+                break
+        if len(results) >= SHELF_ITEM_LIMIT:
+            break
+        if page_results and len(page_results) < 20:
+            break
+    return results[:SHELF_ITEM_LIMIT]
+
+
+def discover_provider_shelves(
+    now: datetime | None = None,
+) -> tuple[
+    list[dict[str, Any]],
+    dict[str, list[dict[str, Any]]],
+    dict[tuple[str, str], dict[str, Any]],
+    dict[str, Any],
+]:
+    """Discover allowlisted services per configured region and media type."""
+    now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
+    fetched_at = now.isoformat()
+    regions = _watch_regions()
+    shelves_by_region: dict[str, list[dict[str, Any]]] = {}
+    discovered: dict[tuple[str, str], dict[str, Any]] = {}
+    provider_calls = 0
+    discover_calls = 0
+    omitted_under_minimum = 0
+    errors: list[dict[str, str]] = []
+
+    for region in regions:
+        region_code = region["iso_code"]
+        shelves: list[dict[str, Any]] = []
+        for media_type in ("movie", "series"):
+            try:
+                provider_rows = _provider_catalogue(region_code, media_type)
+                provider_calls += 1
+            except Exception as exc:
+                errors.append({
+                    "region": region_code,
+                    "media_type": media_type,
+                    "stage": "provider_catalogue",
+                    "error": _safe_failure(exc),
+                })
+                continue
+
+            selected: dict[str, dict[str, Any]] = {}
+            for provider in provider_rows:
+                service_key = _provider_service(provider.get("provider_name"))
+                provider_id = provider.get("provider_id")
+                if service_key is None or not isinstance(provider_id, int) or provider_id <= 0:
+                    continue
+                current = selected.get(service_key)
+                priority = provider.get("display_priority")
+                current_priority = current.get("display_priority") if current else None
+                if current is None or (
+                    isinstance(priority, int)
+                    and (not isinstance(current_priority, int) or priority < current_priority)
+                ):
+                    selected[service_key] = provider
+
+            for service_key, provider in selected.items():
+                try:
+                    provider_id = int(provider["provider_id"])
+                    items = _discover_provider(media_type, region_code, provider_id)
+                    discover_calls += 1
+                except Exception as exc:
+                    errors.append({
+                        "region": region_code,
+                        "media_type": media_type,
+                        "provider": service_key,
+                        "stage": "discover",
+                        "error": _safe_failure(exc),
+                    })
+                    continue
+
+                if len(items) < MIN_SHELF_ITEMS:
+                    omitted_under_minimum += 1
+                    continue
+
+                service = PROVIDER_ALLOWLIST[service_key]
+                label = (
+                    f"Top 10 on {service['display_name']}"
+                    if len(items) >= SHELF_ITEM_LIMIT
+                    else f"Popular on {service['display_name']}"
+                )
+                logo_path = str(provider.get("logo_path") or "").strip()
+                logo_url = (
+                    f"https://image.tmdb.org/t/p/w92{logo_path}"
+                    if logo_path.startswith("/")
+                    else None
+                )
+                shelf_items: list[dict[str, Any]] = []
+                for rank, raw_item in enumerate(items, start=1):
+                    tmdb_id = str(raw_item["id"])
+                    key = (media_type, tmdb_id)
+                    candidate = dict(raw_item)
+                    candidate["media_type"] = media_type
+                    candidate["tmdb_id"] = tmdb_id
+                    candidate["provider_rank"] = rank
+                    discovered.setdefault(key, candidate)
+                    date_value = (
+                        candidate.get("release_date")
+                        if media_type == "movie"
+                        else candidate.get("first_air_date")
+                    )
+                    shelf_items.append({
+                        "id": f"{media_type}:tmdb:{tmdb_id}",
+                        "tmdb_id": tmdb_id,
+                        "media_kind": media_type,
+                        "title": str(
+                            candidate.get("title") or candidate.get("name") or ""
+                        ),
+                        "year": str(date_value or "")[:4] or None,
+                        "release_date": date_value,
+                        "images": {
+                            "poster": _image_url(candidate.get("poster_path"), "w500"),
+                            "backdrop": _image_url(candidate.get("backdrop_path"), "w1280"),
+                        },
+                        "popularity": candidate.get("popularity"),
+                        "rating": candidate.get("vote_average"),
+                        "vote_count": candidate.get("vote_count"),
+                        "rank": rank,
+                    })
+
+                shelves.append({
+                    "id": f"{service_key}:{media_type}",
+                    "service_key": service_key,
+                    "provider_id": provider_id,
+                    "provider_name": service["display_name"],
+                    "provider_logo": logo_url,
+                    "media_kind": media_type,
+                    "title": label,
+                    "display_mode": "top_10" if len(items) >= SHELF_ITEM_LIMIT else "popular",
+                    "items": shelf_items,
+                    "availability_updated_at": fetched_at,
+                })
+        if shelves:
+            shelves_by_region[region_code] = shelves
+
+    published_regions = [
+        {
+            **region,
+            "availability_updated_at": fetched_at,
+        }
+        for region in regions
+        if region["iso_code"] in shelves_by_region
+    ]
+    report = {
+        "configured_region_count": len(regions),
+        "published_region_count": len(published_regions),
+        "provider_catalogue_requests": provider_calls,
+        "provider_discover_requests": discover_calls,
+        "provider_shelves_published": sum(len(rows) for rows in shelves_by_region.values()),
+        "provider_shelves_omitted_under_minimum": omitted_under_minimum,
+        "provider_discovery_errors": errors,
+        "provider_allowlist": sorted(PROVIDER_ALLOWLIST),
+        "availability_refresh_hours": int(AVAILABILITY_REFRESH_AGE.total_seconds() // 3600),
+    }
+    return published_regions, shelves_by_region, discovered, report
+
+
+def _image_url(value: Any, size: str) -> str | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    path = value.strip()
+    if path.startswith(("https://", "http://")):
+        return path
+    if path.startswith("/") and not path.startswith("//"):
+        return f"https://image.tmdb.org/t/p/{size}{path}"
+    return None
+
+
+def _public_url(base_url: str, relative_path: str) -> str:
+    base = base_url.rstrip("/") + "/"
+    clean = relative_path.lstrip("/")
+    if clean.startswith("v1/"):
+        clean = clean[3:]
+    return urljoin(base + "v1/", clean)
+
+
+def _public_json(base_url: str, relative_path: str) -> Any:
+    response = requests.get(
+        _public_url(base_url, relative_path),
+        headers={"Accept": "application/json", "User-Agent": "Viewsync/1.0"},
+        timeout=PUBLIC_CACHE_TIMEOUT_SECONDS,
+    )
+    response.raise_for_status()
+    if len(response.content) > MAX_PUBLIC_JSON_BYTES:
+        raise ValueError("Previous published catalogue document exceeded the cache size limit")
+    return response.json()
+
+
+def load_previous_detail_index(
+    base_url: str = PUBLIC_CATALOGUE_BASE,
+    regions: list[dict[str, Any]] | None = None,
+) -> dict[tuple[str, str], str]:
+    """Index current published per-item documents without persisting TMDB data in Git."""
+    try:
+        manifest = _public_json(base_url, "manifest.json")
+    except Exception:
+        return {}
+    if not isinstance(manifest, dict):
+        return {}
+
+    index: dict[tuple[str, str], str] = {}
+
+    def add_item(item: Any) -> None:
+        if not isinstance(item, dict):
+            return
+        tmdb_id = item.get("tmdb_id")
+        media_type = item.get("media_kind") or item.get("media_type")
+        details_path = item.get("details_path")
+        if tmdb_id is None and isinstance(item.get("ids"), dict):
+            tmdb_id = item["ids"].get("tmdb")
+        if tmdb_id is None or media_type not in {"movie", "series"}:
+            return
+        if isinstance(details_path, str) and details_path:
+            index[(str(media_type), str(tmdb_id))] = details_path
+
+    for row_ref in manifest.get("rows", []):
+        if not isinstance(row_ref, dict) or not row_ref.get("path"):
+            continue
+        try:
+            row = _public_json(base_url, str(row_ref["path"]))
+        except Exception:
+            continue
+        if isinstance(row, dict):
+            for item in row.get("items", []):
+                add_item(item)
+
+    selected_codes = {
+        str(region.get("iso_code") or "").upper()
+        for region in (regions or manifest.get("watch_regions", []))
+        if isinstance(region, dict)
+    }
+    for region in manifest.get("watch_regions", []):
+        if not isinstance(region, dict):
+            continue
+        code = str(region.get("iso_code") or "").upper()
+        path = region.get("provider_shelves_path")
+        if code not in selected_codes or not path:
+            continue
+        try:
+            payload = _public_json(base_url, str(path))
+        except Exception:
+            continue
+        if isinstance(payload, dict):
+            for shelf in payload.get("shelves", []):
+                if isinstance(shelf, dict):
+                    for item in shelf.get("items", []):
+                        add_item(item)
+    return index
+
+
+def _load_previous_item(
+    key: tuple[str, str],
+    detail_index: dict[tuple[str, str], str],
+    base_url: str,
+) -> dict[str, Any] | None:
+    path = detail_index.get(key)
+    if not path:
+        return None
+    try:
+        payload = _public_json(base_url, path)
+        return payload if isinstance(payload, dict) else None
+    except Exception:
+        return None
+
+
+def _fetch_details(media_type: str, tmdb_id: str) -> dict[str, Any]:
+    namespace = "movie" if media_type == "movie" else "tv"
+    appended = (
+        "alternative_titles,credits,external_ids,images,keywords,recommendations,release_dates,reviews,similar,translations,videos"
+        if media_type == "movie"
+        else "aggregate_credits,alternative_titles,content_ratings,credits,episode_groups,external_ids,images,keywords,recommendations,reviews,similar,translations,videos"
+    )
+    payload = _request_json(
+        f"{namespace}/{tmdb_id}",
+        {"language": "en-US", "append_to_response": appended},
+    )
+    if not isinstance(payload, dict):
+        raise ValueError("TMDB detail response was not an object")
+    return payload
+
+
+def _fetch_watch_providers(media_type: str, tmdb_id: str) -> dict[str, Any]:
+    namespace = "movie" if media_type == "movie" else "tv"
+    payload = _request_json(f"{namespace}/{tmdb_id}/watch/providers")
+    if not isinstance(payload, dict) or not isinstance(payload.get("results"), dict):
+        raise ValueError("TMDB watch-provider response was invalid")
+    return payload["results"]
+
+
+def _refresh_record(
+    key: tuple[str, str],
+    previous: dict[str, Any] | None,
+    now: datetime,
+) -> tuple[dict[str, Any], list[dict[str, str]]]:
+    media_type, tmdb_id = key
+    details = previous.get("tmdb_full") if previous else None
+    providers = previous.get("watch_providers") if previous else None
+    details_at = previous.get("tmdb_details_fetched_at") if previous else None
+    providers_at = previous.get("tmdb_watch_providers_fetched_at") if previous else None
+    errors: list[dict[str, str]] = []
+
+    details_age = _age(details_at, now)
+    if not isinstance(details, dict) or details_age is None or details_age >= DETAIL_REFRESH_AGE:
+        try:
+            details = _fetch_details(media_type, tmdb_id)
+            details_at = now.isoformat()
+            detail_status = "fresh"
+        except Exception as exc:
+            if not isinstance(details, dict) or details_age is None or details_age >= DETAIL_HARD_MAX_AGE:
+                raise RuntimeError(f"TMDB details unavailable for {media_type}:{tmdb_id} ({_safe_failure(exc)})") from exc
+            errors.append({
+                "media_kind": media_type,
+                "tmdb_id": tmdb_id,
+                "stage": "details_refresh",
+                "error": _safe_failure(exc),
+            })
+            detail_status = "stale"
+    else:
+        detail_status = str(previous.get("tmdb_details_status") or "fresh")
+
+    providers_age = _age(providers_at, now)
+    if not isinstance(providers, dict) or providers_age is None or providers_age >= AVAILABILITY_REFRESH_AGE:
+        try:
+            providers = _fetch_watch_providers(media_type, tmdb_id)
+            providers_at = now.isoformat()
+            availability_status = "fresh"
+        except Exception as exc:
+            if not isinstance(providers, dict) or providers_age is None or providers_age >= AVAILABILITY_STALE_GRACE:
+                raise RuntimeError(
+                    f"TMDB watch availability unavailable for {media_type}:{tmdb_id} ({_safe_failure(exc)})"
+                ) from exc
+            errors.append({
+                "media_kind": media_type,
+                "tmdb_id": tmdb_id,
+                "stage": "availability_refresh",
+                "error": _safe_failure(exc),
+            })
+            availability_status = "stale"
+    else:
+        availability_status = str(previous.get("tmdb_watch_providers_status") or "fresh")
+
+    record = {
+        "tmdb_full": details,
+        "watch_providers": providers,
+        "tmdb_details_fetched_at": details_at,
+        "tmdb_details_status": detail_status,
+        "tmdb_watch_providers_fetched_at": providers_at,
+        "tmdb_watch_providers_status": availability_status,
+    }
+    return record, errors
 
 
 def enrich_tmdb_snapshots(
     snapshots: list[Any],
+    additional_items: dict[tuple[str, str], dict[str, Any]] | None = None,
+    previous_detail_index: dict[tuple[str, str], str] | None = None,
     now: datetime | None = None,
-) -> tuple[list[dict[str, str]], dict[str, Any]]:
-    """Attach rich TMDB details and provider availability to every distinct TMDB title."""
+    public_base_url: str = PUBLIC_CATALOGUE_BASE,
+) -> tuple[dict[tuple[str, str], dict[str, Any]], dict[str, Any]]:
+    """Attach full details and independently refreshed availability to each unique item."""
     now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
-    fetched_at = now.isoformat()
-    cache = _current_cache(snapshots)
-    requested: dict[tuple[str, str], None] = {}
-    item_refs: dict[tuple[str, str], list[dict[str, Any]]] = {}
+    previous_detail_index = previous_detail_index or {}
+    additional_items = additional_items or {}
 
+    items_by_key: dict[tuple[str, str], list[dict[str, Any]]] = {}
     for snapshot in snapshots:
         if snapshot.provider_id != "tmdb" or snapshot.media_type not in {"movie", "series"}:
             continue
         for item in snapshot.items:
-            if not isinstance(item, dict) or item.get("id") is None:
-                continue
-            key = (snapshot.media_type, str(item["id"]))
-            requested[key] = None
-            item_refs.setdefault(key, []).append(item)
+            if isinstance(item, dict) and item.get("id") is not None:
+                key = (snapshot.media_type, str(item["id"]))
+                items_by_key.setdefault(key, []).append(item)
 
-    refresh = [key for key in requested if not _is_fresh(cache.get(key), now)]
-    fetched = 0
-    failures = 0
-    if refresh and (_credentials()[0] or _credentials()[1]):
-        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
-            futures = {
-                pool.submit(_fetch_item, media_type, int(tmdb_id), fetched_at): (media_type, tmdb_id)
-                for media_type, tmdb_id in refresh
-                if tmdb_id.isdigit()
-            }
-            for future in as_completed(futures):
-                key = futures[future]
-                try:
-                    cache[key] = future.result()
-                    fetched += 1
-                except Exception:
-                    failures += 1
-                    stale = cache.get(key)
-                    if isinstance(stale, dict):
-                        retained = dict(stale)
-                        retained["status"] = "stale"
-                        cache[key] = retained
+    for key, item in additional_items.items():
+        items_by_key.setdefault(key, []).append(item)
 
-    for key, refs in item_refs.items():
-        record = cache.get(key)
-        if not isinstance(record, dict):
-            continue
-        for item in refs:
-            item["tmdb_enrichment"] = record
+    refreshed: dict[tuple[str, str], dict[str, Any]] = {}
+    all_errors: list[dict[str, str]] = []
+    failures: list[dict[str, str]] = []
 
-    try:
-        regions = _watch_regions() if (_credentials()[0] or _credentials()[1]) else []
-    except Exception:
-        regions = []
+    def work(key: tuple[str, str]):
+        old = _load_previous_item(key, previous_detail_index, public_base_url)
+        return key, _refresh_record(key, old, now)
 
-    return regions, {
-        "unique_tmdb_titles": len(requested),
-        "detail_refresh_candidates": len(refresh),
-        "detail_titles_refreshed": fetched,
-        "detail_refresh_failures": failures,
-        "cached_titles_reused": len(requested) - len(refresh),
-        "regions_published": len(regions),
-        "cache_freshness_days": int(DETAIL_CACHE_MAX_AGE.total_seconds() // 86400),
-        "provider_availability": "TMDB watch/providers by region",
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+        futures = [pool.submit(work, key) for key in items_by_key]
+        for future in as_completed(futures):
+            try:
+                key, (record, errors) = future.result()
+                refreshed[key] = record
+                all_errors.extend(errors)
+            except Exception as exc:
+                failures.append({"error": str(exc)[:300]})
+
+    if failures:
+        # Do not publish a partially enriched catalogue. The workflow skips
+        # Pages deployment on failure, retaining the last complete release.
+        raise RuntimeError(
+            f"TMDB enrichment incomplete for {len(failures)} item(s); "
+            f"last complete catalogue will remain published. Sample: {failures[:3]}"
+        )
+
+    for key, refs in items_by_key.items():
+        record = refreshed.get(key)
+        if record is not None:
+            for item in refs:
+                item["tmdb_enrichment"] = record
+                item["id"] = int(key[1]) if key[1].isdigit() else item.get("id")
+
+    report = {
+        "unique_tmdb_titles": len(items_by_key),
+        "detail_titles_refreshed": sum(
+            1 for r in refreshed.values() if r.get("tmdb_details_status") == "fresh"
+        ),
+        "availability_records_refreshed": sum(
+            1 for r in refreshed.values() if r.get("tmdb_watch_providers_status") == "fresh"
+        ),
+        "detail_refresh_days": int(DETAIL_REFRESH_AGE.total_seconds() // 86400),
+        "availability_refresh_hours": int(AVAILABILITY_REFRESH_AGE.total_seconds() // 3600),
+        "hard_cache_limit_days": int(DETAIL_HARD_MAX_AGE.total_seconds() // 86400),
+        "stale_refresh_errors": all_errors,
+        "failed_items": 0,
     }
+    return refreshed, report

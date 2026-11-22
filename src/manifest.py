@@ -89,6 +89,7 @@ def _metadata(item: dict[str, Any]) -> dict[str, Any]:
     return {
         "overview": item.get("description") or item.get("overview") or None,
         "genres": genres,
+        "genre_ids": item.get("genre_ids") or [],
         "runtime_minutes": runtime,
         "release_date": item.get("release_date") or item.get("first_air_date"),
         "rating": item.get("rating"),

@@ -22,7 +22,11 @@ from .state import (
     select_snapshots,
 )
 from .validate import validate_release
-from .tmdb_enrichment import enrich_tmdb_snapshots
+from .tmdb_enrichment import (
+    discover_provider_shelves,
+    enrich_tmdb_snapshots,
+    load_previous_detail_index,
+)
 
 BASE = Path(__file__).resolve().parent.parent
 CONFIG = BASE / "catalog-config"
@@ -91,20 +95,6 @@ def _fetch_snapshots(
                     }
                 )
                 continue
-
-            previous_snapshot = snapshots.get(
-                f"{request_id}:{provider_id}:{provider_config.get('list_id') or request_id}"
-            )
-            if provider_id == "tmdb" and previous_snapshot is not None:
-                previous_enrichment = {
-                    str(item.get("id")): item.get("tmdb_enrichment")
-                    for item in previous_snapshot.items
-                    if item.get("id") is not None and isinstance(item.get("tmdb_enrichment"), dict)
-                }
-                for item in items:
-                    cached = previous_enrichment.get(str(item.get("id")))
-                    if cached and not isinstance(item.get("tmdb_enrichment"), dict):
-                        item["tmdb_enrichment"] = cached
 
             snapshot = SourceSnapshot(
                 request_id=request_id,
@@ -196,9 +186,23 @@ def generate_catalog(
     policy = config["ranking"].get("retention", {})
     provider_weights = config["ranking"].get("provider_weights", {})
     usable_snapshots, expired_snapshots = select_snapshots(snapshots, policy, now)
-    watch_regions, tmdb_enrichment_report = enrich_tmdb_snapshots(
-        usable_snapshots, now=now
+
+    # Durable source snapshots deliberately contain only bounded provider-list
+    # input. Full TMDB metadata stays in the replaceable published detail files,
+    # never in the append-only public viewsync-state Git branch.
+    persist_snapshots(snapshots, state_dir)
+
+    watch_regions, provider_shelves, additional_items, provider_discovery_report = (
+        discover_provider_shelves(now=now)
     )
+    previous_detail_index = load_previous_detail_index(regions=watch_regions)
+    item_enrichments, tmdb_enrichment_report = enrich_tmdb_snapshots(
+        usable_snapshots,
+        additional_items=additional_items,
+        previous_detail_index=previous_detail_index,
+        now=now,
+    )
+    tmdb_enrichment_report["provider_discovery"] = provider_discovery_report
 
     _write_generation_report(
         state_dir,
@@ -210,10 +214,6 @@ def generate_catalog(
         snapshots,
         tmdb_enrichment=tmdb_enrichment_report,
     )
-
-    # Preserve every gathered/restored source payload, not only snapshots used
-    # in this release. Retention controls publication eligibility, not storage.
-    persist_snapshots(snapshots, state_dir)
 
     if not usable_snapshots:
         raise ValueError("All provider snapshots have expired; refusing to publish a new release")
@@ -227,6 +227,8 @@ def generate_catalog(
         retention_policy=policy,
         provider_weights=provider_weights,
         watch_regions=watch_regions,
+        provider_shelves=provider_shelves,
+        item_enrichments=item_enrichments,
     )
 
     if not release["rows"]:

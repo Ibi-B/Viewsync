@@ -315,8 +315,16 @@ def build_release(
         source_item = dict(discovered)
         source_item["id"] = int(tmdb_id) if str(tmdb_id).isdigit() else tmdb_id
         source_item["tmdb_enrichment"] = enrichment
+        tmdb_full = enrichment.get("tmdb_full")
+        external_ids = (
+            tmdb_full.get("external_ids")
+            if isinstance(tmdb_full, dict) else None
+        )
+        canonical_ids = {"tmdb": str(tmdb_id)}
+        if isinstance(external_ids, dict) and external_ids.get("imdb_id"):
+            canonical_ids["imdb"] = str(external_ids["imdb_id"])
         item = {
-            "ids": {"tmdb": str(tmdb_id)},
+            "ids": canonical_ids,
             "tmdb_enrichment": enrichment,
             "title": discovered.get("title") or "",
             "year": discovered.get("year"),

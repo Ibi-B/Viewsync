@@ -796,6 +796,54 @@ def test_new_and_coming_soon_rows_are_quality_filtered_without_trimming_catalogu
     assert accepted["metadata"]["rating"] is None
 
 
+def test_summary_timestamp_does_not_rotate_unchanged_detail_path():
+    item = {
+        "id": 101,
+        "title": "Unchanged media title",
+        "release_date": "2026-11-20",
+        "poster_path": "/unchanged.jpg",
+        "overview": "Unchanged overview",
+        "genre_ids": [18],
+        "tmdb_enrichment": _enrichment(),
+    }
+    rows = [{
+        "id": "popular-movies",
+        "name": "Popular movies",
+        "type": "movie",
+        "source_lists": ["popular_movies"],
+    }]
+
+    first_snapshot = SourceSnapshot(
+        request_id="popular_movies",
+        provider_id="tmdb",
+        list_id="popular_movies",
+        media_type="movie",
+        fetched_at=NOW.isoformat(),
+        items=[dict(item)],
+    )
+    second_time = NOW + timedelta(hours=12)
+    second_snapshot = SourceSnapshot(
+        request_id="popular_movies",
+        provider_id="tmdb",
+        list_id="popular_movies",
+        media_type="movie",
+        fetched_at=second_time.isoformat(),
+        items=[dict(item)],
+    )
+
+    first = build_release(rows, [first_snapshot], NOW)
+    second = build_release(rows, [second_snapshot], second_time)
+
+    first_item = first["rows"][0]["items"][0]
+    second_item = second["rows"][0]["items"][0]
+    assert first_item["details_path"] == second_item["details_path"]
+    assert first_item["source_item_fetched_at"] != second_item["source_item_fetched_at"]
+    assert first_item["source_item_fetched_at"] == NOW.isoformat()
+    assert second_item["source_item_fetched_at"] == second_time.isoformat()
+    detail = first["item_details"][first_item["details_path"]]
+    assert "source_item_fetched_at" not in detail
+
+
 def test_shelf_discovery_refresh_constants_are_distinct():
     assert DETAIL_REFRESH_AGE == timedelta(days=30)
     assert AVAILABILITY_REFRESH_AGE == timedelta(hours=12)

@@ -103,6 +103,23 @@ def _metadata(item: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _enrichment_freshness(
+    item: dict[str, Any],
+    source_item: dict[str, Any],
+) -> dict[str, Any]:
+    enrichment = item.get("tmdb_enrichment")
+    if not isinstance(enrichment, dict):
+        enrichment = source_item.get("tmdb_enrichment")
+    if not isinstance(enrichment, dict):
+        enrichment = {}
+    return {
+        "tmdb_metadata_fetched_at": enrichment.get("tmdb_details_fetched_at"),
+        "tmdb_metadata_status": enrichment.get("tmdb_details_status"),
+        "tmdb_availability_fetched_at": enrichment.get("tmdb_watch_providers_fetched_at"),
+        "tmdb_availability_status": enrichment.get("tmdb_watch_providers_status"),
+    }
+
+
 def _detail_path(detail_document: dict[str, Any]) -> str:
     """Return a stable content-addressed path shared across release generations."""
     encoded = json.dumps(
@@ -234,10 +251,6 @@ def _make_detail_document(
         "ids": retained_ids,
         "tmdb_full": details if isinstance(details, dict) else {},
         "watch_providers": watch_providers if isinstance(watch_providers, dict) else {},
-        "tmdb_details_fetched_at": enrichment.get("tmdb_details_fetched_at"),
-        "tmdb_details_status": enrichment.get("tmdb_details_status"),
-        "tmdb_watch_providers_fetched_at": enrichment.get("tmdb_watch_providers_fetched_at"),
-        "tmdb_watch_providers_status": enrichment.get("tmdb_watch_providers_status"),
         # Keep the source-list record too, but only once in this detail file.
         # It preserves TMDB discovery fields not yet mapped to the slim row.
         "source_item": {
@@ -364,6 +377,7 @@ def build_release(
                 "discovery_quality": _discovery_quality(item, media_type, now),
                 "details_path": detail_path,
                 "source_item_fetched_at": summary_fetched_at,
+                **_enrichment_freshness(item, source_item),
                 "popularity": item.get("popularity"),
                 "vote_count": item.get("vote_count"),
                 "source_attribution": attributions.get(media_id, []),
@@ -544,6 +558,7 @@ def build_release(
                         or shelf.get("availability_updated_at")
                         or now.isoformat()
                     ),
+                    **_enrichment_freshness(item, {}),
                     "ids": item.get("ids", {"tmdb": tmdb_id}),
                 })
             if not shelf_items:

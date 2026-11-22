@@ -398,6 +398,22 @@ def discover_provider_shelves(
         region_directory_error = _safe_failure(exc)
     else:
         region_directory_error = None
+        if not regions and previous_regions:
+            # An unexpectedly empty success is not evidence that every
+            # previously supported market disappeared. Retain the last-good
+            # configured directory and let per-market shelf refresh/status
+            # determine what remains usable.
+            regions = [
+                {
+                    "iso_code": code,
+                    "english_name": str(value.get("english_name") or code),
+                    "native_name": str(value.get("native_name") or code),
+                }
+                for code, value in previous_regions.items()
+            ]
+            region_directory_error = (
+                "Empty TMDB watch-provider region response; retained last-good directory"
+            )
     shelves_by_region: dict[str, list[dict[str, Any]]] = {}
     discovered: dict[tuple[str, str], dict[str, Any]] = {}
     provider_calls = 0

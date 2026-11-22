@@ -180,6 +180,11 @@ def _slim_row_item(source: dict):
         "metadata",
         "discovery_quality",
         "details_path",
+        "source_item_fetched_at",
+        "tmdb_metadata_fetched_at",
+        "tmdb_metadata_status",
+        "tmdb_availability_fetched_at",
+        "tmdb_availability_status",
         "popularity",
         "vote_count",
         "source_attribution",
@@ -205,6 +210,11 @@ def _slim_shelf_item(source: dict):
         "vote_count",
         "rank",
         "details_path",
+        "source_item_fetched_at",
+        "tmdb_metadata_fetched_at",
+        "tmdb_metadata_status",
+        "tmdb_availability_fetched_at",
+        "tmdb_availability_status",
         "ids",
     )
     item = {key: source[key] for key in allowed if key in source}

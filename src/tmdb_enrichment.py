@@ -321,20 +321,69 @@ def discover_provider_shelves(
     now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
     fetched_at = now.isoformat()
     if not any(_credentials()):
-        return [], {}, {}, {
-            "configured_region_count": 0,
-            "published_region_count": 0,
+        # Credential removal/outage must not immediately blank provider shelves.
+        # Reuse the last published regional documents as stale, but never beyond
+        # the same 150-day hard cache ceiling used for per-item availability.
+        previous_regions = _load_previous_region_directory()
+        cached_regions: list[dict[str, Any]] = []
+        shelves_by_region: dict[str, list[dict[str, Any]]] = {}
+        discovered: dict[tuple[str, str], dict[str, Any]] = {}
+        expired_shelves = 0
+        for code, previous_region in previous_regions.items():
+            age = _age(previous_region.get("availability_updated_at"), now)
+            if age is None or age >= AVAILABILITY_STALE_GRACE:
+                expired_shelves += 1
+                continue
+            cached_shelves = _load_cached_provider_shelves(previous_region, now)
+            if not cached_shelves:
+                continue
+            if age >= AVAILABILITY_REFRESH_AGE:
+                for shelf in cached_shelves:
+                    shelf["availability_status"] = "stale"
+            shelves_by_region[code] = cached_shelves
+            cached_regions.append({
+                "iso_code": code,
+                "english_name": str(previous_region.get("english_name") or code),
+                "native_name": str(previous_region.get("native_name") or code),
+                "availability_updated_at": previous_region.get("availability_updated_at"),
+            })
+            for shelf in cached_shelves:
+                media_kind = str(shelf.get("media_kind") or "")
+                for item in shelf.get("items", []):
+                    tmdb_id = str(item.get("tmdb_id") or "")
+                    if not tmdb_id:
+                        continue
+                    images = item.get("images")
+                    images = images if isinstance(images, dict) else {}
+                    discovered.setdefault((media_kind, tmdb_id), {
+                        "id": int(tmdb_id) if tmdb_id.isdigit() else tmdb_id,
+                        "tmdb_id": tmdb_id,
+                        "media_type": media_kind,
+                        "title": item.get("title") or "",
+                        "release_date": item.get("release_date"),
+                        "popularity": item.get("popularity"),
+                        "vote_average": item.get("rating"),
+                        "vote_count": item.get("vote_count"),
+                        "poster_path": images.get("poster"),
+                        "backdrop_path": images.get("backdrop"),
+                    })
+        return cached_regions, shelves_by_region, discovered, {
+            "configured_region_count": len(previous_regions),
+            "published_region_count": len(cached_regions),
             "provider_catalogue_requests": 0,
             "provider_discover_requests": 0,
-            "provider_shelf_regions_reused": 0,
-            "provider_shelves_published": 0,
+            "provider_shelf_regions_reused": len(cached_regions),
+            "provider_shelves_expired": expired_shelves,
+            "provider_shelves_published": sum(
+                len(shelves) for shelves in shelves_by_region.values()
+            ),
             "provider_shelves_omitted_under_minimum": 0,
             "provider_discovery_errors": [],
             "provider_allowlist": sorted(PROVIDER_ALLOWLIST),
             "availability_refresh_hours": int(
                 AVAILABILITY_REFRESH_AGE.total_seconds() // 3600
             ),
-            "skipped_reason": "TMDB credentials are not configured",
+            "skipped_reason": "TMDB credentials are not configured; retained valid cached shelves",
         }
 
     previous_regions = _load_previous_region_directory()

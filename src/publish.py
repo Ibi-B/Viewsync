@@ -40,6 +40,7 @@ def publish_release(release, output_dir):
             'generated_at',
             'ranking_version',
             'catalog_freshness',
+            'watch_regions',
         )
     }
     manifest.update(

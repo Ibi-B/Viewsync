@@ -26,7 +26,7 @@ PUBLIC_CATALOGUE_BASE = os.environ.get(
 DETAIL_REFRESH_AGE = timedelta(days=30)
 AVAILABILITY_REFRESH_AGE = timedelta(hours=12)
 DETAIL_HARD_MAX_AGE = timedelta(days=150)
-AVAILABILITY_STALE_GRACE = timedelta(hours=36)
+AVAILABILITY_STALE_GRACE = timedelta(days=150)
 REQUEST_TIMEOUT_SECONDS = 15
 PUBLIC_CACHE_TIMEOUT_SECONDS = 10
 MAX_WORKERS = 4
@@ -334,37 +334,70 @@ def discover_provider_shelves(
         region_code = region["iso_code"]
         previous_region = previous_regions.get(region_code, {})
         previous_age = _age(previous_region.get("availability_updated_at"), now)
-        if previous_age is not None and previous_age < AVAILABILITY_REFRESH_AGE:
-            cached_shelves = _load_cached_provider_shelves(previous_region, now)
-            if cached_shelves:
-                shelves_by_region[region_code] = cached_shelves
-                cached_regions += 1
-                for shelf in cached_shelves:
-                    media_type = str(shelf.get("media_kind") or "")
-                    for shelf_item in shelf.get("items", []):
-                        tmdb_id = str(shelf_item.get("tmdb_id") or "")
-                        if not tmdb_id:
-                            continue
-                        candidate = {
-                            "id": int(tmdb_id) if tmdb_id.isdigit() else tmdb_id,
-                            "tmdb_id": tmdb_id,
-                            "media_type": media_type,
-                            "title": shelf_item.get("title") or "",
-                            "release_date": shelf_item.get("release_date"),
-                            "popularity": shelf_item.get("popularity"),
-                            "vote_average": shelf_item.get("rating"),
-                            "vote_count": shelf_item.get("vote_count"),
-                            "poster_path": (
-                                shelf_item.get("images", {}).get("poster")
-                                if isinstance(shelf_item.get("images"), dict) else None
-                            ),
-                            "backdrop_path": (
-                                shelf_item.get("images", {}).get("backdrop")
-                                if isinstance(shelf_item.get("images"), dict) else None
-                            ),
-                        }
-                        discovered.setdefault((media_type, tmdb_id), candidate)
-                continue
+        cached_shelves = _load_cached_provider_shelves(previous_region, now)
+
+        def retain_cached(media_type: str, service_key: str | None = None) -> None:
+            for old_shelf in cached_shelves or []:
+                if old_shelf.get("media_kind") != media_type:
+                    continue
+                if service_key is not None and old_shelf.get("service_key") != service_key:
+                    continue
+                retained = dict(old_shelf)
+                retained["availability_status"] = "stale"
+                shelves.append(retained)
+                for shelf_item in retained.get("items", []):
+                    tmdb_id = str(shelf_item.get("tmdb_id") or "")
+                    if not tmdb_id:
+                        continue
+                    images = shelf_item.get("images")
+                    images = images if isinstance(images, dict) else {}
+                    candidate = {
+                        "id": int(tmdb_id) if tmdb_id.isdigit() else tmdb_id,
+                        "tmdb_id": tmdb_id,
+                        "media_type": media_type,
+                        "title": shelf_item.get("title") or "",
+                        "release_date": shelf_item.get("release_date"),
+                        "popularity": shelf_item.get("popularity"),
+                        "vote_average": shelf_item.get("rating"),
+                        "vote_count": shelf_item.get("vote_count"),
+                        "poster_path": images.get("poster"),
+                        "backdrop_path": images.get("backdrop"),
+                    }
+                    discovered.setdefault((media_type, tmdb_id), candidate)
+
+        if previous_age is not None and previous_age < AVAILABILITY_REFRESH_AGE and cached_shelves:
+            shelves_by_region[region_code] = cached_shelves
+            cached_regions += 1
+            for shelf in cached_shelves:
+                retain = {
+                    "id": int(str(item.get("tmdb_id"))),
+                    "tmdb_id": str(item.get("tmdb_id")),
+                    "media_type": str(shelf.get("media_kind") or ""),
+                    "title": item.get("title") or "",
+                    "release_date": item.get("release_date"),
+                    "popularity": item.get("popularity"),
+                    "vote_average": item.get("rating"),
+                    "vote_count": item.get("vote_count"),
+                    "poster_path": (
+                        item.get("images", {}).get("poster")
+                        if isinstance(item.get("images"), dict) else None
+                    ),
+                    "backdrop_path": (
+                        item.get("images", {}).get("backdrop")
+                        if isinstance(item.get("images"), dict) else None
+                    ),
+                }
+                for item in shelf.get("items", []):
+                    tmdb_id = str(item.get("tmdb_id") or "")
+                    if tmdb_id:
+                        retain["id"] = int(tmdb_id) if tmdb_id.isdigit() else tmdb_id
+                        retain["tmdb_id"] = tmdb_id
+                        discovered.setdefault(
+                            (str(shelf.get("media_kind") or ""), tmdb_id),
+                            dict(retain),
+                        )
+            continue
+
         shelves: list[dict[str, Any]] = []
         for media_type in ("movie", "series"):
             try:
@@ -377,6 +410,7 @@ def discover_provider_shelves(
                     "stage": "provider_catalogue",
                     "error": _safe_failure(exc),
                 })
+                retain_cached(media_type)
                 continue
 
             selected: dict[str, dict[str, Any]] = {}
@@ -407,10 +441,13 @@ def discover_provider_shelves(
                         "stage": "discover",
                         "error": _safe_failure(exc),
                     })
+                    retain_cached(media_type, service_key)
                     continue
 
                 if len(items) < MIN_SHELF_ITEMS:
                     omitted_under_minimum += 1
+                    # This is a successful current result, so an older larger
+                    # shelf is not retained when it no longer meets the rule.
                     continue
 
                 service = PROVIDER_ALLOWLIST[service_key]
@@ -467,6 +504,7 @@ def discover_provider_shelves(
                     "media_kind": media_type,
                     "title": label,
                     "display_mode": "top_10" if len(items) >= SHELF_ITEM_LIMIT else "popular",
+                    "availability_status": "fresh",
                     "items": shelf_items,
                     "availability_updated_at": fetched_at,
                 })

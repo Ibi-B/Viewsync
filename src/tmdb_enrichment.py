@@ -676,8 +676,8 @@ def _public_json(base_url: str, relative_path: str) -> Any:
 def load_previous_detail_index(
     base_url: str = PUBLIC_CATALOGUE_BASE,
     regions: list[dict[str, Any]] | None = None,
-) -> dict[tuple[str, str], str]:
-    """Index current published per-item documents without persisting TMDB data in Git."""
+) -> dict[tuple[str, str], dict[str, str]]:
+    """Index detail paths and card-summary age without embedding volatile timestamps in detail URLs."""
     try:
         manifest = _public_json(base_url, "manifest.json")
     except Exception:
@@ -685,7 +685,7 @@ def load_previous_detail_index(
     if not isinstance(manifest, dict):
         return {}
 
-    index: dict[tuple[str, str], str] = {}
+    index: dict[tuple[str, str], dict[str, str]] = {}
 
     def add_item(item: Any) -> None:
         if not isinstance(item, dict):
@@ -697,8 +697,26 @@ def load_previous_detail_index(
             tmdb_id = item["ids"].get("tmdb")
         if tmdb_id is None or media_type not in {"movie", "series"}:
             return
-        if isinstance(details_path, str) and details_path:
-            index[(str(media_type), str(tmdb_id))] = details_path
+        if not isinstance(details_path, str) or not details_path:
+            return
+
+        key = (str(media_type), str(tmdb_id))
+        fetched_at = item.get("source_item_fetched_at")
+        fetched_at = str(fetched_at) if fetched_at else ""
+        existing = index.get(key)
+        existing_time = (
+            _parse_time(existing.get("source_item_fetched_at"))
+            if existing else None
+        )
+        candidate_time = _parse_time(fetched_at)
+        if existing and existing_time is not None and (
+            candidate_time is None or candidate_time <= existing_time
+        ):
+            return
+        index[key] = {
+            "details_path": details_path,
+            "source_item_fetched_at": fetched_at,
+        }
 
     for row_ref in manifest.get("rows", []):
         if not isinstance(row_ref, dict) or not row_ref.get("path"):
@@ -737,15 +755,31 @@ def load_previous_detail_index(
 
 def _load_previous_item(
     key: tuple[str, str],
-    detail_index: dict[tuple[str, str], str],
+    detail_index: dict[tuple[str, str], Any],
     base_url: str,
 ) -> dict[str, Any] | None:
-    path = detail_index.get(key)
-    if not path:
+    reference = detail_index.get(key)
+    if not reference:
+        return None
+    if isinstance(reference, str):
+        # Backward compatibility for tests and callers with the original index.
+        path = reference
+        summary_fetched_at = ""
+    elif isinstance(reference, dict):
+        path = reference.get("details_path")
+        summary_fetched_at = str(reference.get("source_item_fetched_at") or "")
+    else:
+        return None
+    if not isinstance(path, str) or not path:
         return None
     try:
         payload = _public_json(base_url, path)
-        return payload if isinstance(payload, dict) else None
+        if not isinstance(payload, dict):
+            return None
+        if summary_fetched_at:
+            payload = dict(payload)
+            payload["_source_item_fetched_at"] = summary_fetched_at
+        return payload
     except Exception:
         return None
 
@@ -808,7 +842,8 @@ def _previous_slim_source_item(
     if not isinstance(previous, dict):
         return {}
     fetched_at = (
-        previous.get("source_item_fetched_at")
+        previous.get("_source_item_fetched_at")
+        or previous.get("source_item_fetched_at")
         or previous.get("tmdb_details_fetched_at")
     )
     age = _age(fetched_at, now)

@@ -1,0 +1,4208 @@
+{
+  "fetched_at": "2026-11-22T19:45:25.969975+00:00",
+  "items": [
+    {
+      "adult": false,
+      "backdrop_path": "/buhxJRGTLOyX6epIPRWt6Xz8IiO.jpg",
+      "first_air_date": "2026-11-22",
+      "genre_ids": [],
+      "id": 343035,
+      "name": "전하, 여우에게 납치당하셨습니다",
+      "origin_country": [
+        "VN"
+      ],
+      "original_language": "vi",
+      "original_name": "전하, 여우에게 납치당하셨습니다",
+      "overview": "",
+      "popularity": 0.0,
+      "poster_path": "/wUeGYJuCbZoUTj8GloUaO0xiM3I.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-22",
+      "genre_ids": [
+        99
+      ],
+      "id": 342714,
+      "name": "La tragédie du sang contaminé",
+      "origin_country": [
+        "FR"
+      ],
+      "original_language": "fr",
+      "original_name": "La tragédie du sang contaminé",
+      "overview": "",
+      "popularity": 0.0524,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-22",
+      "genre_ids": [
+        99
+      ],
+      "id": 342643,
+      "name": "Polonia Bydgoszcz. Teraz albo nigdy",
+      "origin_country": [
+        "PL"
+      ],
+      "original_language": "pl",
+      "original_name": "Polonia Bydgoszcz. Teraz albo nigdy",
+      "overview": "",
+      "popularity": 0.1086,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-22",
+      "genre_ids": [],
+      "id": 342412,
+      "name": "timeleszファミリア",
+      "origin_country": [
+        "JP"
+      ],
+      "original_language": "ja",
+      "original_name": "timeleszファミリア",
+      "overview": "",
+      "popularity": 0.0545,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/rCuCHtZB5Q6VeqfaJgZgHr9F9z8.jpg",
+      "first_air_date": "2026-11-22",
+      "genre_ids": [
+        18,
+        10765
+      ],
+      "id": 342135,
+      "name": "The Scent of Karma",
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "岁岁沉香",
+      "overview": "After an accident, a pop idol falls for his reserved doctor—unaware the healer is immortal and carries a deadly curse that dooms anyone who loves him.",
+      "popularity": 0.9812,
+      "poster_path": "/wvJl3pKNGsa3Nm08q5ocOyADnhu.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/cS2L6mz6PcebS9deAJ1LrCMjZch.jpg",
+      "first_air_date": "2026-11-22",
+      "genre_ids": [
+        35,
+        99
+      ],
+      "id": 341164,
+      "name": "Oobah: Scams for a Better Tomorrow",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Oobah: Scams for a Better Tomorrow",
+      "overview": "Oobah Butler sets his sights on the world’s biggest industries and most powerful institutions. To infiltrate the worlds of wine, wellness, royalty, and more, Oobah hatches elaborate and increasingly audacious schemes by gaming online reviews, assuming made-up personas, and launching fake companies with entirely bogus backstories.",
+      "popularity": 2.1709,
+      "poster_path": "/rWqhULNvOmIBHZymAPce2SlRr2T.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-22",
+      "genre_ids": [
+        10765,
+        10759
+      ],
+      "id": 340984,
+      "name": "Noah siendo Noah",
+      "origin_country": [
+        "MX"
+      ],
+      "original_language": "es",
+      "original_name": "Noah siendo Noah",
+      "overview": "",
+      "popularity": 0.0975,
+      "poster_path": "/jKXVseJHe3oSOfGxQzAQEcJ123R.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/tWOCuHK7sHagj6lR9p6pavApqsT.jpg",
+      "first_air_date": "2026-11-22",
+      "genre_ids": [
+        9648
+      ],
+      "id": 340566,
+      "name": "The Witch Farm",
+      "origin_country": [
+        "GB"
+      ],
+      "original_language": "en",
+      "original_name": "The Witch Farm",
+      "overview": "Follows Bill and Liz Rich who move to a remote Welsh farmhouse in 1989 for a fresh start, but after Liz sees a ghostly figure during a traumatic home birth, they face escalating paranormal disturbances.",
+      "popularity": 2.3156,
+      "poster_path": "/hglk1OHLnaqZkaEcqK8maEJP1t4.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/p3SEhttAEap556IdWd1hMsmJz5q.jpg",
+      "first_air_date": "2026-11-22",
+      "genre_ids": [
+        16,
+        10759,
+        10765
+      ],
+      "id": 338740,
+      "name": "Supreme Solaris",
+      "origin_country": [
+        "IN"
+      ],
+      "original_language": "hi",
+      "original_name": "Supreme Solaris",
+      "overview": "Seventeen-year-old Veer Singh's life changes forever when an extraordinary alien device known as Xion bonds with his chest, awakening powers beyond human comprehension. As the ancient cosmic intelligence within Xion guides him through a dangerous journey of discovery and training, Veer must learn to control his newfound abilities and confront the responsibility that comes with them.\n\nBut becoming a hero demands more than extraordinary power. Faced with fear, difficult choices, and threats that extend far beyond Earth, Veer must discover what it truly means to become Supreme Solaris—the one who stands as a beacon of hope when darkness threatens humanity.",
+      "popularity": 0.8374,
+      "poster_path": "/aZMsPL3xqUxRR6XKi3X1Of4jHWp.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/9KgzJQxl34nzBNoYazfSoMUFT3A.jpg",
+      "first_air_date": "2026-11-22",
+      "genre_ids": [
+        18
+      ],
+      "id": 338661,
+      "name": "Shakedown",
+      "origin_country": [
+        "AU"
+      ],
+      "original_language": "en",
+      "original_name": "Shakedown",
+      "overview": "A tragedy. A cover-up. A reckoning still owed. Robodebt was the cruel and illegal government scheme that took lives and cost millions. These are the stories of those who protected the scheme, and those who paid for it.",
+      "popularity": 1.1895,
+      "poster_path": "/aZskL2s5Xlku1VxMDqoT0OX9x4p.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/Aty2wd9r1cmYEcgTFMj2hDGJmdN.jpg",
+      "first_air_date": "2026-11-22",
+      "genre_ids": [
+        16,
+        35
+      ],
+      "id": 336500,
+      "name": "Burrito and Marshy",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Burrito and Marshy",
+      "overview": "Burrito and Marshy are a couple thirty-something other worldly people living in Padioho, New York City.",
+      "popularity": 0.5517,
+      "poster_path": "/iE7cc5hjsFCBlpLXBNmY3d34qFl.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/e0bLLRQ2jcPFExd9qzY8WdfNmjz.jpg",
+      "first_air_date": "2026-11-22",
+      "genre_ids": [
+        10764
+      ],
+      "id": 335393,
+      "name": "Jul på Brårud",
+      "origin_country": [
+        "NO"
+      ],
+      "original_language": "no",
+      "original_name": "Jul på Brårud",
+      "overview": "",
+      "popularity": 0.5542,
+      "poster_path": "/b85csMIG42O4zAlWBBPwM33ANsf.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-22",
+      "genre_ids": [],
+      "id": 333810,
+      "name": "Rond de Zwarte Zee",
+      "origin_country": [
+        "NL"
+      ],
+      "original_language": "nl",
+      "original_name": "Rond de Zwarte Zee",
+      "overview": "",
+      "popularity": 0.5173,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/kseRqC3KRXQAMEfPaVf9EWckGFW.jpg",
+      "first_air_date": "2026-11-22",
+      "genre_ids": [
+        18,
+        10751
+      ],
+      "id": 328853,
+      "name": "The Panini Family – Album of Dreams",
+      "origin_country": [
+        "IT"
+      ],
+      "original_language": "it",
+      "original_name": "La famiglia Panini - L’avventura delle figurine",
+      "overview": "The epic story of the Italian family who dared to dream big and turned a humble newsstand into a global phenomenon: the iconic Panini albums.",
+      "popularity": 1.5314,
+      "poster_path": "/qWKs3W7t7WN7CMb9ORCd0PiOo20.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/u1BXiFL2d9SAtTRl2oKDAdh0tVx.jpg",
+      "first_air_date": "2026-11-22",
+      "genre_ids": [
+        10764
+      ],
+      "id": 324823,
+      "name": "Julekveld med Tone Damli",
+      "origin_country": [
+        "NO"
+      ],
+      "original_language": "no",
+      "original_name": "Julekveld med Tone Damli",
+      "overview": "",
+      "popularity": 0.4142,
+      "poster_path": "/1yiaboIfPV4rTJV4i5fYYSdVj1X.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ympGkmLJiEO4qeFGYCF5ANKM3Fj.jpg",
+      "first_air_date": "2026-11-21",
+      "genre_ids": [
+        18
+      ],
+      "id": 342955,
+      "name": "Испытание счастьем",
+      "origin_country": [
+        "RU"
+      ],
+      "original_language": "ru",
+      "original_name": "Испытание счастьем",
+      "overview": "No description",
+      "popularity": 0.097,
+      "poster_path": "/24SFW0QIfnlfLDIROUbrYOsflh8.jpg",
+      "softcore": false,
+      "vote_average": 10.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-21",
+      "genre_ids": [],
+      "id": 342915,
+      "name": "@!!CDMX GUÍAજ⁀➴🛫 Delta         México Teléfono México ¿Cómo llamar a Delta en México? ¿Cómo llamar a Delta  en México?",
+      "origin_country": [
+        "MX"
+      ],
+      "original_language": "es",
+      "original_name": "@!!CDMX GUÍAજ⁀➴🛫 Delta         México Teléfono México ¿Cómo llamar a Delta en México? ¿Cómo llamar a Delta  en México?",
+      "overview": "",
+      "popularity": 0.0582,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-21",
+      "genre_ids": [
+        10764
+      ],
+      "id": 341098,
+      "name": "Big Teens Naija",
+      "origin_country": [
+        "NG"
+      ],
+      "original_language": "en",
+      "original_name": "Big Teens Naija",
+      "overview": "Big Teens Naija is a Nigerian youth reality television show designed to discover, nurture, celebrate and showcase the talents, creativity, intelligence and ingenuity of young Nigerians between the ages of 13 and 19.\n\nBuilt around the theme “Ingenuity of the African Child,” the show brings together teenagers from diverse backgrounds to live, learn, compete and collaborate in a structured and entertaining reality-TV environment.\n\nThrough talent showcases, creative and intellectual challenges, team activities, entrepreneurship, leadership tasks and other engaging competitions, contestants will have the opportunity to express themselves, discover their strengths, develop confidence and build valuable life skills.",
+      "popularity": 0.2003,
+      "poster_path": "/xeUykNppZgtOwcuTyLnibZ1WQkR.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/iXh2sR2jiq09yaMcgDywyLrMmEi.jpg",
+      "first_air_date": "2026-11-21",
+      "genre_ids": [
+        18
+      ],
+      "id": 340808,
+      "name": "Mera Ghar",
+      "origin_country": [
+        "PK"
+      ],
+      "original_language": "ur",
+      "original_name": "میرا گھر",
+      "overview": "Mera Ghar is a family drama centered on Sherry, the youngest member of a household, who is raised by his elder sister Farkhanda after their mother's death. Having devoted her life to him.",
+      "popularity": 0.3685,
+      "poster_path": "/5DqGr15v2d5zupFLzYO13kTkFZ3.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-21",
+      "genre_ids": [],
+      "id": 333812,
+      "name": "Hollands Glorie",
+      "origin_country": [
+        "NL"
+      ],
+      "original_language": "nl",
+      "original_name": "Hollands Glorie",
+      "overview": "",
+      "popularity": 0.1839,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-21",
+      "genre_ids": [],
+      "id": 333812,
+      "name": "Hollands Glorie",
+      "origin_country": [
+        "NL"
+      ],
+      "original_language": "nl",
+      "original_name": "Hollands Glorie",
+      "overview": "",
+      "popularity": 0.1839,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        10764
+      ],
+      "id": 342871,
+      "name": "Danny en de Blikjesjagers",
+      "origin_country": [
+        "NL"
+      ],
+      "original_language": "nl",
+      "original_name": "Danny en de Blikjesjagers",
+      "overview": "",
+      "popularity": 0.1164,
+      "poster_path": "/xYkxY4051ImJ21SPPOm6FOah8xZ.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-20",
+      "genre_ids": [],
+      "id": 342866,
+      "name": "This Is Mars",
+      "origin_country": [
+        "SA"
+      ],
+      "original_language": "ar",
+      "original_name": "This Is Mars",
+      "overview": "",
+      "popularity": 0.1747,
+      "poster_path": "/pTi989PO86N57QQTve5QT1m4cDa.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/z0kgI6RPnH8RAC2UergPu8zYA3s.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        18
+      ],
+      "id": 342742,
+      "name": "Lipistic",
+      "origin_country": [
+        "IN"
+      ],
+      "original_language": "hi",
+      "original_name": "Lipistic",
+      "overview": "A bride with secret and scars. A lipstick with power that people would kill for. And a rich man with dark desire. When three worlds collide in this tale of love, lust and power, nobody can escape unscathed.",
+      "popularity": 0.5438,
+      "poster_path": "/1v1j1ivjQk244MgNDZy2iBoggGX.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/rJ1LqeiZ82eMwsroRZizHPP9ZDz.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        10764
+      ],
+      "id": 342697,
+      "name": "Loud Eyes",
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "继续营业中",
+      "overview": "A documentary-style reality show about starting and running a business in the Chaoshan region of Guangdong, with Lou Yixiao, Jiang Yiyi, Gao Zhiting, Li Zhenning, Cao Enqi, Gao Siwen and AK Liu Zhang as the regular cast.",
+      "popularity": 0.5384,
+      "poster_path": "/h3NltxoQ0s4mUQZ3fc7Iy1mKvh4.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        99
+      ],
+      "id": 342696,
+      "name": "Plein",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Plein",
+      "overview": "For Philipp Plein, more is more. Between Cannes, New York, Milan, and L.A., he drives his fashion empire forward-and pushes everyone around him to their limits. But while his girlfriend Andreea struggles with her health and his mother Hanne stands up to him, the very thing that matters most to Philipp begins to falter: control.",
+      "popularity": 1.8672,
+      "poster_path": "/ejdbv5HCqwdLt0nOnsffOOGTjZO.jpg",
+      "softcore": false,
+      "vote_average": 6.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-20",
+      "genre_ids": [],
+      "id": 342683,
+      "name": "ナチス強制収容所",
+      "origin_country": [
+        "JP"
+      ],
+      "original_language": "ja",
+      "original_name": "ナチス強制収容所",
+      "overview": "",
+      "popularity": 0.0392,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/feFFDkFBfWi1zkooJZoI3elAleF.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [],
+      "id": 342677,
+      "name": "每天英语课",
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "每天英语课",
+      "overview": "",
+      "popularity": 0.0788,
+      "poster_path": "/rsHgytWUofVSIBTeMbZOTtXmWXF.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/sG9SkFyoQuHevfHZkOEki6eNlbm.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [],
+      "id": 342675,
+      "name": "五灵根修仙：我有一个吞噬空间",
+      "origin_country": [
+        "VN"
+      ],
+      "original_language": "vi",
+      "original_name": "五灵根修仙：我有一个吞噬空间",
+      "overview": "",
+      "popularity": 0.0652,
+      "poster_path": "/a2qpU5EkwcpP37ERNyqSqO88F4m.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-20",
+      "genre_ids": [],
+      "id": 342674,
+      "name": "OK Angels",
+      "origin_country": [
+        "PH"
+      ],
+      "original_language": "tl",
+      "original_name": "OK Angels",
+      "overview": "OK Angels, a high-stakes vertical drama series where ambition, glamour, and fierce competition collide. With 7 girls living under one mansion and ₱100M at stake, alliances will be tested and secrets will unravel in a game where everyone wants to come out on top.",
+      "popularity": 0.2077,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-20",
+      "genre_ids": [],
+      "id": 342657,
+      "name": "El Médico Milagroso que Ella Rechazó",
+      "origin_country": [
+        "ES"
+      ],
+      "original_language": "es",
+      "original_name": "El Médico Milagroso que Ella Rechazó",
+      "overview": "",
+      "popularity": 0.3729,
+      "poster_path": "/jdG2n8dTbNhL4tCu6B1adup9Q2L.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/7GUoMhwT1WpPSOdNXwdZ5Q2rMH1.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        9648
+      ],
+      "id": 342653,
+      "name": "Mangolik",
+      "origin_country": [
+        "IN"
+      ],
+      "original_language": "bn",
+      "original_name": "Mangolik",
+      "overview": "A new bride, a strange family belief and a secret that could change everything.",
+      "popularity": 1.432,
+      "poster_path": "/sWOgeRESScrewpSQxrNNeqHsYHR.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-20",
+      "genre_ids": [],
+      "id": 342648,
+      "name": "Marido alquilado",
+      "origin_country": [
+        "ES"
+      ],
+      "original_language": "es",
+      "original_name": "Marido alquilado",
+      "overview": "",
+      "popularity": 0.1295,
+      "poster_path": "/3vZbPQvEk2mTJPLpD5QZchWCC7v.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/hR5jQLSEVTQUVwl1GkHoxHTKXsn.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        18
+      ],
+      "id": 342646,
+      "name": "Teen Tigada",
+      "origin_country": [
+        "IN"
+      ],
+      "original_language": "hi",
+      "original_name": "Teen Tigada",
+      "overview": "Teen Tigada is an emotional drama about ambition, unexpected love, and the meaning of family.",
+      "popularity": 1.535,
+      "poster_path": "/vqwEyADZfeYH6jnolnE2V4qYv8X.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/GsyFACTBLXqkoMqp9vMrz1sMbQ.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        10764,
+        10767,
+        35
+      ],
+      "id": 342619,
+      "name": "Groepsdruk",
+      "origin_country": [
+        "NL"
+      ],
+      "original_language": "nl",
+      "original_name": "Groepsdruk",
+      "overview": "",
+      "popularity": 0.175,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/xYrlhXFEi5qcLTRzWn562kp5Mx5.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        99,
+        10764
+      ],
+      "id": 342461,
+      "name": "Inside the Bomb Squad: Zero Hour",
+      "origin_country": [
+        "GB"
+      ],
+      "original_language": "en",
+      "original_name": "Inside the Bomb Squad: Zero Hour",
+      "overview": "This gripping series will be on the frontline with some of the most elite units of the British Army, the Royal Navy and Britain’s leading private bomb disposal company, Brimstone. Packed with high-octane drama, explosions, and life-or-death moments that will leave viewers breathless – these real-life heroes are out there protecting us 24/7.",
+      "popularity": 0.9246,
+      "poster_path": "/taUcyaCXwzJzIBx6dqKhWrnrGBM.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        18
+      ],
+      "id": 342326,
+      "name": "อันเนื่องมาจาก",
+      "origin_country": [
+        "TH"
+      ],
+      "original_language": "th",
+      "original_name": "อันเนื่องมาจาก",
+      "overview": "Two women from different eras connect through time travel, exchanging traditional Thai recipes and culinary techniques as they pursue their dreams and preserve Thailand's royal cuisine.",
+      "popularity": 0.5314,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/xxz6hZ1gQmrJqQaAvnNBpPDQmA3.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        99,
+        80,
+        10764
+      ],
+      "id": 342185,
+      "name": "Recherchés : sur la piste des disparus",
+      "origin_country": [
+        "BE"
+      ],
+      "original_language": "fr",
+      "original_name": "Recherchés : sur la piste des disparus",
+      "overview": "",
+      "popularity": 0.24,
+      "poster_path": "/lzMjYfi96xRcqiObOosw7elqAnq.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wb3xzgwoz0Dy3nUvrQsrllWTkb9.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        18
+      ],
+      "id": 342173,
+      "name": "Coach Me Maybe",
+      "origin_country": [
+        "PH"
+      ],
+      "original_language": "tl",
+      "original_name": "Coach Me Maybe",
+      "overview": "Mistaken for a couple, a cocky judo champion and his nerdy rival fake a relationship to protect a secret, only to realize that they are getting way too good at it.",
+      "popularity": 1.9259,
+      "poster_path": "/wDJFK4dABzU0W0MnhEftotAF8FN.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/v8kidsoOnmfZlRhylRhdCz11Czk.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        10764,
+        35
+      ],
+      "id": 341297,
+      "name": "The Detox Project",
+      "origin_country": [
+        "KR"
+      ],
+      "original_language": "ko",
+      "original_name": "산독기 프로젝트",
+      "overview": "A group of celebrities embarks on an intense wilderness adventure to detox from urban life. Facing rugged terrain and extreme physical challenges, they push their limits while discovering the healing power of nature and the thrill of competition.",
+      "popularity": 1.2883,
+      "poster_path": "/xA7HNek9f6PXOk8J1pCBaLX1qJR.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/kqLX06KhSHhFvEvZkOvvbkXPqTd.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        35,
+        18
+      ],
+      "id": 340624,
+      "name": "Ayô",
+      "origin_country": [
+        "BR"
+      ],
+      "original_language": "pt",
+      "original_name": "Ayô",
+      "overview": "",
+      "popularity": 1.3232,
+      "poster_path": "/ip6wj2rrooSpJozRPkrJpavG5vG.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/rhSjn55YqDIDDpnevyorkZ4wb7g.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        35,
+        18
+      ],
+      "id": 340229,
+      "name": "Fight for My Way",
+      "origin_country": [
+        "PH"
+      ],
+      "original_language": "tl",
+      "original_name": "Fight for My Way",
+      "overview": "After years of fiercely protecting each other from the sidelines, Hanz and Aira realize that their biggest challenge isn't conquering their dead-end careers, but risking their friendship for a chance at love.",
+      "popularity": 2.612,
+      "poster_path": "/arHEGKColQ2NpT7lmWXthBmd9CX.jpg",
+      "softcore": false,
+      "vote_average": 10.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/1J4KaCuH7w0xYiEdXz9P8ePxO89.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        35,
+        10764
+      ],
+      "id": 338549,
+      "name": "Mascarade",
+      "origin_country": [
+        "FR"
+      ],
+      "original_language": "fr",
+      "original_name": "Mascarade",
+      "overview": "They've starred in tons of movies. He hasn't seen a single one. Welcome to Mascarade, where Monsieur Loris must unmask French cinema stars.",
+      "popularity": 3.1857,
+      "poster_path": "/gdDUz1FqDDN2criezLPyQ3j0qdu.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ewtOrHFGRqXBtKNWDVLGGMqMux9.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        10767
+      ],
+      "id": 336907,
+      "name": "Patrick en Eline",
+      "origin_country": [
+        "NL"
+      ],
+      "original_language": "nl",
+      "original_name": "Patrick en Eline",
+      "overview": "Patrick Martens and Eline de Ruig take you along for their unfiltered post-show discussions of the most popular reality programs. From awkward dates and striking contestants to bizarre television moments—nothing goes undiscussed. Along the way, Patrick and Eline also share their own personal stories, pet peeves, and hilarious experiences.",
+      "popularity": 0.5599,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ithzPRYsTWy5umOK9rSbTAiDGat.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        99,
+        10768
+      ],
+      "id": 314131,
+      "name": "MELANIA the Series",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "MELANIA the Series",
+      "overview": "Experience Melania Trump's transition to First Lady as she navigates the White House and puts her mission into action.",
+      "popularity": 5.1946,
+      "poster_path": "/75uNmW51SXsljGTFpNuH464eW4r.jpg",
+      "softcore": false,
+      "vote_average": 1.0,
+      "vote_count": 2
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/7ojpD6ARKYhRxnsjzMIrorOfj4T.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        80,
+        9648
+      ],
+      "id": 300523,
+      "name": "The Blue Road",
+      "origin_country": [
+        "KR"
+      ],
+      "original_language": "ko",
+      "original_name": "푸른길",
+      "overview": "Two detectives join forces when brutal murders and cryptic messages surface across borders — but the deadly truth lurks dangerously close.",
+      "popularity": 63.1067,
+      "poster_path": "/cVbilrgtgKi7gN74KK4voyV7iDR.jpg",
+      "softcore": false,
+      "vote_average": 6.9,
+      "vote_count": 8
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/vZ3VaxfGWMcdaCen2T0nmdGDDxZ.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        35
+      ],
+      "id": 292113,
+      "name": "Bill's Included",
+      "origin_country": [
+        "GB"
+      ],
+      "original_language": "en",
+      "original_name": "Bill's Included",
+      "overview": "Well-meaning, overly enthusiastic divorcee Bill opens up his home to students for extra cash - creating a mismatched, bumbling houseshare in the process. Starring Rob Brydon.",
+      "popularity": 6.2914,
+      "poster_path": "/oq1F421zkILo0UoLEnEsBiGrYIk.jpg",
+      "softcore": false,
+      "vote_average": 5.5,
+      "vote_count": 2
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/lc7kpJ1znnfcyyN6BQ9Bafb7pvS.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        18,
+        35
+      ],
+      "id": 284530,
+      "name": "Love @ Fifty First Bite",
+      "origin_country": [
+        "TH"
+      ],
+      "original_language": "th",
+      "original_name": "เลิฟรัก ฮักข้าวซอย Love @ Fifty First Bite",
+      "overview": "Yotsaran is sent to save his family’s failing resort only to find a Khao Soi shop blocking the entrance. He clashes with Bang-Earn, the sharp-tongued owner who refuses to back down. As they fight to protect their businesses, their rivalry slowly turns into an unexpected romance.",
+      "popularity": 1.7416,
+      "poster_path": "/c8xgk7xLWoJNPa98ONhaszNsxA2.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/eE1mgVSWHndxnqxLnld517AAU4g.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        18,
+        9648,
+        80
+      ],
+      "id": 270429,
+      "name": "Silent Echoes",
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "无声的回响",
+      "overview": "When two women's bodies are discovered in a lake, investigators must uncover a long-buried truth and give a voice to the victims who can no longer speak.",
+      "popularity": 4.0238,
+      "poster_path": "/7Q6p6guBb3sl39KTv0mT5cx0MjG.jpg",
+      "softcore": false,
+      "vote_average": 8.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/pFTGCQ3oVhFkuOCjnvCPeVsQBaL.jpg",
+      "first_air_date": "2026-11-20",
+      "genre_ids": [
+        18
+      ],
+      "id": 203483,
+      "name": "River of No Return",
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "两京十五日",
+      "overview": "In the Ming Dynasty, Crown Prince Zhu Zhanji races 2,200 miles from Nanjing to Beijing in 15 days to save himself and the empire.",
+      "popularity": 19.8661,
+      "poster_path": "/7fo6B7Wm75WwIlCZP17ohjUjdLd.jpg",
+      "softcore": false,
+      "vote_average": 8.5,
+      "vote_count": 6
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 343010,
+      "name": "西藏定日震后重建纪实",
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "西藏定日震后重建纪实",
+      "overview": "",
+      "popularity": 0.0,
+      "poster_path": "/gp6u9WSUshGvqLEepb1ryMDnwMd.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        35
+      ],
+      "id": 342822,
+      "name": "The Airport",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "The Airport",
+      "overview": "At THE AIRPORT, passengers are wild, employees are reckless, and chaos is always on schedule.",
+      "popularity": 0.4076,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342818,
+      "name": "一剑星河渡",
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "一剑星河渡",
+      "overview": "",
+      "popularity": 0.9704,
+      "poster_path": "/4GECRYPWpVbVnEsSkxd1vrcU8DH.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342815,
+      "name": "Hurt But Not Broken",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "zh",
+      "original_name": "受伤但未破碎",
+      "overview": "During three years of marriage, Wen Ci gave all her love, but in return, she received indifference from her husband, who is still hung up on his first love. After discovering she is pregnant, she finally comes to her senses and decides to divorce.",
+      "popularity": 0.0776,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342812,
+      "name": "Friday, Unread",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Friday, Unread",
+      "overview": "Maya Chen and Leo Roderick are pulled into an anonymous group chat called FRIDAY NIGHT by @admin_zero, a blackmailer holding timestamped proof of what happened at Oak & 4th at 11:42 PM. Told in 50 vertical phone-screen episodes across five seasons.",
+      "popularity": 0.1164,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/dZMqRhTujwqFUK2j7yCrTTiXTLK.jpg",
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        35
+      ],
+      "id": 342738,
+      "name": "Ballz",
+      "origin_country": [
+        "DE"
+      ],
+      "original_language": "de",
+      "original_name": "Ballz",
+      "overview": "Julian actually has a plan. He lives with his best friend Sami in a chaotic shared apartment, is currently building a fitness startup with him, and wants to finally propose to his true love, Noemi. Everything seems to be going in the right direction. Until a routine checkup turns his life upside down: Julian has testicular cancer.",
+      "popularity": 0.2597,
+      "poster_path": "/l0EHtcRFsI8ADYYWYNNLxl8IRDy.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/vlIMuXMZ3BYUNddKXzBhsrG8pjk.jpg",
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342695,
+      "name": "The Mad Pooper",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "The Mad Pooper",
+      "overview": "In 2017, a mysterious jogger dubbed the \"Mad Pooper\" turned a quiet Colorado Springs neighborhood upside down after she is repeatedly caught defecating on a family's front lawn, leaving behind one burning question: WHO is the Mad Pooper?",
+      "popularity": 0.2865,
+      "poster_path": "/vZzZiDcTdVjtfAMQeqtKuQZMkNk.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342664,
+      "name": "Diamonds & Plastic",
+      "origin_country": [
+        "CA"
+      ],
+      "original_language": "en",
+      "original_name": "Diamonds & Plastic",
+      "overview": "Tupperware’s bankruptcy filing throws the world’s top Tupperware® product seller into the biggest crisis of her career, threatening the women-led empire she spent more than 40 years building.",
+      "popularity": 0.104,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342662,
+      "name": "El preso que nadie podía matar",
+      "origin_country": [
+        "ES"
+      ],
+      "original_language": "es",
+      "original_name": "El preso que nadie podía matar",
+      "overview": "",
+      "popularity": 0.0517,
+      "poster_path": "/4bmOV4F7oBE695C9jE1j2kYdx6G.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342659,
+      "name": "Untitled EJBP miniseries",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Untitled EJBP miniseries",
+      "overview": "Mother father sister brother kinda drama mystery",
+      "popularity": 0.124,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342662,
+      "name": "El preso que nadie podía matar",
+      "origin_country": [
+        "ES"
+      ],
+      "original_language": "es",
+      "original_name": "El preso que nadie podía matar",
+      "overview": "",
+      "popularity": 0.0517,
+      "poster_path": "/4bmOV4F7oBE695C9jE1j2kYdx6G.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342659,
+      "name": "Untitled EJBP miniseries",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Untitled EJBP miniseries",
+      "overview": "Mother father sister brother kinda drama mystery",
+      "popularity": 0.124,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/4tTHEOivRuNoUrbnXUYbjgBkypZ.jpg",
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        99
+      ],
+      "id": 342651,
+      "name": "Classic Movies: Iconic Scenes",
+      "origin_country": [
+        "GB"
+      ],
+      "original_language": "en",
+      "original_name": "Classic Movies: Iconic Scenes",
+      "overview": "Film critic Ian Nathan examines some of the most memorable and iconic scenes in the history of cinema. He examines how these scenes are crafted and what makes them so remarkable.",
+      "popularity": 0.124,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        99
+      ],
+      "id": 342631,
+      "name": "请记得我",
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "请记得我",
+      "overview": "",
+      "popularity": 0.2331,
+      "poster_path": "/9qZEG2RpXwNzJPXJI11skLQbMnL.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        99
+      ],
+      "id": 342626,
+      "name": "Tokio Hotel - Gegen alle Regeln",
+      "origin_country": [
+        "DE"
+      ],
+      "original_language": "de",
+      "original_name": "Tokio Hotel - Gegen alle Regeln",
+      "overview": "",
+      "popularity": 0.8619,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342625,
+      "name": "Hemelse Nieuwe",
+      "origin_country": [
+        "BE"
+      ],
+      "original_language": "nl",
+      "original_name": "Hemelse Nieuwe",
+      "overview": "",
+      "popularity": 0.071,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/mMrzHOFxZy6n6qrw1AQ771TDLdy.jpg",
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        10767
+      ],
+      "id": 342621,
+      "name": "Julie & Olly wannabe late night",
+      "origin_country": [
+        "BE"
+      ],
+      "original_language": "nl",
+      "original_name": "Julie & Olly wannabe late night",
+      "overview": "",
+      "popularity": 0.0713,
+      "poster_path": "/lCaRr5b9mz4TfiPM5YOzFbBve67.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/sGVilgru0utXOSH6TWR6zQ1Vv62.jpg",
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        18,
+        9648
+      ],
+      "id": 342610,
+      "name": "Nanban",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Nanban",
+      "overview": "1603 London United Kingdom. King James I has ascended to the English throne following the death of his cousin Queen Elizabeth I. Lies and deceits lead to betrayal as the English monarchy becomes divided upon talks of an English trade with a foreign nation. Panic ensues once people begin to vanish in the night. A wealthy Morrish Baron and his orphanage at the center of it all.",
+      "popularity": 0.3355,
+      "poster_path": "/duQCYpASluNKF2B0JsW73pMHjxp.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342609,
+      "name": "算死真仙：我在囚笼修八九玄功",
+      "origin_country": [
+        "VN"
+      ],
+      "original_language": "vi",
+      "original_name": "算死真仙：我在囚笼修八九玄功",
+      "overview": "",
+      "popularity": 0.0715,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342601,
+      "name": "De Chofer a Rey de la Guerra",
+      "origin_country": [
+        "ES"
+      ],
+      "original_language": "es",
+      "original_name": "De Chofer a Rey de la Guerra",
+      "overview": "",
+      "popularity": 0.194,
+      "poster_path": "/qibTaEXigpoQ0RmDPpZM6nstbAs.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [],
+      "id": 342600,
+      "name": "El taxista multimillonario",
+      "origin_country": [
+        "ES"
+      ],
+      "original_language": "es",
+      "original_name": "El taxista multimillonario",
+      "overview": "",
+      "popularity": 0.7515,
+      "poster_path": "/cxZLSpiThfZIuHxKCrZCUuAWk4R.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/hQ9ah2nrRweR5spbQrIcGFPvMch.jpg",
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        99
+      ],
+      "id": 342567,
+      "name": "Per and Marie – The Story of Roxette",
+      "origin_country": [
+        "SE"
+      ],
+      "original_language": "sv",
+      "original_name": "Per och Marie - historien om Roxette",
+      "overview": "A brand-new documentary series chronicles the success story of Roxette—one of Sweden’s greatest musical triumphs of all time. Together, friends Per Gessle and Marie Fredriksson created a unique and unrivaled collection of pop gems—a musical treasure trove, beginning in 1986, that lives on to this day. Through their own personal footage, photographs, and voices, we are taken on a journey from Halmstad to sold-out arenas across the globe.",
+      "popularity": 1.5924,
+      "poster_path": "/f6hL5zW6o6l1NYbWVHose3UtuqD.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/eLetC1El2Tp6gzgB2UkCgju0MIt.jpg",
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        35,
+        18
+      ],
+      "id": 342527,
+      "name": "Страшна сила",
+      "origin_country": [
+        "UA"
+      ],
+      "original_language": "uk",
+      "original_name": "Страшна сила",
+      "overview": "",
+      "popularity": 1.2027,
+      "poster_path": "/ezHQL1Yr8t6xzQRwpMDGJ7FKyk8.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        18
+      ],
+      "id": 342431,
+      "name": "知音难觅",
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "知音难觅",
+      "overview": "When a traditional Chinese music school and a Western music school become competitors in the same neighborhood, their rivalry sets off a series of lively clashes.",
+      "popularity": 1.0862,
+      "poster_path": "/3qAZHunQgHW94PTPCVxLjxCqVu0.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/kqbQoUlrIn6FFtA8f79eQus3ri4.jpg",
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        16,
+        35
+      ],
+      "id": 341997,
+      "name": "Macca & Friends",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Macca & Friends",
+      "overview": "The series follows the adventures of Macca the Gator and his wetland friends across the state of Leonida.",
+      "popularity": 0.2433,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/h8NxLTAJkjbGHjNASAvvtteA1c7.jpg",
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        10764
+      ],
+      "id": 340885,
+      "name": "NO-CLUE TRIP",
+      "origin_country": [
+        "KR"
+      ],
+      "original_language": "ko",
+      "original_name": "도겸과 정한 <정답 없는 여행>",
+      "overview": "Where to go, what to eat, and what to do!\n\nEvery choice leads to an adventure, and every moment turns out right. SEVENTEEN's JEONGHAN and DK take off on a friendship getaway to Jeju Island!  Are you ready to join them? YES or NO?",
+      "popularity": 0.706,
+      "poster_path": "/4Cf5uK8YdktaNDTK1I0zyNOXvpu.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        18,
+        10759,
+        80
+      ],
+      "id": 339422,
+      "name": "I Became the Killer's Prey",
+      "origin_country": [
+        "KR"
+      ],
+      "original_language": "ko",
+      "original_name": "살인마의 사냥감이 되었다",
+      "overview": "On an otherwise ordinary afternoon, 'Jun-hwi' encounters a killer who has broken into an empty house. Having lost a friend and now finding himself the killer's next target, he chooses not to flee-but instead prepares a dangerous counterattack...!",
+      "popularity": 0.6329,
+      "poster_path": "/vML0xSJ7nqnseUubKtiGlJcko89.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/qxdIeeXB7IlZO9lKaAxpoDXY2Bv.jpg",
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        18,
+        35
+      ],
+      "id": 339362,
+      "name": "Çiçekçi Kız",
+      "origin_country": [
+        "TR"
+      ],
+      "original_language": "tr",
+      "original_name": "Çiçekçi Kız",
+      "overview": "",
+      "popularity": 40.7006,
+      "poster_path": "/6Xr5GQqwxceVpzpKXC6ZOt42slH.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/m8JTMj7jDMJFZAPP1ASmSi4gMWi.jpg",
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        80,
+        18
+      ],
+      "id": 308007,
+      "name": "The Altruists",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "The Altruists",
+      "overview": "The story of Sam Bankman-Fried and Caroline Ellison, two hyper-smart, ambitious young idealists who tried to remake the global financial system in the blink of an eye - before they were accused of stealing $8 billion and became Gen Z's own Bonnie & Clyde.",
+      "popularity": 47.3285,
+      "poster_path": "/hiX70sXdvEPVE11QqmLuaX16gdh.jpg",
+      "softcore": false,
+      "vote_average": 6.3,
+      "vote_count": 11
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/oLzpVIqZAEfXrPIPrNTKotBNhcK.jpg",
+      "first_air_date": "2026-11-19",
+      "genre_ids": [
+        18
+      ],
+      "id": 279382,
+      "name": "Eldorado",
+      "origin_country": [
+        "FR"
+      ],
+      "original_language": "fr",
+      "original_name": "Eldorado",
+      "overview": "",
+      "popularity": 3.4496,
+      "poster_path": "/jT2KO2QnY857A4r8V7HRgL5WAKK.jpg",
+      "softcore": false,
+      "vote_average": 7.0,
+      "vote_count": 2
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        99
+      ],
+      "id": 342572,
+      "name": "Dossiê Celebridades",
+      "origin_country": [
+        "BR"
+      ],
+      "original_language": "pt",
+      "original_name": "Dossiê Celebridades",
+      "overview": "",
+      "popularity": 0.1555,
+      "poster_path": "/54yJiNWqchXGvoqbMvKgiI6zsJ8.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-18",
+      "genre_ids": [],
+      "id": 342565,
+      "name": "Ós Blauw",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Ós Blauw",
+      "overview": "A five-part series about police work in Heerlen, following five officers from the Heerlen base team—Farid, Tanja, Jeroen, Sander, and Rachel—as they go about their daily duties.",
+      "popularity": 0.0708,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "first_air_date": "2026-11-18",
+      "genre_ids": [],
+      "id": 342309,
+      "name": "Gangster",
+      "origin_country": [
+        "IR"
+      ],
+      "original_language": "fa",
+      "original_name": "گنگستر",
+      "overview": "Manouchehr and Nosrat, the family's good-for-nothing, unemployed sons, turn to gangster antics to win over the father of Haydeh and Homayra. But this is no ordinary game!",
+      "popularity": 0.367,
+      "poster_path": "/1QhcEOwWNsc4yw36zYEzem7CfNk.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/joGRW9GSY6J8UjcdKrtbk6cd4ZJ.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        99
+      ],
+      "id": 341930,
+      "name": "Brennpunkt: Operasjon Duckface",
+      "origin_country": [
+        "NO"
+      ],
+      "original_language": "no",
+      "original_name": "Brennpunkt: Operasjon Duckface",
+      "overview": "",
+      "popularity": 0.1946,
+      "poster_path": "/3tDBhuIfYi2dEYxYNndHHNfizSh.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/hKXcRVGEozDqlQvBbq2zyMtjMLi.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        99
+      ],
+      "id": 341593,
+      "name": "Inventeur Gadget - Les 1000 vies de Jean Chalopin",
+      "origin_country": [
+        "FR"
+      ],
+      "original_language": "fr",
+      "original_name": "Inventeur Gadget - Les 1000 vies de Jean Chalopin",
+      "overview": "",
+      "popularity": 0.6004,
+      "poster_path": "/skHojLJ6nqyaVqm0rzCdMoeBwyP.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/syj3emeHddci3vxDrT2eiw8p8c5.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        16,
+        10759,
+        10765
+      ],
+      "id": 341537,
+      "name": "混在末日，独自成仙",
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "混在末日，独自成仙",
+      "overview": "",
+      "popularity": 0.8366,
+      "poster_path": "/eFGaDCJAxOgc2HwaE8SydYUf59l.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/3yXsgujIjlM6IPUb93OOAIhLzym.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        10767
+      ],
+      "id": 341471,
+      "name": "Club Zestig",
+      "origin_country": [
+        "BE"
+      ],
+      "original_language": "nl",
+      "original_name": "Club Zestig",
+      "overview": "",
+      "popularity": 0.3556,
+      "poster_path": null,
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/nRn8skmFphZeGS7MxHZv1GBI94f.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        10764
+      ],
+      "id": 340704,
+      "name": "Sweet Homes",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Sweet Homes",
+      "overview": "What starts as an idea between friends quickly becomes their biggest gamble yet. Together, they set out to build a million-dollar dream home on Alabama's Smith Lake before summer's end, betting that years of friendship are enough to see them through.",
+      "popularity": 0.5138,
+      "poster_path": "/28aXeNetqJXuwNwq5hU7weoE3d9.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/o8wVY0c4v54KsFQ5IdU2uvOves1.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        18,
+        80
+      ],
+      "id": 340280,
+      "name": "Gordon",
+      "origin_country": [
+        "AR"
+      ],
+      "original_language": "es",
+      "original_name": "Gordon",
+      "overview": "Aníbal Gordon rises from a small-time thief to a convicted murderer in Argentina during the '70s.",
+      "popularity": 31.7569,
+      "poster_path": "/yLgl70D5Up0MlvBWP2MJTLAbFAF.jpg",
+      "softcore": false,
+      "vote_average": 6.955,
+      "vote_count": 11
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/9B2QvCNWXTlqxKxCUll0QkaTQwF.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        35,
+        18,
+        10765
+      ],
+      "id": 338656,
+      "name": "Lo Chudail Chali Sasural",
+      "origin_country": [
+        "IN"
+      ],
+      "original_language": "hi",
+      "original_name": "Lo Chudail Chali Sasural",
+      "overview": "Lo Chudail Chali Sasural is a supernatural family sitcom and the Indian adaptation of Bewitched. Urvashi, a chudail longing for a human family, marries Aarav Patel and joins his lively Gujarati joint family. As her magic causes hilarious mishaps, Aarav struggles to protect her secret while her human-hating mother Kamini fuels the chaos. Amid magical mayhem, and family drama, love finds a way.",
+      "popularity": 2.4104,
+      "poster_path": "/c89F8oJuDF5YZLuAHhTAS2C39qh.jpg",
+      "softcore": false,
+      "vote_average": 10.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/8VBfz1ufyA0ausZI4nXfRBJJp5S.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        99,
+        10764
+      ],
+      "id": 338547,
+      "name": "Friz i Wersow. W drodze",
+      "origin_country": [
+        "PL"
+      ],
+      "original_language": "pl",
+      "original_name": "Friz i Wersow. W drodze",
+      "overview": "The production will follow Friz and Wersow as they embark on a new chapter in their lives—as parents of two children, business partners, and a couple ready to confront previously untold aspects of their own story. The six-part documentary series will premiere exclusively on Prime Video later this year.",
+      "popularity": 0.847,
+      "poster_path": "/a8kD3PbjgshEpcOjhXTkwahL9Dn.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/pIGIxY4n2xl80wHv6kdyuRIhO3t.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        35,
+        18
+      ],
+      "id": 338502,
+      "name": "Mr & Mrs Office",
+      "origin_country": [
+        "IN"
+      ],
+      "original_language": "ta",
+      "original_name": "Mr & Mrs Office",
+      "overview": "Mr & Mrs Office explores the comedic and chaotic worlds of work-life balance, relationships, and corporate dynamics. The plot centers around a couple navigating the daily grind, combining relatable office tropes with domestic humor and romance.",
+      "popularity": 5.389,
+      "poster_path": "/demMPIRzA47Px0NaNW0b1F9yxMq.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/bBfLIC27kYlUGg7YqrZma8ohAxI.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        10764
+      ],
+      "id": 336775,
+      "name": "KL24/7",
+      "origin_country": [
+        "NL"
+      ],
+      "original_language": "nl",
+      "original_name": "KL24/7",
+      "overview": "",
+      "popularity": 0.8083,
+      "poster_path": "/kIsirzcpsonOVlUQvHp2CWQ8285.jpg",
+      "softcore": false,
+      "vote_average": 8.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/9qKkdHizmDOXwABJx6LP6MdbWiO.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        10764
+      ],
+      "id": 336592,
+      "name": "Win the Mall",
+      "origin_country": [
+        "CA",
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Win the Mall",
+      "overview": "Ten teams move into a mall where they must conquer storefronts, forge alliances and outsmart rivals to win $1 million in this reality competition series.",
+      "popularity": 5.8154,
+      "poster_path": "/awZejt5KgmNzqlQIReQa4vJelx4.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/otAjrxhSbGWtJQFpVqkQPYfJxCw.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        9648
+      ],
+      "id": 336198,
+      "name": "Pieces of Guilt",
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "罪恶拼图",
+      "overview": "Detective Qin Yuejian uses her extraordinary photographic memory to solve difficult cases, despite the burden of constantly reliving every detail. When newly transferred officer Liang Wan becomes her partner, the two work together to investigate bizarre crimes while confronting secrets from their pasts.",
+      "popularity": 4.1209,
+      "poster_path": "/eYVkovBbF9jAlTQsnZtaO6FOyzE.jpg",
+      "softcore": false,
+      "vote_average": 8.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/o8oTp6QjMvoDq1DNMfTtixuVek7.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        10764,
+        99
+      ],
+      "id": 335947,
+      "name": "El doble",
+      "origin_country": [
+        "ES"
+      ],
+      "original_language": "ca",
+      "original_name": "El doble",
+      "overview": "\"El doble\" is a hybrid format that combines the documentary genre with musical entertainment across three episodes. Hosted by producer Jordi Cubino, the show aims to find, select, and train a contemporary performer capable of reviving the Eurodance music phenomenon of the 1980s. Through a casting and preparation process, the program recreates the success and cultural impact that Cubino himself experienced during that decade under the stage name David Lyme.",
+      "popularity": 1.0381,
+      "poster_path": "/bnNdI2turO0tG77WqPmcsCFCKE.jpg",
+      "softcore": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/iMvGSFcxzvwLWyHDOLqwDX9JQ27.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        80,
+        18
+      ],
+      "id": 332839,
+      "name": "The Law of Beasts",
+      "origin_country": [
+        "PL"
+      ],
+      "original_language": "pl",
+      "original_name": "Prawo bestii",
+      "overview": "When the case of a child serial killer resurfaces after 25 years as an unresolved legal and social problem, two former friends are forced to confront the choices that broke their friendship and shaped their lives.",
+      "popularity": 33.793,
+      "poster_path": "/jnftYgGREN8IN1SgbYRdvHTUkJC.jpg",
+      "softcore": false,
+      "vote_average": 6.618,
+      "vote_count": 17
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/54OIzxOag4gmFdhXz4GIerPfcuq.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        10764
+      ],
+      "id": 332205,
+      "name": "Small Town Trouble: Texas",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Small Town Trouble: Texas",
+      "overview": "Set in Boerne, Texas, the series follows a charming yet unconventional group of mothers and social insiders and their husbands as conservative small-town values collide with forbidden attraction, messy friendships, and shocking secrets. Here, perception is everything, temptation is everywhere, and the truth is never as buttoned-up as it looks.",
+      "popularity": 1.4983,
+      "poster_path": "/vZ7UAWBmSxSaBtk8weABX0oqC01.jpg",
+      "softcore": false,
+      "vote_average": 10.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/sGI4SEEqlC9n9FxFE427jB9cyJS.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        18
+      ],
+      "id": 319436,
+      "name": "Her Willing Subject",
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "裙下之臣",
+      "overview": "Reborn after a tragic end in their previous lives, Lu Qingcang and Shen Shuying resume their rivalry as regent and empress, but find themselves drawn together as they gradually uncover the truth.",
+      "popularity": 3.4067,
+      "poster_path": "/ph5Bx6apfUjwbyXUqEGmwKWd7vL.jpg",
+      "softcore": false,
+      "vote_average": 10.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wf8UcYFLgo6QYi49O13lMMaZrod.jpg",
+      "first_air_date": "2026-11-18",
+      "genre_ids": [
+        18,
+        35
+      ],
+      "id": 318420,
+      "name": "Valentina and the 12 Signs",
+      "origin_country": [
+        "BR"
+      ],
+      "original_language": "pt",
+      "original_name": "Os 12 Signos de Valentina",
+      "overview": "After a devastating breakup, Valentina decides to date one man from every zodiac sign. But the universe has other plans.",
+      "popularity": 16.2527,
+      "poster_path": "/ihjonCRR5gEUEH8RG2Qbk4Fy3HB.jpg",
+      "softcore": false,
+      "vote_average": 7.0,
+      "vote_count": 3
+    }
+  ],
+  "list_id": "new_series",
+  "media_type": "series",
+  "provider_id": "tmdb",
+  "raw_payloads": [
+    {
+      "page": 1,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": "/buhxJRGTLOyX6epIPRWt6Xz8IiO.jpg",
+          "first_air_date": "2026-11-22",
+          "genre_ids": [],
+          "id": 343035,
+          "name": "전하, 여우에게 납치당하셨습니다",
+          "origin_country": [
+            "VN"
+          ],
+          "original_language": "vi",
+          "original_name": "전하, 여우에게 납치당하셨습니다",
+          "overview": "",
+          "popularity": 0.0,
+          "poster_path": "/wUeGYJuCbZoUTj8GloUaO0xiM3I.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-22",
+          "genre_ids": [
+            99
+          ],
+          "id": 342714,
+          "name": "La tragédie du sang contaminé",
+          "origin_country": [
+            "FR"
+          ],
+          "original_language": "fr",
+          "original_name": "La tragédie du sang contaminé",
+          "overview": "",
+          "popularity": 0.0524,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-22",
+          "genre_ids": [
+            99
+          ],
+          "id": 342643,
+          "name": "Polonia Bydgoszcz. Teraz albo nigdy",
+          "origin_country": [
+            "PL"
+          ],
+          "original_language": "pl",
+          "original_name": "Polonia Bydgoszcz. Teraz albo nigdy",
+          "overview": "",
+          "popularity": 0.1086,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-22",
+          "genre_ids": [],
+          "id": 342412,
+          "name": "timeleszファミリア",
+          "origin_country": [
+            "JP"
+          ],
+          "original_language": "ja",
+          "original_name": "timeleszファミリア",
+          "overview": "",
+          "popularity": 0.0545,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/rCuCHtZB5Q6VeqfaJgZgHr9F9z8.jpg",
+          "first_air_date": "2026-11-22",
+          "genre_ids": [
+            18,
+            10765
+          ],
+          "id": 342135,
+          "name": "The Scent of Karma",
+          "origin_country": [
+            "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "岁岁沉香",
+          "overview": "After an accident, a pop idol falls for his reserved doctor—unaware the healer is immortal and carries a deadly curse that dooms anyone who loves him.",
+          "popularity": 0.9812,
+          "poster_path": "/wvJl3pKNGsa3Nm08q5ocOyADnhu.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/cS2L6mz6PcebS9deAJ1LrCMjZch.jpg",
+          "first_air_date": "2026-11-22",
+          "genre_ids": [
+            35,
+            99
+          ],
+          "id": 341164,
+          "name": "Oobah: Scams for a Better Tomorrow",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "Oobah: Scams for a Better Tomorrow",
+          "overview": "Oobah Butler sets his sights on the world’s biggest industries and most powerful institutions. To infiltrate the worlds of wine, wellness, royalty, and more, Oobah hatches elaborate and increasingly audacious schemes by gaming online reviews, assuming made-up personas, and launching fake companies with entirely bogus backstories.",
+          "popularity": 2.1709,
+          "poster_path": "/rWqhULNvOmIBHZymAPce2SlRr2T.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-22",
+          "genre_ids": [
+            10765,
+            10759
+          ],
+          "id": 340984,
+          "name": "Noah siendo Noah",
+          "origin_country": [
+            "MX"
+          ],
+          "original_language": "es",
+          "original_name": "Noah siendo Noah",
+          "overview": "",
+          "popularity": 0.0975,
+          "poster_path": "/jKXVseJHe3oSOfGxQzAQEcJ123R.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/tWOCuHK7sHagj6lR9p6pavApqsT.jpg",
+          "first_air_date": "2026-11-22",
+          "genre_ids": [
+            9648
+          ],
+          "id": 340566,
+          "name": "The Witch Farm",
+          "origin_country": [
+            "GB"
+          ],
+          "original_language": "en",
+          "original_name": "The Witch Farm",
+          "overview": "Follows Bill and Liz Rich who move to a remote Welsh farmhouse in 1989 for a fresh start, but after Liz sees a ghostly figure during a traumatic home birth, they face escalating paranormal disturbances.",
+          "popularity": 2.3156,
+          "poster_path": "/hglk1OHLnaqZkaEcqK8maEJP1t4.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/p3SEhttAEap556IdWd1hMsmJz5q.jpg",
+          "first_air_date": "2026-11-22",
+          "genre_ids": [
+            16,
+            10759,
+            10765
+          ],
+          "id": 338740,
+          "name": "Supreme Solaris",
+          "origin_country": [
+            "IN"
+          ],
+          "original_language": "hi",
+          "original_name": "Supreme Solaris",
+          "overview": "Seventeen-year-old Veer Singh's life changes forever when an extraordinary alien device known as Xion bonds with his chest, awakening powers beyond human comprehension. As the ancient cosmic intelligence within Xion guides him through a dangerous journey of discovery and training, Veer must learn to control his newfound abilities and confront the responsibility that comes with them.\n\nBut becoming a hero demands more than extraordinary power. Faced with fear, difficult choices, and threats that extend far beyond Earth, Veer must discover what it truly means to become Supreme Solaris—the one who stands as a beacon of hope when darkness threatens humanity.",
+          "popularity": 0.8374,
+          "poster_path": "/aZMsPL3xqUxRR6XKi3X1Of4jHWp.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/9KgzJQxl34nzBNoYazfSoMUFT3A.jpg",
+          "first_air_date": "2026-11-22",
+          "genre_ids": [
+            18
+          ],
+          "id": 338661,
+          "name": "Shakedown",
+          "origin_country": [
+            "AU"
+          ],
+          "original_language": "en",
+          "original_name": "Shakedown",
+          "overview": "A tragedy. A cover-up. A reckoning still owed. Robodebt was the cruel and illegal government scheme that took lives and cost millions. These are the stories of those who protected the scheme, and those who paid for it.",
+          "popularity": 1.1895,
+          "poster_path": "/aZskL2s5Xlku1VxMDqoT0OX9x4p.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/Aty2wd9r1cmYEcgTFMj2hDGJmdN.jpg",
+          "first_air_date": "2026-11-22",
+          "genre_ids": [
+            16,
+            35
+          ],
+          "id": 336500,
+          "name": "Burrito and Marshy",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "Burrito and Marshy",
+          "overview": "Burrito and Marshy are a couple thirty-something other worldly people living in Padioho, New York City.",
+          "popularity": 0.5517,
+          "poster_path": "/iE7cc5hjsFCBlpLXBNmY3d34qFl.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/e0bLLRQ2jcPFExd9qzY8WdfNmjz.jpg",
+          "first_air_date": "2026-11-22",
+          "genre_ids": [
+            10764
+          ],
+          "id": 335393,
+          "name": "Jul på Brårud",
+          "origin_country": [
+            "NO"
+          ],
+          "original_language": "no",
+          "original_name": "Jul på Brårud",
+          "overview": "",
+          "popularity": 0.5542,
+          "poster_path": "/b85csMIG42O4zAlWBBPwM33ANsf.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-22",
+          "genre_ids": [],
+          "id": 333810,
+          "name": "Rond de Zwarte Zee",
+          "origin_country": [
+            "NL"
+          ],
+          "original_language": "nl",
+          "original_name": "Rond de Zwarte Zee",
+          "overview": "",
+          "popularity": 0.5173,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/kseRqC3KRXQAMEfPaVf9EWckGFW.jpg",
+          "first_air_date": "2026-11-22",
+          "genre_ids": [
+            18,
+            10751
+          ],
+          "id": 328853,
+          "name": "The Panini Family – Album of Dreams",
+          "origin_country": [
+            "IT"
+          ],
+          "original_language": "it",
+          "original_name": "La famiglia Panini - L’avventura delle figurine",
+          "overview": "The epic story of the Italian family who dared to dream big and turned a humble newsstand into a global phenomenon: the iconic Panini albums.",
+          "popularity": 1.5314,
+          "poster_path": "/qWKs3W7t7WN7CMb9ORCd0PiOo20.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/u1BXiFL2d9SAtTRl2oKDAdh0tVx.jpg",
+          "first_air_date": "2026-11-22",
+          "genre_ids": [
+            10764
+          ],
+          "id": 324823,
+          "name": "Julekveld med Tone Damli",
+          "origin_country": [
+            "NO"
+          ],
+          "original_language": "no",
+          "original_name": "Julekveld med Tone Damli",
+          "overview": "",
+          "popularity": 0.4142,
+          "poster_path": "/1yiaboIfPV4rTJV4i5fYYSdVj1X.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/ympGkmLJiEO4qeFGYCF5ANKM3Fj.jpg",
+          "first_air_date": "2026-11-21",
+          "genre_ids": [
+            18
+          ],
+          "id": 342955,
+          "name": "Испытание счастьем",
+          "origin_country": [
+            "RU"
+          ],
+          "original_language": "ru",
+          "original_name": "Испытание счастьем",
+          "overview": "No description",
+          "popularity": 0.097,
+          "poster_path": "/24SFW0QIfnlfLDIROUbrYOsflh8.jpg",
+          "softcore": false,
+          "vote_average": 10.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-21",
+          "genre_ids": [],
+          "id": 342915,
+          "name": "@!!CDMX GUÍAજ⁀➴🛫 Delta         México Teléfono México ¿Cómo llamar a Delta en México? ¿Cómo llamar a Delta  en México?",
+          "origin_country": [
+            "MX"
+          ],
+          "original_language": "es",
+          "original_name": "@!!CDMX GUÍAજ⁀➴🛫 Delta         México Teléfono México ¿Cómo llamar a Delta en México? ¿Cómo llamar a Delta  en México?",
+          "overview": "",
+          "popularity": 0.0582,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-21",
+          "genre_ids": [
+            10764
+          ],
+          "id": 341098,
+          "name": "Big Teens Naija",
+          "origin_country": [
+            "NG"
+          ],
+          "original_language": "en",
+          "original_name": "Big Teens Naija",
+          "overview": "Big Teens Naija is a Nigerian youth reality television show designed to discover, nurture, celebrate and showcase the talents, creativity, intelligence and ingenuity of young Nigerians between the ages of 13 and 19.\n\nBuilt around the theme “Ingenuity of the African Child,” the show brings together teenagers from diverse backgrounds to live, learn, compete and collaborate in a structured and entertaining reality-TV environment.\n\nThrough talent showcases, creative and intellectual challenges, team activities, entrepreneurship, leadership tasks and other engaging competitions, contestants will have the opportunity to express themselves, discover their strengths, develop confidence and build valuable life skills.",
+          "popularity": 0.2003,
+          "poster_path": "/xeUykNppZgtOwcuTyLnibZ1WQkR.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/iXh2sR2jiq09yaMcgDywyLrMmEi.jpg",
+          "first_air_date": "2026-11-21",
+          "genre_ids": [
+            18
+          ],
+          "id": 340808,
+          "name": "Mera Ghar",
+          "origin_country": [
+            "PK"
+          ],
+          "original_language": "ur",
+          "original_name": "میرا گھر",
+          "overview": "Mera Ghar is a family drama centered on Sherry, the youngest member of a household, who is raised by his elder sister Farkhanda after their mother's death. Having devoted her life to him.",
+          "popularity": 0.3685,
+          "poster_path": "/5DqGr15v2d5zupFLzYO13kTkFZ3.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-21",
+          "genre_ids": [],
+          "id": 333812,
+          "name": "Hollands Glorie",
+          "origin_country": [
+            "NL"
+          ],
+          "original_language": "nl",
+          "original_name": "Hollands Glorie",
+          "overview": "",
+          "popularity": 0.1839,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        }
+      ],
+      "total_pages": 42,
+      "total_results": 826
+    },
+    {
+      "page": 2,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-21",
+          "genre_ids": [],
+          "id": 333812,
+          "name": "Hollands Glorie",
+          "origin_country": [
+            "NL"
+          ],
+          "original_language": "nl",
+          "original_name": "Hollands Glorie",
+          "overview": "",
+          "popularity": 0.1839,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            10764
+          ],
+          "id": 342871,
+          "name": "Danny en de Blikjesjagers",
+          "origin_country": [
+            "NL"
+          ],
+          "original_language": "nl",
+          "original_name": "Danny en de Blikjesjagers",
+          "overview": "",
+          "popularity": 0.1164,
+          "poster_path": "/xYkxY4051ImJ21SPPOm6FOah8xZ.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-20",
+          "genre_ids": [],
+          "id": 342866,
+          "name": "This Is Mars",
+          "origin_country": [
+            "SA"
+          ],
+          "original_language": "ar",
+          "original_name": "This Is Mars",
+          "overview": "",
+          "popularity": 0.1747,
+          "poster_path": "/pTi989PO86N57QQTve5QT1m4cDa.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/z0kgI6RPnH8RAC2UergPu8zYA3s.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            18
+          ],
+          "id": 342742,
+          "name": "Lipistic",
+          "origin_country": [
+            "IN"
+          ],
+          "original_language": "hi",
+          "original_name": "Lipistic",
+          "overview": "A bride with secret and scars. A lipstick with power that people would kill for. And a rich man with dark desire. When three worlds collide in this tale of love, lust and power, nobody can escape unscathed.",
+          "popularity": 0.5438,
+          "poster_path": "/1v1j1ivjQk244MgNDZy2iBoggGX.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/rJ1LqeiZ82eMwsroRZizHPP9ZDz.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            10764
+          ],
+          "id": 342697,
+          "name": "Loud Eyes",
+          "origin_country": [
+            "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "继续营业中",
+          "overview": "A documentary-style reality show about starting and running a business in the Chaoshan region of Guangdong, with Lou Yixiao, Jiang Yiyi, Gao Zhiting, Li Zhenning, Cao Enqi, Gao Siwen and AK Liu Zhang as the regular cast.",
+          "popularity": 0.5384,
+          "poster_path": "/h3NltxoQ0s4mUQZ3fc7Iy1mKvh4.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            99
+          ],
+          "id": 342696,
+          "name": "Plein",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "Plein",
+          "overview": "For Philipp Plein, more is more. Between Cannes, New York, Milan, and L.A., he drives his fashion empire forward-and pushes everyone around him to their limits. But while his girlfriend Andreea struggles with her health and his mother Hanne stands up to him, the very thing that matters most to Philipp begins to falter: control.",
+          "popularity": 1.8672,
+          "poster_path": "/ejdbv5HCqwdLt0nOnsffOOGTjZO.jpg",
+          "softcore": false,
+          "vote_average": 6.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-20",
+          "genre_ids": [],
+          "id": 342683,
+          "name": "ナチス強制収容所",
+          "origin_country": [
+            "JP"
+          ],
+          "original_language": "ja",
+          "original_name": "ナチス強制収容所",
+          "overview": "",
+          "popularity": 0.0392,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/feFFDkFBfWi1zkooJZoI3elAleF.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [],
+          "id": 342677,
+          "name": "每天英语课",
+          "origin_country": [
+            "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "每天英语课",
+          "overview": "",
+          "popularity": 0.0788,
+          "poster_path": "/rsHgytWUofVSIBTeMbZOTtXmWXF.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/sG9SkFyoQuHevfHZkOEki6eNlbm.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [],
+          "id": 342675,
+          "name": "五灵根修仙：我有一个吞噬空间",
+          "origin_country": [
+            "VN"
+          ],
+          "original_language": "vi",
+          "original_name": "五灵根修仙：我有一个吞噬空间",
+          "overview": "",
+          "popularity": 0.0652,
+          "poster_path": "/a2qpU5EkwcpP37ERNyqSqO88F4m.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-20",
+          "genre_ids": [],
+          "id": 342674,
+          "name": "OK Angels",
+          "origin_country": [
+            "PH"
+          ],
+          "original_language": "tl",
+          "original_name": "OK Angels",
+          "overview": "OK Angels, a high-stakes vertical drama series where ambition, glamour, and fierce competition collide. With 7 girls living under one mansion and ₱100M at stake, alliances will be tested and secrets will unravel in a game where everyone wants to come out on top.",
+          "popularity": 0.2077,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-20",
+          "genre_ids": [],
+          "id": 342657,
+          "name": "El Médico Milagroso que Ella Rechazó",
+          "origin_country": [
+            "ES"
+          ],
+          "original_language": "es",
+          "original_name": "El Médico Milagroso que Ella Rechazó",
+          "overview": "",
+          "popularity": 0.3729,
+          "poster_path": "/jdG2n8dTbNhL4tCu6B1adup9Q2L.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/7GUoMhwT1WpPSOdNXwdZ5Q2rMH1.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            9648
+          ],
+          "id": 342653,
+          "name": "Mangolik",
+          "origin_country": [
+            "IN"
+          ],
+          "original_language": "bn",
+          "original_name": "Mangolik",
+          "overview": "A new bride, a strange family belief and a secret that could change everything.",
+          "popularity": 1.432,
+          "poster_path": "/sWOgeRESScrewpSQxrNNeqHsYHR.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-20",
+          "genre_ids": [],
+          "id": 342648,
+          "name": "Marido alquilado",
+          "origin_country": [
+            "ES"
+          ],
+          "original_language": "es",
+          "original_name": "Marido alquilado",
+          "overview": "",
+          "popularity": 0.1295,
+          "poster_path": "/3vZbPQvEk2mTJPLpD5QZchWCC7v.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/hR5jQLSEVTQUVwl1GkHoxHTKXsn.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            18
+          ],
+          "id": 342646,
+          "name": "Teen Tigada",
+          "origin_country": [
+            "IN"
+          ],
+          "original_language": "hi",
+          "original_name": "Teen Tigada",
+          "overview": "Teen Tigada is an emotional drama about ambition, unexpected love, and the meaning of family.",
+          "popularity": 1.535,
+          "poster_path": "/vqwEyADZfeYH6jnolnE2V4qYv8X.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/GsyFACTBLXqkoMqp9vMrz1sMbQ.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            10764,
+            10767,
+            35
+          ],
+          "id": 342619,
+          "name": "Groepsdruk",
+          "origin_country": [
+            "NL"
+          ],
+          "original_language": "nl",
+          "original_name": "Groepsdruk",
+          "overview": "",
+          "popularity": 0.175,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/xYrlhXFEi5qcLTRzWn562kp5Mx5.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            99,
+            10764
+          ],
+          "id": 342461,
+          "name": "Inside the Bomb Squad: Zero Hour",
+          "origin_country": [
+            "GB"
+          ],
+          "original_language": "en",
+          "original_name": "Inside the Bomb Squad: Zero Hour",
+          "overview": "This gripping series will be on the frontline with some of the most elite units of the British Army, the Royal Navy and Britain’s leading private bomb disposal company, Brimstone. Packed with high-octane drama, explosions, and life-or-death moments that will leave viewers breathless – these real-life heroes are out there protecting us 24/7.",
+          "popularity": 0.9246,
+          "poster_path": "/taUcyaCXwzJzIBx6dqKhWrnrGBM.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            18
+          ],
+          "id": 342326,
+          "name": "อันเนื่องมาจาก",
+          "origin_country": [
+            "TH"
+          ],
+          "original_language": "th",
+          "original_name": "อันเนื่องมาจาก",
+          "overview": "Two women from different eras connect through time travel, exchanging traditional Thai recipes and culinary techniques as they pursue their dreams and preserve Thailand's royal cuisine.",
+          "popularity": 0.5314,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/xxz6hZ1gQmrJqQaAvnNBpPDQmA3.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            99,
+            80,
+            10764
+          ],
+          "id": 342185,
+          "name": "Recherchés : sur la piste des disparus",
+          "origin_country": [
+            "BE"
+          ],
+          "original_language": "fr",
+          "original_name": "Recherchés : sur la piste des disparus",
+          "overview": "",
+          "popularity": 0.24,
+          "poster_path": "/lzMjYfi96xRcqiObOosw7elqAnq.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/wb3xzgwoz0Dy3nUvrQsrllWTkb9.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            18
+          ],
+          "id": 342173,
+          "name": "Coach Me Maybe",
+          "origin_country": [
+            "PH"
+          ],
+          "original_language": "tl",
+          "original_name": "Coach Me Maybe",
+          "overview": "Mistaken for a couple, a cocky judo champion and his nerdy rival fake a relationship to protect a secret, only to realize that they are getting way too good at it.",
+          "popularity": 1.9259,
+          "poster_path": "/wDJFK4dABzU0W0MnhEftotAF8FN.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/v8kidsoOnmfZlRhylRhdCz11Czk.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            10764,
+            35
+          ],
+          "id": 341297,
+          "name": "The Detox Project",
+          "origin_country": [
+            "KR"
+          ],
+          "original_language": "ko",
+          "original_name": "산독기 프로젝트",
+          "overview": "A group of celebrities embarks on an intense wilderness adventure to detox from urban life. Facing rugged terrain and extreme physical challenges, they push their limits while discovering the healing power of nature and the thrill of competition.",
+          "popularity": 1.2883,
+          "poster_path": "/xA7HNek9f6PXOk8J1pCBaLX1qJR.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        }
+      ],
+      "total_pages": 42,
+      "total_results": 827
+    },
+    {
+      "page": 3,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": "/kqLX06KhSHhFvEvZkOvvbkXPqTd.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            35,
+            18
+          ],
+          "id": 340624,
+          "name": "Ayô",
+          "origin_country": [
+            "BR"
+          ],
+          "original_language": "pt",
+          "original_name": "Ayô",
+          "overview": "",
+          "popularity": 1.3232,
+          "poster_path": "/ip6wj2rrooSpJozRPkrJpavG5vG.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/rhSjn55YqDIDDpnevyorkZ4wb7g.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            35,
+            18
+          ],
+          "id": 340229,
+          "name": "Fight for My Way",
+          "origin_country": [
+            "PH"
+          ],
+          "original_language": "tl",
+          "original_name": "Fight for My Way",
+          "overview": "After years of fiercely protecting each other from the sidelines, Hanz and Aira realize that their biggest challenge isn't conquering their dead-end careers, but risking their friendship for a chance at love.",
+          "popularity": 2.612,
+          "poster_path": "/arHEGKColQ2NpT7lmWXthBmd9CX.jpg",
+          "softcore": false,
+          "vote_average": 10.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/1J4KaCuH7w0xYiEdXz9P8ePxO89.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            35,
+            10764
+          ],
+          "id": 338549,
+          "name": "Mascarade",
+          "origin_country": [
+            "FR"
+          ],
+          "original_language": "fr",
+          "original_name": "Mascarade",
+          "overview": "They've starred in tons of movies. He hasn't seen a single one. Welcome to Mascarade, where Monsieur Loris must unmask French cinema stars.",
+          "popularity": 3.1857,
+          "poster_path": "/gdDUz1FqDDN2criezLPyQ3j0qdu.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/ewtOrHFGRqXBtKNWDVLGGMqMux9.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            10767
+          ],
+          "id": 336907,
+          "name": "Patrick en Eline",
+          "origin_country": [
+            "NL"
+          ],
+          "original_language": "nl",
+          "original_name": "Patrick en Eline",
+          "overview": "Patrick Martens and Eline de Ruig take you along for their unfiltered post-show discussions of the most popular reality programs. From awkward dates and striking contestants to bizarre television moments—nothing goes undiscussed. Along the way, Patrick and Eline also share their own personal stories, pet peeves, and hilarious experiences.",
+          "popularity": 0.5599,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/ithzPRYsTWy5umOK9rSbTAiDGat.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            99,
+            10768
+          ],
+          "id": 314131,
+          "name": "MELANIA the Series",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "MELANIA the Series",
+          "overview": "Experience Melania Trump's transition to First Lady as she navigates the White House and puts her mission into action.",
+          "popularity": 5.1946,
+          "poster_path": "/75uNmW51SXsljGTFpNuH464eW4r.jpg",
+          "softcore": false,
+          "vote_average": 1.0,
+          "vote_count": 2
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/7ojpD6ARKYhRxnsjzMIrorOfj4T.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            80,
+            9648
+          ],
+          "id": 300523,
+          "name": "The Blue Road",
+          "origin_country": [
+            "KR"
+          ],
+          "original_language": "ko",
+          "original_name": "푸른길",
+          "overview": "Two detectives join forces when brutal murders and cryptic messages surface across borders — but the deadly truth lurks dangerously close.",
+          "popularity": 63.1067,
+          "poster_path": "/cVbilrgtgKi7gN74KK4voyV7iDR.jpg",
+          "softcore": false,
+          "vote_average": 6.9,
+          "vote_count": 8
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/vZ3VaxfGWMcdaCen2T0nmdGDDxZ.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            35
+          ],
+          "id": 292113,
+          "name": "Bill's Included",
+          "origin_country": [
+            "GB"
+          ],
+          "original_language": "en",
+          "original_name": "Bill's Included",
+          "overview": "Well-meaning, overly enthusiastic divorcee Bill opens up his home to students for extra cash - creating a mismatched, bumbling houseshare in the process. Starring Rob Brydon.",
+          "popularity": 6.2914,
+          "poster_path": "/oq1F421zkILo0UoLEnEsBiGrYIk.jpg",
+          "softcore": false,
+          "vote_average": 5.5,
+          "vote_count": 2
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/lc7kpJ1znnfcyyN6BQ9Bafb7pvS.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            18,
+            35
+          ],
+          "id": 284530,
+          "name": "Love @ Fifty First Bite",
+          "origin_country": [
+            "TH"
+          ],
+          "original_language": "th",
+          "original_name": "เลิฟรัก ฮักข้าวซอย Love @ Fifty First Bite",
+          "overview": "Yotsaran is sent to save his family’s failing resort only to find a Khao Soi shop blocking the entrance. He clashes with Bang-Earn, the sharp-tongued owner who refuses to back down. As they fight to protect their businesses, their rivalry slowly turns into an unexpected romance.",
+          "popularity": 1.7416,
+          "poster_path": "/c8xgk7xLWoJNPa98ONhaszNsxA2.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/eE1mgVSWHndxnqxLnld517AAU4g.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            18,
+            9648,
+            80
+          ],
+          "id": 270429,
+          "name": "Silent Echoes",
+          "origin_country": [
+            "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "无声的回响",
+          "overview": "When two women's bodies are discovered in a lake, investigators must uncover a long-buried truth and give a voice to the victims who can no longer speak.",
+          "popularity": 4.0238,
+          "poster_path": "/7Q6p6guBb3sl39KTv0mT5cx0MjG.jpg",
+          "softcore": false,
+          "vote_average": 8.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/pFTGCQ3oVhFkuOCjnvCPeVsQBaL.jpg",
+          "first_air_date": "2026-11-20",
+          "genre_ids": [
+            18
+          ],
+          "id": 203483,
+          "name": "River of No Return",
+          "origin_country": [
+            "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "两京十五日",
+          "overview": "In the Ming Dynasty, Crown Prince Zhu Zhanji races 2,200 miles from Nanjing to Beijing in 15 days to save himself and the empire.",
+          "popularity": 19.8661,
+          "poster_path": "/7fo6B7Wm75WwIlCZP17ohjUjdLd.jpg",
+          "softcore": false,
+          "vote_average": 8.5,
+          "vote_count": 6
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 343010,
+          "name": "西藏定日震后重建纪实",
+          "origin_country": [
+            "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "西藏定日震后重建纪实",
+          "overview": "",
+          "popularity": 0.0,
+          "poster_path": "/gp6u9WSUshGvqLEepb1ryMDnwMd.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            35
+          ],
+          "id": 342822,
+          "name": "The Airport",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "The Airport",
+          "overview": "At THE AIRPORT, passengers are wild, employees are reckless, and chaos is always on schedule.",
+          "popularity": 0.4076,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342818,
+          "name": "一剑星河渡",
+          "origin_country": [
+            "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "一剑星河渡",
+          "overview": "",
+          "popularity": 0.9704,
+          "poster_path": "/4GECRYPWpVbVnEsSkxd1vrcU8DH.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342815,
+          "name": "Hurt But Not Broken",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "zh",
+          "original_name": "受伤但未破碎",
+          "overview": "During three years of marriage, Wen Ci gave all her love, but in return, she received indifference from her husband, who is still hung up on his first love. After discovering she is pregnant, she finally comes to her senses and decides to divorce.",
+          "popularity": 0.0776,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342812,
+          "name": "Friday, Unread",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "Friday, Unread",
+          "overview": "Maya Chen and Leo Roderick are pulled into an anonymous group chat called FRIDAY NIGHT by @admin_zero, a blackmailer holding timestamped proof of what happened at Oak & 4th at 11:42 PM. Told in 50 vertical phone-screen episodes across five seasons.",
+          "popularity": 0.1164,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/dZMqRhTujwqFUK2j7yCrTTiXTLK.jpg",
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            35
+          ],
+          "id": 342738,
+          "name": "Ballz",
+          "origin_country": [
+            "DE"
+          ],
+          "original_language": "de",
+          "original_name": "Ballz",
+          "overview": "Julian actually has a plan. He lives with his best friend Sami in a chaotic shared apartment, is currently building a fitness startup with him, and wants to finally propose to his true love, Noemi. Everything seems to be going in the right direction. Until a routine checkup turns his life upside down: Julian has testicular cancer.",
+          "popularity": 0.2597,
+          "poster_path": "/l0EHtcRFsI8ADYYWYNNLxl8IRDy.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/vlIMuXMZ3BYUNddKXzBhsrG8pjk.jpg",
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342695,
+          "name": "The Mad Pooper",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "The Mad Pooper",
+          "overview": "In 2017, a mysterious jogger dubbed the \"Mad Pooper\" turned a quiet Colorado Springs neighborhood upside down after she is repeatedly caught defecating on a family's front lawn, leaving behind one burning question: WHO is the Mad Pooper?",
+          "popularity": 0.2865,
+          "poster_path": "/vZzZiDcTdVjtfAMQeqtKuQZMkNk.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342664,
+          "name": "Diamonds & Plastic",
+          "origin_country": [
+            "CA"
+          ],
+          "original_language": "en",
+          "original_name": "Diamonds & Plastic",
+          "overview": "Tupperware’s bankruptcy filing throws the world’s top Tupperware® product seller into the biggest crisis of her career, threatening the women-led empire she spent more than 40 years building.",
+          "popularity": 0.104,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342662,
+          "name": "El preso que nadie podía matar",
+          "origin_country": [
+            "ES"
+          ],
+          "original_language": "es",
+          "original_name": "El preso que nadie podía matar",
+          "overview": "",
+          "popularity": 0.0517,
+          "poster_path": "/4bmOV4F7oBE695C9jE1j2kYdx6G.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342659,
+          "name": "Untitled EJBP miniseries",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "Untitled EJBP miniseries",
+          "overview": "Mother father sister brother kinda drama mystery",
+          "popularity": 0.124,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        }
+      ],
+      "total_pages": 42,
+      "total_results": 826
+    },
+    {
+      "page": 4,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342662,
+          "name": "El preso que nadie podía matar",
+          "origin_country": [
+            "ES"
+          ],
+          "original_language": "es",
+          "original_name": "El preso que nadie podía matar",
+          "overview": "",
+          "popularity": 0.0517,
+          "poster_path": "/4bmOV4F7oBE695C9jE1j2kYdx6G.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342659,
+          "name": "Untitled EJBP miniseries",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "Untitled EJBP miniseries",
+          "overview": "Mother father sister brother kinda drama mystery",
+          "popularity": 0.124,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/4tTHEOivRuNoUrbnXUYbjgBkypZ.jpg",
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            99
+          ],
+          "id": 342651,
+          "name": "Classic Movies: Iconic Scenes",
+          "origin_country": [
+            "GB"
+          ],
+          "original_language": "en",
+          "original_name": "Classic Movies: Iconic Scenes",
+          "overview": "Film critic Ian Nathan examines some of the most memorable and iconic scenes in the history of cinema. He examines how these scenes are crafted and what makes them so remarkable.",
+          "popularity": 0.124,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            99
+          ],
+          "id": 342631,
+          "name": "请记得我",
+          "origin_country": [
+            "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "请记得我",
+          "overview": "",
+          "popularity": 0.2331,
+          "poster_path": "/9qZEG2RpXwNzJPXJI11skLQbMnL.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            99
+          ],
+          "id": 342626,
+          "name": "Tokio Hotel - Gegen alle Regeln",
+          "origin_country": [
+            "DE"
+          ],
+          "original_language": "de",
+          "original_name": "Tokio Hotel - Gegen alle Regeln",
+          "overview": "",
+          "popularity": 0.8619,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342625,
+          "name": "Hemelse Nieuwe",
+          "origin_country": [
+            "BE"
+          ],
+          "original_language": "nl",
+          "original_name": "Hemelse Nieuwe",
+          "overview": "",
+          "popularity": 0.071,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/mMrzHOFxZy6n6qrw1AQ771TDLdy.jpg",
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            10767
+          ],
+          "id": 342621,
+          "name": "Julie & Olly wannabe late night",
+          "origin_country": [
+            "BE"
+          ],
+          "original_language": "nl",
+          "original_name": "Julie & Olly wannabe late night",
+          "overview": "",
+          "popularity": 0.0713,
+          "poster_path": "/lCaRr5b9mz4TfiPM5YOzFbBve67.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/sGVilgru0utXOSH6TWR6zQ1Vv62.jpg",
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            18,
+            9648
+          ],
+          "id": 342610,
+          "name": "Nanban",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "Nanban",
+          "overview": "1603 London United Kingdom. King James I has ascended to the English throne following the death of his cousin Queen Elizabeth I. Lies and deceits lead to betrayal as the English monarchy becomes divided upon talks of an English trade with a foreign nation. Panic ensues once people begin to vanish in the night. A wealthy Morrish Baron and his orphanage at the center of it all.",
+          "popularity": 0.3355,
+          "poster_path": "/duQCYpASluNKF2B0JsW73pMHjxp.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342609,
+          "name": "算死真仙：我在囚笼修八九玄功",
+          "origin_country": [
+            "VN"
+          ],
+          "original_language": "vi",
+          "original_name": "算死真仙：我在囚笼修八九玄功",
+          "overview": "",
+          "popularity": 0.0715,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342601,
+          "name": "De Chofer a Rey de la Guerra",
+          "origin_country": [
+            "ES"
+          ],
+          "original_language": "es",
+          "original_name": "De Chofer a Rey de la Guerra",
+          "overview": "",
+          "popularity": 0.194,
+          "poster_path": "/qibTaEXigpoQ0RmDPpZM6nstbAs.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [],
+          "id": 342600,
+          "name": "El taxista multimillonario",
+          "origin_country": [
+            "ES"
+          ],
+          "original_language": "es",
+          "original_name": "El taxista multimillonario",
+          "overview": "",
+          "popularity": 0.7515,
+          "poster_path": "/cxZLSpiThfZIuHxKCrZCUuAWk4R.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/hQ9ah2nrRweR5spbQrIcGFPvMch.jpg",
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            99
+          ],
+          "id": 342567,
+          "name": "Per and Marie – The Story of Roxette",
+          "origin_country": [
+            "SE"
+          ],
+          "original_language": "sv",
+          "original_name": "Per och Marie - historien om Roxette",
+          "overview": "A brand-new documentary series chronicles the success story of Roxette—one of Sweden’s greatest musical triumphs of all time. Together, friends Per Gessle and Marie Fredriksson created a unique and unrivaled collection of pop gems—a musical treasure trove, beginning in 1986, that lives on to this day. Through their own personal footage, photographs, and voices, we are taken on a journey from Halmstad to sold-out arenas across the globe.",
+          "popularity": 1.5924,
+          "poster_path": "/f6hL5zW6o6l1NYbWVHose3UtuqD.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/eLetC1El2Tp6gzgB2UkCgju0MIt.jpg",
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            35,
+            18
+          ],
+          "id": 342527,
+          "name": "Страшна сила",
+          "origin_country": [
+            "UA"
+          ],
+          "original_language": "uk",
+          "original_name": "Страшна сила",
+          "overview": "",
+          "popularity": 1.2027,
+          "poster_path": "/ezHQL1Yr8t6xzQRwpMDGJ7FKyk8.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            18
+          ],
+          "id": 342431,
+          "name": "知音难觅",
+          "origin_country": [
+            "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "知音难觅",
+          "overview": "When a traditional Chinese music school and a Western music school become competitors in the same neighborhood, their rivalry sets off a series of lively clashes.",
+          "popularity": 1.0862,
+          "poster_path": "/3qAZHunQgHW94PTPCVxLjxCqVu0.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/kqbQoUlrIn6FFtA8f79eQus3ri4.jpg",
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            16,
+            35
+          ],
+          "id": 341997,
+          "name": "Macca & Friends",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "Macca & Friends",
+          "overview": "The series follows the adventures of Macca the Gator and his wetland friends across the state of Leonida.",
+          "popularity": 0.2433,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/h8NxLTAJkjbGHjNASAvvtteA1c7.jpg",
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            10764
+          ],
+          "id": 340885,
+          "name": "NO-CLUE TRIP",
+          "origin_country": [
+            "KR"
+          ],
+          "original_language": "ko",
+          "original_name": "도겸과 정한 <정답 없는 여행>",
+          "overview": "Where to go, what to eat, and what to do!\n\nEvery choice leads to an adventure, and every moment turns out right. SEVENTEEN's JEONGHAN and DK take off on a friendship getaway to Jeju Island!  Are you ready to join them? YES or NO?",
+          "popularity": 0.706,
+          "poster_path": "/4Cf5uK8YdktaNDTK1I0zyNOXvpu.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            18,
+            10759,
+            80
+          ],
+          "id": 339422,
+          "name": "I Became the Killer's Prey",
+          "origin_country": [
+            "KR"
+          ],
+          "original_language": "ko",
+          "original_name": "살인마의 사냥감이 되었다",
+          "overview": "On an otherwise ordinary afternoon, 'Jun-hwi' encounters a killer who has broken into an empty house. Having lost a friend and now finding himself the killer's next target, he chooses not to flee-but instead prepares a dangerous counterattack...!",
+          "popularity": 0.6329,
+          "poster_path": "/vML0xSJ7nqnseUubKtiGlJcko89.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/qxdIeeXB7IlZO9lKaAxpoDXY2Bv.jpg",
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            18,
+            35
+          ],
+          "id": 339362,
+          "name": "Çiçekçi Kız",
+          "origin_country": [
+            "TR"
+          ],
+          "original_language": "tr",
+          "original_name": "Çiçekçi Kız",
+          "overview": "",
+          "popularity": 40.7006,
+          "poster_path": "/6Xr5GQqwxceVpzpKXC6ZOt42slH.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/m8JTMj7jDMJFZAPP1ASmSi4gMWi.jpg",
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            80,
+            18
+          ],
+          "id": 308007,
+          "name": "The Altruists",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "The Altruists",
+          "overview": "The story of Sam Bankman-Fried and Caroline Ellison, two hyper-smart, ambitious young idealists who tried to remake the global financial system in the blink of an eye - before they were accused of stealing $8 billion and became Gen Z's own Bonnie & Clyde.",
+          "popularity": 47.3285,
+          "poster_path": "/hiX70sXdvEPVE11QqmLuaX16gdh.jpg",
+          "softcore": false,
+          "vote_average": 6.3,
+          "vote_count": 11
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/oLzpVIqZAEfXrPIPrNTKotBNhcK.jpg",
+          "first_air_date": "2026-11-19",
+          "genre_ids": [
+            18
+          ],
+          "id": 279382,
+          "name": "Eldorado",
+          "origin_country": [
+            "FR"
+          ],
+          "original_language": "fr",
+          "original_name": "Eldorado",
+          "overview": "",
+          "popularity": 3.4496,
+          "poster_path": "/jT2KO2QnY857A4r8V7HRgL5WAKK.jpg",
+          "softcore": false,
+          "vote_average": 7.0,
+          "vote_count": 2
+        }
+      ],
+      "total_pages": 42,
+      "total_results": 828
+    },
+    {
+      "page": 5,
+      "results": [
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            99
+          ],
+          "id": 342572,
+          "name": "Dossiê Celebridades",
+          "origin_country": [
+            "BR"
+          ],
+          "original_language": "pt",
+          "original_name": "Dossiê Celebridades",
+          "overview": "",
+          "popularity": 0.1555,
+          "poster_path": "/54yJiNWqchXGvoqbMvKgiI6zsJ8.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-18",
+          "genre_ids": [],
+          "id": 342565,
+          "name": "Ós Blauw",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "Ós Blauw",
+          "overview": "A five-part series about police work in Heerlen, following five officers from the Heerlen base team—Farid, Tanja, Jeroen, Sander, and Rachel—as they go about their daily duties.",
+          "popularity": 0.0708,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": null,
+          "first_air_date": "2026-11-18",
+          "genre_ids": [],
+          "id": 342309,
+          "name": "Gangster",
+          "origin_country": [
+            "IR"
+          ],
+          "original_language": "fa",
+          "original_name": "گنگستر",
+          "overview": "Manouchehr and Nosrat, the family's good-for-nothing, unemployed sons, turn to gangster antics to win over the father of Haydeh and Homayra. But this is no ordinary game!",
+          "popularity": 0.367,
+          "poster_path": "/1QhcEOwWNsc4yw36zYEzem7CfNk.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/joGRW9GSY6J8UjcdKrtbk6cd4ZJ.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            99
+          ],
+          "id": 341930,
+          "name": "Brennpunkt: Operasjon Duckface",
+          "origin_country": [
+            "NO"
+          ],
+          "original_language": "no",
+          "original_name": "Brennpunkt: Operasjon Duckface",
+          "overview": "",
+          "popularity": 0.1946,
+          "poster_path": "/3tDBhuIfYi2dEYxYNndHHNfizSh.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/hKXcRVGEozDqlQvBbq2zyMtjMLi.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            99
+          ],
+          "id": 341593,
+          "name": "Inventeur Gadget - Les 1000 vies de Jean Chalopin",
+          "origin_country": [
+            "FR"
+          ],
+          "original_language": "fr",
+          "original_name": "Inventeur Gadget - Les 1000 vies de Jean Chalopin",
+          "overview": "",
+          "popularity": 0.6004,
+          "poster_path": "/skHojLJ6nqyaVqm0rzCdMoeBwyP.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/syj3emeHddci3vxDrT2eiw8p8c5.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            16,
+            10759,
+            10765
+          ],
+          "id": 341537,
+          "name": "混在末日，独自成仙",
+          "origin_country": [
+            "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "混在末日，独自成仙",
+          "overview": "",
+          "popularity": 0.8366,
+          "poster_path": "/eFGaDCJAxOgc2HwaE8SydYUf59l.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/3yXsgujIjlM6IPUb93OOAIhLzym.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            10767
+          ],
+          "id": 341471,
+          "name": "Club Zestig",
+          "origin_country": [
+            "BE"
+          ],
+          "original_language": "nl",
+          "original_name": "Club Zestig",
+          "overview": "",
+          "popularity": 0.3556,
+          "poster_path": null,
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/nRn8skmFphZeGS7MxHZv1GBI94f.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            10764
+          ],
+          "id": 340704,
+          "name": "Sweet Homes",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "Sweet Homes",
+          "overview": "What starts as an idea between friends quickly becomes their biggest gamble yet. Together, they set out to build a million-dollar dream home on Alabama's Smith Lake before summer's end, betting that years of friendship are enough to see them through.",
+          "popularity": 0.5138,
+          "poster_path": "/28aXeNetqJXuwNwq5hU7weoE3d9.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/o8wVY0c4v54KsFQ5IdU2uvOves1.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            18,
+            80
+          ],
+          "id": 340280,
+          "name": "Gordon",
+          "origin_country": [
+            "AR"
+          ],
+          "original_language": "es",
+          "original_name": "Gordon",
+          "overview": "Aníbal Gordon rises from a small-time thief to a convicted murderer in Argentina during the '70s.",
+          "popularity": 31.7569,
+          "poster_path": "/yLgl70D5Up0MlvBWP2MJTLAbFAF.jpg",
+          "softcore": false,
+          "vote_average": 6.955,
+          "vote_count": 11
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/9B2QvCNWXTlqxKxCUll0QkaTQwF.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            35,
+            18,
+            10765
+          ],
+          "id": 338656,
+          "name": "Lo Chudail Chali Sasural",
+          "origin_country": [
+            "IN"
+          ],
+          "original_language": "hi",
+          "original_name": "Lo Chudail Chali Sasural",
+          "overview": "Lo Chudail Chali Sasural is a supernatural family sitcom and the Indian adaptation of Bewitched. Urvashi, a chudail longing for a human family, marries Aarav Patel and joins his lively Gujarati joint family. As her magic causes hilarious mishaps, Aarav struggles to protect her secret while her human-hating mother Kamini fuels the chaos. Amid magical mayhem, and family drama, love finds a way.",
+          "popularity": 2.4104,
+          "poster_path": "/c89F8oJuDF5YZLuAHhTAS2C39qh.jpg",
+          "softcore": false,
+          "vote_average": 10.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/8VBfz1ufyA0ausZI4nXfRBJJp5S.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            99,
+            10764
+          ],
+          "id": 338547,
+          "name": "Friz i Wersow. W drodze",
+          "origin_country": [
+            "PL"
+          ],
+          "original_language": "pl",
+          "original_name": "Friz i Wersow. W drodze",
+          "overview": "The production will follow Friz and Wersow as they embark on a new chapter in their lives—as parents of two children, business partners, and a couple ready to confront previously untold aspects of their own story. The six-part documentary series will premiere exclusively on Prime Video later this year.",
+          "popularity": 0.847,
+          "poster_path": "/a8kD3PbjgshEpcOjhXTkwahL9Dn.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/pIGIxY4n2xl80wHv6kdyuRIhO3t.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            35,
+            18
+          ],
+          "id": 338502,
+          "name": "Mr & Mrs Office",
+          "origin_country": [
+            "IN"
+          ],
+          "original_language": "ta",
+          "original_name": "Mr & Mrs Office",
+          "overview": "Mr & Mrs Office explores the comedic and chaotic worlds of work-life balance, relationships, and corporate dynamics. The plot centers around a couple navigating the daily grind, combining relatable office tropes with domestic humor and romance.",
+          "popularity": 5.389,
+          "poster_path": "/demMPIRzA47Px0NaNW0b1F9yxMq.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/bBfLIC27kYlUGg7YqrZma8ohAxI.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            10764
+          ],
+          "id": 336775,
+          "name": "KL24/7",
+          "origin_country": [
+            "NL"
+          ],
+          "original_language": "nl",
+          "original_name": "KL24/7",
+          "overview": "",
+          "popularity": 0.8083,
+          "poster_path": "/kIsirzcpsonOVlUQvHp2CWQ8285.jpg",
+          "softcore": false,
+          "vote_average": 8.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/9qKkdHizmDOXwABJx6LP6MdbWiO.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            10764
+          ],
+          "id": 336592,
+          "name": "Win the Mall",
+          "origin_country": [
+            "CA",
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "Win the Mall",
+          "overview": "Ten teams move into a mall where they must conquer storefronts, forge alliances and outsmart rivals to win $1 million in this reality competition series.",
+          "popularity": 5.8154,
+          "poster_path": "/awZejt5KgmNzqlQIReQa4vJelx4.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/otAjrxhSbGWtJQFpVqkQPYfJxCw.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            9648
+          ],
+          "id": 336198,
+          "name": "Pieces of Guilt",
+          "origin_country": [
+            "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "罪恶拼图",
+          "overview": "Detective Qin Yuejian uses her extraordinary photographic memory to solve difficult cases, despite the burden of constantly reliving every detail. When newly transferred officer Liang Wan becomes her partner, the two work together to investigate bizarre crimes while confronting secrets from their pasts.",
+          "popularity": 4.1209,
+          "poster_path": "/eYVkovBbF9jAlTQsnZtaO6FOyzE.jpg",
+          "softcore": false,
+          "vote_average": 8.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/o8oTp6QjMvoDq1DNMfTtixuVek7.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            10764,
+            99
+          ],
+          "id": 335947,
+          "name": "El doble",
+          "origin_country": [
+            "ES"
+          ],
+          "original_language": "ca",
+          "original_name": "El doble",
+          "overview": "\"El doble\" is a hybrid format that combines the documentary genre with musical entertainment across three episodes. Hosted by producer Jordi Cubino, the show aims to find, select, and train a contemporary performer capable of reviving the Eurodance music phenomenon of the 1980s. Through a casting and preparation process, the program recreates the success and cultural impact that Cubino himself experienced during that decade under the stage name David Lyme.",
+          "popularity": 1.0381,
+          "poster_path": "/bnNdI2turO0tG77WqPmcsCFCKE.jpg",
+          "softcore": false,
+          "vote_average": 0.0,
+          "vote_count": 0
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/iMvGSFcxzvwLWyHDOLqwDX9JQ27.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            80,
+            18
+          ],
+          "id": 332839,
+          "name": "The Law of Beasts",
+          "origin_country": [
+            "PL"
+          ],
+          "original_language": "pl",
+          "original_name": "Prawo bestii",
+          "overview": "When the case of a child serial killer resurfaces after 25 years as an unresolved legal and social problem, two former friends are forced to confront the choices that broke their friendship and shaped their lives.",
+          "popularity": 33.793,
+          "poster_path": "/jnftYgGREN8IN1SgbYRdvHTUkJC.jpg",
+          "softcore": false,
+          "vote_average": 6.618,
+          "vote_count": 17
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/54OIzxOag4gmFdhXz4GIerPfcuq.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            10764
+          ],
+          "id": 332205,
+          "name": "Small Town Trouble: Texas",
+          "origin_country": [
+            "US"
+          ],
+          "original_language": "en",
+          "original_name": "Small Town Trouble: Texas",
+          "overview": "Set in Boerne, Texas, the series follows a charming yet unconventional group of mothers and social insiders and their husbands as conservative small-town values collide with forbidden attraction, messy friendships, and shocking secrets. Here, perception is everything, temptation is everywhere, and the truth is never as buttoned-up as it looks.",
+          "popularity": 1.4983,
+          "poster_path": "/vZ7UAWBmSxSaBtk8weABX0oqC01.jpg",
+          "softcore": false,
+          "vote_average": 10.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/sGI4SEEqlC9n9FxFE427jB9cyJS.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            18
+          ],
+          "id": 319436,
+          "name": "Her Willing Subject",
+          "origin_country": [
+            "CN"
+          ],
+          "original_language": "zh",
+          "original_name": "裙下之臣",
+          "overview": "Reborn after a tragic end in their previous lives, Lu Qingcang and Shen Shuying resume their rivalry as regent and empress, but find themselves drawn together as they gradually uncover the truth.",
+          "popularity": 3.4067,
+          "poster_path": "/ph5Bx6apfUjwbyXUqEGmwKWd7vL.jpg",
+          "softcore": false,
+          "vote_average": 10.0,
+          "vote_count": 1
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/wf8UcYFLgo6QYi49O13lMMaZrod.jpg",
+          "first_air_date": "2026-11-18",
+          "genre_ids": [
+            18,
+            35
+          ],
+          "id": 318420,
+          "name": "Valentina and the 12 Signs",
+          "origin_country": [
+            "BR"
+          ],
+          "original_language": "pt",
+          "original_name": "Os 12 Signos de Valentina",
+          "overview": "After a devastating breakup, Valentina decides to date one man from every zodiac sign. But the universe has other plans.",
+          "popularity": 16.2527,
+          "poster_path": "/ihjonCRR5gEUEH8RG2Qbk4Fy3HB.jpg",
+          "softcore": false,
+          "vote_average": 7.0,
+          "vote_count": 3
+        }
+      ],
+      "total_pages": 42,
+      "total_results": 826
+    }
+  ],
+  "request_id": "new_series"
+}

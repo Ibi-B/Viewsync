@@ -14,7 +14,7 @@ from typing import Any
 from .config import load_config
 from .fetch import SourceSnapshot, fetch_source
 from .manifest import build_release
-from .publish import publish_release
+from .publish import publication_size_report, publish_release
 from .state import (
     persist_snapshots,
     preserve_last_good_release,
@@ -236,6 +236,14 @@ def generate_catalog(
 
     validate_release(release)
     publish_release(release, output_dir)
+
+    # Persist compact size diagnostics alongside the generation report so the
+    # real Actions run measures actual row/detail/provider files, not estimates.
+    report_path = state_dir / "generation-report.json"
+    if report_path.exists():
+        generation_report = load_json(report_path)
+        generation_report["publication_sizes"] = publication_size_report(output_dir)
+        write_json(report_path, generation_report)
 
     manifest_path = output_dir / "v1" / "manifest.json"
     current = {

@@ -70,6 +70,7 @@ def test_tmdb_detail_and_all_region_provider_payloads_are_published(monkeypatch)
     assert published["tmdb_full"]["budget"] == 123456
     assert published["tmdb_full"]["credits"]["cast"][0]["name"] == "Actor One"
     assert published["ids"]["imdb"] == "tt0000101"
+    assert published["id"] == "movie:imdb:tt0000101"
     assert published["watch_providers"]["SE"]["flatrate"][0]["provider_name"] == "Netflix"
     assert release["watch_regions"][0]["english_name"] == "Sweden"
     assert published["metadata"]["runtime_minutes"] == 120

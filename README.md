@@ -12,6 +12,12 @@ It fetches public catalogue data from configured sources, normalises media ident
 - Rankings distinguish provider agreement from a single provider's placement.
 - Publications are immutable, versioned releases.
 - The app consumes a configurable catalogue base URL.
+- TMDB title detail and regional watch-provider metadata are ingested by this
+  backend and published as part of the same unified catalogue release.
+- Published TMDB metadata is retained in full. Thirty days is the enrichment
+  refresh interval, not a deletion or catalogue-trimming rule.
+- BeastED derives its Movies and Series subscription shelves from the published
+  regional availability and never calls TMDB directly.
 
 ## Ranking model
 
@@ -52,6 +58,29 @@ python -m pip install -r requirements.txt
 python -m pytest
 python -m src.main --output dist
 ```
+
+## TMDB detail and availability enrichment
+
+The generator enriches each distinct TMDB movie/series ID within the existing
+TMDB source snapshots. It stores the full TMDB detail response (including the
+configured appended credits, external IDs, images, keywords, recommendations,
+release data/ratings, content ratings, and videos where supported) together
+with the complete regional `watch/providers` response. All provider categories
+are preserved; BeastED currently displays subscription (`flatrate`) results
+while retaining rental, purchase, free, and ad-supported availability in the
+published item for future features.
+
+Each enrichment record has a 30-day freshness interval. A record younger than
+30 days is reused without a new detail request. When a refresh fails, the last
+successful TMDB detail and availability payload remains published and is marked
+stale; it is not deleted or blanked. The full data travels through the existing
+identity merge, row and item-detail publication, and BeastED v2 catalogue
+contract. API credentials are GitHub Actions secrets only.
+
+Viewsync's static catalogue and durable source snapshots are not stored in
+Cloudflare R2. Radsync's separate R2 retention policy therefore applies only to
+Radsync's historical archive and diagnostic objects; it must never expire the
+Viewsync published catalogue or its current/previous-good provider state.
 
 ## GitHub Actions
 

@@ -111,6 +111,9 @@ def _fetch_item(media_type: str, tmdb_id: int, fetched_at: str) -> dict[str, Any
         "status": "fresh",
         "details": details if isinstance(details, dict) else {},
         "watch_providers": provider_regions,
+        "watch_providers_response": (
+            provider_payload if isinstance(provider_payload, dict) else {}
+        ),
     }
 
 

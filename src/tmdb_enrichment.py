@@ -320,8 +320,40 @@ def discover_provider_shelves(
     """Discover allowlisted services per configured region and media type."""
     now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
     fetched_at = now.isoformat()
-    regions = _watch_regions()
+    if not any(_credentials()):
+        return [], {}, {}, {
+            "configured_region_count": 0,
+            "published_region_count": 0,
+            "provider_catalogue_requests": 0,
+            "provider_discover_requests": 0,
+            "provider_shelf_regions_reused": 0,
+            "provider_shelves_published": 0,
+            "provider_shelves_omitted_under_minimum": 0,
+            "provider_discovery_errors": [],
+            "provider_allowlist": sorted(PROVIDER_ALLOWLIST),
+            "availability_refresh_hours": int(
+                AVAILABILITY_REFRESH_AGE.total_seconds() // 3600
+            ),
+            "skipped_reason": "TMDB credentials are not configured",
+        }
+
     previous_regions = _load_previous_region_directory()
+    try:
+        regions = _watch_regions()
+    except Exception as exc:
+        # Provider endpoint outages must not wipe the previous region list.
+        # Existing shelves can still be reused with an explicit stale marker.
+        regions = [
+            {
+                "iso_code": code,
+                "english_name": str(value.get("english_name") or code),
+                "native_name": str(value.get("native_name") or code),
+            }
+            for code, value in previous_regions.items()
+        ]
+        region_directory_error = _safe_failure(exc)
+    else:
+        region_directory_error = None
     shelves_by_region: dict[str, list[dict[str, Any]]] = {}
     discovered: dict[tuple[str, str], dict[str, Any]] = {}
     provider_calls = 0
@@ -329,6 +361,11 @@ def discover_provider_shelves(
     cached_regions = 0
     omitted_under_minimum = 0
     errors: list[dict[str, str]] = []
+    if region_directory_error:
+        errors.append({
+            "stage": "region_directory",
+            "error": region_directory_error,
+        })
 
     for region in regions:
         region_code = region["iso_code"]

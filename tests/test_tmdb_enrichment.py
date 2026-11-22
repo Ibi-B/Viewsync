@@ -10,6 +10,7 @@ from src.tmdb_enrichment import (
     PROVIDER_ALLOWLIST,
     _previous_slim_source_item,
     _refresh_record,
+    load_previous_detail_index,
     _discover_provider,
     _provider_service,
     discover_provider_shelves,

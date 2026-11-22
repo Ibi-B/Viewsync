@@ -7,7 +7,7 @@ from pathlib import Path, PurePosixPath
 from .validate import validate_release
 
 MAX_PUBLISHED_JSON_BYTES = 4 * 1024 * 1024
-SHARD_INLINE_TARGET_BYTES = MAX_PUBLISHED_JSON_BYTES - 64 * 1024
+SHARD_INLINE_TARGET_BYTES = 3 * 1024 * 1024
 SHARD_MARKER = "__viewsync_shard_v1__"
 
 
@@ -66,33 +66,48 @@ def _shard_detail_value(value, root: Path, written: set[str]):
         return value
 
     if isinstance(value, str):
+        # Build UTF-8-safe chunks in linear time. Re-encoding an ever-growing
+        # candidate string for every character is quadratic and punishes long
+        # credits/review/translation strings.
         chunks: list[str] = []
-        current = ""
+        current: list[str] = []
+        current_bytes = 2  # JSON string quotes
         for character in value:
-            candidate = current + character
-            if current and len(_encode_json({"payload": candidate})) > SHARD_INLINE_TARGET_BYTES:
-                chunks.append(current)
-                current = character
-            else:
-                current = candidate
+            character_bytes = len(
+                json.dumps(character, ensure_ascii=False).encode("utf-8")
+            )
+            if current and current_bytes + character_bytes > SHARD_INLINE_TARGET_BYTES:
+                chunks.append("".join(current))
+                current = []
+                current_bytes = 2
+            current.append(character)
+            current_bytes += character_bytes
         if current or not chunks:
-            chunks.append(current)
+            chunks.append("".join(current))
         paths = [_write_shard_part(root, chunk, written) for chunk in chunks]
         return {SHARD_MARKER: {"kind": "string", "parts": paths}}
 
     if isinstance(value, dict):
         parts: list[str] = []
         current: dict = {}
+        current_bytes = 2  # opening and closing braces
         for key, child in value.items():
             sharded_child = _shard_detail_value(child, root, written)
-            candidate = dict(current)
-            candidate[key] = sharded_child
-            if current and len(_encode_json({"payload": candidate})) > SHARD_INLINE_TARGET_BYTES:
+            key_bytes = len(_encode_json(str(key)))
+            child_encoded = _encode_json(sharded_child)
+            # Account for the extra indentation introduced when this value is
+            # nested beneath its enclosing object in the pretty-printed file.
+            child_bytes = len(child_encoded) + 2 * child_encoded.count(b"\\n")
+            entry_bytes = key_bytes + 2 + child_bytes + 8
+            comma_bytes = 1 if current else 0
+            if current and current_bytes + comma_bytes + entry_bytes > SHARD_INLINE_TARGET_BYTES:
                 parts.append(_write_shard_part(root, current, written))
-                current = {key: sharded_child}
-            else:
-                current = candidate
-            if len(_encode_json({"payload": current})) > MAX_PUBLISHED_JSON_BYTES:
+                current = {}
+                current_bytes = 2
+                comma_bytes = 0
+            current[key] = sharded_child
+            current_bytes += comma_bytes + entry_bytes
+            if current_bytes > MAX_PUBLISHED_JSON_BYTES:
                 raise ValueError(
                     f"Unable to shard detail object field {key!r} without data loss"
                 )
@@ -103,15 +118,20 @@ def _shard_detail_value(value, root: Path, written: set[str]):
     if isinstance(value, list):
         parts: list[str] = []
         current: list = []
+        current_bytes = 2  # opening and closing brackets
         for child in value:
             sharded_child = _shard_detail_value(child, root, written)
-            candidate = [*current, sharded_child]
-            if current and len(_encode_json({"payload": candidate})) > SHARD_INLINE_TARGET_BYTES:
+            child_encoded = _encode_json(sharded_child)
+            child_bytes = len(child_encoded) + 2 * child_encoded.count(b"\\n") + 8
+            comma_bytes = 1 if current else 0
+            if current and current_bytes + comma_bytes + child_bytes > SHARD_INLINE_TARGET_BYTES:
                 parts.append(_write_shard_part(root, current, written))
-                current = [sharded_child]
-            else:
-                current = candidate
-            if len(_encode_json({"payload": current})) > MAX_PUBLISHED_JSON_BYTES:
+                current = []
+                current_bytes = 2
+                comma_bytes = 0
+            current.append(sharded_child)
+            current_bytes += comma_bytes + child_bytes
+            if current_bytes > MAX_PUBLISHED_JSON_BYTES:
                 raise ValueError("Unable to shard detail array without data loss")
         if current or not parts:
             parts.append(_write_shard_part(root, current, written))

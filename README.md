@@ -104,10 +104,14 @@ discarded. The generator records actual file count, total bytes, largest
 document size, and any over-limit files in `generation-report.json`.
 
 The complete detail travels through the existing identity merge, per-item
-detail publication, and BeastED v2 catalogue contract. The durable
-`viewsync-state` branch contains bounded source-list snapshots only; rich TMDB
-payloads are read from the current public detail documents and are not copied
-into append-only Git history. API credentials are GitHub Actions secrets only.
+detail publication, and BeastED v2 catalogue contract. Durable TMDB source snapshots in `viewsync-state` contain only stable TMDB
+IDs in source-list order; descriptive list fields, artwork paths and raw TMDB
+response bodies are not written to new state commits. The existing state branch
+history was compacted to this identifier-only baseline while preserving the six
+current lists (600 IDs), generation report and last-good release marker. New
+published detail documents remain the source of descriptive metadata and are
+refreshed or purged under the 150-day cache policy. API credentials are GitHub
+Actions secrets only.
 
 Viewsync's static catalogue and durable source snapshots are not stored in
 Cloudflare R2. Radsync's separate R2 retention policy therefore applies only to

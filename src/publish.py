@@ -242,3 +242,38 @@ def publish_release(release, output_dir):
         json.loads(target.read_text(encoding="utf-8"))
 
     return write_json(root / "manifest.json", manifest)
+
+
+def publication_size_report(output_dir):
+    """Measure the current static release without reading metadata into memory."""
+    root = Path(output_dir) / "v1"
+    if not root.exists():
+        return {
+            "json_file_count": 0,
+            "total_bytes": 0,
+            "maximum_file_bytes": 0,
+            "maximum_file": None,
+            "files_over_limit": [],
+            "limit_bytes": MAX_PUBLISHED_JSON_BYTES,
+        }
+
+    files = sorted(root.rglob("*.json"))
+    sizes = [(path, path.stat().st_size) for path in files]
+    maximum = max(sizes, key=lambda pair: pair[1], default=(None, 0))
+    return {
+        "json_file_count": len(sizes),
+        "total_bytes": sum(size for _, size in sizes),
+        "maximum_file_bytes": maximum[1],
+        "maximum_file": (
+            maximum[0].relative_to(root).as_posix() if maximum[0] else None
+        ),
+        "files_over_limit": [
+            {
+                "path": path.relative_to(root).as_posix(),
+                "bytes": size,
+            }
+            for path, size in sizes
+            if size > MAX_PUBLISHED_JSON_BYTES
+        ],
+        "limit_bytes": MAX_PUBLISHED_JSON_BYTES,
+    }

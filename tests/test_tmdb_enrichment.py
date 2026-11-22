@@ -9,6 +9,8 @@ from src.tmdb_enrichment import (
     DETAIL_REFRESH_AGE,
     PROVIDER_ALLOWLIST,
     _refresh_record,
+    _discover_provider,
+    _provider_service,
     discover_provider_shelves,
     enrich_tmdb_snapshots,
 )
@@ -55,6 +57,26 @@ def _enrichment(details_at=NOW, providers_at=NOW):
         "tmdb_watch_providers_fetched_at": providers_at.isoformat(),
         "tmdb_watch_providers_status": "fresh",
     }
+
+
+def test_provider_aliases_do_not_confuse_amazon_video_with_prime_video():
+    assert _provider_service("Amazon Prime Video") == "prime-video"
+    assert _provider_service("Prime Video") == "prime-video"
+    assert _provider_service("Amazon Video") is None
+
+
+def test_discovery_keeps_valid_titles_with_zero_votes(monkeypatch):
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._request_json",
+        lambda *_args, **_kwargs: {
+            "results": [
+                {"id": 101, "title": "New title", "vote_count": 0},
+                {"id": 102, "title": "Another new title", "vote_count": 1},
+            ]
+        },
+    )
+    items = _discover_provider("movie", "SE", 9)
+    assert [item["id"] for item in items] == [101, 102]
 
 
 def test_full_metadata_is_in_one_detail_document_and_rows_are_slim():
@@ -487,6 +509,58 @@ def test_enrichment_applies_to_global_and_provider_discovery_items(monkeypatch):
     assert discovery_item["tmdb_enrichment"]["tmdb_full"]["id"] == 202
     assert global_item["id"] == 101
     assert report["unique_tmdb_titles"] == 2
+
+
+
+
+def test_first_time_enrichment_failure_is_nonfatal_and_retried(monkeypatch):
+    details_calls = []
+    provider_calls = []
+
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._load_previous_item",
+        lambda *_: None,
+    )
+    def fail_details(media, tmdb):
+        details_calls.append((media, tmdb))
+        raise RuntimeError("first-time details outage")
+    def fail_providers(media, tmdb):
+        provider_calls.append((media, tmdb))
+        raise RuntimeError("first-time availability outage")
+    monkeypatch.setattr("src.tmdb_enrichment._fetch_details", fail_details)
+    monkeypatch.setattr("src.tmdb_enrichment._fetch_watch_providers", fail_providers)
+
+    item = {
+        "id": 303,
+        "title": "Still discoverable",
+        "release_date": "2026-11-20",
+        "poster_path": "/poster.jpg",
+        "overview": "A valid slim source record.",
+        "genre_ids": [18],
+    }
+    snapshots = [_snapshot(item)]
+
+    enriched, report = enrich_tmdb_snapshots(
+        snapshots,
+        previous_detail_index={},
+        now=NOW,
+    )
+    record = enriched[("movie", "303")]
+    assert record["tmdb_details_status"] == "unavailable"
+    assert record["tmdb_watch_providers_status"] == "unavailable"
+    assert record["tmdb_full"] == {}
+    assert record["watch_providers"] == {}
+    assert record["tmdb_details_fetched_at"] is None
+    assert record["tmdb_watch_providers_fetched_at"] is None
+    assert item["tmdb_enrichment"] == record
+    assert report["unavailable_detail_items"] == 1
+    assert report["unavailable_availability_items"] == 1
+    assert report["failed_items"] == 0
+
+    # No successful timestamp is written, so a later generation retries.
+    _refresh_record(("movie", "303"), record, NOW + timedelta(hours=1))
+    assert len(details_calls) == 2
+    assert len(provider_calls) == 2
 
 
 def test_shelf_discovery_refresh_constants_are_distinct():

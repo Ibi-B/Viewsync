@@ -93,6 +93,9 @@ def merge_item(media_type, existing, incoming, provider_id):
         watch_providers = enrichment.get('watch_providers')
         if isinstance(watch_providers, dict):
             merged['watch_providers'] = dict(watch_providers)
+        watch_providers_response = enrichment.get('watch_providers_response')
+        if isinstance(watch_providers_response, dict):
+            merged['tmdb_watch_providers_response'] = dict(watch_providers_response)
         if enrichment.get('fetched_at'):
             merged['tmdb_metadata_fetched_at'] = enrichment['fetched_at']
         if enrichment.get('status'):

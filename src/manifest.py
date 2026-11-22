@@ -432,12 +432,36 @@ def build_release(
     # Publish mixed-media promotional rows with strict discovery-quality
     # eligibility. The six complete source rows remain unchanged and retain
     # every item, regardless of artwork, votes, overview or date.
-    for row_id, title, quality_key in (
-        ("new-this-week", "New this week", "new_this_week_eligible"),
-        ("coming-soon", "Coming soon", "coming_soon_eligible"),
+    configured_source_lists = {
+        str(source_list)
+        for configured_row in rows
+        for source_list in configured_row.get("source_lists", [])
+    }
+    for row_id, title, quality_key, eligible_source_lists in (
+        (
+            "new-this-week",
+            "New this week",
+            "new_this_week_eligible",
+            {"new_movies", "new_series"},
+        ),
+        (
+            "coming-soon",
+            "Coming soon",
+            "coming_soon_eligible",
+            {"upcoming_movies", "upcoming_series"},
+        ),
     ):
+        # Only create a promotional row when its underlying discovery lists
+        # are configured. This preserves the contract for partial/test builds
+        # and avoids inventing empty promo rows for unrelated catalogues.
+        if not configured_source_lists.intersection(eligible_source_lists):
+            continue
         selected: dict[str, dict[str, Any]] = {}
         for source_row in release_rows:
+            if not set(source_row.get("source_lists", [])).intersection(
+                eligible_source_lists
+            ):
+                continue
             for item in source_row["items"]:
                 quality = item.get("discovery_quality") or {}
                 if quality.get(quality_key) is True:
@@ -451,9 +475,7 @@ def build_release(
             "status": "active",
             "configured_provider_count": 1,
             "contributing_provider_count": 1,
-            "source_lists": [
-                "new_movies", "new_series", "upcoming_movies", "upcoming_series"
-            ],
+            "source_lists": sorted(eligible_source_lists),
             "quality_filter": quality_key,
             "items": list(selected.values()),
         })

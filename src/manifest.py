@@ -129,11 +129,14 @@ def _discovery_quality(
     genres = item.get("genres") or []
     if isinstance(genres, str):
         genres = [genres]
+    genre_ids = item.get("genre_ids") or []
+    if isinstance(genre_ids, (str, int)):
+        genre_ids = [genre_ids]
     has_genres = any(
         (isinstance(genre, str) and genre.strip())
         or (isinstance(genre, dict) and str(genre.get("name") or "").strip())
         for genre in genres
-    )
+    ) or any(value not in (None, "", 0, "0") for value in genre_ids)
     has_description = bool(overview) or has_genres
 
     raw_date = (

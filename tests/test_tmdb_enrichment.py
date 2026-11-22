@@ -8,6 +8,7 @@ from src.tmdb_enrichment import (
     AVAILABILITY_REFRESH_AGE,
     DETAIL_REFRESH_AGE,
     PROVIDER_ALLOWLIST,
+    _previous_slim_source_item,
     _refresh_record,
     _discover_provider,
     _provider_service,
@@ -567,6 +568,79 @@ def test_enrichment_applies_to_global_and_provider_discovery_items(monkeypatch):
     assert report["unique_tmdb_titles"] == 2
 
 
+
+
+def test_identifier_only_snapshot_recovers_recent_slim_summary_on_api_outage(monkeypatch):
+    previous = {
+        "id": "movie:tmdb:303",
+        "title": "Last-good title",
+        "year": 2022,
+        "release_date": "2022-05-01",
+        "ids": {"tmdb": "303", "imdb": "tt0000303"},
+        "images": {
+            "poster": "https://image.tmdb.org/t/p/w500/303.jpg",
+            "backdrop": "https://image.tmdb.org/t/p/w1280/303-bg.jpg",
+            "logo": None,
+        },
+        "metadata": {
+            "overview": "Last-good overview",
+            "genres": ["Drama"],
+            "runtime_minutes": 110,
+            "original_language": "en",
+        },
+        "source_item": {"id": 303},
+        "source_item_fetched_at": (NOW - timedelta(days=4)).isoformat(),
+        "tmdb_details_fetched_at": None,
+        "tmdb_details_status": "unavailable",
+        "tmdb_watch_providers_fetched_at": None,
+        "tmdb_watch_providers_status": "unavailable",
+        "tmdb_full": {},
+        "watch_providers": {},
+    }
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._load_previous_item",
+        lambda *_args: previous,
+    )
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._fetch_details",
+        lambda *_args: (_ for _ in ()).throw(RuntimeError("detail outage")),
+    )
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._fetch_watch_providers",
+        lambda *_args: (_ for _ in ()).throw(RuntimeError("availability outage")),
+    )
+
+    identifier_only_item = {"id": 303}
+    enriched, report = enrich_tmdb_snapshots(
+        [_snapshot(identifier_only_item)],
+        previous_detail_index={("movie", "303"): "details/previous.json"},
+        now=NOW,
+    )
+
+    record = enriched[("movie", "303")]
+    assert record["tmdb_details_status"] == "unavailable"
+    assert record["tmdb_watch_providers_status"] == "unavailable"
+    assert identifier_only_item["title"] == "Last-good title"
+    assert identifier_only_item["overview"] == "Last-good overview"
+    assert identifier_only_item["genres"] == ["Drama"]
+    assert identifier_only_item["poster_path"] == (
+        "https://image.tmdb.org/t/p/w500/303.jpg"
+    )
+    assert identifier_only_item["backdrop_path"] == (
+        "https://image.tmdb.org/t/p/w1280/303-bg.jpg"
+    )
+    assert identifier_only_item["id"] == 303
+    assert report["unavailable_detail_items"] == 1
+    assert report["unavailable_availability_items"] == 1
+
+
+def test_previous_slim_summary_is_not_reused_after_150_days():
+    previous = {
+        "source_item": {"id": 303, "title": "Expired title"},
+        "source_item_fetched_at": (NOW - timedelta(days=150)).isoformat(),
+        "tmdb_details_fetched_at": None,
+    }
+    assert _previous_slim_source_item(previous, NOW) == {}
 
 
 def test_first_time_enrichment_failure_is_nonfatal_and_retried(monkeypatch):

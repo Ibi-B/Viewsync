@@ -95,4 +95,4 @@ TMDB credentials are not stored in this repository. Configure them as GitHub rep
 - `TMDB_API_KEY`
 - `TMDB_ACCESS_TOKEN`
 
-The TMDB source is disabled in the initial configuration until its credentials and permitted usage are confirmed.
+The TMDB provider is enabled in `catalog-config/sources.json`. GitHub Actions must have at least one of the `TMDB_API_KEY` or `TMDB_ACCESS_TOKEN` repository secrets configured for source ingestion and detail enrichment. Secrets are never written to snapshots or public releases.

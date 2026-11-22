@@ -196,12 +196,30 @@ def generate_catalog(
         discover_provider_shelves(now=now)
     )
     previous_detail_index = load_previous_detail_index(regions=watch_regions)
-    item_enrichments, tmdb_enrichment_report = enrich_tmdb_snapshots(
-        usable_snapshots,
-        additional_items=additional_items,
-        previous_detail_index=previous_detail_index,
-        now=now,
-    )
+    try:
+        item_enrichments, tmdb_enrichment_report = enrich_tmdb_snapshots(
+            usable_snapshots,
+            additional_items=additional_items,
+            previous_detail_index=previous_detail_index,
+            now=now,
+        )
+    except Exception as exc:
+        _write_generation_report(
+            state_dir,
+            now,
+            len(usable_snapshots),
+            expired_snapshots,
+            failures,
+            restore_errors,
+            snapshots,
+            tmdb_enrichment={
+                "provider_discovery": provider_discovery_report,
+                "generation_blocked": True,
+                "hard_cache_limit_days": 150,
+                "fatal_error": _safe_fetch_error(exc),
+            },
+        )
+        raise
     tmdb_enrichment_report["provider_discovery"] = provider_discovery_report
 
     _write_generation_report(

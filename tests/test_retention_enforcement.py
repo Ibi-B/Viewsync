@@ -53,6 +53,55 @@ def test_select_snapshots_excludes_expired_snapshots():
     assert expired_snapshots == [expired]
 
 
+def test_durable_tmdb_source_snapshots_keep_ids_but_not_descriptive_metadata(tmp_path):
+    from src.fetch import load_snapshot
+
+    now = datetime(2026, 11, 22, tzinfo=timezone.utc)
+    tmdb = SourceSnapshot(
+        request_id="popular_movies",
+        provider_id="tmdb",
+        list_id="popular_movies",
+        media_type="movie",
+        fetched_at=now.isoformat(),
+        items=[{
+            "id": 123,
+            "title": "Example title",
+            "overview": "Descriptive overview",
+            "poster_path": "/poster.jpg",
+            "vote_count": 900,
+            "release_date": "2026-11-20",
+        }],
+        raw_payloads=[{
+            "results": [{
+                "id": 123,
+                "title": "Example title",
+                "overview": "Raw overview",
+            }]
+        }],
+    )
+    trakt = SourceSnapshot(
+        request_id="trending_movies",
+        provider_id="trakt",
+        list_id="trending_movies",
+        media_type="movie",
+        fetched_at=now.isoformat(),
+        items=[{"title": "Trakt item", "overview": "Non-TMDB snapshot"}],
+        raw_payloads=[{"data": "retained"}],
+    )
+
+    persist_snapshots([tmdb, trakt], tmp_path)
+    files = list((tmp_path / "source-snapshots").glob("*.json"))
+    saved = [load_snapshot(path) for path in files]
+    saved_tmdb = next(item for item in saved if item.provider_id == "tmdb")
+    saved_trakt = next(item for item in saved if item.provider_id == "trakt")
+
+    assert saved_tmdb.items == [{"id": 123}]
+    assert saved_tmdb.raw_payloads == []
+    assert tmdb.items[0]["overview"] == "Descriptive overview"
+    assert saved_trakt.items[0]["overview"] == "Non-TMDB snapshot"
+    assert saved_trakt.raw_payloads == [{"data": "retained"}]
+
+
 def test_tmdb_source_snapshot_history_is_purged_after_150_days_only(tmp_path):
     now = datetime(2026, 11, 22, tzinfo=timezone.utc)
     state_dir = tmp_path / "state"

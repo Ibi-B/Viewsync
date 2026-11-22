@@ -103,6 +103,10 @@ def _metadata(item: Dict[str, Any]) -> Dict[str, Any]:
         "original_language": item.get("original_language"),
         "popularity": item.get("popularity"),
         "vote_count": item.get("vote_count"),
+        "tmdb_full": item.get("tmdb_full", {}),
+        "watch_providers": item.get("watch_providers", {}),
+        "tmdb_metadata_fetched_at": item.get("tmdb_metadata_fetched_at"),
+        "tmdb_metadata_status": item.get("tmdb_metadata_status"),
     }
 
 
@@ -112,6 +116,7 @@ def build_release(
     now: datetime,
     retention_policy: Dict[str, Any] | None = None,
     provider_weights: Dict[str, float] | None = None,
+    watch_regions: List[Dict[str, Any]] | None = None,
 ) -> Dict[str, Any]:
     """Merge, rank, and structure snapshots into a BeastED-facing v2 release."""
 
@@ -195,6 +200,10 @@ def build_release(
                     "release_date": item.get("release_date"),
                     "images": _images(item),
                     "metadata": _metadata(item),
+                    "tmdb_full": item.get("tmdb_full", {}),
+                    "watch_providers": item.get("watch_providers", {}),
+                    "tmdb_metadata_fetched_at": item.get("tmdb_metadata_fetched_at"),
+                    "tmdb_metadata_status": item.get("tmdb_metadata_status"),
                     "source_attribution": attributions.get(media_id, []),
                     "ranking": {
                         "consensus_score": ranking.get("consensus_score", 0.0),
@@ -227,5 +236,6 @@ def build_release(
         "generated_at": now.isoformat(),
         "ranking_version": "rrf-v1",
         "catalog_freshness": _catalog_freshness(snapshots, retention_policy, now),
+        "watch_regions": watch_regions or [],
         "rows": release_rows,
     }

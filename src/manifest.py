@@ -337,6 +337,14 @@ def build_release(
                 key = (media_type, str(tmdb_id))
                 details_by_tmdb[key] = (media_id, item, source_item)
             detail_doc = _make_detail_document(media_id, media_type, item, source_item)
+            source_times = [
+                str(entry.get("fetched_at"))
+                for entry in attributions.get(media_id, [])
+                if entry.get("fetched_at")
+            ]
+            detail_doc["source_item_fetched_at"] = (
+                max(source_times) if source_times else now.isoformat()
+            )
             detail_path = _detail_path(detail_doc)
             detail_paths_by_media_id[(media_type, media_id)] = detail_path
             item_details.setdefault(detail_path, detail_doc)
@@ -422,6 +430,9 @@ def build_release(
             "vote_count": discovered.get("vote_count"),
         }
         detail_doc = _make_detail_document(media_id, media_type, item, source_item)
+        detail_doc["source_item_fetched_at"] = (
+            source_item.get("source_item_fetched_at") or now.isoformat()
+        )
         detail_path = _detail_path(detail_doc)
         item_details.setdefault(detail_path, detail_doc)
         detail_paths_by_media_id[(media_type, media_id)] = detail_path

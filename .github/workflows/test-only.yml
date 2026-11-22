@@ -1,6 +1,13 @@
 name: Test full suite twice
 
 on:
+  pull_request:
+    paths:
+      - ".github/workflows/test-only.yml"
+      - ".github/workflows/generate-catalogue.yml"
+      - "src/**"
+      - "tests/**"
+      - "requirements.txt"
   push:
     branches:
       - main
@@ -17,7 +24,6 @@ permissions:
 
 jobs:
   full-suite-twice:
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: read

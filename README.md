@@ -14,8 +14,10 @@ It fetches public catalogue data from configured sources, normalises media ident
 - The app consumes a configurable catalogue base URL.
 - TMDB title detail and regional watch-provider metadata are ingested by this
   backend and published as part of the same unified catalogue release.
-- Published TMDB metadata is retained in full. Thirty days is the enrichment
-  refresh interval, not a deletion or catalogue-trimming rule.
+- Full TMDB detail is preserved while it remains inside the 150-day hard
+  cache-age ceiling. Thirty days is the detail refresh interval, not a
+  catalogue-trimming rule. Expired descriptive metadata is purged while
+  stable identifiers remain available.
 - BeastED derives its Movies and Series subscription shelves from the published
   regional availability and never calls TMDB directly.
 
@@ -81,18 +83,25 @@ A refresh failure retains a last-good payload as stale only while it
 remains inside the 150-day hard cache-age ceiling. At or beyond that ceiling,
 the descriptive TMDB metadata and provider-availability payload are purged
 from the next release; stable identifiers (including the canonical TMDB ID
-and any known IMDb alias) are retained. A title whose first enrichment attempt
-fails remains present in the slim catalogue and provider shelf, is marked
-`unavailable`, and is retried on the next generation. A missing or expired
-metadata payload therefore does not by itself block publication of an otherwise
-valid catalogue release.
+and any known IMDb alias) are retained. Timestamped TMDB source-list snapshots
+in the durable `viewsync-state` branch are also purged after 150 days. The
+append-only state guard permits only this narrowly scoped TMDB TTL deletion;
+recent TMDB snapshots, non-TMDB source snapshots, the current last-good release
+marker, and malformed/unknown-age records are not removed by that policy. A
+title whose first enrichment attempt fails remains present in the slim catalogue
+and provider shelf, is marked `unavailable`, and is retried on the next
+generation. A missing or expired metadata payload therefore does not by itself
+block publication of an otherwise valid catalogue release.
 
 The complete TMDB detail and all regional availability categories are stored
 once in each item's own detail JSON document. Global rows and provider shelves
-contain only summary fields and a shared `details_path`. Each published JSON
-document is capped at 4 MiB, below BeastED's 5 MiB client limit; the publisher
-fails rather than truncating any field. The generator records actual file count,
-total bytes, and largest document size in `generation-report.json`.
+contain only summary fields and a shared content-addressed `details_path`.
+Unchanged detail content reuses the same URL between release generations.
+Each published JSON document is capped at 4 MiB, below BeastED's 5 MiB client
+limit. Oversized detail trees are split into linked, content-addressed parts
+and reassembled losslessly by BeastED; no detail fields are truncated or
+discarded. The generator records actual file count, total bytes, largest
+document size, and any over-limit files in `generation-report.json`.
 
 The complete detail travels through the existing identity merge, per-item
 detail publication, and BeastED v2 catalogue contract. The durable

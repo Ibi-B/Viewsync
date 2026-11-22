@@ -261,6 +261,54 @@ def _discover_provider(
     return results[:SHELF_ITEM_LIMIT]
 
 
+def _load_cached_provider_shelves(
+    region: dict[str, Any],
+    now: datetime,
+) -> list[dict[str, Any]] | None:
+    """Reuse a published regional ranking while it is inside the 12h SLA."""
+    code = str(region.get("iso_code") or "").upper()
+    path = region.get("provider_shelves_path")
+    if not code or not path:
+        return None
+    try:
+        payload = _public_json(PUBLIC_CATALOGUE_BASE, str(path))
+    except Exception:
+        return None
+    if not isinstance(payload, dict) or payload.get("region") != code:
+        return None
+    cached_shelves = payload.get("shelves")
+    if not isinstance(cached_shelves, list):
+        return None
+    result: list[dict[str, Any]] = []
+    for shelf in cached_shelves:
+        if not isinstance(shelf, dict):
+            continue
+        items = shelf.get("items")
+        if not isinstance(items, list):
+            continue
+        result.append({
+            key: value for key, value in shelf.items() if key != "items"
+        } | {"items": [dict(item) for item in items if isinstance(item, dict)]})
+    if not result:
+        return None
+    return result
+
+
+def _load_previous_region_directory(
+    base_url: str = PUBLIC_CATALOGUE_BASE,
+) -> dict[str, dict[str, Any]]:
+    try:
+        manifest = _public_json(base_url, "manifest.json")
+    except Exception:
+        return {}
+    regions = manifest.get("watch_regions", []) if isinstance(manifest, dict) else []
+    return {
+        str(row.get("iso_code") or "").upper(): row
+        for row in regions
+        if isinstance(row, dict) and row.get("iso_code")
+    }
+
+
 def discover_provider_shelves(
     now: datetime | None = None,
 ) -> tuple[
@@ -273,15 +321,50 @@ def discover_provider_shelves(
     now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
     fetched_at = now.isoformat()
     regions = _watch_regions()
+    previous_regions = _load_previous_region_directory()
     shelves_by_region: dict[str, list[dict[str, Any]]] = {}
     discovered: dict[tuple[str, str], dict[str, Any]] = {}
     provider_calls = 0
     discover_calls = 0
+    cached_regions = 0
     omitted_under_minimum = 0
     errors: list[dict[str, str]] = []
 
     for region in regions:
         region_code = region["iso_code"]
+        previous_region = previous_regions.get(region_code, {})
+        previous_age = _age(previous_region.get("availability_updated_at"), now)
+        if previous_age is not None and previous_age < AVAILABILITY_REFRESH_AGE:
+            cached_shelves = _load_cached_provider_shelves(previous_region, now)
+            if cached_shelves:
+                shelves_by_region[region_code] = cached_shelves
+                cached_regions += 1
+                for shelf in cached_shelves:
+                    media_type = str(shelf.get("media_kind") or "")
+                    for shelf_item in shelf.get("items", []):
+                        tmdb_id = str(shelf_item.get("tmdb_id") or "")
+                        if not tmdb_id:
+                            continue
+                        candidate = {
+                            "id": int(tmdb_id) if tmdb_id.isdigit() else tmdb_id,
+                            "tmdb_id": tmdb_id,
+                            "media_type": media_type,
+                            "title": shelf_item.get("title") or "",
+                            "release_date": shelf_item.get("release_date"),
+                            "popularity": shelf_item.get("popularity"),
+                            "vote_average": shelf_item.get("rating"),
+                            "vote_count": shelf_item.get("vote_count"),
+                            "poster_path": (
+                                shelf_item.get("images", {}).get("poster")
+                                if isinstance(shelf_item.get("images"), dict) else None
+                            ),
+                            "backdrop_path": (
+                                shelf_item.get("images", {}).get("backdrop")
+                                if isinstance(shelf_item.get("images"), dict) else None
+                            ),
+                        }
+                        discovered.setdefault((media_type, tmdb_id), candidate)
+                continue
         shelves: list[dict[str, Any]] = []
         for media_type in ("movie", "series"):
             try:
@@ -403,6 +486,7 @@ def discover_provider_shelves(
         "published_region_count": len(published_regions),
         "provider_catalogue_requests": provider_calls,
         "provider_discover_requests": discover_calls,
+        "provider_shelf_regions_reused": cached_regions,
         "provider_shelves_published": sum(len(rows) for rows in shelves_by_region.values()),
         "provider_shelves_omitted_under_minimum": omitted_under_minimum,
         "provider_discovery_errors": errors,

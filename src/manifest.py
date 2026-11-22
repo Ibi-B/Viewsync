@@ -103,10 +103,6 @@ def _metadata(item: Dict[str, Any]) -> Dict[str, Any]:
         "original_language": item.get("original_language"),
         "popularity": item.get("popularity"),
         "vote_count": item.get("vote_count"),
-        "tmdb_full": item.get("tmdb_full", {}),
-        "watch_providers": item.get("watch_providers", {}),
-        "tmdb_metadata_fetched_at": item.get("tmdb_metadata_fetched_at"),
-        "tmdb_metadata_status": item.get("tmdb_metadata_status"),
     }
 
 
@@ -145,7 +141,19 @@ def build_release(
 
             ranked_items: List[Dict[str, Any]] = []
             for position, raw_item in enumerate(snapshot.items, start=1):
-                media_id = resolve_identity(media_type, raw_item, identities, snapshot.provider_id)
+                identity_item = dict(raw_item)
+                enrichment = identity_item.get("tmdb_enrichment")
+                details = enrichment.get("details") if isinstance(enrichment, dict) else None
+                if isinstance(details, dict):
+                    enriched_identity = dict(details)
+                    enriched_identity.update(identity_item)
+                    external_ids = details.get("external_ids")
+                    if isinstance(external_ids, dict) and external_ids.get("imdb_id"):
+                        enriched_identity["imdb_id"] = external_ids["imdb_id"]
+                    identity_item = enriched_identity
+                media_id = resolve_identity(
+                    media_type, identity_item, identities, snapshot.provider_id
+                )
                 existing = merged.get(media_id)
                 item = merge_item(media_type, existing, raw_item, snapshot.provider_id)
                 item["_viewsync_id"] = media_id
@@ -202,6 +210,7 @@ def build_release(
                     "metadata": _metadata(item),
                     "tmdb_full": item.get("tmdb_full", {}),
                     "watch_providers": item.get("watch_providers", {}),
+                    "tmdb_watch_providers_response": item.get("tmdb_watch_providers_response", {}),
                     "tmdb_metadata_fetched_at": item.get("tmdb_metadata_fetched_at"),
                     "tmdb_metadata_status": item.get("tmdb_metadata_status"),
                     "source_attribution": attributions.get(media_id, []),

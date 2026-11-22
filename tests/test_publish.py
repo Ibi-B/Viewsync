@@ -1,7 +1,9 @@
+import copy
 import hashlib
+import json
 import pytest
 
-from src.publish import publish_release
+from src.publish import publication_size_report, publish_release
 from src.validate import ValidationError
 
 
@@ -91,3 +93,72 @@ def test_invalid_release_is_rejected(tmp_path):
     release["schema_version"] = 1
     with pytest.raises(ValidationError):
         publish_release(release, tmp_path)
+
+
+
+def test_large_catalogue_keeps_full_item_data_in_individual_files(tmp_path):
+    release = make_release()
+    source = release["rows"][0]["items"][0]
+    base_detail_path = source["details_path"]
+    base_item_detail = release["item_details"].pop(base_detail_path)
+    row_items = []
+    details = {}
+
+    for index in range(100):
+        media_id = f"movie:tmdb:{index + 1}"
+        digest = hashlib.sha256(media_id.encode("utf-8")).hexdigest()[:24]
+        detail_path = f"releases/test-release/items/{digest}.json"
+        row_item = copy.deepcopy(source)
+        row_item.update(
+            id=media_id,
+            title=f"Media title {index + 1}",
+            details_path=detail_path,
+        )
+        row_items.append(row_item)
+        detail = copy.deepcopy(base_item_detail)
+        detail.update(
+            id=media_id,
+            title=f"Media title {index + 1}",
+            tmdb_full={
+                "id": index + 1,
+                "overview": "A" * 100_000,
+                "credits": {"cast": [{"name": f"Cast member {n}"} for n in range(40)]},
+                "translations": {"payload": "B" * 2_000},
+                "images": {"backdrops": [{"file_path": f"/backdrop-{n}.jpg"} for n in range(40)]},
+            },
+            watch_providers={
+                "SE": {
+                    "flatrate": [{"provider_id": 8, "provider_name": "Netflix"}],
+                    "rent": [{"provider_id": 2, "provider_name": "Apple TV"}],
+                    "buy": [{"provider_id": 3, "provider_name": "Store"}],
+                    "free": [{"provider_id": 4, "provider_name": "Free"}],
+                    "ads": [{"provider_id": 5, "provider_name": "Ads"}],
+                },
+            },
+        )
+        details[detail_path] = detail
+
+    release["rows"][0]["items"] = row_items
+    release["item_details"] = details
+    manifest = publish_release(release, tmp_path)
+    root = manifest.parent
+    row_path = root / json.loads(manifest.read_text())["rows"][0]["path"]
+    row_payload = json.loads(row_path.read_text())
+    row_bytes = row_path.stat().st_size
+    size_report = publication_size_report(tmp_path)
+
+    assert len(row_payload["items"]) == 100
+    assert row_bytes < 5 * 1024 * 1024
+    assert all("tmdb_full" not in item for item in row_payload["items"])
+    assert size_report["json_file_count"] >= 102
+    assert size_report["maximum_file_bytes"] < 4 * 1024 * 1024
+    assert size_report["total_bytes"] > 10_000_000
+    assert size_report["files_over_limit"] == []
+    # The complete detail data is still present; only the list row is slim.
+    first_path = row_payload["items"][0]["details_path"]
+    first_detail = json.loads((root / first_path).read_text())
+    assert len(first_detail["tmdb_full"]["overview"]) == 100_000
+    assert len(first_detail["tmdb_full"]["credits"]["cast"]) == 40
+    assert set(first_detail["watch_providers"]["SE"]) == {
+        "flatrate", "rent", "buy", "free", "ads"
+    }

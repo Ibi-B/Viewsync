@@ -214,6 +214,83 @@ def test_metadata_older_than_hard_cache_limit_is_purged_but_ids_survive(monkeypa
     }
 
 
+def test_missing_credentials_retains_last_published_region_shelf_as_stale(monkeypatch):
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._credentials",
+        lambda: (None, None),
+    )
+    old_time = (NOW - timedelta(hours=13)).isoformat()
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._load_previous_region_directory",
+        lambda: {"SE": {
+            "english_name": "Sweden",
+            "native_name": "Sverige",
+            "availability_updated_at": old_time,
+            "provider_shelves_path": "releases/old/provider-shelves/SE.json",
+        }},
+    )
+    shelf = {
+        "id": "netflix:movie",
+        "service_key": "netflix",
+        "provider_id": 8,
+        "provider_name": "Netflix",
+        "media_kind": "movie",
+        "title": "Top 10 on Netflix",
+        "display_mode": "top_10",
+        "availability_updated_at": old_time,
+        "items": [{
+            "id": "movie:tmdb:101",
+            "tmdb_id": "101",
+            "media_kind": "movie",
+            "title": "Cached film",
+            "rank": 1,
+        }],
+    }
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._load_cached_provider_shelves",
+        lambda *_: [shelf],
+    )
+    regions, shelves, additional, report = discover_provider_shelves(NOW)
+    assert regions[0]["iso_code"] == "SE"
+    assert shelves["SE"][0]["availability_status"] == "stale"
+    assert ("movie", "101") in additional
+    assert report["provider_catalogue_requests"] == 0
+
+
+def test_missing_credentials_do_not_republish_region_shelves_beyond_hard_age(monkeypatch):
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._credentials",
+        lambda: (None, None),
+    )
+    old_time = (NOW - timedelta(days=151)).isoformat()
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._load_previous_region_directory",
+        lambda: {"SE": {
+            "english_name": "Sweden",
+            "availability_updated_at": old_time,
+            "provider_shelves_path": "releases/old/provider-shelves/SE.json",
+        }},
+    )
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._load_cached_provider_shelves",
+        lambda *_: [{
+            "id": "netflix:movie",
+            "service_key": "netflix",
+            "provider_id": 8,
+            "provider_name": "Netflix",
+            "media_kind": "movie",
+            "title": "Top 10 on Netflix",
+            "availability_updated_at": old_time,
+            "items": [{"tmdb_id": "101", "title": "Expired cached title"}],
+        }],
+    )
+    regions, shelves, additional, report = discover_provider_shelves(NOW)
+    assert regions == []
+    assert shelves == {}
+    assert additional == {}
+    assert report["provider_shelves_expired"] == 1
+
+
 def test_provider_discovery_uses_allowlist_and_publishes_ranked_top_ten(monkeypatch):
     monkeypatch.setattr(
         "src.tmdb_enrichment._credentials",

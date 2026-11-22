@@ -68,6 +68,17 @@ def _normalise_genres(incoming, media_type):
 
 
 def merge_item(media_type, existing, incoming, provider_id):
+    incoming = dict(incoming)
+    enrichment = incoming.get("tmdb_enrichment")
+    details = enrichment.get("details") if isinstance(enrichment, dict) else None
+    if isinstance(details, dict):
+        enriched_identity = dict(details)
+        enriched_identity.update(incoming)
+        external_ids = details.get("external_ids")
+        if isinstance(external_ids, dict) and external_ids.get("imdb_id"):
+            enriched_identity.setdefault("imdb_id", external_ids["imdb_id"])
+        incoming = enriched_identity
+
     identity = media_identity(media_type, incoming, provider_id)
     merged = dict(existing or {})
     merged.update(id=identity['id'], type=media_type)
@@ -76,6 +87,17 @@ def merge_item(media_type, existing, incoming, provider_id):
         if identity.get(key):
             ids[key] = identity[key]
     merged['ids'] = ids
+    if isinstance(enrichment, dict):
+        if isinstance(details, dict):
+            merged['tmdb_full'] = dict(details)
+        watch_providers = enrichment.get('watch_providers')
+        if isinstance(watch_providers, dict):
+            merged['watch_providers'] = dict(watch_providers)
+        if enrichment.get('fetched_at'):
+            merged['tmdb_metadata_fetched_at'] = enrichment['fetched_at']
+        if enrichment.get('status'):
+            merged['tmdb_metadata_status'] = enrichment['status']
+        merged['tmdb_enrichment'] = dict(enrichment)
     provenance = dict(merged.get('field_sources', {}))
     mapping = [
         ('name', 'title'), ('title', 'title'),

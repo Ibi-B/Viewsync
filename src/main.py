@@ -16,10 +16,13 @@ from .fetch import SourceSnapshot, fetch_source
 from .manifest import build_release
 from .publish import publication_size_report, publish_release
 from .state import (
+    TMDB_SOURCE_SNAPSHOT_RETENTION,
     persist_snapshots,
     preserve_last_good_release,
+    prune_expired_tmdb_source_snapshots,
     restore_snapshots,
     select_snapshots,
+    snapshot_age_hours,
 )
 from .validate import validate_release
 from .tmdb_enrichment import (
@@ -120,6 +123,7 @@ def _write_generation_report(
     restore_errors: list[dict[str, str]],
     snapshots: list[SourceSnapshot],
     tmdb_enrichment: dict[str, Any] | None = None,
+    pruned_tmdb_source_snapshots: list[str] | None = None,
 ) -> None:
     report = {
         "generated_at": now.isoformat(),
@@ -151,6 +155,13 @@ def _write_generation_report(
         ],
         "fetch_failures": failures,
         "tmdb_enrichment": tmdb_enrichment or {},
+        "tmdb_source_snapshot_retention": {
+            "hard_cache_limit_days": int(
+                TMDB_SOURCE_SNAPSHOT_RETENTION.total_seconds() // 86400
+            ),
+            "pruned_snapshot_count": len(pruned_tmdb_source_snapshots or []),
+            "pruned_snapshots": pruned_tmdb_source_snapshots or [],
+        },
     }
     write_json(state_dir / "generation-report.json", report)
 
@@ -175,8 +186,35 @@ def generate_catalog(
     config = load_config(config_dir)
     snapshots, failures, restore_errors = _fetch_snapshots(config_dir, now, state_dir)
 
+    # Apply TMDB's hard cache-age boundary to the durable source-list history,
+    # not only to the separately published enriched detail documents. The
+    # latest snapshot is retained in memory only while it is within this
+    # boundary; older history is purged and is never written back below.
+    pruned_tmdb_source_snapshots = prune_expired_tmdb_source_snapshots(
+        state_dir,
+        now,
+    )
+    tmdb_snapshot_max_hours = (
+        TMDB_SOURCE_SNAPSHOT_RETENTION.total_seconds() / 3600
+    )
+    snapshots = [
+        snapshot
+        for snapshot in snapshots
+        if snapshot.provider_id != "tmdb"
+        or snapshot_age_hours(snapshot, now) < tmdb_snapshot_max_hours
+    ]
+
     if not snapshots:
-        _write_generation_report(state_dir, now, 0, [], failures, restore_errors, snapshots)
+        _write_generation_report(
+            state_dir,
+            now,
+            0,
+            [],
+            failures,
+            restore_errors,
+            snapshots,
+            pruned_tmdb_source_snapshots=pruned_tmdb_source_snapshots,
+        )
         raise ValueError(
             "No current or retained provider snapshots were available; refusing to publish"
         )
@@ -187,9 +225,9 @@ def generate_catalog(
     provider_weights = config["ranking"].get("provider_weights", {})
     usable_snapshots, expired_snapshots = select_snapshots(snapshots, policy, now)
 
-    # Durable source snapshots deliberately contain only bounded provider-list
-    # input. Full TMDB metadata stays in the replaceable published detail files,
-    # never in the append-only public viewsync-state Git branch.
+    # Durable source snapshots contain provider-list inputs only, and TMDB
+    # history is bounded to 150 days by the purge above. Full appended detail
+    # enrichment remains in replaceable published detail documents only.
     persist_snapshots(snapshots, state_dir)
 
     watch_regions, provider_shelves, additional_items, provider_discovery_report = (
@@ -218,6 +256,7 @@ def generate_catalog(
                 "hard_cache_limit_days": 150,
                 "fatal_error": _safe_fetch_error(exc),
             },
+            pruned_tmdb_source_snapshots=pruned_tmdb_source_snapshots,
         )
         raise
     tmdb_enrichment_report["provider_discovery"] = provider_discovery_report
@@ -231,6 +270,7 @@ def generate_catalog(
         restore_errors,
         snapshots,
         tmdb_enrichment=tmdb_enrichment_report,
+        pruned_tmdb_source_snapshots=pruned_tmdb_source_snapshots,
     )
 
     if not usable_snapshots:

@@ -85,6 +85,11 @@ def make_release():
                 "id": "movie:imdb:tt123",
                 "media_kind": "movie",
                 "details_path": detail_path,
+                "source_item_fetched_at": "2026-01-01T00:00:00Z",
+                "tmdb_metadata_fetched_at": "2025-12-31T00:00:00Z",
+                "tmdb_metadata_status": "fresh",
+                "tmdb_availability_fetched_at": "2026-01-01T00:00:00Z",
+                "tmdb_availability_status": "fresh",
                 "title": "Example",
                 "images": {"poster": None, "backdrop": None, "logo": None},
                 "metadata": {"overview": None, "genres": [], "runtime_minutes": None},
@@ -120,8 +125,14 @@ def test_publish_creates_manifest_and_content_addressed_details(tmp_path):
     assert detail_path.exists()
     assert "tmdb_full" not in row_item
     assert "watch_providers" not in row_item
+    assert row_item["source_item_fetched_at"] == "2026-01-01T00:00:00Z"
+    assert row_item["tmdb_metadata_status"] == "fresh"
+    assert row_item["tmdb_availability_status"] == "fresh"
     detail = json.loads(detail_path.read_text())
     assert detail["tmdb_full"]["credits"]["cast"][0]["name"] == "Actor One"
+    assert "source_item_fetched_at" not in detail
+    assert "tmdb_details_fetched_at" not in detail
+    assert "tmdb_watch_providers_fetched_at" not in detail
 
 
 def test_unchanged_detail_path_is_reused_across_release_generations(tmp_path):

@@ -134,7 +134,10 @@ def test_tmdb_source_snapshot_history_is_purged_after_150_days_only(tmp_path):
     assert len(after) == 2
     remaining = [json.loads(path.read_text(encoding="utf-8")) for path in after]
     assert {item["provider_id"] for item in remaining} == {"tmdb", "trakt"}
-    assert any(item["items"][0]["id"] == 2 for item in remaining)
+    assert any(
+        item["provider_id"] == "tmdb" and item["items"][0]["id"] == 2
+        for item in remaining
+    )
     assert any(item["provider_id"] == "trakt" for item in remaining)
     assert len(before) == 3
 

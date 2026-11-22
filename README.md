@@ -77,13 +77,15 @@ allowlisted services in configured TMDB-supported regions. Viewsync publishes
 the ordered Top 10 or Popular list (omitting lists with fewer than five titles),
 including service logo, rank and a freshness status.
 
-A refresh failure retains the last successful payload and marks it stale. A
-150-day hard reuse ceiling keeps retained TMDB data below the six-month cache
-limit in TMDB's published terms. If a refresh cannot succeed by that ceiling,
-generation fails closed and Pages does not publish a new catalogue; the failed
-run must be treated as an operational alert to refresh the source or review
-licensing before the existing published copy reaches six months. IDs remain
-canonical by TMDB ID, with IMDb stored as an alias.
+A refresh failure retains a last-good payload as stale only while it
+remains inside the 150-day hard cache-age ceiling. At or beyond that ceiling,
+the descriptive TMDB metadata and provider-availability payload are purged
+from the next release; stable identifiers (including the canonical TMDB ID
+and any known IMDb alias) are retained. A title whose first enrichment attempt
+fails remains present in the slim catalogue and provider shelf, is marked
+`unavailable`, and is retried on the next generation. A missing or expired
+metadata payload therefore does not by itself block publication of an otherwise
+valid catalogue release.
 
 The complete TMDB detail and all regional availability categories are stored
 once in each item's own detail JSON document. Global rows and provider shelves

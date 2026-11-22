@@ -563,6 +563,91 @@ def test_first_time_enrichment_failure_is_nonfatal_and_retried(monkeypatch):
     assert len(provider_calls) == 2
 
 
+def test_new_and_coming_soon_rows_are_quality_filtered_without_trimming_catalogue():
+    def snapshot(request_id, media_type, item):
+        return SourceSnapshot(
+            request_id=request_id,
+            provider_id="tmdb",
+            list_id=request_id,
+            media_type=media_type,
+            fetched_at=NOW.isoformat(),
+            items=[item],
+        )
+
+    recent_without_rating = {
+        "id": 401,
+        "title": "Recent film without a rating",
+        "release_date": "2026-11-20",
+        "poster_path": "/recent.jpg",
+        "genre_ids": [18],
+        "vote_count": 0,
+    }
+    recent_without_artwork = {
+        "id": 402,
+        "title": "Recent film without artwork",
+        "release_date": "2026-11-19",
+        "overview": "Still present in the complete catalogue.",
+        "genre_ids": [],
+    }
+    future_series = {
+        "id": 403,
+        "name": "Upcoming series",
+        "first_air_date": "2027-02-01",
+        "backdrop_path": "/future.jpg",
+        "overview": "An upcoming series.",
+    }
+    old_movie = {
+        "id": 404,
+        "title": "Older film",
+        "release_date": "2026-11-01",
+        "poster_path": "/old.jpg",
+        "overview": "Not new this week.",
+    }
+
+    rows = [
+        {"id": "new-movies", "name": "New Movies", "type": "movie",
+         "source_lists": ["new_movies"]},
+        {"id": "upcoming-series", "name": "Upcoming Series", "type": "series",
+         "source_lists": ["upcoming_series"]},
+    ]
+    release = build_release(
+        rows,
+        [
+            snapshot("new_movies", "movie", recent_without_rating),
+            snapshot("new_movies", "movie", recent_without_artwork),
+            snapshot("upcoming_series", "series", future_series),
+            snapshot("new_movies", "movie", old_movie),
+        ],
+        NOW,
+    )
+
+    by_id = {row["id"]: row for row in release["rows"]}
+    assert {item["title"] for item in by_id["new-movies"]["items"]} == {
+        "Recent film without a rating",
+        "Recent film without artwork",
+        "Older film",
+    }
+    assert [item["title"] for item in by_id["new-this-week"]["items"]] == [
+        "Recent film without a rating"
+    ]
+    assert [item["title"] for item in by_id["coming-soon"]["items"]] == [
+        "Upcoming series"
+    ]
+    assert by_id["new-this-week"]["media_kind"] == "mixed"
+    assert by_id["coming-soon"]["media_kind"] == "mixed"
+
+    rejected = next(
+        item for item in by_id["new-movies"]["items"]
+        if item["title"] == "Recent film without artwork"
+    )
+    assert rejected["discovery_quality"]["new_this_week_eligible"] is False
+    assert "missing_tmdb_artwork" in rejected["discovery_quality"]["reasons"]["new_this_week"]
+    accepted = by_id["new-this-week"]["items"][0]
+    assert accepted["discovery_quality"]["new_this_week_eligible"] is True
+    assert accepted["vote_count"] == 0
+    assert accepted["metadata"]["rating"] is None
+
+
 def test_shelf_discovery_refresh_constants_are_distinct():
     assert DETAIL_REFRESH_AGE == timedelta(days=30)
     assert AVAILABILITY_REFRESH_AGE == timedelta(hours=12)

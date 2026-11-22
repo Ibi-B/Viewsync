@@ -26,7 +26,8 @@ def test_stable_manifest_and_all_links(tmp_path):
 
 def test_release_dates_survive_detail_publication(tmp_path):
     release = make_release()
-    release['rows'][0]['items'][0]['release_date'] = '2099-01-01'
+    item = release['rows'][0]['items'][0]
+    release['item_details'][item['details_path']]['release_date'] = '2099-01-01'
     path = publish_release(release, tmp_path)
     root = path.parent
     manifest = json.loads(path.read_text())

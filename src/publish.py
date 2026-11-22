@@ -7,6 +7,8 @@ from pathlib import Path, PurePosixPath
 from .validate import validate_release
 
 MAX_PUBLISHED_JSON_BYTES = 4 * 1024 * 1024
+SHARD_INLINE_TARGET_BYTES = MAX_PUBLISHED_JSON_BYTES - 64 * 1024
+SHARD_MARKER = "__viewsync_shard_v1__"
 
 
 def _encode_json(data) -> bytes:
@@ -36,9 +38,114 @@ def safe_component(value):
     return value
 
 
-def _detail_filename(media_id: str) -> str:
-    digest = hashlib.sha256(media_id.encode("utf-8")).hexdigest()[:24]
-    return f"{digest}.json"
+def _detail_filename(detail_document: dict) -> str:
+    canonical = json.dumps(
+        detail_document,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return f"{hashlib.sha256(canonical).hexdigest()}.json"
+
+
+def _write_shard_part(root: Path, payload, written: set[str]) -> str:
+    envelope = {"schema_version": 1, "payload": payload}
+    encoded = _encode_json(envelope)
+    if len(encoded) > MAX_PUBLISHED_JSON_BYTES:
+        raise ValueError("Internal detail shard exceeded the published JSON limit")
+    digest = hashlib.sha256(encoded).hexdigest()
+    relative = f"details/parts/{digest}.json"
+    write_json(root / relative, envelope)
+    written.add(relative)
+    return relative
+
+
+def _shard_detail_value(value, root: Path, written: set[str]):
+    """Recursively split a large JSON value into lossless, content-addressed parts."""
+    if len(_encode_json(value)) <= SHARD_INLINE_TARGET_BYTES:
+        return value
+
+    if isinstance(value, str):
+        chunks: list[str] = []
+        current = ""
+        for character in value:
+            candidate = current + character
+            if current and len(_encode_json({"payload": candidate})) > SHARD_INLINE_TARGET_BYTES:
+                chunks.append(current)
+                current = character
+            else:
+                current = candidate
+        if current or not chunks:
+            chunks.append(current)
+        paths = [_write_shard_part(root, chunk, written) for chunk in chunks]
+        return {SHARD_MARKER: {"kind": "string", "parts": paths}}
+
+    if isinstance(value, dict):
+        parts: list[str] = []
+        current: dict = {}
+        for key, child in value.items():
+            sharded_child = _shard_detail_value(child, root, written)
+            candidate = dict(current)
+            candidate[key] = sharded_child
+            if current and len(_encode_json({"payload": candidate})) > SHARD_INLINE_TARGET_BYTES:
+                parts.append(_write_shard_part(root, current, written))
+                current = {key: sharded_child}
+            else:
+                current = candidate
+            if len(_encode_json({"payload": current})) > MAX_PUBLISHED_JSON_BYTES:
+                raise ValueError(
+                    f"Unable to shard detail object field {key!r} without data loss"
+                )
+        if current or not parts:
+            parts.append(_write_shard_part(root, current, written))
+        return {SHARD_MARKER: {"kind": "map", "parts": parts}}
+
+    if isinstance(value, list):
+        parts: list[str] = []
+        current: list = []
+        for child in value:
+            sharded_child = _shard_detail_value(child, root, written)
+            candidate = [*current, sharded_child]
+            if current and len(_encode_json({"payload": candidate})) > SHARD_INLINE_TARGET_BYTES:
+                parts.append(_write_shard_part(root, current, written))
+                current = [sharded_child]
+            else:
+                current = candidate
+            if len(_encode_json({"payload": current})) > MAX_PUBLISHED_JSON_BYTES:
+                raise ValueError("Unable to shard detail array without data loss")
+        if current or not parts:
+            parts.append(_write_shard_part(root, current, written))
+        return {SHARD_MARKER: {"kind": "list", "parts": parts}}
+
+    # Numbers, booleans and null values are always small. Reaching this branch
+    # means a future non-JSON type was supplied to the publisher.
+    raise ValueError(f"Unsupported oversized detail value: {type(value).__name__}")
+
+
+def _write_detail_document(
+    root: Path,
+    relative_path: str,
+    detail_document: dict,
+    written_shards: set[str],
+):
+    expected = f"details/{_detail_filename(detail_document)}"
+    if relative_path != expected:
+        raise ValueError(f"Detail path is not content-addressed: {relative_path}")
+    target = root / relative_path
+    encoded = _encode_json(detail_document)
+    if len(encoded) <= MAX_PUBLISHED_JSON_BYTES:
+        return write_json(target, detail_document)
+    sharded = _shard_detail_value(detail_document, root, written_shards)
+    # The root remains a small stable pointer to the losslessly sharded tree.
+    return write_json(
+        target,
+        {
+            SHARD_MARKER: {
+                "kind": "root",
+                "payload": sharded,
+            }
+        },
+    )
 
 
 def _safe_relative_path(value: str) -> PurePosixPath:
@@ -102,21 +209,28 @@ def publish_release(release, output_dir):
     item_details = release.get("item_details") or {}
     provider_shelves = release.get("provider_shelves") or []
 
-    # Publish each full media record exactly once, shared by all global rows and
-    # regional provider shelves. These documents are replaced with each release.
+    # Detail content is shared by every row/shelf that references it. Stable
+    # content-addressed paths let unchanged documents survive new releases
+    # without being written under a fresh release-specific directory.
     published_details = set()
+    written_shards: set[str] = set()
     for relative_path, details in item_details.items():
         safe_path = _safe_relative_path(relative_path)
-        expected_prefix = PurePosixPath("releases") / release_id / "items"
-        if safe_path.parts[:3] != expected_prefix.parts or safe_path.suffix != ".json":
-            raise ValueError(f"Detail path is outside the release item prefix: {relative_path}")
+        if (
+            len(safe_path.parts) != 2
+            or safe_path.parts[0] != "details"
+            or safe_path.suffix != ".json"
+        ):
+            raise ValueError(f"Detail path is outside the content-addressed detail prefix: {relative_path}")
         detail_id = details.get("id") if isinstance(details, dict) else None
         if not detail_id:
             raise ValueError(f"Detail document is missing its canonical ID: {relative_path}")
-        expected_name = _detail_filename(str(detail_id))
-        if safe_path.name != expected_name:
-            raise ValueError(f"Detail path does not match canonical ID: {relative_path}")
-        write_json(root / Path(*safe_path.parts), details)
+        _write_detail_document(
+            root,
+            relative_path,
+            details,
+            written_shards,
+        )
         published_details.add(relative_path)
 
     manifest = {

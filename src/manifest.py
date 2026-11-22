@@ -6,7 +6,8 @@ provider-shelf JSON contain only display metadata plus details_path references.
 from __future__ import annotations
 
 import hashlib
-from datetime import datetime
+import json
+from datetime import date, datetime, timedelta
 from typing import Any
 
 from .fetch import SourceSnapshot
@@ -101,9 +102,81 @@ def _metadata(item: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def _detail_path(release_id: str, media_id: str) -> str:
-    digest = hashlib.sha256(media_id.encode("utf-8")).hexdigest()[:24]
-    return f"releases/{release_id}/items/{digest}.json"
+def _detail_path(detail_document: dict[str, Any]) -> str:
+    """Return a stable content-addressed path shared across release generations."""
+    encoded = json.dumps(
+        detail_document,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    digest = hashlib.sha256(encoded).hexdigest()
+    return f"details/{digest}.json"
+
+
+def _discovery_quality(
+    item: dict[str, Any],
+    media_type: str,
+    now: datetime,
+) -> dict[str, Any]:
+    """Classify promotional eligibility without removing items from full rows."""
+    images = _images(item)
+    has_artwork = bool(images.get("poster") or images.get("backdrop"))
+    ids = item.get("ids") if isinstance(item.get("ids"), dict) else {}
+    has_tmdb_id = bool(ids.get("tmdb") or item.get("tmdb_id"))
+    title = str(item.get("title") or item.get("name") or "").strip()
+    overview = str(item.get("description") or item.get("overview") or "").strip()
+    genres = item.get("genres") or []
+    if isinstance(genres, str):
+        genres = [genres]
+    has_genres = any(
+        (isinstance(genre, str) and genre.strip())
+        or (isinstance(genre, dict) and str(genre.get("name") or "").strip())
+        for genre in genres
+    )
+    has_description = bool(overview) or has_genres
+
+    raw_date = (
+        item.get("release_date")
+        or item.get("first_air_date")
+        or item.get("date")
+    )
+    parsed_date = None
+    if isinstance(raw_date, str):
+        candidate = raw_date.strip()
+        try:
+            parsed_date = date.fromisoformat(candidate[:10])
+        except ValueError:
+            parsed_date = None
+
+    today = now.date()
+    base_reasons: list[str] = []
+    if parsed_date is None:
+        base_reasons.append("invalid_release_date")
+    if not has_artwork:
+        base_reasons.append("missing_tmdb_artwork")
+    if not has_tmdb_id:
+        base_reasons.append("missing_tmdb_id")
+    if not title:
+        base_reasons.append("missing_title")
+    if not has_description:
+        base_reasons.append("missing_overview_or_genre")
+
+    new_reasons = list(base_reasons)
+    if parsed_date is not None and not (today - timedelta(days=7) <= parsed_date <= today):
+        new_reasons.append("release_date_outside_past_7_days")
+    coming_reasons = list(base_reasons)
+    if parsed_date is not None and not (today < parsed_date <= today + timedelta(days=180)):
+        coming_reasons.append("release_date_outside_next_180_days")
+
+    return {
+        "new_this_week_eligible": not new_reasons,
+        "coming_soon_eligible": not coming_reasons,
+        "reasons": {
+            "new_this_week": new_reasons,
+            "coming_soon": coming_reasons,
+        },
+    }
 
 
 def _enriched_identity(media_type: str, raw_item: dict[str, Any], provider_id: str) -> dict[str, Any]:
@@ -188,6 +261,7 @@ def build_release(
     release_id = now.strftime("%Y%m%dT%H%M%SZ")
     release_rows: list[dict[str, Any]] = []
     item_details: dict[str, dict[str, Any]] = {}
+    detail_paths_by_media_id: dict[tuple[str, str], str] = {}
     details_by_tmdb: dict[tuple[str, str], tuple[str, dict[str, Any], dict[str, Any]]] = {}
 
     for row in rows:
@@ -262,11 +336,10 @@ def build_release(
             if tmdb_id is not None and isinstance(enrichment, dict):
                 key = (media_type, str(tmdb_id))
                 details_by_tmdb[key] = (media_id, item, source_item)
-            detail_path = _detail_path(release_id, media_id)
             detail_doc = _make_detail_document(media_id, media_type, item, source_item)
-            prior = item_details.get(detail_path)
-            if prior is None or len(str(detail_doc)) > len(str(prior)):
-                item_details[detail_path] = detail_doc
+            detail_path = _detail_path(detail_doc)
+            detail_paths_by_media_id[(media_type, media_id)] = detail_path
+            item_details.setdefault(detail_path, detail_doc)
 
             ranking = rankings.get(media_id, {})
             release_items.append({
@@ -278,6 +351,7 @@ def build_release(
                 "release_date": item.get("release_date"),
                 "images": _images(item),
                 "metadata": _metadata(item),
+                "discovery_quality": _discovery_quality(item, media_type, now),
                 "details_path": detail_path,
                 "popularity": item.get("popularity"),
                 "vote_count": item.get("vote_count"),
@@ -347,13 +421,42 @@ def build_release(
             "popularity": discovered.get("popularity"),
             "vote_count": discovered.get("vote_count"),
         }
-        detail_path = _detail_path(release_id, media_id)
-        item_details[detail_path] = _make_detail_document(
-            media_id, media_type, item, source_item
-        )
+        detail_doc = _make_detail_document(media_id, media_type, item, source_item)
+        detail_path = _detail_path(detail_doc)
+        item_details.setdefault(detail_path, detail_doc)
+        detail_paths_by_media_id[(media_type, media_id)] = detail_path
         details_by_tmdb[(media_type, str(tmdb_id))] = (
             media_id, item, source_item
         )
+
+    # Publish mixed-media promotional rows with strict discovery-quality
+    # eligibility. The six complete source rows remain unchanged and retain
+    # every item, regardless of artwork, votes, overview or date.
+    for row_id, title, quality_key in (
+        ("new-this-week", "New this week", "new_this_week_eligible"),
+        ("coming-soon", "Coming soon", "coming_soon_eligible"),
+    ):
+        selected: dict[str, dict[str, Any]] = {}
+        for source_row in release_rows:
+            for item in source_row["items"]:
+                quality = item.get("discovery_quality") or {}
+                if quality.get(quality_key) is True:
+                    selected.setdefault(item["id"], item)
+        release_rows.append({
+            "id": row_id,
+            "title": title,
+            "media_type": "mixed",
+            "media_kind": "mixed",
+            "data_updated_at": now.isoformat(),
+            "status": "active",
+            "configured_provider_count": 1,
+            "contributing_provider_count": 1,
+            "source_lists": [
+                "new_movies", "new_series", "upcoming_movies", "upcoming_series"
+            ],
+            "quality_filter": quality_key,
+            "items": list(selected.values()),
+        })
 
     published_regions: list[dict[str, Any]] = []
     published_provider_shelves: list[dict[str, Any]] = []
@@ -379,7 +482,11 @@ def build_release(
                         f"Missing TMDB enrichment for provider shelf item {media_kind}:{tmdb_id}"
                     )
                 media_id, item, _ = details_entry
-                detail_path = _detail_path(release_id, media_id)
+                detail_path = detail_paths_by_media_id.get((media_kind, media_id))
+                if detail_path is None:
+                    raise ValueError(
+                        f"Missing published detail path for {media_kind}:{media_id}"
+                    )
                 shelf_items.append({
                     "id": media_id,
                     "tmdb_id": tmdb_id,

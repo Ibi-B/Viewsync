@@ -359,6 +359,7 @@ def discover_provider_shelves(
     provider_calls = 0
     discover_calls = 0
     cached_regions = 0
+    expired_provider_shelves = 0
     omitted_under_minimum = 0
     errors: list[dict[str, str]] = []
     if region_directory_error:
@@ -374,10 +375,17 @@ def discover_provider_shelves(
         cached_shelves = _load_cached_provider_shelves(previous_region, now)
 
         def retain_cached(media_type: str, service_key: str | None = None) -> None:
+            nonlocal expired_provider_shelves
             for old_shelf in cached_shelves or []:
                 if old_shelf.get("media_kind") != media_type:
                     continue
                 if service_key is not None and old_shelf.get("service_key") != service_key:
+                    continue
+                shelf_age = _age(old_shelf.get("availability_updated_at"), now)
+                if shelf_age is None or shelf_age >= AVAILABILITY_STALE_GRACE:
+                    # Do not republish old TMDB-derived shelf summaries once
+                    # their hard cache-age boundary has been reached.
+                    expired_provider_shelves += 1
                     continue
                 retained = dict(old_shelf)
                 retained["availability_status"] = "stale"
@@ -564,6 +572,7 @@ def discover_provider_shelves(
         "provider_catalogue_requests": provider_calls,
         "provider_discover_requests": discover_calls,
         "provider_shelf_regions_reused": cached_regions,
+        "provider_shelves_expired": expired_provider_shelves,
         "provider_shelves_published": sum(len(rows) for rows in shelves_by_region.values()),
         "provider_shelves_omitted_under_minimum": omitted_under_minimum,
         "provider_discovery_errors": errors,

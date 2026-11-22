@@ -744,6 +744,8 @@ def test_new_and_coming_soon_rows_are_quality_filtered_without_trimming_catalogu
     rows = [
         {"id": "new-movies", "name": "New Movies", "type": "movie",
          "source_lists": ["new_movies"]},
+        {"id": "upcoming-movies", "name": "Upcoming Movies", "type": "movie",
+         "source_lists": ["upcoming_movies"]},
         {"id": "upcoming-series", "name": "Upcoming Series", "type": "series",
          "source_lists": ["upcoming_series"]},
     ]

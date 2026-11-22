@@ -242,7 +242,7 @@ def _make_detail_document(
         # It preserves TMDB discovery fields not yet mapped to the slim row.
         "source_item": {
             key: value for key, value in source_item.items()
-            if key != "tmdb_enrichment"
+            if key not in {"tmdb_enrichment", "source_item_fetched_at"}
         },
     }
 
@@ -346,9 +346,7 @@ def build_release(
                 for entry in attributions.get(media_id, [])
                 if entry.get("fetched_at")
             ]
-            detail_doc["source_item_fetched_at"] = (
-                max(source_times) if source_times else now.isoformat()
-            )
+            summary_fetched_at = max(source_times) if source_times else now.isoformat()
             detail_path = _detail_path(detail_doc)
             detail_paths_by_media_id[(media_type, media_id)] = detail_path
             item_details.setdefault(detail_path, detail_doc)
@@ -365,6 +363,7 @@ def build_release(
                 "metadata": _metadata(item),
                 "discovery_quality": _discovery_quality(item, media_type, now),
                 "details_path": detail_path,
+                "source_item_fetched_at": summary_fetched_at,
                 "popularity": item.get("popularity"),
                 "vote_count": item.get("vote_count"),
                 "source_attribution": attributions.get(media_id, []),
@@ -396,18 +395,24 @@ def build_release(
         if (media_type, str(tmdb_id)) in details_by_tmdb:
             continue
         media_id = f"{media_type}:tmdb:{tmdb_id}"
-        discovered = next(
+        discovered_entry = next(
             (
-                item
+                (item, shelf.get("availability_updated_at"))
                 for shelves in provider_shelves.values()
                 for shelf in shelves
                 if shelf.get("media_kind") == media_type
                 for item in shelf.get("items", [])
                 if str(item.get("tmdb_id")) == str(tmdb_id)
             ),
-            {},
+            ({}, None),
         )
+        discovered, discovered_shelf_updated_at = discovered_entry
         source_item = dict(discovered)
+        source_item_fetched_at = (
+            source_item.get("source_item_fetched_at")
+            or discovered_shelf_updated_at
+            or now.isoformat()
+        )
         source_item["id"] = int(tmdb_id) if str(tmdb_id).isdigit() else tmdb_id
         source_item["tmdb_enrichment"] = enrichment
         tmdb_full = enrichment.get("tmdb_full")
@@ -434,9 +439,6 @@ def build_release(
             "vote_count": discovered.get("vote_count"),
         }
         detail_doc = _make_detail_document(media_id, media_type, item, source_item)
-        detail_doc["source_item_fetched_at"] = (
-            source_item.get("source_item_fetched_at") or now.isoformat()
-        )
         detail_path = _detail_path(detail_doc)
         item_details.setdefault(detail_path, detail_doc)
         detail_paths_by_media_id[(media_type, media_id)] = detail_path
@@ -537,6 +539,11 @@ def build_release(
                     "vote_count": raw.get("vote_count", item.get("vote_count")),
                     "rank": raw.get("rank"),
                     "details_path": detail_path,
+                    "source_item_fetched_at": (
+                        raw.get("source_item_fetched_at")
+                        or shelf.get("availability_updated_at")
+                        or now.isoformat()
+                    ),
                     "ids": item.get("ids", {"tmdb": tmdb_id}),
                 })
             if not shelf_items:

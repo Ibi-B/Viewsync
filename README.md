@@ -70,12 +70,33 @@ are preserved; BeastED currently displays subscription (`flatrate`) results
 while retaining rental, purchase, free, and ad-supported availability in the
 published item for future features.
 
-Each enrichment record has a 30-day freshness interval. A record younger than
-30 days is reused without a new detail request. When a refresh fails, the last
-successful TMDB detail and availability payload remains published and is marked
-stale; it is not deleted or blanked. The full data travels through the existing
-identity merge, row and item-detail publication, and BeastED v2 catalogue
-contract. API credentials are GitHub Actions secrets only.
+TMDB title details and provider availability have independent refresh schedules:
+details are refreshed every 30 days; watch-provider availability is refreshed
+every 12 hours. Provider-specific Discover shelves are generated for the six
+allowlisted services in configured TMDB-supported regions. Viewsync publishes
+the ordered Top 10 or Popular list (omitting lists with fewer than five titles),
+including service logo, rank and a freshness status.
+
+A refresh failure retains the last successful payload and marks it stale. A
+150-day hard reuse ceiling keeps retained TMDB data below the six-month cache
+limit in TMDB's published terms. If a refresh cannot succeed by that ceiling,
+generation fails closed and Pages does not publish a new catalogue; the failed
+run must be treated as an operational alert to refresh the source or review
+licensing before the existing published copy reaches six months. IDs remain
+canonical by TMDB ID, with IMDb stored as an alias.
+
+The complete TMDB detail and all regional availability categories are stored
+once in each item's own detail JSON document. Global rows and provider shelves
+contain only summary fields and a shared `details_path`. Each published JSON
+document is capped at 4 MiB, below BeastED's 5 MiB client limit; the publisher
+fails rather than truncating any field. The generator records actual file count,
+total bytes, and largest document size in `generation-report.json`.
+
+The complete detail travels through the existing identity merge, per-item
+detail publication, and BeastED v2 catalogue contract. The durable
+`viewsync-state` branch contains bounded source-list snapshots only; rich TMDB
+payloads are read from the current public detail documents and are not copied
+into append-only Git history. API credentials are GitHub Actions secrets only.
 
 Viewsync's static catalogue and durable source snapshots are not stored in
 Cloudflare R2. Radsync's separate R2 retention policy therefore applies only to

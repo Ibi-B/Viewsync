@@ -69,7 +69,15 @@ def test_build_release_includes_configured_rows():
         "popular-movies",
         "new-movies",
         "upcoming-movies",
+        "new-this-week",
+        "coming-soon",
     ]
+    # The full source rows remain unchanged; promotion rows are an additional
+    # pre-filtered view over those source records.
+    assert release["rows"][1]["items"][0]["title"] == "New Movie"
+    assert release["rows"][2]["items"][0]["title"] == "Upcoming Movie"
+    assert release["rows"][3]["items"] == []
+    assert release["rows"][4]["items"] == []
 
 
 def test_fetch_source_uses_provider_config(monkeypatch):

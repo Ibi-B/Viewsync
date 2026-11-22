@@ -186,19 +186,32 @@ def test_failed_refresh_retains_last_good_until_hard_cache_limit(monkeypatch):
     assert {error["stage"] for error in errors} == {"details_refresh", "availability_refresh"}
 
 
-def test_metadata_older_than_hard_cache_limit_is_never_retained(monkeypatch):
-    old = _enrichment(details_at=NOW - timedelta(days=151), providers_at=NOW)
+def test_metadata_older_than_hard_cache_limit_is_purged_but_ids_survive(monkeypatch):
+    old = _enrichment(
+        details_at=NOW - timedelta(days=151),
+        providers_at=NOW - timedelta(days=151),
+    )
+    old["ids"] = {"tmdb": "101", "imdb": "tt0000101"}
     monkeypatch.setattr(
         "src.tmdb_enrichment._fetch_details",
         lambda *_: (_ for _ in ()).throw(RuntimeError("offline")),
     )
     monkeypatch.setattr(
         "src.tmdb_enrichment._fetch_watch_providers",
-        lambda *_: {},
+        lambda *_: (_ for _ in ()).throw(RuntimeError("offline")),
     )
 
-    with pytest.raises(RuntimeError, match="TMDB details unavailable"):
-        _refresh_record(("movie", "101"), old, NOW)
+    refreshed, errors = _refresh_record(("movie", "101"), old, NOW)
+
+    assert refreshed["tmdb_full"] == {}
+    assert refreshed["watch_providers"] == {}
+    assert refreshed["tmdb_details_status"] == "expired"
+    assert refreshed["tmdb_watch_providers_status"] == "expired"
+    assert refreshed["ids"] == {"tmdb": "101", "imdb": "tt0000101"}
+    assert {error["stage"] for error in errors} == {
+        "details_cache_expired",
+        "availability_cache_expired",
+    }
 
 
 def test_provider_discovery_uses_allowlist_and_publishes_ranked_top_ten(monkeypatch):

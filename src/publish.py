@@ -167,6 +167,7 @@ def _slim_row_item(source: dict):
         "release_date",
         "images",
         "metadata",
+        "discovery_quality",
         "details_path",
         "popularity",
         "vote_count",

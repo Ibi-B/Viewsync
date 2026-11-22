@@ -130,7 +130,28 @@ def persist_snapshots(snapshots: list[SourceSnapshot], state_dir: str | Path) ->
     snapshot_dir.mkdir(parents=True, exist_ok=True)
 
     for snapshot in snapshots:
-        save_snapshot(snapshot, snapshot_dir)
+        persisted = snapshot
+        if snapshot.provider_id == "tmdb":
+            # TMDB IDs are the durable identity keys; descriptive fields and
+            # raw response bodies are refreshed from TMDB / the published
+            # detail documents and must not accumulate in public Git history.
+            identifier_only_items = []
+            for item in snapshot.items:
+                if not isinstance(item, dict):
+                    continue
+                tmdb_id = item.get("id", item.get("tmdb_id"))
+                if tmdb_id not in (None, ""):
+                    identifier_only_items.append({"id": tmdb_id})
+            persisted = SourceSnapshot(
+                request_id=snapshot.request_id,
+                provider_id=snapshot.provider_id,
+                list_id=snapshot.list_id,
+                media_type=snapshot.media_type,
+                fetched_at=snapshot.fetched_at,
+                items=identifier_only_items,
+                raw_payloads=[],
+            )
+        save_snapshot(persisted, snapshot_dir)
 
 
 def preserve_last_good_release(state_dir: str | Path, output_dir: str | Path) -> bool:

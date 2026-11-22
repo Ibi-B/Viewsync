@@ -473,14 +473,23 @@ def discover_provider_shelves(
         if shelves:
             shelves_by_region[region_code] = shelves
 
-    published_regions = [
-        {
+    published_regions = []
+    for region in regions:
+        region_shelves = shelves_by_region.get(region["iso_code"], [])
+        if not region_shelves:
+            continue
+        # Use the oldest contributing shelf timestamp so the region badge
+        # never presents partially refreshed provider data as wholly current.
+        shelf_times = [
+            _parse_time(shelf.get("availability_updated_at"))
+            for shelf in region_shelves
+        ]
+        valid_times = [value for value in shelf_times if value is not None]
+        region_updated = min(valid_times).isoformat() if valid_times else fetched_at
+        published_regions.append({
             **region,
-            "availability_updated_at": fetched_at,
-        }
-        for region in regions
-        if region["iso_code"] in shelves_by_region
-    ]
+            "availability_updated_at": region_updated,
+        })
     report = {
         "configured_region_count": len(regions),
         "published_region_count": len(published_regions),

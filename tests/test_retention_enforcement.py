@@ -6,7 +6,12 @@ import pytest
 
 from src.fetch import SourceSnapshot
 from src.main import generate_catalog
-from src.state import persist_snapshots, select_snapshots, snapshot_status
+from src.state import (
+    persist_snapshots,
+    prune_expired_tmdb_source_snapshots,
+    select_snapshots,
+    snapshot_status,
+)
 
 
 def _snapshot(provider_id, fetched_at, items=None):
@@ -46,6 +51,56 @@ def test_select_snapshots_excludes_expired_snapshots():
 
     assert usable == [fresh, retained]
     assert expired_snapshots == [expired]
+
+
+def test_tmdb_source_snapshot_history_is_purged_after_150_days_only(tmp_path):
+    now = datetime(2026, 11, 22, tzinfo=timezone.utc)
+    state_dir = tmp_path / "state"
+    old_tmdb = _snapshot(
+        "popular_movies",
+        (now - timedelta(days=151)).isoformat(),
+        items=[{"id": 1, "title": "Old TMDB title", "overview": "Old metadata"}],
+    )
+    recent_tmdb = _snapshot(
+        "popular_movies",
+        (now - timedelta(days=149)).isoformat(),
+        items=[{"id": 2, "title": "Retained TMDB title", "overview": "Metadata"}],
+    )
+    old_trakt = SourceSnapshot(
+        request_id="trending_movies",
+        provider_id="trakt",
+        list_id="trending_movies",
+        media_type="movie",
+        fetched_at=(now - timedelta(days=400)).isoformat(),
+        items=[{"title": "Trakt item"}],
+    )
+    persist_snapshots([old_tmdb, recent_tmdb, old_trakt], state_dir)
+    snapshot_dir = state_dir / "source-snapshots"
+    before = list(snapshot_dir.glob("*.json"))
+
+    removed = prune_expired_tmdb_source_snapshots(state_dir, now)
+    after = list(snapshot_dir.glob("*.json"))
+
+    assert len(removed) == 1
+    assert len(after) == 2
+    remaining = [json.loads(path.read_text(encoding="utf-8")) for path in after]
+    assert {item["provider_id"] for item in remaining} == {"tmdb", "trakt"}
+    assert any(item["items"][0]["id"] == 2 for item in remaining)
+    assert any(item["provider_id"] == "trakt" for item in remaining)
+    assert len(before) == 3
+
+
+def test_malformed_or_unknown_age_snapshot_is_not_pruned(tmp_path):
+    now = datetime(2026, 11, 22, tzinfo=timezone.utc)
+    snapshot_dir = tmp_path / "state" / "source-snapshots"
+    snapshot_dir.mkdir(parents=True)
+    malformed = snapshot_dir / "malformed.json"
+    malformed.write_text("{not-json", encoding="utf-8")
+
+    removed = prune_expired_tmdb_source_snapshots(snapshot_dir.parent, now)
+
+    assert removed == []
+    assert malformed.exists()
 
 
 def test_generate_catalog_records_diagnostics_and_current_pointer(tmp_path, monkeypatch):

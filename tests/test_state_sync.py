@@ -191,7 +191,7 @@ def test_production_workflow_is_manual_only_and_scopes_write_permissions():
     assert '- cron: "17 */6 * * *"' in workflow
     assert workflow.count("contents: write") == 1
     assert "state-sync:" in workflow
-    assert "if: github.ref == 'refs/heads/main'" in workflow
+    assert "if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request'" in workflow
     assert workflow.count("uses: actions/checkout@v4") == 2
     assert "ref: viewsync-state" in workflow
     assert "path: state" in workflow

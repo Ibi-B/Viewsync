@@ -66,6 +66,8 @@ def test_generate_catalog_records_diagnostics_and_current_pointer(tmp_path, monk
         return items
 
     monkeypatch.setattr("src.main.fetch_source", fake_fetch_source)
+    monkeypatch.setattr("src.tmdb_enrichment._load_previous_region_directory", lambda: {})
+    monkeypatch.setattr("src.main.load_previous_detail_index", lambda **kwargs: {})
 
     release = generate_catalog(
         config_dir="catalog-config",
@@ -117,6 +119,8 @@ def test_generate_catalog_refuses_when_all_snapshots_expire(tmp_path, monkeypatc
         raise RuntimeError("upstream unavailable")
 
     monkeypatch.setattr("src.main.fetch_source", fake_fetch_source)
+    monkeypatch.setattr("src.tmdb_enrichment._load_previous_region_directory", lambda: {})
+    monkeypatch.setattr("src.main.load_previous_detail_index", lambda **kwargs: {})
 
     with pytest.raises(ValueError, match="All provider snapshots have expired"):
         generate_catalog(

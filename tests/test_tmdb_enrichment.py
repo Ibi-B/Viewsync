@@ -419,6 +419,62 @@ def test_recent_published_provider_shelves_are_reused(monkeypatch):
     assert report["provider_catalogue_requests"] == 0
 
 
+def test_empty_successful_region_response_retains_last_good_directory(monkeypatch):
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._credentials",
+        lambda: ("configured-key", None),
+    )
+    old_time = (NOW - timedelta(hours=2)).isoformat()
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._watch_regions",
+        lambda: [],
+    )
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._load_previous_region_directory",
+        lambda: {
+            "SE": {
+                "english_name": "Sweden",
+                "native_name": "Sverige",
+                "availability_updated_at": old_time,
+                "provider_shelves_path": "releases/old/provider-shelves/SE.json",
+            }
+        },
+    )
+    cached = {
+        "id": "netflix:movie",
+        "service_key": "netflix",
+        "provider_id": 8,
+        "provider_name": "Netflix",
+        "media_kind": "movie",
+        "title": "Top 10 on Netflix",
+        "display_mode": "top_10",
+        "availability_updated_at": old_time,
+        "items": [{
+            "id": "movie:tmdb:101",
+            "tmdb_id": "101",
+            "media_kind": "movie",
+            "title": "Cached film",
+            "rank": 1,
+        }],
+    }
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._load_cached_provider_shelves",
+        lambda *_: [cached],
+    )
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._provider_catalogue",
+        lambda *_: (_ for _ in ()).throw(AssertionError("fresh shelf should be reused")),
+    )
+
+    regions, shelves, additional, report = discover_provider_shelves(NOW)
+
+    assert [region["iso_code"] for region in regions] == ["SE"]
+    assert shelves["SE"][0]["title"] == "Top 10 on Netflix"
+    assert ("movie", "101") in additional
+    assert report["provider_shelf_regions_reused"] == 1
+    assert report["provider_discovery_errors"][0]["stage"] == "region_directory"
+
+
 def test_failed_region_provider_refresh_retains_visible_stale_shelf(monkeypatch):
     monkeypatch.setattr(
         "src.tmdb_enrichment._credentials",

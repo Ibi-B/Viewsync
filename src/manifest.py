@@ -119,6 +119,12 @@ def _enriched_identity(media_type: str, raw_item: dict[str, Any], provider_id: s
         if enriched.get("tmdb_id") is None and details.get("id") is not None:
             enriched["tmdb_id"] = details["id"]
         identity_item = enriched
+    retained_ids = enrichment.get("ids") if isinstance(enrichment, dict) else None
+    if isinstance(retained_ids, dict):
+        if retained_ids.get("tmdb"):
+            identity_item["tmdb_id"] = retained_ids["tmdb"]
+        if retained_ids.get("imdb"):
+            identity_item["imdb_id"] = retained_ids["imdb"]
     if identity_item.get("tmdb_id") is None and provider_id == "tmdb" and identity_item.get("id") is not None:
         identity_item["tmdb_id"] = identity_item["id"]
     return identity_item
@@ -136,6 +142,9 @@ def _make_detail_document(
     enrichment = enrichment if isinstance(enrichment, dict) else {}
     details = enrichment.get("tmdb_full")
     watch_providers = enrichment.get("watch_providers")
+    retained_ids = item.get("ids")
+    if not isinstance(retained_ids, dict) or not retained_ids:
+        retained_ids = enrichment.get("ids", {})
     return {
         "schema_version": 1,
         "id": media_id,
@@ -145,7 +154,7 @@ def _make_detail_document(
         "release_date": item.get("release_date") or source_item.get("release_date"),
         "images": item.get("images") or _images(item),
         "metadata": _metadata(item),
-        "ids": item.get("ids", {}),
+        "ids": retained_ids,
         "tmdb_full": details if isinstance(details, dict) else {},
         "watch_providers": watch_providers if isinstance(watch_providers, dict) else {},
         "tmdb_details_fetched_at": enrichment.get("tmdb_details_fetched_at"),
@@ -320,9 +329,15 @@ def build_release(
             tmdb_full.get("external_ids")
             if isinstance(tmdb_full, dict) else None
         )
-        canonical_ids = {"tmdb": str(tmdb_id)}
+        retained_ids = enrichment.get("ids")
+        canonical_ids = (
+            {str(key): str(value) for key, value in retained_ids.items()
+             if value not in (None, "")}
+            if isinstance(retained_ids, dict) else {}
+        )
+        canonical_ids.setdefault("tmdb", str(tmdb_id))
         if isinstance(external_ids, dict) and external_ids.get("imdb_id"):
-            canonical_ids["imdb"] = str(external_ids["imdb_id"])
+            canonical_ids.setdefault("imdb", str(external_ids["imdb_id"]))
         item = {
             "ids": canonical_ids,
             "tmdb_enrichment": enrichment,

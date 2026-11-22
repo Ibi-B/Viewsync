@@ -94,7 +94,7 @@ def _request_json(path: str, params: dict[str, Any] | None = None) -> Any:
 def _fetch_item(media_type: str, tmdb_id: int, fetched_at: str) -> dict[str, Any]:
     namespace = "movie" if media_type == "movie" else "tv"
     appended = (
-        "credits,external_ids,images,keywords,recommendations,release_dates,videos"
+        "alternative_titles,credits,external_ids,images,keywords,recommendations,release_dates,reviews,similar,translations,videos"
         if media_type == "movie"
         else "aggregate_credits,content_ratings,external_ids,images,keywords,recommendations,videos"
     )

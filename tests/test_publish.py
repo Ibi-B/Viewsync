@@ -6,6 +6,11 @@ from src.validate import ValidationError
 
 
 def make_release():
+    detail_path = (
+        "releases/test-release/items/"
+        + hashlib.sha256("movie:imdb:tt123".encode("utf-8")).hexdigest()[:24]
+        + ".json"
+    )
     return {
         "schema_version": 2,
         "release_id": "test-release",
@@ -30,6 +35,7 @@ def make_release():
             "items": [{
                 "id": "movie:imdb:tt123",
                 "media_kind": "movie",
+                "details_path": detail_path,
                 "title": "Example",
                 "images": {"poster": None, "backdrop": None, "logo": None},
                 "metadata": {"overview": None, "genres": [], "runtime_minutes": None},
@@ -49,6 +55,18 @@ def make_release():
                 },
             }],
         }],
+        "item_details": {
+            detail_path: {
+                "schema_version": 1,
+                "id": "movie:imdb:tt123",
+                "media_kind": "movie",
+                "title": "Example",
+                "release_date": "2026-01-01",
+                "tmdb_full": {"credits": {"cast": [{"name": "Actor One"}]}},
+                "watch_providers": {},
+                "source_item": {"id": 123, "title": "Example"},
+            }
+        },
     }
 
 
@@ -58,7 +76,14 @@ def test_publish_creates_manifest_and_details(tmp_path):
     release_dir = tmp_path / "v1/releases/test-release"
     assert (release_dir / "rows/popular_movies.json").exists()
     filename = hashlib.sha256("movie:imdb:tt123".encode()).hexdigest()[:24] + ".json"
-    assert (release_dir / "items" / filename).exists()
+    detail_path = release_dir / "items" / filename
+    assert detail_path.exists()
+    row = __import__("json").loads((release_dir / "rows/popular_movies.json").read_text())
+    row_item = row["items"][0]
+    assert row_item["details_path"].endswith(filename)
+    assert "tmdb_full" not in row_item
+    assert "watch_providers" not in row_item
+    assert __import__("json").loads(detail_path.read_text())["tmdb_full"]["credits"]["cast"][0]["name"] == "Actor One"
 
 
 def test_invalid_release_is_rejected(tmp_path):

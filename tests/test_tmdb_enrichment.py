@@ -844,6 +844,79 @@ def test_summary_timestamp_does_not_rotate_unchanged_detail_path():
     assert "source_item_fetched_at" not in detail
 
 
+def test_previous_detail_index_keeps_summary_age_outside_stable_detail_url(monkeypatch):
+    manifest = {
+        "rows": [{"path": "releases/rel-1/rows/popular-movies.json"}],
+        "watch_regions": [{
+            "iso_code": "SE",
+            "provider_shelves_path": "releases/rel-1/provider-shelves/SE.json",
+        }],
+    }
+    row = {"items": [{
+        "id": "movie:tmdb:101",
+        "ids": {"tmdb": "101"},
+        "media_kind": "movie",
+        "details_path": "details/unchanged.json",
+        "source_item_fetched_at": "2026-11-20T08:00:00+00:00",
+    }]}
+    shelves = {"shelves": [{
+        "items": [{
+            "id": "movie:tmdb:101",
+            "tmdb_id": "101",
+            "media_kind": "movie",
+            "details_path": "details/unchanged.json",
+            "source_item_fetched_at": "2026-11-21T08:00:00+00:00",
+        }]
+    }]}
+    docs = {
+        "manifest.json": manifest,
+        "releases/rel-1/rows/popular-movies.json": row,
+        "releases/rel-1/provider-shelves/SE.json": shelves,
+    }
+    monkeypatch.setattr(
+        "src.tmdb_enrichment._public_json",
+        lambda _base, path: docs[path],
+    )
+
+    index = load_previous_detail_index(regions=manifest["watch_regions"])
+    reference = index[("movie", "101")]
+
+    assert reference["details_path"] == "details/unchanged.json"
+    assert reference["source_item_fetched_at"] == "2026-11-21T08:00:00+00:00"
+
+
+def test_load_previous_item_attaches_summary_age_without_mutating_content():
+    from src.tmdb_enrichment import _load_previous_item
+
+    detail_document = {
+        "id": "movie:tmdb:101",
+        "title": "Stable detail",
+        "tmdb_full": {"overview": "Full metadata"},
+    }
+    monkeypatch = pytest.MonkeyPatch()
+    try:
+        monkeypatch.setattr(
+            "src.tmdb_enrichment._public_json",
+            lambda *_args: dict(detail_document),
+        )
+        previous = _load_previous_item(
+            ("movie", "101"),
+            {
+                ("movie", "101"): {
+                    "details_path": "details/unchanged.json",
+                    "source_item_fetched_at": "2026-11-21T08:00:00+00:00",
+                }
+            },
+            "https://example.invalid",
+        )
+    finally:
+        monkeypatch.undo()
+
+    assert previous["_source_item_fetched_at"] == "2026-11-21T08:00:00+00:00"
+    assert previous["title"] == "Stable detail"
+    assert "source_item_fetched_at" not in detail_document
+
+
 def test_shelf_discovery_refresh_constants_are_distinct():
     assert DETAIL_REFRESH_AGE == timedelta(days=30)
     assert AVAILABILITY_REFRESH_AGE == timedelta(hours=12)

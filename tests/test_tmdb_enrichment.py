@@ -840,8 +840,16 @@ def test_summary_timestamp_does_not_rotate_unchanged_detail_path():
     assert first_item["source_item_fetched_at"] != second_item["source_item_fetched_at"]
     assert first_item["source_item_fetched_at"] == NOW.isoformat()
     assert second_item["source_item_fetched_at"] == second_time.isoformat()
+    assert first_item["tmdb_metadata_fetched_at"] == NOW.isoformat()
+    assert first_item["tmdb_metadata_status"] == "fresh"
+    assert first_item["tmdb_availability_fetched_at"] == NOW.isoformat()
+    assert first_item["tmdb_availability_status"] == "fresh"
     detail = first["item_details"][first_item["details_path"]]
     assert "source_item_fetched_at" not in detail
+    assert "tmdb_details_fetched_at" not in detail
+    assert "tmdb_details_status" not in detail
+    assert "tmdb_watch_providers_fetched_at" not in detail
+    assert "tmdb_watch_providers_status" not in detail
 
 
 def test_previous_detail_index_keeps_summary_age_outside_stable_detail_url(monkeypatch):

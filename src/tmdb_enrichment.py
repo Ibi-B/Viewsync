@@ -369,33 +369,26 @@ def discover_provider_shelves(
             shelves_by_region[region_code] = cached_shelves
             cached_regions += 1
             for shelf in cached_shelves:
-                retain = {
-                    "id": int(str(item.get("tmdb_id"))),
-                    "tmdb_id": str(item.get("tmdb_id")),
-                    "media_type": str(shelf.get("media_kind") or ""),
-                    "title": item.get("title") or "",
-                    "release_date": item.get("release_date"),
-                    "popularity": item.get("popularity"),
-                    "vote_average": item.get("rating"),
-                    "vote_count": item.get("vote_count"),
-                    "poster_path": (
-                        item.get("images", {}).get("poster")
-                        if isinstance(item.get("images"), dict) else None
-                    ),
-                    "backdrop_path": (
-                        item.get("images", {}).get("backdrop")
-                        if isinstance(item.get("images"), dict) else None
-                    ),
-                }
+                media_type = str(shelf.get("media_kind") or "")
                 for item in shelf.get("items", []):
                     tmdb_id = str(item.get("tmdb_id") or "")
-                    if tmdb_id:
-                        retain["id"] = int(tmdb_id) if tmdb_id.isdigit() else tmdb_id
-                        retain["tmdb_id"] = tmdb_id
-                        discovered.setdefault(
-                            (str(shelf.get("media_kind") or ""), tmdb_id),
-                            dict(retain),
-                        )
+                    if not tmdb_id:
+                        continue
+                    images = item.get("images")
+                    images = images if isinstance(images, dict) else {}
+                    candidate = {
+                        "id": int(tmdb_id) if tmdb_id.isdigit() else tmdb_id,
+                        "tmdb_id": tmdb_id,
+                        "media_type": media_type,
+                        "title": item.get("title") or "",
+                        "release_date": item.get("release_date"),
+                        "popularity": item.get("popularity"),
+                        "vote_average": item.get("rating"),
+                        "vote_count": item.get("vote_count"),
+                        "poster_path": images.get("poster"),
+                        "backdrop_path": images.get("backdrop"),
+                    }
+                    discovered.setdefault((media_type, tmdb_id), candidate)
             continue
 
         shelves: list[dict[str, Any]] = []

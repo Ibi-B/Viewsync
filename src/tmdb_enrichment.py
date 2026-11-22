@@ -795,6 +795,94 @@ def _tmdb_identity_aliases(details: Any) -> dict[str, str]:
     return result
 
 
+def _previous_slim_source_item(
+    previous: dict[str, Any] | None,
+    now: datetime,
+) -> dict[str, Any]:
+    """Recover only recent card-level fields from the last published detail.
+
+    This fallback is for identifier-only durable TMDB snapshots when a list
+    endpoint and the first detail refresh both fail. It never revives summary
+    metadata past the same 150-day cache boundary.
+    """
+    if not isinstance(previous, dict):
+        return {}
+    fetched_at = (
+        previous.get("source_item_fetched_at")
+        or previous.get("tmdb_details_fetched_at")
+    )
+    age = _age(fetched_at, now)
+    if age is None or age >= DETAIL_HARD_MAX_AGE:
+        return {}
+
+    source_item = previous.get("source_item")
+    source_item = source_item if isinstance(source_item, dict) else {}
+    images = previous.get("images")
+    images = images if isinstance(images, dict) else {}
+    metadata = previous.get("metadata")
+    metadata = metadata if isinstance(metadata, dict) else {}
+
+    fields = (
+        "title",
+        "name",
+        "year",
+        "release_date",
+        "first_air_date",
+        "overview",
+        "description",
+        "genres",
+        "genre_ids",
+        "poster",
+        "poster_path",
+        "backdrop",
+        "backdrop_path",
+        "original_title",
+        "original_name",
+        "original_language",
+        "popularity",
+        "vote_count",
+        "vote_average",
+        "rating",
+        "rating_source",
+        "ratings",
+    )
+    summary = {
+        key: source_item[key]
+        for key in fields
+        if source_item.get(key) not in (None, "", [], {})
+    }
+
+    title = previous.get("title")
+    if title and not (summary.get("title") or summary.get("name")):
+        summary["title"] = title
+    if previous.get("year") is not None:
+        summary.setdefault("year", previous["year"])
+    if previous.get("release_date"):
+        summary.setdefault("release_date", previous["release_date"])
+
+    for key in ("poster", "backdrop"):
+        if images.get(key) and not summary.get(key) and not summary.get(f"{key}_path"):
+            summary[f"{key}_path"] = images[key]
+
+    metadata_mapping = {
+        "overview": "overview",
+        "genres": "genres",
+        "rating": "rating",
+        "rating_source": "rating_source",
+        "ratings": "ratings",
+        "original_title": "original_title",
+        "original_language": "original_language",
+        "popularity": "popularity",
+        "vote_count": "vote_count",
+    }
+    for source_key, target_key in metadata_mapping.items():
+        value = metadata.get(source_key)
+        if value not in (None, "", [], {}):
+            summary.setdefault(target_key, value)
+
+    return summary
+
+
 def _refresh_record(
     key: tuple[str, str],
     previous: dict[str, Any] | None,
@@ -968,19 +1056,23 @@ def enrich_tmdb_snapshots(
         items_by_key.setdefault(key, []).append(item)
 
     refreshed: dict[tuple[str, str], dict[str, Any]] = {}
+    previous_summaries: dict[tuple[str, str], dict[str, Any]] = {}
     all_errors: list[dict[str, str]] = []
     failures: list[dict[str, str]] = []
 
     def work(key: tuple[str, str]):
         old = _load_previous_item(key, previous_detail_index, public_base_url)
-        return key, _refresh_record(key, old, now)
+        record = _refresh_record(key, old, now)
+        summary = _previous_slim_source_item(old, now)
+        return key, record, summary
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
         futures = [pool.submit(work, key) for key in items_by_key]
         for future in as_completed(futures):
             try:
-                key, (record, errors) = future.result()
+                key, (record, errors), summary = future.result()
                 refreshed[key] = record
+                previous_summaries[key] = summary
                 all_errors.extend(errors)
             except Exception as exc:
                 failures.append({"error": str(exc)[:300]})
@@ -996,7 +1088,15 @@ def enrich_tmdb_snapshots(
     for key, refs in items_by_key.items():
         record = refreshed.get(key)
         if record is not None:
+            summary = previous_summaries.get(key, {})
             for item in refs:
+                # A restored TMDB source snapshot intentionally carries IDs
+                # only. If the live list endpoint also failed, restore the
+                # recent card-level summary from the published detail document
+                # while it remains inside the 150-day cache boundary.
+                for field, value in summary.items():
+                    if item.get(field) in (None, "", [], {}):
+                        item[field] = value
                 item["tmdb_enrichment"] = record
                 item["id"] = int(key[1]) if key[1].isdigit() else item.get("id")
 

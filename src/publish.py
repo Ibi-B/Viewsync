@@ -40,9 +40,9 @@ def publish_release(release, output_dir):
             'generated_at',
             'ranking_version',
             'catalog_freshness',
-            'watch_regions',
         )
     }
+    manifest['watch_regions'] = release.get('watch_regions', [])
     manifest.update(
         path_base='v1-root',
         manifest_path=f'releases/{release_id}/manifest.json',

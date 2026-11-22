@@ -35,7 +35,6 @@ MAX_RETRIES = 2
 MAX_RETRY_DELAY_SECONDS = 30
 MAX_PUBLIC_JSON_BYTES = 4 * 1024 * 1024
 MAX_DISCOVER_PAGES = 2
-MIN_PROVIDER_ITEM_VOTES = 5
 MIN_SHELF_ITEMS = 5
 SHELF_ITEM_LIMIT = 10
 
@@ -53,7 +52,7 @@ PROVIDER_ALLOWLIST: dict[str, dict[str, Any]] = {
     },
     "prime-video": {
         "display_name": "Prime Video",
-        "aliases": {"amazon prime video", "prime video", "amazon video"},
+        "aliases": {"amazon prime video", "prime video"},
     },
     "disney-plus": {
         "display_name": "Disney+",
@@ -240,12 +239,8 @@ def _discover_provider(
             if not isinstance(item, dict):
                 continue
             tmdb_id = item.get("id")
-            vote_count = item.get("vote_count")
-            try:
-                votes = int(vote_count or 0)
-            except (TypeError, ValueError):
-                votes = 0
-            if tmdb_id is None or votes < MIN_PROVIDER_ITEM_VOTES:
+            # Vote count is confidence metadata, never a discovery eligibility gate.
+            if tmdb_id is None:
                 continue
             key = str(tmdb_id)
             if key in seen:
@@ -817,18 +812,29 @@ def _refresh_record(
             detail_status = "fresh"
             ids.update(_tmdb_identity_aliases(details))
         except Exception as exc:
-            if (
-                not isinstance(details, dict)
-                or not details
-                or details_age is None
-            ):
-                raise RuntimeError(
-                    f"TMDB details unavailable for {media_type}:{tmdb_id} ({_safe_failure(exc)})"
-                ) from exc
-            if details_age >= DETAIL_HARD_MAX_AGE:
-                # The old content is no longer republished after the hard
-                # cache-age ceiling. Keep only identifier aliases, which are
-                # stable keys rather than cached descriptive metadata.
+            if isinstance(details, dict) and details and details_age is not None:
+                if details_age < DETAIL_HARD_MAX_AGE:
+                    detail_status = "stale"
+                    errors.append({
+                        "media_kind": media_type,
+                        "tmdb_id": tmdb_id,
+                        "stage": "details_refresh",
+                        "error": _safe_failure(exc),
+                    })
+                else:
+                    # Descriptive TMDB metadata is purged at the hard age
+                    # boundary, but stable identifiers remain available.
+                    details = {}
+                    detail_status = "expired"
+                    errors.append({
+                        "media_kind": media_type,
+                        "tmdb_id": tmdb_id,
+                        "stage": "details_cache_expired",
+                        "error": _safe_failure(exc),
+                    })
+            elif isinstance(details, dict) and details:
+                # Unknown-age metadata cannot safely be retained under the
+                # documented cache ceiling.
                 details = {}
                 detail_status = "expired"
                 errors.append({
@@ -838,19 +844,25 @@ def _refresh_record(
                     "error": _safe_failure(exc),
                 })
             else:
+                # A first-time enrichment failure is non-fatal. The slim
+                # catalogue/shelf item remains publishable and will retry
+                # because it has no successful fetched-at timestamp.
+                details = {}
+                details_at = None
+                detail_status = "unavailable"
                 errors.append({
                     "media_kind": media_type,
                     "tmdb_id": tmdb_id,
-                    "stage": "details_refresh",
+                    "stage": "details_unavailable",
                     "error": _safe_failure(exc),
                 })
-                detail_status = "stale"
     else:
         detail_status = str(previous.get("tmdb_details_status") or "fresh")
 
     providers_age = _age(providers_at, now)
     if (
         not isinstance(providers, dict)
+        or not providers
         or providers_age is None
         or providers_age >= AVAILABILITY_REFRESH_AGE
     ):
@@ -859,15 +871,25 @@ def _refresh_record(
             providers_at = now.isoformat()
             availability_status = "fresh"
         except Exception as exc:
-            if (
-                not isinstance(providers, dict)
-                or not providers
-                or providers_age is None
-            ):
-                raise RuntimeError(
-                    f"TMDB watch availability unavailable for {media_type}:{tmdb_id} ({_safe_failure(exc)})"
-                ) from exc
-            if providers_age >= AVAILABILITY_STALE_GRACE:
+            if isinstance(providers, dict) and providers and providers_age is not None:
+                if providers_age < AVAILABILITY_STALE_GRACE:
+                    availability_status = "stale"
+                    errors.append({
+                        "media_kind": media_type,
+                        "tmdb_id": tmdb_id,
+                        "stage": "availability_refresh",
+                        "error": _safe_failure(exc),
+                    })
+                else:
+                    providers = {}
+                    availability_status = "expired"
+                    errors.append({
+                        "media_kind": media_type,
+                        "tmdb_id": tmdb_id,
+                        "stage": "availability_cache_expired",
+                        "error": _safe_failure(exc),
+                    })
+            elif isinstance(providers, dict) and providers:
                 providers = {}
                 availability_status = "expired"
                 errors.append({
@@ -877,13 +899,15 @@ def _refresh_record(
                     "error": _safe_failure(exc),
                 })
             else:
+                providers = {}
+                providers_at = None
+                availability_status = "unavailable"
                 errors.append({
                     "media_kind": media_type,
                     "tmdb_id": tmdb_id,
-                    "stage": "availability_refresh",
+                    "stage": "availability_unavailable",
                     "error": _safe_failure(exc),
                 })
-                availability_status = "stale"
     else:
         availability_status = str(
             previous.get("tmdb_watch_providers_status") or "fresh"
@@ -891,10 +915,10 @@ def _refresh_record(
 
     record = {
         "ids": ids,
-        "tmdb_full": details,
-        "watch_providers": providers,
-        # Keep original timestamps after expiry so each subsequent scheduled
-        # run retries refresh rather than treating the empty payload as new.
+        "tmdb_full": details if isinstance(details, dict) else {},
+        "watch_providers": providers if isinstance(providers, dict) else {},
+        # Keep prior timestamps on stale/expired content; unavailable content
+        # has no successful timestamp and is therefore retried next run.
         "tmdb_details_fetched_at": details_at,
         "tmdb_details_status": detail_status,
         "tmdb_watch_providers_fetched_at": providers_at,
@@ -972,6 +996,14 @@ def enrich_tmdb_snapshots(
         "availability_refresh_hours": int(AVAILABILITY_REFRESH_AGE.total_seconds() // 3600),
         "hard_cache_limit_days": int(DETAIL_HARD_MAX_AGE.total_seconds() // 86400),
         "stale_refresh_errors": all_errors,
+        "unavailable_detail_items": sum(
+            1 for r in refreshed.values()
+            if r.get("tmdb_details_status") == "unavailable"
+        ),
+        "unavailable_availability_items": sum(
+            1 for r in refreshed.values()
+            if r.get("tmdb_watch_providers_status") == "unavailable"
+        ),
         "failed_items": 0,
     }
     return refreshed, report

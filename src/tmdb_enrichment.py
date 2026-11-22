@@ -705,6 +705,27 @@ def _fetch_watch_providers(media_type: str, tmdb_id: str) -> dict[str, Any]:
     return payload["results"]
 
 
+def _tmdb_identity_aliases(details: Any) -> dict[str, str]:
+    if not isinstance(details, dict):
+        return {}
+    external_ids = details.get("external_ids")
+    if not isinstance(external_ids, dict):
+        return {}
+    aliases = {
+        "imdb": "imdb_id",
+        "tmdb": "id",
+        "tvdb": "tvdb_id",
+        "tvmaze": "tvmaze_id",
+        "wikidata": "wikidata_id",
+    }
+    result: dict[str, str] = {}
+    for alias, source_key in aliases.items():
+        value = details.get("id") if source_key == "id" else external_ids.get(source_key)
+        if value not in (None, ""):
+            result[alias] = str(value)
+    return result
+
+
 def _refresh_record(
     key: tuple[str, str],
     previous: dict[str, Any] | None,
@@ -715,51 +736,107 @@ def _refresh_record(
     providers = previous.get("watch_providers") if previous else None
     details_at = previous.get("tmdb_details_fetched_at") if previous else None
     providers_at = previous.get("tmdb_watch_providers_fetched_at") if previous else None
+    ids = {
+        str(name): str(value)
+        for name, value in (previous.get("ids", {}) if previous else {}).items()
+        if value not in (None, "")
+    }
+    ids.setdefault("tmdb", str(tmdb_id))
+    if isinstance(details, dict):
+        ids.update(_tmdb_identity_aliases(details))
     errors: list[dict[str, str]] = []
 
     details_age = _age(details_at, now)
-    if not isinstance(details, dict) or details_age is None or details_age >= DETAIL_REFRESH_AGE:
+    if (
+        not isinstance(details, dict)
+        or not details
+        or details_age is None
+        or details_age >= DETAIL_REFRESH_AGE
+    ):
         try:
             details = _fetch_details(media_type, tmdb_id)
             details_at = now.isoformat()
             detail_status = "fresh"
+            ids.update(_tmdb_identity_aliases(details))
         except Exception as exc:
-            if not isinstance(details, dict) or details_age is None or details_age >= DETAIL_HARD_MAX_AGE:
-                raise RuntimeError(f"TMDB details unavailable for {media_type}:{tmdb_id} ({_safe_failure(exc)})") from exc
-            errors.append({
-                "media_kind": media_type,
-                "tmdb_id": tmdb_id,
-                "stage": "details_refresh",
-                "error": _safe_failure(exc),
-            })
-            detail_status = "stale"
+            if (
+                not isinstance(details, dict)
+                or not details
+                or details_age is None
+            ):
+                raise RuntimeError(
+                    f"TMDB details unavailable for {media_type}:{tmdb_id} ({_safe_failure(exc)})"
+                ) from exc
+            if details_age >= DETAIL_HARD_MAX_AGE:
+                # The old content is no longer republished after the hard
+                # cache-age ceiling. Keep only identifier aliases, which are
+                # stable keys rather than cached descriptive metadata.
+                details = {}
+                detail_status = "expired"
+                errors.append({
+                    "media_kind": media_type,
+                    "tmdb_id": tmdb_id,
+                    "stage": "details_cache_expired",
+                    "error": _safe_failure(exc),
+                })
+            else:
+                errors.append({
+                    "media_kind": media_type,
+                    "tmdb_id": tmdb_id,
+                    "stage": "details_refresh",
+                    "error": _safe_failure(exc),
+                })
+                detail_status = "stale"
     else:
         detail_status = str(previous.get("tmdb_details_status") or "fresh")
 
     providers_age = _age(providers_at, now)
-    if not isinstance(providers, dict) or providers_age is None or providers_age >= AVAILABILITY_REFRESH_AGE:
+    if (
+        not isinstance(providers, dict)
+        or providers_age is None
+        or providers_age >= AVAILABILITY_REFRESH_AGE
+    ):
         try:
             providers = _fetch_watch_providers(media_type, tmdb_id)
             providers_at = now.isoformat()
             availability_status = "fresh"
         except Exception as exc:
-            if not isinstance(providers, dict) or providers_age is None or providers_age >= AVAILABILITY_STALE_GRACE:
+            if (
+                not isinstance(providers, dict)
+                or not providers
+                or providers_age is None
+            ):
                 raise RuntimeError(
                     f"TMDB watch availability unavailable for {media_type}:{tmdb_id} ({_safe_failure(exc)})"
                 ) from exc
-            errors.append({
-                "media_kind": media_type,
-                "tmdb_id": tmdb_id,
-                "stage": "availability_refresh",
-                "error": _safe_failure(exc),
-            })
-            availability_status = "stale"
+            if providers_age >= AVAILABILITY_STALE_GRACE:
+                providers = {}
+                availability_status = "expired"
+                errors.append({
+                    "media_kind": media_type,
+                    "tmdb_id": tmdb_id,
+                    "stage": "availability_cache_expired",
+                    "error": _safe_failure(exc),
+                })
+            else:
+                errors.append({
+                    "media_kind": media_type,
+                    "tmdb_id": tmdb_id,
+                    "stage": "availability_refresh",
+                    "error": _safe_failure(exc),
+                })
+                availability_status = "stale"
     else:
-        availability_status = str(previous.get("tmdb_watch_providers_status") or "fresh")
+        availability_status = str(
+            previous.get("tmdb_watch_providers_status") or "fresh"
+        )
 
     record = {
+        "ids": ids,
         "tmdb_full": details,
         "watch_providers": providers,
+        # Keep original timestamps after expiry so each subsequent scheduled
+        # run retries refresh rather than treating the empty payload as new.
         "tmdb_details_fetched_at": details_at,
         "tmdb_details_status": detail_status,
         "tmdb_watch_providers_fetched_at": providers_at,

@@ -136,7 +136,7 @@ def test_details_refresh_and_availability_refresh_have_independent_cadence(monke
 
     assert calls == [("providers", "movie", "101")]
     assert refreshed["tmdb_full"]["budget"] == 123456
-    assert refreshed["tmdb_watch_providers"]["SE"]["flatrate"] == []
+    assert refreshed["watch_providers"]["SE"]["flatrate"] == []
     assert refreshed["tmdb_details_fetched_at"] == old["tmdb_details_fetched_at"]
     assert refreshed["tmdb_watch_providers_fetched_at"] == NOW.isoformat()
     assert errors == []
@@ -161,7 +161,7 @@ def test_details_refresh_does_not_force_availability_refresh(monkeypatch):
 
     assert calls == ["details"]
     assert refreshed["tmdb_full"]["budget"] == 222
-    assert refreshed["tmdb_watch_providers"] == old["watch_providers"]
+    assert refreshed["watch_providers"] == old["watch_providers"]
     assert refreshed["tmdb_watch_providers_fetched_at"] == old["tmdb_watch_providers_fetched_at"]
     assert errors == []
 

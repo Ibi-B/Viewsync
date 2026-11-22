@@ -719,6 +719,13 @@ def test_new_and_coming_soon_rows_are_quality_filtered_without_trimming_catalogu
         "overview": "Still present in the complete catalogue.",
         "genre_ids": [],
     }
+    genre_only_future = {
+        "id": 405,
+        "title": "Future film with genre evidence only",
+        "release_date": "2027-02-02",
+        "poster_path": "/future-genre.jpg",
+        "genre_ids": [28],
+    }
     future_series = {
         "id": 403,
         "name": "Upcoming series",
@@ -745,6 +752,7 @@ def test_new_and_coming_soon_rows_are_quality_filtered_without_trimming_catalogu
         [
             snapshot("new_movies", "movie", recent_without_rating),
             snapshot("new_movies", "movie", recent_without_artwork),
+            snapshot("upcoming_movies", "movie", genre_only_future),
             snapshot("upcoming_series", "series", future_series),
             snapshot("new_movies", "movie", old_movie),
         ],
@@ -760,9 +768,17 @@ def test_new_and_coming_soon_rows_are_quality_filtered_without_trimming_catalogu
     assert [item["title"] for item in by_id["new-this-week"]["items"]] == [
         "Recent film without a rating"
     ]
-    assert [item["title"] for item in by_id["coming-soon"]["items"]] == [
-        "Upcoming series"
-    ]
+    assert {
+        item["title"] for item in by_id["coming-soon"]["items"]
+    } == {
+        "Upcoming series",
+        "Future film with genre evidence only",
+    }
+    genre_only = next(
+        item for item in by_id["coming-soon"]["items"]
+        if item["title"] == "Future film with genre evidence only"
+    )
+    assert genre_only["discovery_quality"]["coming_soon_eligible"] is True
     assert by_id["new-this-week"]["media_kind"] == "mixed"
     assert by_id["coming-soon"]["media_kind"] == "mixed"
 

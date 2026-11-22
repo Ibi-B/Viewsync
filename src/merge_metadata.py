@@ -70,7 +70,11 @@ def _normalise_genres(incoming, media_type):
 def merge_item(media_type, existing, incoming, provider_id):
     incoming = dict(incoming)
     enrichment = incoming.get("tmdb_enrichment")
-    details = enrichment.get("details") if isinstance(enrichment, dict) else None
+    details = (
+        enrichment.get("tmdb_full")
+        if isinstance(enrichment, dict)
+        else None
+    )
     if isinstance(details, dict):
         enriched_identity = dict(details)
         enriched_identity.update(incoming)
@@ -93,14 +97,15 @@ def merge_item(media_type, existing, incoming, provider_id):
         watch_providers = enrichment.get('watch_providers')
         if isinstance(watch_providers, dict):
             merged['watch_providers'] = dict(watch_providers)
-        watch_providers_response = enrichment.get('watch_providers_response')
-        if isinstance(watch_providers_response, dict):
-            merged['tmdb_watch_providers_response'] = dict(watch_providers_response)
-        if enrichment.get('fetched_at'):
-            merged['tmdb_metadata_fetched_at'] = enrichment['fetched_at']
-        if enrichment.get('status'):
-            merged['tmdb_metadata_status'] = enrichment['status']
         merged['tmdb_enrichment'] = dict(enrichment)
+        for field in (
+            'tmdb_details_fetched_at',
+            'tmdb_details_status',
+            'tmdb_watch_providers_fetched_at',
+            'tmdb_watch_providers_status',
+        ):
+            if enrichment.get(field) is not None:
+                merged[field] = enrichment[field]
     provenance = dict(merged.get('field_sources', {}))
     mapping = [
         ('name', 'title'), ('title', 'title'),

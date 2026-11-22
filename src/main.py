@@ -22,6 +22,7 @@ from .state import (
     select_snapshots,
 )
 from .validate import validate_release
+from .tmdb_enrichment import enrich_tmdb_snapshots
 
 BASE = Path(__file__).resolve().parent.parent
 CONFIG = BASE / "catalog-config"
@@ -91,6 +92,20 @@ def _fetch_snapshots(
                 )
                 continue
 
+            previous_snapshot = snapshots.get(
+                f"{request_id}:{provider_id}:{provider_config.get('list_id') or request_id}"
+            )
+            if provider_id == "tmdb" and previous_snapshot is not None:
+                previous_enrichment = {
+                    str(item.get("id")): item.get("tmdb_enrichment")
+                    for item in previous_snapshot.items
+                    if item.get("id") is not None and isinstance(item.get("tmdb_enrichment"), dict)
+                }
+                for item in items:
+                    cached = previous_enrichment.get(str(item.get("id")))
+                    if cached and not isinstance(item.get("tmdb_enrichment"), dict):
+                        item["tmdb_enrichment"] = cached
+
             snapshot = SourceSnapshot(
                 request_id=request_id,
                 provider_id=provider_id,
@@ -114,6 +129,7 @@ def _write_generation_report(
     failures: list[dict[str, Any]],
     restore_errors: list[dict[str, str]],
     snapshots: list[SourceSnapshot],
+    tmdb_enrichment: dict[str, Any] | None = None,
 ) -> None:
     report = {
         "generated_at": now.isoformat(),
@@ -144,6 +160,7 @@ def _write_generation_report(
             for snapshot in expired
         ],
         "fetch_failures": failures,
+        "tmdb_enrichment": tmdb_enrichment or {},
     }
     write_json(state_dir / "generation-report.json", report)
 
@@ -179,6 +196,9 @@ def generate_catalog(
     policy = config["ranking"].get("retention", {})
     provider_weights = config["ranking"].get("provider_weights", {})
     usable_snapshots, expired_snapshots = select_snapshots(snapshots, policy, now)
+    watch_regions, tmdb_enrichment_report = enrich_tmdb_snapshots(
+        usable_snapshots, now=now
+    )
 
     _write_generation_report(
         state_dir,
@@ -188,6 +208,7 @@ def generate_catalog(
         failures,
         restore_errors,
         snapshots,
+        tmdb_enrichment=tmdb_enrichment_report,
     )
 
     # Preserve every gathered/restored source payload, not only snapshots used
@@ -205,6 +226,7 @@ def generate_catalog(
         now,
         retention_policy=policy,
         provider_weights=provider_weights,
+        watch_regions=watch_regions,
     )
 
     if not release["rows"]:

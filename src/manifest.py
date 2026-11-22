@@ -1,12 +1,16 @@
-"""Build a versioned catalogue release from provider snapshots."""
+"""Build a slim versioned catalogue release from provider snapshots.
 
+Full TMDB payloads live once in per-item detail documents. Row JSON and
+provider-shelf JSON contain only display metadata plus details_path references.
+"""
 from __future__ import annotations
 
+import hashlib
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 from .fetch import SourceSnapshot
-from .identity import media_identity, resolve_identity
+from .identity import resolve_identity
 from .merge_metadata import merge_item
 from .rank import build_ranking, order_items
 from .state import snapshot_age_hours, snapshot_status
@@ -14,27 +18,23 @@ from .state import snapshot_age_hours, snapshot_status
 SUPPORTED_MEDIA_KINDS = {"movie", "series"}
 
 
-def _row_snapshots(
-    row: Dict[str, Any],
-    snapshots: List[SourceSnapshot],
-) -> List[SourceSnapshot]:
+def _row_snapshots(row: dict[str, Any], snapshots: list[SourceSnapshot]) -> list[SourceSnapshot]:
     source_lists = set(row.get("source_lists", []))
     return [snapshot for snapshot in snapshots if snapshot.request_id in source_lists]
 
 
-def _media_kind(row: Dict[str, Any]) -> str | None:
+def _media_kind(row: dict[str, Any]) -> str | None:
     media_kind = str(row.get("media_kind") or row.get("type") or "")
     return media_kind if media_kind in SUPPORTED_MEDIA_KINDS else None
 
 
 def _catalog_freshness(
-    snapshots: List[SourceSnapshot],
-    policy: Dict[str, Any],
+    snapshots: list[SourceSnapshot],
+    policy: dict[str, Any],
     now: datetime,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     ages = [snapshot_age_hours(snapshot, now) for snapshot in snapshots]
     statuses = [snapshot_status(snapshot, policy, now) for snapshot in snapshots]
-
     if not statuses:
         overall = "expired"
     elif all(status == "fresh" for status in statuses):
@@ -45,7 +45,6 @@ def _catalog_freshness(
         overall = "retained"
     else:
         overall = "expired"
-
     return {
         "status": overall,
         "oldest_source_age_hours": max(ages) if ages else None,
@@ -56,10 +55,8 @@ def _catalog_freshness(
 
 
 def _tmdb_image_url(value: Any, size: str) -> str | None:
-    """Return an absolute TMDB image URL, preserving existing absolute URLs."""
     if not isinstance(value, str) or not value.strip():
         return None
-
     value = value.strip()
     if value.startswith(("https://", "http://")):
         return value
@@ -68,183 +65,328 @@ def _tmdb_image_url(value: Any, size: str) -> str | None:
     return None
 
 
-def _images(item: Dict[str, Any]) -> Dict[str, Any]:
+def _images(item: dict[str, Any]) -> dict[str, Any]:
     return {
         "poster": _tmdb_image_url(item.get("poster") or item.get("poster_path"), "w500"),
         "backdrop": _tmdb_image_url(
-            item.get("backdrop") or item.get("background") or item.get("backdrop_path"),
+            item.get("background") or item.get("backdrop") or item.get("backdrop_path"),
             "w1280",
         ),
-        "logo": _tmdb_image_url(item.get("logo"), "w500"),
+        "logo": _tmdb_image_url(item.get("logo") or item.get("logo_path"), "w500"),
     }
 
 
-def _metadata(item: Dict[str, Any]) -> Dict[str, Any]:
+def _metadata(item: dict[str, Any]) -> dict[str, Any]:
     genres = item.get("genres") or []
     if isinstance(genres, str):
         genres = [genres]
-
     runtime = item.get("runtime") or item.get("runtime_minutes")
     if isinstance(runtime, str) and runtime.isdigit():
         runtime = int(runtime)
     if not isinstance(runtime, (int, float)):
         runtime = None
-
     return {
         "overview": item.get("description") or item.get("overview") or None,
         "genres": genres,
         "runtime_minutes": runtime,
-        "release_date": item.get("release_date"),
+        "release_date": item.get("release_date") or item.get("first_air_date"),
         "rating": item.get("rating"),
         "rating_source": item.get("rating_source"),
         "ratings": item.get("ratings", {}),
         "field_sources": item.get("field_sources", {}),
-        "original_title": item.get("original_title"),
+        "original_title": item.get("original_title") or item.get("original_name"),
         "original_language": item.get("original_language"),
         "popularity": item.get("popularity"),
         "vote_count": item.get("vote_count"),
     }
 
 
-def build_release(
-    rows: List[Dict[str, Any]],
-    snapshots: List[SourceSnapshot],
-    now: datetime,
-    retention_policy: Dict[str, Any] | None = None,
-    provider_weights: Dict[str, float] | None = None,
-    watch_regions: List[Dict[str, Any]] | None = None,
-) -> Dict[str, Any]:
-    """Merge, rank, and structure snapshots into a BeastED-facing v2 release."""
+def _detail_path(release_id: str, media_id: str) -> str:
+    digest = hashlib.sha256(media_id.encode("utf-8")).hexdigest()[:24]
+    return f"releases/{release_id}/items/{digest}.json"
 
+
+def _enriched_identity(media_type: str, raw_item: dict[str, Any], provider_id: str) -> dict[str, Any]:
+    identity_item = dict(raw_item)
+    enrichment = raw_item.get("tmdb_enrichment")
+    details = enrichment.get("tmdb_full") if isinstance(enrichment, dict) else None
+    if isinstance(details, dict):
+        enriched = dict(details)
+        enriched.update(identity_item)
+        external_ids = details.get("external_ids")
+        if isinstance(external_ids, dict) and external_ids.get("imdb_id"):
+            enriched["imdb_id"] = external_ids["imdb_id"]
+        if enriched.get("tmdb_id") is None and details.get("id") is not None:
+            enriched["tmdb_id"] = details["id"]
+        identity_item = enriched
+    if identity_item.get("tmdb_id") is None and provider_id == "tmdb" and identity_item.get("id") is not None:
+        identity_item["tmdb_id"] = identity_item["id"]
+    return identity_item
+
+
+def _make_detail_document(
+    media_id: str,
+    media_type: str,
+    item: dict[str, Any],
+    source_item: dict[str, Any],
+) -> dict[str, Any]:
+    enrichment = item.get("tmdb_enrichment")
+    if not isinstance(enrichment, dict):
+        enrichment = source_item.get("tmdb_enrichment")
+    enrichment = enrichment if isinstance(enrichment, dict) else {}
+    details = enrichment.get("tmdb_full")
+    watch_providers = enrichment.get("watch_providers")
+    return {
+        "schema_version": 1,
+        "id": media_id,
+        "media_kind": media_type,
+        "title": item.get("title") or item.get("name") or source_item.get("title") or source_item.get("name") or "",
+        "ids": item.get("ids", {}),
+        "tmdb_full": details if isinstance(details, dict) else {},
+        "watch_providers": watch_providers if isinstance(watch_providers, dict) else {},
+        "tmdb_details_fetched_at": enrichment.get("tmdb_details_fetched_at"),
+        "tmdb_details_status": enrichment.get("tmdb_details_status"),
+        "tmdb_watch_providers_fetched_at": enrichment.get("tmdb_watch_providers_fetched_at"),
+        "tmdb_watch_providers_status": enrichment.get("tmdb_watch_providers_status"),
+        # Keep the source-list record too, but only once in this detail file.
+        # It preserves TMDB discovery fields not yet mapped to the slim row.
+        "source_item": {
+            key: value for key, value in source_item.items()
+            if key != "tmdb_enrichment"
+        },
+    }
+
+
+def build_release(
+    rows: list[dict[str, Any]],
+    snapshots: list[SourceSnapshot],
+    now: datetime,
+    retention_policy: dict[str, Any] | None = None,
+    provider_weights: dict[str, float] | None = None,
+    watch_regions: list[dict[str, Any]] | None = None,
+    provider_shelves: dict[str, list[dict[str, Any]]] | None = None,
+    item_enrichments: dict[tuple[str, str], dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    """Merge and rank global lists while publishing heavy per-item data once."""
     retention_policy = retention_policy or {}
     provider_weights = provider_weights or {}
-    release_rows: List[Dict[str, Any]] = []
+    provider_shelves = provider_shelves or {}
+    item_enrichments = item_enrichments or {}
+    release_id = now.strftime("%Y%m%dT%H%M%SZ")
+    release_rows: list[dict[str, Any]] = []
+    item_details: dict[str, dict[str, Any]] = {}
+    details_by_tmdb: dict[tuple[str, str], tuple[str, dict[str, Any], dict[str, Any]]] = {}
 
     for row in rows:
-        media_kind = _media_kind(row)
-        if media_kind is None:
+        media_type = _media_kind(row)
+        if media_type is None:
             continue
-
         row_snapshots = _row_snapshots(row, snapshots)
         if not row_snapshots:
             continue
 
-        media_type = media_kind
-        merged: Dict[str, Dict[str, Any]] = {}
-        identities: Dict[str, Dict[str, Any]] = {}
-        attributions: Dict[str, List[Dict[str, Any]]] = {}
-        ranking_snapshots: List[SourceSnapshot] = []
+        merged: dict[str, dict[str, Any]] = {}
+        identities: dict[str, dict[str, Any]] = {}
+        attributions: dict[str, list[dict[str, Any]]] = {}
+        source_records: dict[str, dict[str, Any]] = {}
+        ranking_snapshots: list[SourceSnapshot] = []
 
         for snapshot in row_snapshots:
             freshness = snapshot_status(snapshot, retention_policy, now)
             weight = float(provider_weights.get(snapshot.provider_id, 1.0))
+            ranked_items: list[dict[str, Any]] = []
 
-            ranked_items: List[Dict[str, Any]] = []
             for position, raw_item in enumerate(snapshot.items, start=1):
-                identity_item = dict(raw_item)
-                enrichment = identity_item.get("tmdb_enrichment")
-                details = enrichment.get("details") if isinstance(enrichment, dict) else None
-                if isinstance(details, dict):
-                    enriched_identity = dict(details)
-                    enriched_identity.update(identity_item)
-                    external_ids = details.get("external_ids")
-                    if isinstance(external_ids, dict) and external_ids.get("imdb_id"):
-                        enriched_identity["imdb_id"] = external_ids["imdb_id"]
-                    identity_item = enriched_identity
-                media_id = resolve_identity(
-                    media_type, identity_item, identities, snapshot.provider_id
-                )
+                identity_item = _enriched_identity(media_type, raw_item, snapshot.provider_id)
+                media_id = resolve_identity(media_type, identity_item, identities, snapshot.provider_id)
                 existing = merged.get(media_id)
                 item = merge_item(media_type, existing, raw_item, snapshot.provider_id)
                 item["_viewsync_id"] = media_id
                 item["source_rank"] = position
                 merged[media_id] = item
-                ranked_item = dict(raw_item)
-                ranked_item["_viewsync_id"] = media_id
-                ranked_item["source_rank"] = position
-                ranked_items.append(ranked_item)
+                source_records.setdefault(media_id, raw_item)
 
-                attributions.setdefault(media_id, []).append(
-                    {
-                        "provider_id": snapshot.provider_id,
-                        "list_id": snapshot.list_id,
-                        "rank": position,
-                        "weight": weight,
-                        "fetched_at": snapshot.fetched_at,
-                        "freshness": freshness,
-                    }
-                )
+                ranked = dict(raw_item)
+                ranked["_viewsync_id"] = media_id
+                ranked["source_rank"] = position
+                ranked_items.append(ranked)
 
-            ranking_snapshots.append(
-                SourceSnapshot(
-                    request_id=snapshot.request_id,
-                    provider_id=snapshot.provider_id,
-                    list_id=snapshot.list_id,
-                    media_type=snapshot.media_type,
-                    fetched_at=snapshot.fetched_at,
-                    items=ranked_items,
-                    raw_payloads=snapshot.raw_payloads,
-                )
-            )
+                attributions.setdefault(media_id, []).append({
+                    "provider_id": snapshot.provider_id,
+                    "list_id": snapshot.list_id,
+                    "rank": position,
+                    "weight": weight,
+                    "fetched_at": snapshot.fetched_at,
+                    "freshness": freshness,
+                })
 
-        rankings = build_ranking(
-            ranking_snapshots,
-            provider_weights=provider_weights,
-        )
+                tmdb_id = item.get("ids", {}).get("tmdb")
+                enrichment = raw_item.get("tmdb_enrichment")
+                if tmdb_id is not None and isinstance(enrichment, dict):
+                    details_by_tmdb[(media_type, str(tmdb_id))] = (
+                        media_id, item, raw_item
+                    )
+
+            ranking_snapshots.append(SourceSnapshot(
+                request_id=snapshot.request_id,
+                provider_id=snapshot.provider_id,
+                list_id=snapshot.list_id,
+                media_type=snapshot.media_type,
+                fetched_at=snapshot.fetched_at,
+                items=ranked_items,
+                raw_payloads=snapshot.raw_payloads,
+            ))
+
+        rankings = build_ranking(ranking_snapshots, provider_weights=provider_weights)
         ordered_items = order_items(list(merged.values()), rankings)
+        release_items: list[dict[str, Any]] = []
 
-        release_items: List[Dict[str, Any]] = []
         for item in ordered_items:
             media_id = item["_viewsync_id"]
-            ranking = rankings.get(media_id, {})
+            source_item = source_records.get(media_id, {})
+            tmdb_id = item.get("ids", {}).get("tmdb")
+            enrichment = item.get("tmdb_enrichment") or source_item.get("tmdb_enrichment") or {}
+            if tmdb_id is not None and isinstance(enrichment, dict):
+                key = (media_type, str(tmdb_id))
+                details_by_tmdb[key] = (media_id, item, source_item)
+            detail_path = _detail_path(release_id, media_id)
+            detail_doc = _make_detail_document(media_id, media_type, item, source_item)
+            prior = item_details.get(detail_path)
+            if prior is None or len(str(detail_doc)) > len(str(prior)):
+                item_details[detail_path] = detail_doc
 
-            release_items.append(
-                {
-                    "id": media_id,
-                    "media_kind": media_kind,
-                    "title": item.get("title") or item.get("name") or "",
-                    "year": item.get("year"),
-                    "ids": item.get("ids", {}),
-                    "release_date": item.get("release_date"),
-                    "images": _images(item),
-                    "metadata": _metadata(item),
-                    "tmdb_full": item.get("tmdb_full", {}),
-                    "watch_providers": item.get("watch_providers", {}),
-                    "tmdb_watch_providers_response": item.get("tmdb_watch_providers_response", {}),
-                    "tmdb_metadata_fetched_at": item.get("tmdb_metadata_fetched_at"),
-                    "tmdb_metadata_status": item.get("tmdb_metadata_status"),
-                    "source_attribution": attributions.get(media_id, []),
-                    "ranking": {
-                        "consensus_score": ranking.get("consensus_score", 0.0),
-                        "provider_count": ranking.get("source_count", 0),
-                        "best_rank": ranking.get("best_rank"),
-                        "average_rank": ranking.get("average_rank"),
-                    },
-                }
-            )
+            ranking = rankings.get(media_id, {})
+            release_items.append({
+                "id": media_id,
+                "media_kind": media_type,
+                "title": item.get("title") or item.get("name") or "",
+                "year": item.get("year"),
+                "ids": item.get("ids", {}),
+                "release_date": item.get("release_date"),
+                "images": _images(item),
+                "metadata": _metadata(item),
+                "details_path": detail_path,
+                "popularity": item.get("popularity"),
+                "vote_count": item.get("vote_count"),
+                "source_attribution": attributions.get(media_id, []),
+                "ranking": {
+                    "consensus_score": ranking.get("consensus_score", 0.0),
+                    "provider_count": ranking.get("source_count", 0),
+                    "best_rank": ranking.get("best_rank"),
+                    "average_rank": ranking.get("average_rank"),
+                },
+            })
 
         providers = {snapshot.provider_id for snapshot in row_snapshots}
-        release_rows.append(
-            {
-                "id": str(row["id"]),
-                "title": str(row.get("name") or row["id"]),
-                "media_type": media_type,
-                "media_kind": media_kind,
-                "data_updated_at": now.isoformat(),
-                "status": "active",
-                "configured_provider_count": len(providers),
-                "contributing_provider_count": len(providers),
-                "source_lists": list(row.get("source_lists", [])),
-                "items": release_items,
-            }
+        release_rows.append({
+            "id": str(row["id"]),
+            "title": str(row.get("name") or row["id"]),
+            "media_type": media_type,
+            "media_kind": media_type,
+            "data_updated_at": now.isoformat(),
+            "status": "active",
+            "configured_provider_count": len(providers),
+            "contributing_provider_count": len(providers),
+            "source_lists": list(row.get("source_lists", [])),
+            "items": release_items,
+        })
+
+    # Detail documents for provider-discover titles that are not in the six
+    # global lists. Their canonical identity is still the TMDB ID.
+    for (media_type, tmdb_id), enrichment in item_enrichments.items():
+        if (media_type, str(tmdb_id)) in details_by_tmdb:
+            continue
+        media_id = f"{media_type}:tmdb:{tmdb_id}"
+        discovered = next(
+            (
+                item
+                for shelves in provider_shelves.values()
+                for shelf in shelves
+                if shelf.get("media_kind") == media_type
+                for item in shelf.get("items", [])
+                if str(item.get("tmdb_id")) == str(tmdb_id)
+            ),
+            {},
         )
+        source_item = dict(discovered)
+        source_item["id"] = int(tmdb_id) if str(tmdb_id).isdigit() else tmdb_id
+        source_item["tmdb_enrichment"] = enrichment
+        item = {
+            "ids": {"tmdb": str(tmdb_id)},
+            "tmdb_enrichment": enrichment,
+            "title": discovered.get("title") or "",
+            "year": discovered.get("year"),
+            "release_date": discovered.get("release_date"),
+            "popularity": discovered.get("popularity"),
+            "vote_count": discovered.get("vote_count"),
+        }
+        detail_path = _detail_path(release_id, media_id)
+        item_details[detail_path] = _make_detail_document(
+            media_id, media_type, item, source_item
+        )
+        details_by_tmdb[(media_type, str(tmdb_id))] = (
+            media_id, item, source_item
+        )
+
+    published_regions: list[dict[str, Any]] = []
+    published_provider_shelves: list[dict[str, Any]] = []
+    for region in watch_regions or []:
+        region_code = str(region.get("iso_code") or "").upper()
+        shelves = provider_shelves.get(region_code, [])
+        if not region_code or not shelves:
+            continue
+        shelf_path = f"releases/{release_id}/provider-shelves/{region_code}.json"
+        published_regions.append({
+            **region,
+            "provider_shelves_path": shelf_path,
+        })
+        output_shelves: list[dict[str, Any]] = []
+        for shelf in shelves:
+            shelf_items: list[dict[str, Any]] = []
+            for raw in shelf.get("items", []):
+                tmdb_id = str(raw.get("tmdb_id") or "")
+                media_kind = str(raw.get("media_kind") or shelf.get("media_kind") or "")
+                details_entry = details_by_tmdb.get((media_kind, tmdb_id))
+                if details_entry is None:
+                    raise ValueError(
+                        f"Missing TMDB enrichment for provider shelf item {media_kind}:{tmdb_id}"
+                    )
+                media_id, item, _ = details_entry
+                detail_path = _detail_path(release_id, media_id)
+                shelf_items.append({
+                    "id": media_id,
+                    "tmdb_id": tmdb_id,
+                    "media_kind": media_kind,
+                    "title": raw.get("title") or item.get("title") or "",
+                    "year": raw.get("year") or item.get("year"),
+                    "release_date": raw.get("release_date") or item.get("release_date"),
+                    "images": raw.get("images") or _images(item),
+                    "popularity": raw.get("popularity", item.get("popularity")),
+                    "rating": raw.get("rating", item.get("rating")),
+                    "vote_count": raw.get("vote_count", item.get("vote_count")),
+                    "rank": raw.get("rank"),
+                    "details_path": detail_path,
+                    "ids": item.get("ids", {"tmdb": tmdb_id}),
+                })
+            if not shelf_items:
+                continue
+            output_shelves.append({
+                key: value for key, value in shelf.items() if key != "items"
+            } | {"items": shelf_items})
+        if output_shelves:
+            published_provider_shelves.append({
+                "region": region_code,
+                "shelves": output_shelves,
+            })
 
     return {
         "schema_version": 2,
-        "release_id": now.strftime("%Y%m%dT%H%M%SZ"),
+        "release_id": release_id,
         "generated_at": now.isoformat(),
         "ranking_version": "rrf-v1",
         "catalog_freshness": _catalog_freshness(snapshots, retention_policy, now),
-        "watch_regions": watch_regions or [],
+        "watch_regions": published_regions,
+        "provider_shelves": published_provider_shelves,
+        "item_details": item_details,
         "rows": release_rows,
     }

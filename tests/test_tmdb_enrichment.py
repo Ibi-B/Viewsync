@@ -343,3 +343,70 @@ def test_enrichment_applies_to_global_and_provider_discovery_items(monkeypatch):
 def test_shelf_discovery_refresh_constants_are_distinct():
     assert DETAIL_REFRESH_AGE == timedelta(days=30)
     assert AVAILABILITY_REFRESH_AGE == timedelta(hours=12)
+
+
+
+def test_provider_discovery_only_item_keeps_tmdb_canonical_id_and_imdb_alias():
+    from src.manifest import build_release
+
+    global_item = {"id": 101, "title": "Global title", "tmdb_enrichment": _enrichment()}
+    discovered_item = {
+        "id": 202,
+        "tmdb_id": "202",
+        "media_type": "movie",
+        "media_kind": "movie",
+        "title": "Provider-only title",
+        "year": "2025",
+        "tmdb_enrichment": {
+            "tmdb_full": {
+                "id": 202,
+                "external_ids": {"imdb_id": "tt0000202"},
+                "overview": "Full discovered metadata",
+            },
+            "watch_providers": {
+                "SE": {
+                    "flatrate": [{"provider_id": 8, "provider_name": "Netflix"}],
+                    "rent": [],
+                },
+            },
+            "tmdb_details_fetched_at": NOW.isoformat(),
+            "tmdb_details_status": "fresh",
+            "tmdb_watch_providers_fetched_at": NOW.isoformat(),
+            "tmdb_watch_providers_status": "fresh",
+        },
+    }
+    shelf = {
+        "id": "netflix:movie",
+        "service_key": "netflix",
+        "provider_id": 8,
+        "provider_name": "Netflix",
+        "provider_logo": "https://image.tmdb.org/t/p/w92/netflix.png",
+        "media_kind": "movie",
+        "title": "Popular on Netflix",
+        "display_mode": "popular",
+        "availability_updated_at": NOW.isoformat(),
+        "items": [{
+            "id": "movie:tmdb:202",
+            "tmdb_id": "202",
+            "media_kind": "movie",
+            "title": "Provider-only title",
+            "rank": 1,
+        }],
+    }
+
+    release = build_release(
+        [{"id": "popular-movies", "name": "Popular", "type": "movie",
+          "source_lists": ["popular_movies"]}],
+        [_snapshot(global_item)],
+        NOW,
+        watch_regions=[{"iso_code": "SE", "english_name": "Sweden"}],
+        provider_shelves={"SE": [shelf]},
+        item_enrichments={("movie", "202"): discovered_item["tmdb_enrichment"]},
+    )
+
+    shelf_item = release["provider_shelves"][0]["shelves"][0]["items"][0]
+    detail = release["item_details"][shelf_item["details_path"]]
+    assert shelf_item["id"] == "movie:tmdb:202"
+    assert shelf_item["ids"] == {"tmdb": "202", "imdb": "tt0000202"}
+    assert detail["id"] == "movie:tmdb:202"
+    assert detail["ids"] == {"tmdb": "202", "imdb": "tt0000202"}

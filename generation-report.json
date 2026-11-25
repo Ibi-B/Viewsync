@@ -4,53 +4,98 @@
   "expired_snapshots": [],
   "fetch_failure_count": 0,
   "fetch_failures": [],
-  "generated_at": "2026-11-25T08:42:27.831849+00:00",
+  "generated_at": "2026-11-25T20:05:10.216906+00:00",
+  "publication_sizes": {
+    "files_over_limit": [],
+    "json_file_count": 595,
+    "limit_bytes": 4194304,
+    "maximum_file": "details/parts/261757d531c5f286cfbd0a0fd3aff680f1665383c6c20860ffee22f605e095dc.json",
+    "maximum_file_bytes": 3361815,
+    "total_bytes": 137507643
+  },
   "restore_error_count": 0,
   "restore_errors": [],
   "snapshot_count": 6,
   "snapshot_inventory": [
     {
-      "fetched_at": "2026-11-25T08:42:27.831849+00:00",
+      "fetched_at": "2026-11-25T20:05:10.216906+00:00",
       "item_count": 100,
       "list_id": "new_movies",
       "provider_id": "tmdb",
       "request_id": "new_movies"
     },
     {
-      "fetched_at": "2026-11-25T08:42:27.831849+00:00",
+      "fetched_at": "2026-11-25T20:05:10.216906+00:00",
       "item_count": 100,
       "list_id": "new_series",
       "provider_id": "tmdb",
       "request_id": "new_series"
     },
     {
-      "fetched_at": "2026-11-25T08:42:27.831849+00:00",
+      "fetched_at": "2026-11-25T20:05:10.216906+00:00",
       "item_count": 100,
       "list_id": "popular_movies",
       "provider_id": "tmdb",
       "request_id": "popular_movies"
     },
     {
-      "fetched_at": "2026-11-25T08:42:27.831849+00:00",
+      "fetched_at": "2026-11-25T20:05:10.216906+00:00",
       "item_count": 100,
       "list_id": "popular_series",
       "provider_id": "tmdb",
       "request_id": "popular_series"
     },
     {
-      "fetched_at": "2026-11-25T08:42:27.831849+00:00",
+      "fetched_at": "2026-11-25T20:05:10.216906+00:00",
       "item_count": 100,
       "list_id": "upcoming_movies",
       "provider_id": "tmdb",
       "request_id": "upcoming_movies"
     },
     {
-      "fetched_at": "2026-11-25T08:42:27.831849+00:00",
+      "fetched_at": "2026-11-25T20:05:10.216906+00:00",
       "item_count": 100,
       "list_id": "upcoming_series",
       "provider_id": "tmdb",
       "request_id": "upcoming_series"
     }
   ],
+  "tmdb_enrichment": {
+    "availability_records_refreshed": 561,
+    "availability_refresh_hours": 12,
+    "detail_refresh_days": 30,
+    "detail_titles_refreshed": 561,
+    "failed_items": 0,
+    "hard_cache_limit_days": 150,
+    "provider_discovery": {
+      "availability_refresh_hours": 12,
+      "configured_region_count": 8,
+      "provider_allowlist": [
+        "apple-tv",
+        "disney-plus",
+        "max",
+        "netflix",
+        "prime-video",
+        "skyshowtime"
+      ],
+      "provider_catalogue_requests": 16,
+      "provider_discover_requests": 82,
+      "provider_discovery_errors": [],
+      "provider_shelf_regions_reused": 0,
+      "provider_shelves_expired": 0,
+      "provider_shelves_omitted_under_minimum": 0,
+      "provider_shelves_published": 82,
+      "published_region_count": 8
+    },
+    "stale_refresh_errors": [],
+    "unavailable_availability_items": 0,
+    "unavailable_detail_items": 0,
+    "unique_tmdb_titles": 561
+  },
+  "tmdb_source_snapshot_retention": {
+    "hard_cache_limit_days": 150,
+    "pruned_snapshot_count": 0,
+    "pruned_snapshots": []
+  },
   "usable_snapshot_count": 6
 }

@@ -14,14 +14,22 @@ from typing import Any
 from .config import load_config
 from .fetch import SourceSnapshot, fetch_source
 from .manifest import build_release
-from .publish import publish_release
+from .publish import publication_size_report, publish_release
 from .state import (
+    TMDB_SOURCE_SNAPSHOT_RETENTION,
     persist_snapshots,
     preserve_last_good_release,
+    prune_expired_tmdb_source_snapshots,
     restore_snapshots,
     select_snapshots,
+    snapshot_age_hours,
 )
 from .validate import validate_release
+from .tmdb_enrichment import (
+    discover_provider_shelves,
+    enrich_tmdb_snapshots,
+    load_previous_detail_index,
+)
 
 BASE = Path(__file__).resolve().parent.parent
 CONFIG = BASE / "catalog-config"
@@ -86,6 +94,8 @@ def _fetch_snapshots(
                         "provider_id": provider_id,
                         "error": _safe_fetch_error(exc),
                         "partial_response_count": len(raw_payloads),
+                        # Keep partial bodies in memory for diagnostics. The
+                        # durable report redacts TMDB bodies before persistence.
                         "partial_raw_payloads": raw_payloads,
                     }
                 )
@@ -106,6 +116,23 @@ def _fetch_snapshots(
     return list(snapshots.values()), failures, restore_errors
 
 
+def _durable_fetch_failures(
+    failures: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Keep non-TMDB diagnostics intact but redact TMDB response bodies."""
+    result: list[dict[str, Any]] = []
+    for failure in failures:
+        if failure.get("provider_id") != "tmdb":
+            result.append(failure)
+            continue
+        result.append({
+            key: value
+            for key, value in failure.items()
+            if key != "partial_raw_payloads"
+        })
+    return result
+
+
 def _write_generation_report(
     state_dir: Path,
     now: datetime,
@@ -114,6 +141,8 @@ def _write_generation_report(
     failures: list[dict[str, Any]],
     restore_errors: list[dict[str, str]],
     snapshots: list[SourceSnapshot],
+    tmdb_enrichment: dict[str, Any] | None = None,
+    pruned_tmdb_source_snapshots: list[str] | None = None,
 ) -> None:
     report = {
         "generated_at": now.isoformat(),
@@ -143,7 +172,15 @@ def _write_generation_report(
             }
             for snapshot in expired
         ],
-        "fetch_failures": failures,
+        "fetch_failures": _durable_fetch_failures(failures),
+        "tmdb_enrichment": tmdb_enrichment or {},
+        "tmdb_source_snapshot_retention": {
+            "hard_cache_limit_days": int(
+                TMDB_SOURCE_SNAPSHOT_RETENTION.total_seconds() // 86400
+            ),
+            "pruned_snapshot_count": len(pruned_tmdb_source_snapshots or []),
+            "pruned_snapshots": pruned_tmdb_source_snapshots or [],
+        },
     }
     write_json(state_dir / "generation-report.json", report)
 
@@ -168,8 +205,35 @@ def generate_catalog(
     config = load_config(config_dir)
     snapshots, failures, restore_errors = _fetch_snapshots(config_dir, now, state_dir)
 
+    # Apply TMDB's hard cache-age boundary to the durable source-list history,
+    # not only to the separately published enriched detail documents. The
+    # latest snapshot is retained in memory only while it is within this
+    # boundary; older history is purged and is never written back below.
+    pruned_tmdb_source_snapshots = prune_expired_tmdb_source_snapshots(
+        state_dir,
+        now,
+    )
+    tmdb_snapshot_max_hours = (
+        TMDB_SOURCE_SNAPSHOT_RETENTION.total_seconds() / 3600
+    )
+    snapshots = [
+        snapshot
+        for snapshot in snapshots
+        if snapshot.provider_id != "tmdb"
+        or snapshot_age_hours(snapshot, now) < tmdb_snapshot_max_hours
+    ]
+
     if not snapshots:
-        _write_generation_report(state_dir, now, 0, [], failures, restore_errors, snapshots)
+        _write_generation_report(
+            state_dir,
+            now,
+            0,
+            [],
+            failures,
+            restore_errors,
+            snapshots,
+            pruned_tmdb_source_snapshots=pruned_tmdb_source_snapshots,
+        )
         raise ValueError(
             "No current or retained provider snapshots were available; refusing to publish"
         )
@@ -180,6 +244,42 @@ def generate_catalog(
     provider_weights = config["ranking"].get("provider_weights", {})
     usable_snapshots, expired_snapshots = select_snapshots(snapshots, policy, now)
 
+    # Durable source snapshots contain provider-list inputs only, and TMDB
+    # history is bounded to 150 days by the purge above. Full appended detail
+    # enrichment remains in replaceable published detail documents only.
+    persist_snapshots(snapshots, state_dir)
+
+    watch_regions, provider_shelves, additional_items, provider_discovery_report = (
+        discover_provider_shelves(now=now)
+    )
+    previous_detail_index = load_previous_detail_index(regions=watch_regions)
+    try:
+        item_enrichments, tmdb_enrichment_report = enrich_tmdb_snapshots(
+            usable_snapshots,
+            additional_items=additional_items,
+            previous_detail_index=previous_detail_index,
+            now=now,
+        )
+    except Exception as exc:
+        _write_generation_report(
+            state_dir,
+            now,
+            len(usable_snapshots),
+            expired_snapshots,
+            failures,
+            restore_errors,
+            snapshots,
+            tmdb_enrichment={
+                "provider_discovery": provider_discovery_report,
+                "generation_blocked": True,
+                "hard_cache_limit_days": 150,
+                "fatal_error": _safe_fetch_error(exc),
+            },
+            pruned_tmdb_source_snapshots=pruned_tmdb_source_snapshots,
+        )
+        raise
+    tmdb_enrichment_report["provider_discovery"] = provider_discovery_report
+
     _write_generation_report(
         state_dir,
         now,
@@ -188,11 +288,9 @@ def generate_catalog(
         failures,
         restore_errors,
         snapshots,
+        tmdb_enrichment=tmdb_enrichment_report,
+        pruned_tmdb_source_snapshots=pruned_tmdb_source_snapshots,
     )
-
-    # Preserve every gathered/restored source payload, not only snapshots used
-    # in this release. Retention controls publication eligibility, not storage.
-    persist_snapshots(snapshots, state_dir)
 
     if not usable_snapshots:
         raise ValueError("All provider snapshots have expired; refusing to publish a new release")
@@ -205,6 +303,9 @@ def generate_catalog(
         now,
         retention_policy=policy,
         provider_weights=provider_weights,
+        watch_regions=watch_regions,
+        provider_shelves=provider_shelves,
+        item_enrichments=item_enrichments,
     )
 
     if not release["rows"]:
@@ -212,6 +313,14 @@ def generate_catalog(
 
     validate_release(release)
     publish_release(release, output_dir)
+
+    # Persist compact size diagnostics alongside the generation report so the
+    # real Actions run measures actual row/detail/provider files, not estimates.
+    report_path = state_dir / "generation-report.json"
+    if report_path.exists():
+        generation_report = load_json(report_path)
+        generation_report["publication_sizes"] = publication_size_report(output_dir)
+        write_json(report_path, generation_report)
 
     manifest_path = output_dir / "v1" / "manifest.json"
     current = {

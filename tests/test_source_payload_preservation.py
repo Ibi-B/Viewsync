@@ -5,7 +5,7 @@ import pytest
 import requests
 
 from src.fetch import SourceSnapshot, _get_json, load_snapshot, save_snapshot
-from src.main import _fetch_snapshots
+from src.main import _fetch_snapshots, _write_generation_report
 from src.state import preserve_last_good_release, persist_snapshots, restore_snapshots
 
 
@@ -135,6 +135,47 @@ def test_http_error_body_is_captured_without_changing_success_payload_shape(monk
             "body": {"status": "unavailable", "request_id": "attempt-1"},
         }
     }]
+
+
+
+def test_durable_generation_report_redacts_only_tmdb_partial_response_bodies(tmp_path):
+    now = datetime(2026, 11, 22, tzinfo=timezone.utc)
+    failures = [
+        {
+            "request_id": "popular_movies",
+            "provider_id": "tmdb",
+            "error": "HTTPError: 503",
+            "partial_response_count": 1,
+            "partial_raw_payloads": [
+                {"results": [{"id": 123, "title": "TMDB title", "overview": "Private cache"}]}
+            ],
+        },
+        {
+            "request_id": "trending_movies",
+            "provider_id": "trakt",
+            "error": "HTTPError: 503",
+            "partial_response_count": 1,
+            "partial_raw_payloads": [{"data": "non-TMDB diagnostic"}],
+        },
+    ]
+    _write_generation_report(
+        tmp_path,
+        now,
+        0,
+        [],
+        failures,
+        [],
+        [],
+    )
+    report = json.loads(
+        (tmp_path / "generation-report.json").read_text(encoding="utf-8")
+    )
+    tmdb_failure, trakt_failure = report["fetch_failures"]
+    assert tmdb_failure["partial_response_count"] == 1
+    assert "partial_raw_payloads" not in tmdb_failure
+    assert trakt_failure["partial_raw_payloads"] == [
+        {"data": "non-TMDB diagnostic"}
+    ]
 
 
 def test_partial_source_response_is_persisted_and_error_credentials_are_redacted(tmp_path, monkeypatch):

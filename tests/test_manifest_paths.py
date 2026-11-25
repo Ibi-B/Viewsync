@@ -2,7 +2,7 @@ import json
 from urllib.parse import urljoin
 import pytest
 from src.publish import publish_release
-from tests.test_publish import make_release
+from tests.test_publish import _detail_path, make_release
 
 
 def test_stable_manifest_and_all_links(tmp_path):
@@ -26,7 +26,13 @@ def test_stable_manifest_and_all_links(tmp_path):
 
 def test_release_dates_survive_detail_publication(tmp_path):
     release = make_release()
-    release['rows'][0]['items'][0]['release_date'] = '2099-01-01'
+    item = release['rows'][0]['items'][0]
+    old_path = item['details_path']
+    detail_document = release['item_details'].pop(old_path)
+    detail_document['release_date'] = '2099-01-01'
+    new_path = _detail_path(detail_document)
+    item['details_path'] = new_path
+    release['item_details'][new_path] = detail_document
     path = publish_release(release, tmp_path)
     root = path.parent
     manifest = json.loads(path.read_text())

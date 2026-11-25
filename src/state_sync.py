@@ -8,8 +8,11 @@ import json
 import os
 import stat
 import subprocess
+from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 from typing import Any
+
+from .state import TMDB_SOURCE_SNAPSHOT_RETENTION
 
 ALLOWED_ROOT_FILES = {".gitkeep", "generation-report.json"}
 ALLOWED_ROOT_DIRS = {"source-snapshots", "last-good-release"}
@@ -116,6 +119,51 @@ def _snapshot_hashes(state_dir: Path) -> dict[str, str]:
     }
 
 
+def _snapshot_metadata(state_dir: Path) -> dict[str, dict[str, str]]:
+    """Capture the immutable age/provider facts needed for safe TTL deletion."""
+    directory = state_dir / SNAPSHOT_DIR
+    if not directory.exists():
+        return {}
+    result: dict[str, dict[str, str]] = {}
+    for path in sorted(directory.iterdir(), key=lambda item: item.name):
+        if path.is_symlink() or not path.is_file() or path.suffix != ".json":
+            continue
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            provider_id = payload.get("provider_id")
+            fetched_at = payload.get("fetched_at")
+            if isinstance(provider_id, str) and isinstance(fetched_at, str):
+                result[path.name] = {
+                    "provider_id": provider_id,
+                    "fetched_at": fetched_at,
+                }
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError, AttributeError):
+            # Malformed/unknown-age records are intentionally non-prunable.
+            continue
+    return result
+
+
+def _is_expired_tmdb_snapshot(
+    filename: str,
+    metadata: Any,
+    now: datetime,
+) -> bool:
+    if not isinstance(metadata, dict) or metadata.get("provider_id") != "tmdb":
+        return False
+    fetched_at = metadata.get("fetched_at")
+    if not isinstance(fetched_at, str):
+        return False
+    try:
+        parsed = datetime.fromisoformat(fetched_at.replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc) < (
+        now.astimezone(timezone.utc) - TMDB_SOURCE_SNAPSHOT_RETENTION
+    )
+
+
 def capture_baseline(state_dir: str | Path, baseline_path: str | Path, secrets: tuple[str, ...] = ()) -> None:
     root = Path(state_dir)
     validate_state_dir(root, secrets=secrets)
@@ -126,6 +174,7 @@ def capture_baseline(state_dir: str | Path, baseline_path: str | Path, secrets: 
     required_paths = sorted(path.relative_to(root).as_posix() for path in _data_files(root))
     payload = {
         "snapshot_sha256": _snapshot_hashes(root),
+        "snapshot_metadata": _snapshot_metadata(root),
         "required_paths": required_paths,
     }
     temporary = target.with_suffix(target.suffix + ".tmp")
@@ -133,16 +182,30 @@ def capture_baseline(state_dir: str | Path, baseline_path: str | Path, secrets: 
     temporary.replace(target)
 
 
-def verify_append_only(state_dir: str | Path, baseline_path: str | Path, secrets: tuple[str, ...] = ()) -> None:
+def verify_append_only(
+    state_dir: str | Path,
+    baseline_path: str | Path,
+    secrets: tuple[str, ...] = (),
+    now: datetime | None = None,
+) -> None:
     root = Path(state_dir)
     validate_state_dir(root, secrets=secrets)
     baseline_file = Path(baseline_path)
     _regular_file(baseline_file)
     baseline: Any = json.loads(baseline_file.read_text(encoding="utf-8"))
     previous = baseline.get("snapshot_sha256") if isinstance(baseline, dict) else None
+    snapshot_metadata = (
+        baseline.get("snapshot_metadata") if isinstance(baseline, dict) else None
+    )
     required_paths = baseline.get("required_paths") if isinstance(baseline, dict) else None
-    if not isinstance(previous, dict) or not isinstance(required_paths, list):
+    if (
+        not isinstance(previous, dict)
+        or not isinstance(required_paths, list)
+        or (snapshot_metadata is not None and not isinstance(snapshot_metadata, dict))
+    ):
         raise StateSafetyError("Snapshot baseline is malformed")
+    now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
+
     for name in required_paths:
         if not isinstance(name, str):
             raise StateSafetyError("Snapshot baseline contains an invalid path")
@@ -150,11 +213,24 @@ def verify_append_only(state_dir: str | Path, baseline_path: str | Path, secrets
         if relative.is_absolute() or ".." in relative.parts or not relative.parts:
             raise StateSafetyError("Snapshot baseline contains an unsafe path")
         existing = root.joinpath(*relative.parts)
-        if existing.is_symlink() or not existing.is_file():
-            raise StateSafetyError(f"Existing state file was deleted: {name}")
+        if existing.is_symlink():
+            raise StateSafetyError(f"Existing state file was replaced by a symlink: {name}")
+        if not existing.is_file():
+            is_snapshot = relative.parent == PurePosixPath(SNAPSHOT_DIR)
+            metadata = (snapshot_metadata or {}).get(relative.name)
+            if not (
+                is_snapshot
+                and _is_expired_tmdb_snapshot(relative.name, metadata, now)
+            ):
+                raise StateSafetyError(f"Existing state file was deleted: {name}")
+
     current = _snapshot_hashes(root)
     for filename, digest in previous.items():
         if filename not in current:
+            metadata = (snapshot_metadata or {}).get(filename)
+            if _is_expired_tmdb_snapshot(filename, metadata, now):
+                # The only permitted history deletion is the TMDB snapshot TTL.
+                continue
             raise StateSafetyError(f"Existing snapshot was deleted: {filename}")
         if current[filename] != digest:
             raise StateSafetyError(f"Existing snapshot was modified: {filename}")

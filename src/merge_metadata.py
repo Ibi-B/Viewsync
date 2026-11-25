@@ -68,6 +68,27 @@ def _normalise_genres(incoming, media_type):
 
 
 def merge_item(media_type, existing, incoming, provider_id):
+    incoming = dict(incoming)
+    enrichment = incoming.get("tmdb_enrichment")
+    details = (
+        enrichment.get("tmdb_full")
+        if isinstance(enrichment, dict)
+        else None
+    )
+    if isinstance(details, dict):
+        enriched_identity = dict(details)
+        enriched_identity.update(incoming)
+        external_ids = details.get("external_ids")
+        if isinstance(external_ids, dict) and external_ids.get("imdb_id"):
+            enriched_identity.setdefault("imdb_id", external_ids["imdb_id"])
+        retained_ids = enrichment.get("ids")
+        if isinstance(retained_ids, dict):
+            if retained_ids.get("tmdb"):
+                enriched_identity["tmdb_id"] = retained_ids["tmdb"]
+            if retained_ids.get("imdb"):
+                enriched_identity["imdb_id"] = retained_ids["imdb"]
+        incoming = enriched_identity
+
     identity = media_identity(media_type, incoming, provider_id)
     merged = dict(existing or {})
     merged.update(id=identity['id'], type=media_type)
@@ -75,7 +96,27 @@ def merge_item(media_type, existing, incoming, provider_id):
     for key in ('imdb', 'tmdb'):
         if identity.get(key):
             ids[key] = identity[key]
+    retained_ids = enrichment.get("ids") if isinstance(enrichment, dict) else None
+    if isinstance(retained_ids, dict):
+        for key, value in retained_ids.items():
+            if value not in (None, ""):
+                ids[str(key)] = str(value)
     merged['ids'] = ids
+    if isinstance(enrichment, dict):
+        if isinstance(details, dict):
+            merged['tmdb_full'] = dict(details)
+        watch_providers = enrichment.get('watch_providers')
+        if isinstance(watch_providers, dict):
+            merged['watch_providers'] = dict(watch_providers)
+        merged['tmdb_enrichment'] = dict(enrichment)
+        for field in (
+            'tmdb_details_fetched_at',
+            'tmdb_details_status',
+            'tmdb_watch_providers_fetched_at',
+            'tmdb_watch_providers_status',
+        ):
+            if enrichment.get(field) is not None:
+                merged[field] = enrichment[field]
     provenance = dict(merged.get('field_sources', {}))
     mapping = [
         ('name', 'title'), ('title', 'title'),

@@ -113,7 +113,7 @@ def validate_release(release: dict[str, Any]) -> None:
             raise ValidationError("Row is missing id")
 
         media_kind = row.get("media_kind")
-        if media_kind not in MEDIA_KINDS:
+        if media_kind not in MEDIA_KINDS | {"mixed"}:
             raise ValidationError(f"Row {row['id']} has invalid media_kind {media_kind!r}")
 
         items = row.get("items")

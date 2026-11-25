@@ -1,4 +1,5 @@
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pytest
@@ -13,13 +14,18 @@ from src.state_sync import (
 )
 
 
-def _snapshot(request_id="popular_movies", item_id=1):
+def _snapshot(
+    request_id="popular_movies",
+    item_id=1,
+    provider_id="tmdb",
+    fetched_at="2026-11-15T00:00:00+00:00",
+):
     return {
         "request_id": request_id,
-        "provider_id": "tmdb",
+        "provider_id": provider_id,
         "list_id": request_id,
         "media_type": "movie",
-        "fetched_at": "2026-11-15T00:00:00+00:00",
+        "fetched_at": fetched_at,
         "items": [{"id": item_id}],
         "raw_payloads": [{"results": [{"id": item_id}]}],
     }
@@ -72,6 +78,77 @@ def test_snapshot_deletion_is_rejected(tmp_path):
 
     with pytest.raises(StateSafetyError, match="deleted"):
         verify_append_only(state, baseline)
+
+
+def test_only_tmdb_snapshot_deletion_after_150_days_is_allowed(tmp_path):
+    state = tmp_path / "state"
+    state.mkdir()
+    stale = _write_snapshot(
+        state,
+        "old-tmdb.json",
+        _snapshot(
+            item_id=10,
+            provider_id="tmdb",
+            fetched_at="2026-01-01T00:00:00+00:00",
+        ),
+    )
+    baseline = tmp_path / "baseline.json"
+    capture_baseline(state, baseline)
+    stale.unlink()
+
+    verify_append_only(
+        state,
+        baseline,
+        now=datetime(2026, 11, 22, tzinfo=timezone.utc),
+    )
+
+
+def test_old_non_tmdb_snapshot_deletion_is_still_rejected(tmp_path):
+    state = tmp_path / "state"
+    state.mkdir()
+    old_other_provider = _write_snapshot(
+        state,
+        "old-trakt.json",
+        _snapshot(
+            item_id=11,
+            provider_id="trakt",
+            fetched_at="2026-01-01T00:00:00+00:00",
+        ),
+    )
+    baseline = tmp_path / "baseline.json"
+    capture_baseline(state, baseline)
+    old_other_provider.unlink()
+
+    with pytest.raises(StateSafetyError, match="deleted"):
+        verify_append_only(
+            state,
+            baseline,
+            now=datetime(2026, 11, 22, tzinfo=timezone.utc),
+        )
+
+
+def test_expired_tmdb_snapshot_cannot_be_modified_instead_of_deleted(tmp_path):
+    state = tmp_path / "state"
+    state.mkdir()
+    stale = _write_snapshot(
+        state,
+        "old-tmdb.json",
+        _snapshot(
+            item_id=10,
+            provider_id="tmdb",
+            fetched_at="2026-01-01T00:00:00+00:00",
+        ),
+    )
+    baseline = tmp_path / "baseline.json"
+    capture_baseline(state, baseline)
+    stale.write_text(json.dumps(_snapshot(item_id=999)), encoding="utf-8")
+
+    with pytest.raises(StateSafetyError, match="modified"):
+        verify_append_only(
+            state,
+            baseline,
+            now=datetime(2026, 11, 22, tzinfo=timezone.utc),
+        )
 
 
 def test_malformed_snapshot_is_retained_and_reported_by_restore(tmp_path):
@@ -213,7 +290,7 @@ def test_test_only_workflow_never_checks_out_or_writes_durable_state():
     assert "secrets." not in workflow
     assert "uses: actions/checkout@v4" in workflow
     assert ("ref: " + "$" + "{{ github.sha }}") in workflow
-    assert "if: github.ref == 'refs/heads/main'" in workflow
+    assert "if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request'" in workflow
     assert workflow.count("python -m pytest") == 2
     assert "src.main" not in workflow
     assert "upload-pages-artifact" not in workflow

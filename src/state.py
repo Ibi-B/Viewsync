@@ -3,11 +3,16 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
 from .fetch import SourceSnapshot, load_snapshot, save_snapshot
+
+# Hard cache-age boundary for TMDB-derived descriptive source snapshots.
+# Identifiers remain available in canonical identity records and current data;
+# historical TMDB list responses are not retained indefinitely.
+TMDB_SOURCE_SNAPSHOT_RETENTION = timedelta(days=150)
 
 
 def parse_timestamp(value: str) -> datetime:
@@ -80,13 +85,73 @@ def restore_snapshots(
     return snapshots
 
 
+def prune_expired_tmdb_source_snapshots(
+    state_dir: str | Path,
+    now: datetime | None = None,
+) -> list[str]:
+    """Purge only TMDB source snapshots older than the hard 150-day cache age.
+
+    The newest source snapshot is not given a special exemption: snapshots
+    older than 150 days are outside the permitted metadata cache window and
+    are already unusable under the shorter operational freshness policy.
+    Non-TMDB provider snapshots and malformed files are left untouched.
+    """
+    snapshot_dir = Path(state_dir) / "source-snapshots"
+    if not snapshot_dir.exists():
+        return []
+
+    now = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
+    cutoff = now - TMDB_SOURCE_SNAPSHOT_RETENTION
+    removed: list[str] = []
+    for path in sorted(snapshot_dir.glob("*.json")):
+        if path.is_symlink() or not path.is_file():
+            continue
+        try:
+            snapshot = load_snapshot(path)
+            if snapshot.provider_id != "tmdb":
+                continue
+            fetched_at = parse_timestamp(snapshot.fetched_at)
+        except (OSError, ValueError, TypeError, KeyError):
+            # Unknown-age data is not safe to delete automatically.
+            continue
+
+        if fetched_at.tzinfo is None:
+            fetched_at = fetched_at.replace(tzinfo=timezone.utc)
+        if fetched_at.astimezone(timezone.utc) < cutoff:
+            path.unlink()
+            removed.append(path.name)
+
+    return removed
+
+
 def persist_snapshots(snapshots: list[SourceSnapshot], state_dir: str | Path) -> None:
-    """Persist all snapshots, including empty and expired results; never prune history."""
+    """Persist newly fetched source snapshots as immutable state files."""
     snapshot_dir = Path(state_dir) / "source-snapshots"
     snapshot_dir.mkdir(parents=True, exist_ok=True)
 
     for snapshot in snapshots:
-        save_snapshot(snapshot, snapshot_dir)
+        persisted = snapshot
+        if snapshot.provider_id == "tmdb":
+            # TMDB IDs are the durable identity keys; descriptive fields and
+            # raw response bodies are refreshed from TMDB / the published
+            # detail documents and must not accumulate in public Git history.
+            identifier_only_items = []
+            for item in snapshot.items:
+                if not isinstance(item, dict):
+                    continue
+                tmdb_id = item.get("id", item.get("tmdb_id"))
+                if tmdb_id not in (None, ""):
+                    identifier_only_items.append({"id": tmdb_id})
+            persisted = SourceSnapshot(
+                request_id=snapshot.request_id,
+                provider_id=snapshot.provider_id,
+                list_id=snapshot.list_id,
+                media_type=snapshot.media_type,
+                fetched_at=snapshot.fetched_at,
+                items=identifier_only_items,
+                raw_payloads=[],
+            )
+        save_snapshot(persisted, snapshot_dir)
 
 
 def preserve_last_good_release(state_dir: str | Path, output_dir: str | Path) -> bool:

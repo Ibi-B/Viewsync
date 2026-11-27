@@ -4,56 +4,56 @@
   "expired_snapshots": [],
   "fetch_failure_count": 0,
   "fetch_failures": [],
-  "generated_at": "2026-11-26T21:38:36.464991+00:00",
+  "generated_at": "2026-11-27T08:42:01.949162+00:00",
   "publication_sizes": {
     "files_over_limit": [],
-    "json_file_count": 566,
+    "json_file_count": 582,
     "limit_bytes": 4194304,
-    "maximum_file": "details/parts/693bd529c03ff1336f914fd75055a9688fe80fde6abc21ed51fef07b51f5b1c1.json",
+    "maximum_file": "details/parts/1a1d797b6aad357f6753ec8f295a880e62431dba813b8eea2dde573a9b01794a.json",
     "maximum_file_bytes": 3361794,
-    "total_bytes": 138193963
+    "total_bytes": 138283457
   },
   "restore_error_count": 0,
   "restore_errors": [],
   "snapshot_count": 6,
   "snapshot_inventory": [
     {
-      "fetched_at": "2026-11-26T21:38:36.464991+00:00",
+      "fetched_at": "2026-11-27T08:42:01.949162+00:00",
       "item_count": 100,
       "list_id": "new_movies",
       "provider_id": "tmdb",
       "request_id": "new_movies"
     },
     {
-      "fetched_at": "2026-11-26T21:38:36.464991+00:00",
+      "fetched_at": "2026-11-27T08:42:01.949162+00:00",
       "item_count": 100,
       "list_id": "new_series",
       "provider_id": "tmdb",
       "request_id": "new_series"
     },
     {
-      "fetched_at": "2026-11-26T21:38:36.464991+00:00",
+      "fetched_at": "2026-11-27T08:42:01.949162+00:00",
       "item_count": 100,
       "list_id": "popular_movies",
       "provider_id": "tmdb",
       "request_id": "popular_movies"
     },
     {
-      "fetched_at": "2026-11-26T21:38:36.464991+00:00",
+      "fetched_at": "2026-11-27T08:42:01.949162+00:00",
       "item_count": 100,
       "list_id": "popular_series",
       "provider_id": "tmdb",
       "request_id": "popular_series"
     },
     {
-      "fetched_at": "2026-11-26T21:38:36.464991+00:00",
+      "fetched_at": "2026-11-27T08:42:01.949162+00:00",
       "item_count": 100,
       "list_id": "upcoming_movies",
       "provider_id": "tmdb",
       "request_id": "upcoming_movies"
     },
     {
-      "fetched_at": "2026-11-26T21:38:36.464991+00:00",
+      "fetched_at": "2026-11-27T08:42:01.949162+00:00",
       "item_count": 100,
       "list_id": "upcoming_series",
       "provider_id": "tmdb",
@@ -61,10 +61,10 @@
     }
   ],
   "tmdb_enrichment": {
-    "availability_records_refreshed": 533,
+    "availability_records_refreshed": 532,
     "availability_refresh_hours": 12,
     "detail_refresh_days": 30,
-    "detail_titles_refreshed": 533,
+    "detail_titles_refreshed": 532,
     "failed_items": 0,
     "hard_cache_limit_days": 150,
     "provider_discovery": {
@@ -78,10 +78,10 @@
         "prime-video",
         "skyshowtime"
       ],
-      "provider_catalogue_requests": 16,
-      "provider_discover_requests": 82,
+      "provider_catalogue_requests": 0,
+      "provider_discover_requests": 0,
       "provider_discovery_errors": [],
-      "provider_shelf_regions_reused": 0,
+      "provider_shelf_regions_reused": 8,
       "provider_shelves_expired": 0,
       "provider_shelves_omitted_under_minimum": 0,
       "provider_shelves_published": 82,
@@ -90,7 +90,7 @@
     "stale_refresh_errors": [],
     "unavailable_availability_items": 0,
     "unavailable_detail_items": 0,
-    "unique_tmdb_titles": 533
+    "unique_tmdb_titles": 532
   },
   "tmdb_source_snapshot_retention": {
     "hard_cache_limit_days": 150,
